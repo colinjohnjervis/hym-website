@@ -50,10 +50,7 @@
       font: inherit;
     }
 
-
-    /* ========================================
-       HEADER
-    ======================================== */
+    /* HEADER */
 
     .site-header {
       position: sticky;
@@ -67,7 +64,7 @@
 
       padding: 0 22px;
 
-      background: rgba(5,5,5,.92);
+      background: rgba(5,5,5,.94);
       backdrop-filter: blur(10px);
 
       border-bottom: 1px solid rgba(255,255,255,.08);
@@ -83,35 +80,31 @@
 
       border: 0;
       background: transparent;
-      color: white;
-
-      cursor: pointer;
 
       display: grid;
       place-items: center;
+
+      cursor: pointer;
     }
 
     .menu-button span,
     .menu-button::before,
     .menu-button::after {
       content: "";
+
       display: block;
 
       width: 28px;
       height: 2px;
 
       background: white;
-      transition: .25s;
     }
 
     .menu-button span {
       margin: 6px 0;
     }
 
-
-    /* ========================================
-       MOBILE NAVIGATION
-    ======================================== */
+    /* NAV */
 
     .nav-panel {
       position: fixed;
@@ -124,6 +117,7 @@
       padding: 30px 24px 38px;
 
       background: #090909;
+
       border-bottom: 1px solid var(--line);
 
       transform: translateY(-130%);
@@ -147,10 +141,7 @@
       border-bottom: 1px solid rgba(255,255,255,.12);
     }
 
-
-    /* ========================================
-       HERO
-    ======================================== */
+    /* HERO */
 
     .hero {
       position: relative;
@@ -161,7 +152,6 @@
       align-items: flex-end;
 
       overflow: hidden;
-
       background: #111;
     }
 
@@ -211,10 +201,7 @@
       text-transform: uppercase;
     }
 
-
-    /* ========================================
-       GENERAL SECTIONS
-    ======================================== */
+    /* GENERAL */
 
     section {
       scroll-margin-top: 74px;
@@ -225,10 +212,10 @@
     }
 
     .section-title {
-      margin-bottom: 36px;
+      margin-bottom: 32px;
 
-      font-size: clamp(2.5rem, 11vw, 6rem);
-      line-height: .9;
+      font-size: clamp(2.8rem, 12vw, 6rem);
+      line-height: .88;
 
       letter-spacing: -.055em;
 
@@ -239,10 +226,7 @@
       color: var(--pink);
     }
 
-
-    /* ========================================
-       PRESS QUOTE
-    ======================================== */
+    /* QUOTE */
 
     .quote-section {
       min-height: 70svh;
@@ -280,10 +264,7 @@
       text-transform: uppercase;
     }
 
-
-    /* ========================================
-       BAND PHOTOGRAPH
-    ======================================== */
+    /* BAND IMAGE */
 
     .band-shot {
       min-height: 75svh;
@@ -299,30 +280,29 @@
       background-position: center;
     }
 
-
-    /* ========================================
-       LIVE / BANDSINTOWN
-    ======================================== */
+    /* LIVE */
 
     .events {
       position: relative;
+
       overflow: hidden;
 
-      background: var(--pink);
-      color: #050505;
+      background: #050505;
+      color: #ffffff;
     }
 
     .events::before {
       content: "";
 
       position: absolute;
-      width: 340px;
-      height: 340px;
 
-      right: -170px;
-      top: -150px;
+      width: 420px;
+      height: 420px;
 
-      border: 1px solid rgba(0,0,0,.25);
+      right: -250px;
+      top: -200px;
+
+      border: 1px solid rgba(255,41,236,.25);
       border-radius: 50%;
     }
 
@@ -334,40 +314,37 @@
       margin: 0 auto;
     }
 
-    .events-intro {
-      max-width: 660px;
-      margin-bottom: 42px;
-    }
-
     .events-eyebrow {
       margin-bottom: 14px;
 
-      font-size: .78rem;
+      color: var(--pink);
+
+      font-size: .76rem;
       font-weight: 800;
 
-      letter-spacing: .18em;
-
+      letter-spacing: .2em;
       text-transform: uppercase;
+    }
+
+    .events .section-title span {
+      color: var(--pink);
     }
 
     .events-copy {
       max-width: 560px;
+
+      color: #b8b8b8;
 
       font-size: 1rem;
       line-height: 1.6;
     }
 
     .bit-widget-shell {
+      margin-top: 42px;
       padding-top: 28px;
 
-      border-top: 2px solid rgba(0,0,0,.85);
+      border-top: 1px solid #333;
     }
-
-    /*
-      Bandsintown inserts the actual event listing here.
-      These rules style the surrounding area and give
-      the widget room to sit naturally in our design.
-    */
 
     .bit-widget-initializer {
       display: block;
@@ -376,22 +353,19 @@
     }
 
     .events-note {
-      margin-top: 26px;
+      margin-top: 28px;
 
-      font-size: .75rem;
+      color: #777;
+
+      font-size: .7rem;
       font-weight: 700;
 
-      letter-spacing: .08em;
+      letter-spacing: .1em;
 
       text-transform: uppercase;
-
-      opacity: .7;
     }
 
-
-    /* ========================================
-       MERCH
-    ======================================== */
+    /* MERCH */
 
     .merch {
       padding: 0;
@@ -461,10 +435,7 @@
       color: #050505;
     }
 
-
-    /* ========================================
-       LISTEN / SPOTIFY
-    ======================================== */
+    /* LISTEN */
 
     .listen {
       background: #111;
@@ -483,10 +454,7 @@
       border-radius: 12px;
     }
 
-
-    /* ========================================
-       CONTACT
-    ======================================== */
+    /* CONTACT */
 
     .contact {
       background: var(--white);
@@ -513,6 +481,7 @@
 
     .contact-copy p {
       margin-top: 24px;
+
       max-width: 450px;
     }
 
@@ -574,10 +543,7 @@
       cursor: pointer;
     }
 
-
-    /* ========================================
-       FOOTER
-    ======================================== */
+    /* FOOTER */
 
     .site-footer {
       padding: 34px 22px;
@@ -594,10 +560,7 @@
       border-top: 1px solid #222;
     }
 
-
-    /* ========================================
-       DESKTOP
-    ======================================== */
+    /* DESKTOP */
 
     @media (min-width: 800px) {
 
@@ -615,10 +578,6 @@
 
       .section {
         padding: 110px 48px;
-      }
-
-      .events-intro {
-        margin-bottom: 55px;
       }
 
       .merch {
@@ -640,6 +599,7 @@
 
       .contact-grid {
         grid-template-columns: .9fr 1.1fr;
+
         align-items: start;
       }
 
@@ -653,10 +613,7 @@
   </style>
 </head>
 
-
 <body>
-
-  <!-- HEADER -->
 
   <header class="site-header">
 
@@ -664,13 +621,11 @@
       href="index.html"
       aria-label="Holy Youth Movement entrance page"
     >
-
       <img
         class="nav-logo"
         src="https://holyyouthmovement.co.uk/assets/images/hymlogo.png"
         alt="Holy Youth Movement"
       >
-
     </a>
 
     <button
@@ -683,8 +638,6 @@
 
   </header>
 
-
-  <!-- NAVIGATION -->
 
   <nav
     class="nav-panel"
@@ -699,12 +652,7 @@
   </nav>
 
 
-  <!-- MAIN -->
-
   <main id="top">
-
-
-    <!-- HERO -->
 
     <section class="hero">
 
@@ -731,8 +679,6 @@
     </section>
 
 
-    <!-- PRESS QUOTE -->
-
     <section class="quote-section">
 
       <blockquote>
@@ -749,16 +695,12 @@
     </section>
 
 
-    <!-- BAND IMAGE -->
-
     <section
       class="band-shot"
       aria-label="Holy Youth Movement band photograph"
     >
     </section>
 
-
-    <!-- LIVE / BANDSINTOWN -->
 
     <section
       class="section events"
@@ -767,21 +709,17 @@
 
       <div class="events-inner">
 
-        <div class="events-intro">
-
-          <div class="events-eyebrow">
-            Holy Youth Movement
-          </div>
-
-          <h2 class="section-title">
-            live<span>.</span>
-          </h2>
-
-          <p class="events-copy">
-            Upcoming Holy Youth Movement shows, tour dates and ticket links.
-          </p>
-
+        <div class="events-eyebrow">
+          Holy Youth Movement
         </div>
+
+        <h2 class="section-title">
+          live<span>.</span>
+        </h2>
+
+        <p class="events-copy">
+          Upcoming Holy Youth Movement shows, tour dates and ticket links.
+        </p>
 
 
         <div class="bit-widget-shell">
@@ -795,9 +733,32 @@
             class="bit-widget-initializer"
 
             data-artist-name="id_15542629"
-
             data-app-id="3c9d183150cd2ab67c8e3459c2243e53"
 
+            data-text-color="#ffffff"
+            data-link-color="#ff29ec"
+            data-link-text-color="#050505"
+
+            data-background-color="#050505"
+            data-popup-background-color="#050505"
+            data-separator-color="#333333"
+
+            data-font="Arial"
+
+            data-widget-width="100%"
+
+            data-display-logo="false"
+            data-display-track-button="false"
+            data-display-play-my-city="false"
+
+            data-display-local-dates="false"
+            data-display-past-dates="false"
+
+            data-display-start-time="false"
+            data-display-lineup="false"
+            data-display-details="false"
+
+            data-language="en"
           ></a>
 
         </div>
@@ -811,8 +772,6 @@
 
     </section>
 
-
-    <!-- MERCH -->
 
     <section
       class="merch"
@@ -848,8 +807,6 @@
     </section>
 
 
-    <!-- LISTEN -->
-
     <section
       class="section listen"
       id="listen"
@@ -873,8 +830,6 @@
 
     </section>
 
-
-    <!-- CONTACT -->
 
     <section
       class="section contact"
@@ -936,11 +891,8 @@
 
     </section>
 
-
   </main>
 
-
-  <!-- FOOTER -->
 
   <footer class="site-footer">
 
@@ -954,8 +906,6 @@
 
   </footer>
 
-
-  <!-- JAVASCRIPT -->
 
   <script>
 
