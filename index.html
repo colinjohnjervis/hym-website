@@ -4,14 +4,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#000000">
-
   <title>Holy Youth Movement</title>
 
   <style>
     :root {
       --pink: #ff20ef;
-      --black: #000;
-      --white: #fff;
+      --purple: #7b00ff;
+      --white: #ffffff;
+      --black: #000000;
     }
 
     * {
@@ -39,227 +39,342 @@
       isolation: isolate;
     }
 
-    /* -------------------------
-       MOVING BACKGROUND
-    ------------------------- */
+    /* ==============================
+       BASE BACKGROUND
+    ============================== */
 
-    .background {
+    .scene {
       position: absolute;
-      inset: -10%;
-      z-index: -5;
+      inset: -15%;
+      z-index: -10;
 
       background:
-        radial-gradient(
-          circle at 25% 30%,
-          rgba(255, 32, 239, 0.28),
-          transparent 30%
-        ),
-        radial-gradient(
-          circle at 78% 62%,
-          rgba(95, 0, 255, 0.20),
-          transparent 28%
-        ),
-        radial-gradient(
-          circle at 58% 20%,
-          rgba(255, 255, 255, 0.05),
-          transparent 20%
-        ),
-        linear-gradient(
-          135deg,
-          #030003 0%,
-          #120010 34%,
-          #020202 66%,
-          #0c0010 100%
-        );
+        radial-gradient(circle at 20% 30%, rgba(255, 32, 239, .18), transparent 30%),
+        radial-gradient(circle at 75% 70%, rgba(123, 0, 255, .16), transparent 32%),
+        linear-gradient(135deg, #020002 0%, #12000f 35%, #020202 70%, #09000b 100%);
 
-      filter: contrast(1.2) saturate(1.2);
-
-      animation:
-        backgroundMove 14s ease-in-out infinite alternate,
-        backgroundZoom 18s ease-in-out infinite alternate;
+      animation: sceneMove 10s ease-in-out infinite alternate;
     }
 
-    @keyframes backgroundMove {
+    @keyframes sceneMove {
       0% {
-        transform: translate3d(-2%, -2%, 0) rotate(-1deg);
+        transform: scale(1) translate(-2%, -1%) rotate(-1deg);
       }
 
       50% {
-        transform: translate3d(3%, 1%, 0) rotate(1deg);
+        transform: scale(1.08) translate(2%, 1%) rotate(.5deg);
       }
 
       100% {
-        transform: translate3d(-1%, 3%, 0) rotate(-0.5deg);
+        transform: scale(1.15) translate(-1%, 3%) rotate(1deg);
       }
     }
 
-    @keyframes backgroundZoom {
-      from {
-        scale: 1;
-      }
+    /* ==============================
+       BIG MOVING LIGHTS
+    ============================== */
 
-      to {
-        scale: 1.1;
-      }
-    }
-
-    /* -------------------------
-       SOFT LIGHT BLOBS
-    ------------------------- */
-
-    .light {
+    .orb {
       position: absolute;
       border-radius: 50%;
-      filter: blur(70px);
-      opacity: 0.28;
+      filter: blur(65px);
       mix-blend-mode: screen;
+      opacity: .45;
+      z-index: -6;
       pointer-events: none;
     }
 
-    .light-one {
-      width: 42vw;
-      height: 42vw;
+    .orb-one {
+      width: 55vw;
+      height: 55vw;
+      min-width: 300px;
+      min-height: 300px;
+
+      left: -20%;
+      top: 5%;
+
+      background: var(--pink);
+
+      animation: orbOne 8s ease-in-out infinite alternate;
+    }
+
+    .orb-two {
+      width: 46vw;
+      height: 46vw;
       min-width: 260px;
       min-height: 260px;
-      background: var(--pink);
-      left: -10%;
-      top: 12%;
-      animation: driftOne 11s ease-in-out infinite alternate;
+
+      right: -18%;
+      bottom: 5%;
+
+      background: var(--purple);
+
+      animation: orbTwo 9s ease-in-out infinite alternate;
     }
 
-    .light-two {
-      width: 34vw;
-      height: 34vw;
+    .orb-three {
+      width: 38vw;
+      height: 38vw;
       min-width: 220px;
       min-height: 220px;
-      background: #6e00ff;
-      right: -8%;
-      bottom: 8%;
-      animation: driftTwo 13s ease-in-out infinite alternate;
+
+      left: 30%;
+      bottom: -15%;
+
+      background: rgba(255, 255, 255, .16);
+
+      animation: orbThree 7s ease-in-out infinite alternate;
     }
 
-    @keyframes driftOne {
+    @keyframes orbOne {
       from {
-        transform: translate(0, 0) scale(0.9);
+        transform: translate(0, 0) scale(.9);
       }
 
       to {
-        transform: translate(30vw, 18vh) scale(1.2);
+        transform: translate(55vw, 24vh) scale(1.25);
       }
     }
 
-    @keyframes driftTwo {
+    @keyframes orbTwo {
       from {
-        transform: translate(0, 0) scale(1.1);
+        transform: translate(0, 0) scale(1.15);
       }
 
       to {
-        transform: translate(-24vw, -20vh) scale(0.8);
+        transform: translate(-50vw, -28vh) scale(.85);
       }
     }
 
-    /* -------------------------
-       MOVING LIGHT STREAKS
-    ------------------------- */
+    @keyframes orbThree {
+      from {
+        transform: translate(-10vw, 0) scale(.8);
+      }
 
-    .streak {
+      to {
+        transform: translate(25vw, -45vh) scale(1.35);
+      }
+    }
+
+    /* ==============================
+       SWEEPING LIGHT BEAMS
+    ============================== */
+
+    .beam {
       position: absolute;
       width: 140%;
-      height: 2px;
+      height: 14vh;
       left: -20%;
-      background: linear-gradient(
-        90deg,
-        transparent,
-        rgba(255,255,255,.08),
-        rgba(255,32,239,.5),
-        transparent
-      );
-      filter: blur(0.6px);
-      opacity: 0;
-      transform: rotate(-12deg);
-      animation: streakMove 7s linear infinite;
+      z-index: -4;
+      opacity: .55;
+      mix-blend-mode: screen;
+      filter: blur(18px);
+      pointer-events: none;
     }
 
-    .streak-one {
-      top: 25%;
-      animation-delay: 1s;
+    .beam-one {
+      top: 14%;
+      background:
+        linear-gradient(
+          90deg,
+          transparent 0%,
+          rgba(255,32,239,.04) 20%,
+          rgba(255,32,239,.7) 48%,
+          rgba(255,255,255,.18) 52%,
+          transparent 80%
+        );
+
+      transform: rotate(-18deg);
+      animation: beamOne 5.5s linear infinite;
     }
 
-    .streak-two {
-      top: 62%;
-      animation-delay: 4s;
+    .beam-two {
+      top: 58%;
+
+      background:
+        linear-gradient(
+          90deg,
+          transparent 0%,
+          rgba(123,0,255,.08) 20%,
+          rgba(123,0,255,.62) 50%,
+          rgba(255,32,239,.35) 58%,
+          transparent 82%
+        );
+
+      transform: rotate(14deg);
+      animation: beamTwo 6.5s linear infinite;
     }
 
-    @keyframes streakMove {
+    @keyframes beamOne {
       0% {
-        transform: translateX(-30%) rotate(-12deg);
+        transform: translateX(-65%) rotate(-18deg);
+      }
+
+      100% {
+        transform: translateX(65%) rotate(-18deg);
+      }
+    }
+
+    @keyframes beamTwo {
+      0% {
+        transform: translateX(60%) rotate(14deg);
+      }
+
+      100% {
+        transform: translateX(-60%) rotate(14deg);
+      }
+    }
+
+    /* ==============================
+       FAST FLASH LINES
+    ============================== */
+
+    .flash-line {
+      position: absolute;
+      width: 160%;
+      height: 2px;
+      left: -30%;
+      z-index: -2;
+
+      background:
+        linear-gradient(
+          90deg,
+          transparent,
+          rgba(255,255,255,.85),
+          rgba(255,32,239,.85),
+          transparent
+        );
+
+      filter: blur(.4px);
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .flash-one {
+      top: 26%;
+      transform: rotate(-9deg);
+      animation: flashLine 4.2s linear infinite;
+    }
+
+    .flash-two {
+      top: 72%;
+      transform: rotate(7deg);
+      animation: flashLine 5.3s linear infinite;
+      animation-delay: 1.7s;
+    }
+
+    @keyframes flashLine {
+      0%,
+      70% {
+        transform: translateX(-70%) rotate(-9deg);
         opacity: 0;
       }
 
-      15% {
-        opacity: .65;
+      74% {
+        opacity: 1;
       }
 
-      55% {
+      82% {
+        transform: translateX(65%) rotate(-9deg);
         opacity: .2;
       }
 
       100% {
-        transform: translateX(45%) rotate(-12deg);
         opacity: 0;
       }
     }
 
-    /* -------------------------
-       GRAIN / FILM TEXTURE
-    ------------------------- */
+    /* ==============================
+       STROBE / SCREEN FLASH
+    ============================== */
+
+    .strobe {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      pointer-events: none;
+      background: #fff;
+      opacity: 0;
+
+      animation: strobe 9s infinite;
+    }
+
+    @keyframes strobe {
+      0%,
+      17%,
+      18%,
+      43%,
+      44%,
+      68%,
+      69%,
+      100% {
+        opacity: 0;
+      }
+
+      17.4% {
+        opacity: .09;
+      }
+
+      43.5% {
+        opacity: .05;
+      }
+
+      68.5% {
+        opacity: .08;
+      }
+    }
+
+    /* ==============================
+       GRAIN
+    ============================== */
 
     .grain {
       position: absolute;
-      inset: -60%;
+      inset: -70%;
       z-index: 5;
       pointer-events: none;
-      opacity: .13;
-      mix-blend-mode: screen;
 
       background-image:
         repeating-radial-gradient(
           circle at 0 0,
           transparent 0,
-          rgba(255,255,255,.35) 1px,
+          rgba(255,255,255,.32) 1px,
           transparent 2px
         );
 
-      background-size: 5px 5px;
+      background-size: 4px 4px;
 
-      animation: grainShift .22s steps(2) infinite;
+      opacity: .14;
+      mix-blend-mode: screen;
+
+      animation: grainMove .16s steps(2) infinite;
     }
 
-    @keyframes grainShift {
+    @keyframes grainMove {
       0% {
         transform: translate(0, 0);
       }
 
       25% {
-        transform: translate(2%, -3%);
+        transform: translate(3%, -4%);
       }
 
       50% {
-        transform: translate(-3%, 2%);
+        transform: translate(-4%, 2%);
       }
 
       75% {
-        transform: translate(3%, 3%);
+        transform: translate(2%, 4%);
       }
 
       100% {
-        transform: translate(-2%, -1%);
+        transform: translate(-3%, -2%);
       }
     }
 
-    /* -------------------------
+    /* ==============================
        VIGNETTE
-    ------------------------- */
+    ============================== */
 
     .vignette {
       position: absolute;
@@ -270,52 +385,19 @@
       background:
         radial-gradient(
           circle at center,
-          transparent 28%,
-          rgba(0,0,0,.2) 55%,
-          rgba(0,0,0,.82) 100%
+          transparent 26%,
+          rgba(0,0,0,.12) 50%,
+          rgba(0,0,0,.78) 100%
         );
     }
 
-    /* -------------------------
-       FLASH / FLICKER
-    ------------------------- */
-
-    .flicker {
-      position: absolute;
-      inset: 0;
-      z-index: 3;
-      pointer-events: none;
-      background: rgba(255,255,255,.07);
-      opacity: 0;
-
-      animation: flicker 8s infinite;
-    }
-
-    @keyframes flicker {
-      0%, 18%, 20%, 21%, 43%, 45%, 100% {
-        opacity: 0;
-      }
-
-      19% {
-        opacity: .06;
-      }
-
-      20.5% {
-        opacity: .12;
-      }
-
-      44% {
-        opacity: .04;
-      }
-    }
-
-    /* -------------------------
+    /* ==============================
        MAIN CONTENT
-    ------------------------- */
+    ============================== */
 
     .content {
       position: relative;
-      z-index: 10;
+      z-index: 20;
 
       width: 100%;
       height: 100%;
@@ -325,28 +407,29 @@
       align-items: center;
       justify-content: center;
 
-      padding: 26px;
-
+      padding: 24px;
       text-align: center;
     }
 
     .logo-wrap {
       opacity: 0;
-      transform: scale(.9);
-      animation: logoReveal 1.4s ease forwards;
-      animation-delay: .9s;
+      transform: scale(.7);
+      filter: blur(14px);
+
+      animation: logoReveal 1.5s cubic-bezier(.2,.8,.2,1) forwards;
+      animation-delay: .8s;
     }
 
     @keyframes logoReveal {
       0% {
         opacity: 0;
-        transform: scale(.86);
-        filter: blur(12px);
+        transform: scale(.65);
+        filter: blur(16px);
       }
 
       60% {
         opacity: 1;
-        transform: scale(1.04);
+        transform: scale(1.07);
         filter: blur(0);
       }
 
@@ -361,10 +444,9 @@
       color: var(--pink);
 
       font-family: Arial Black, Arial, Helvetica, sans-serif;
+      font-size: clamp(92px, 24vw, 190px);
       font-style: italic;
       font-weight: 900;
-
-      font-size: clamp(92px, 24vw, 190px);
 
       line-height: .76;
       letter-spacing: -.12em;
@@ -372,33 +454,35 @@
       padding-right: .1em;
 
       text-shadow:
-        0 0 8px rgba(255,32,239,.55),
-        0 0 24px rgba(255,32,239,.34),
-        0 0 70px rgba(255,32,239,.16);
+        0 0 10px rgba(255,32,239,.62),
+        0 0 28px rgba(255,32,239,.34),
+        0 0 80px rgba(255,32,239,.2);
 
-      animation: logoPulse 5s ease-in-out infinite alternate;
+      animation: logoPulse 3.8s ease-in-out infinite alternate;
     }
 
     @keyframes logoPulse {
       from {
+        transform: scale(1);
         text-shadow:
-          0 0 8px rgba(255,32,239,.5),
-          0 0 24px rgba(255,32,239,.25),
-          0 0 55px rgba(255,32,239,.12);
+          0 0 8px rgba(255,32,239,.45),
+          0 0 22px rgba(255,32,239,.28),
+          0 0 60px rgba(255,32,239,.14);
       }
 
       to {
+        transform: scale(1.03);
         text-shadow:
-          0 0 12px rgba(255,32,239,.75),
-          0 0 34px rgba(255,32,239,.45),
-          0 0 90px rgba(255,32,239,.2);
+          0 0 14px rgba(255,32,239,.8),
+          0 0 38px rgba(255,32,239,.5),
+          0 0 95px rgba(255,32,239,.26);
       }
     }
 
     .band-name {
-      margin-top: 44px;
+      margin-top: 42px;
 
-      color: white;
+      color: #fff;
 
       font-size: clamp(13px, 3.9vw, 20px);
       font-weight: 600;
@@ -409,14 +493,21 @@
       white-space: nowrap;
 
       opacity: 0;
-      transform: translateY(18px);
+      transform: translateY(20px);
 
-      animation: textReveal 1s ease forwards;
+      animation: nameReveal 1s ease forwards;
       animation-delay: 1.8s;
     }
 
+    @keyframes nameReveal {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
     .enter-button {
-      margin-top: 50px;
+      margin-top: 48px;
 
       min-width: 235px;
       height: 76px;
@@ -425,18 +516,17 @@
       align-items: center;
       justify-content: center;
 
-      border: 2px solid rgba(255,255,255,.9);
+      border: 2px solid rgba(255,255,255,.92);
 
-      background: rgba(0,0,0,.18);
+      background: rgba(0,0,0,.2);
 
-      backdrop-filter: blur(4px);
+      backdrop-filter: blur(6px);
 
-      color: white;
+      color: #fff;
 
       text-decoration: none;
 
       font-size: 17px;
-
       letter-spacing: .2em;
 
       opacity: 0;
@@ -447,17 +537,10 @@
 
       transition:
         background .25s ease,
-        color .25s ease,
         border-color .25s ease,
-        transform .25s ease,
-        box-shadow .25s ease;
-    }
-
-    @keyframes textReveal {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+        color .25s ease,
+        box-shadow .25s ease,
+        transform .25s ease;
     }
 
     @keyframes buttonReveal {
@@ -468,67 +551,50 @@
     }
 
     .enter-button:hover {
-      color: #000;
       background: var(--pink);
       border-color: var(--pink);
+      color: #000;
 
       box-shadow:
-        0 0 18px rgba(255,32,239,.45),
-        0 0 45px rgba(255,32,239,.22);
+        0 0 18px rgba(255,32,239,.5),
+        0 0 48px rgba(255,32,239,.25);
     }
 
     .enter-button:active {
       transform: scale(.97);
     }
 
-    /* -------------------------
-       SMALL BOTTOM DETAIL
-    ------------------------- */
+    /* ==============================
+       BOTTOM DETAIL
+    ============================== */
 
     .bottom-line {
       position: absolute;
-      bottom: 20px;
       left: 50%;
-      z-index: 10;
+      bottom: 18px;
 
       width: 1px;
-      height: 48px;
+      height: 50px;
 
-      background: linear-gradient(
-        to bottom,
-        rgba(255,255,255,.65),
-        transparent
-      );
+      z-index: 20;
+
+      background:
+        linear-gradient(
+          to bottom,
+          rgba(255,255,255,.7),
+          transparent
+        );
 
       opacity: 0;
 
-      animation: bottomReveal 1s ease forwards;
-      animation-delay: 3.4s;
+      animation: lineReveal 1s ease forwards;
+      animation-delay: 3.3s;
     }
 
-    @keyframes bottomReveal {
-      from {
-        opacity: 0;
-        transform: translate(-50%, 10px);
-      }
-
+    @keyframes lineReveal {
       to {
-        opacity: .6;
-        transform: translate(-50%, 0);
-      }
-    }
-
-    /* -------------------------
-       REDUCED MOTION
-    ------------------------- */
-
-    @media (prefers-reduced-motion: reduce) {
-      *,
-      *::before,
-      *::after {
-        animation-duration: .01ms !important;
-        animation-iteration-count: 1 !important;
-        scroll-behavior: auto !important;
+        opacity: .7;
+        transform: translateX(-50%);
       }
     }
 
@@ -549,6 +615,24 @@
         height: 70px;
         font-size: 15px;
       }
+
+      .orb {
+        filter: blur(45px);
+      }
+
+      .beam {
+        height: 16vh;
+        filter: blur(13px);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+      }
     }
   </style>
 </head>
@@ -557,26 +641,28 @@
 
   <main class="landing">
 
-    <div class="background"></div>
+    <div class="scene"></div>
 
-    <div class="light light-one"></div>
-    <div class="light light-two"></div>
+    <div class="orb orb-one"></div>
+    <div class="orb orb-two"></div>
+    <div class="orb orb-three"></div>
 
-    <div class="streak streak-one"></div>
-    <div class="streak streak-two"></div>
+    <div class="beam beam-one"></div>
+    <div class="beam beam-two"></div>
 
-    <div class="flicker"></div>
+    <div class="flash-line flash-one"></div>
+    <div class="flash-line flash-two"></div>
+
+    <div class="strobe"></div>
     <div class="vignette"></div>
     <div class="grain"></div>
 
     <div class="content">
 
       <div class="logo-wrap">
-
         <div class="hym">
           HYM
         </div>
-
       </div>
 
       <div class="band-name">
