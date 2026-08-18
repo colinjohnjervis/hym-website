@@ -59,7 +59,6 @@
       position: sticky;
       top: 0;
       z-index: 100;
-
       height: 74px;
 
       display: flex;
@@ -96,14 +95,12 @@
     .menu-button::before,
     .menu-button::after {
       content: "";
-
       display: block;
 
       width: 28px;
       height: 2px;
 
       background: white;
-
       transition: .25s;
     }
 
@@ -118,7 +115,6 @@
 
     .nav-panel {
       position: fixed;
-
       z-index: 90;
 
       top: 74px;
@@ -128,11 +124,9 @@
       padding: 30px 24px 38px;
 
       background: #090909;
-
       border-bottom: 1px solid var(--line);
 
       transform: translateY(-130%);
-
       transition: transform .35s ease;
     }
 
@@ -173,7 +167,6 @@
 
     .hero-image {
       position: absolute;
-
       inset: 0;
 
       width: 100%;
@@ -187,7 +180,6 @@
       content: "";
 
       position: absolute;
-
       inset: 0;
 
       background:
@@ -201,7 +193,6 @@
 
     .hero-content {
       position: relative;
-
       z-index: 2;
 
       width: 100%;
@@ -211,15 +202,12 @@
 
     .hero-logo {
       width: min(72vw, 520px);
-
       margin-bottom: 18px;
     }
 
     .hero-kicker {
       font-size: .8rem;
-
       letter-spacing: .2em;
-
       text-transform: uppercase;
     }
 
@@ -240,7 +228,6 @@
       margin-bottom: 36px;
 
       font-size: clamp(2.5rem, 11vw, 6rem);
-
       line-height: .9;
 
       letter-spacing: -.055em;
@@ -266,7 +253,6 @@
       padding: 90px 24px;
 
       background: var(--white);
-
       color: #050505;
 
       text-align: center;
@@ -276,7 +262,6 @@
       max-width: 950px;
 
       font-size: clamp(2rem, 7vw, 4.6rem);
-
       line-height: 1.02;
 
       font-weight: 800;
@@ -288,7 +273,6 @@
       margin-top: 28px;
 
       font-size: .9rem;
-
       font-weight: 700;
 
       letter-spacing: .14em;
@@ -312,53 +296,96 @@
         url("https://holyyouthmovement.co.uk/assets/images/hym-new-press-shot-.jpg");
 
       background-size: cover;
-
       background-position: center;
     }
 
 
     /* ========================================
-       EVENTS
+       LIVE / BANDSINTOWN
     ======================================== */
 
     .events {
-      background: var(--pink);
+      position: relative;
+      overflow: hidden;
 
+      background: var(--pink);
       color: #050505;
     }
 
-    .events-empty {
-      padding: 30px 0 10px;
+    .events::before {
+      content: "";
 
-      font-size: 1.25rem;
+      position: absolute;
+      width: 340px;
+      height: 340px;
 
-      border-top: 2px solid #050505;
+      right: -170px;
+      top: -150px;
+
+      border: 1px solid rgba(0,0,0,.25);
+      border-radius: 50%;
     }
 
-    .outline-button {
-      display: inline-flex;
+    .events-inner {
+      position: relative;
+      z-index: 2;
 
-      margin-top: 34px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
 
-      padding: 14px 18px;
+    .events-intro {
+      max-width: 660px;
+      margin-bottom: 42px;
+    }
 
-      border: 2px solid currentColor;
+    .events-eyebrow {
+      margin-bottom: 14px;
 
-      font-size: .8rem;
-
+      font-size: .78rem;
       font-weight: 800;
 
-      letter-spacing: .1em;
+      letter-spacing: .18em;
+
+      text-transform: uppercase;
+    }
+
+    .events-copy {
+      max-width: 560px;
+
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+
+    .bit-widget-shell {
+      padding-top: 28px;
+
+      border-top: 2px solid rgba(0,0,0,.85);
+    }
+
+    /*
+      Bandsintown inserts the actual event listing here.
+      These rules style the surrounding area and give
+      the widget room to sit naturally in our design.
+    */
+
+    .bit-widget-initializer {
+      display: block;
+      width: 100%;
+      min-height: 80px;
+    }
+
+    .events-note {
+      margin-top: 26px;
+
+      font-size: .75rem;
+      font-weight: 700;
+
+      letter-spacing: .08em;
 
       text-transform: uppercase;
 
-      transition: .2s;
-    }
-
-    .outline-button:hover {
-      background: #050505;
-
-      color: var(--pink);
+      opacity: .7;
     }
 
 
@@ -404,8 +431,34 @@
       color: var(--soft);
     }
 
+    .outline-button {
+      display: inline-flex;
+
+      margin-top: 34px;
+
+      padding: 14px 18px;
+
+      border: 2px solid currentColor;
+
+      font-size: .8rem;
+      font-weight: 800;
+
+      letter-spacing: .1em;
+
+      text-transform: uppercase;
+
+      transition: .2s;
+    }
+
     .merch-copy .outline-button {
       color: white;
+    }
+
+    .outline-button:hover {
+      background: var(--pink);
+      border-color: var(--pink);
+
+      color: #050505;
     }
 
 
@@ -419,17 +472,14 @@
 
     .spotify-wrap {
       max-width: 900px;
-
       margin: auto;
     }
 
     .spotify-wrap iframe {
       width: 100%;
-
       min-height: 500px;
 
       border: 0;
-
       border-radius: 12px;
     }
 
@@ -440,17 +490,14 @@
 
     .contact {
       background: var(--white);
-
       color: #050505;
     }
 
     .contact-grid {
       display: grid;
-
       gap: 44px;
 
       max-width: 1100px;
-
       margin: auto;
     }
 
@@ -466,23 +513,19 @@
 
     .contact-copy p {
       margin-top: 24px;
-
       max-width: 450px;
     }
 
     form {
       display: grid;
-
       gap: 20px;
     }
 
     label {
       display: grid;
-
       gap: 8px;
 
       font-size: .75rem;
-
       font-weight: 800;
 
       letter-spacing: .1em;
@@ -497,13 +540,11 @@
       padding: 14px 0;
 
       border: 0;
-
       border-bottom: 2px solid #111;
 
       border-radius: 0;
 
       background: transparent;
-
       color: #050505;
 
       outline: none;
@@ -511,7 +552,6 @@
 
     textarea {
       min-height: 130px;
-
       resize: vertical;
     }
 
@@ -521,7 +561,6 @@
       border: 2px solid #050505;
 
       background: #050505;
-
       color: white;
 
       padding: 14px 24px;
@@ -544,7 +583,6 @@
       padding: 34px 22px;
 
       display: flex;
-
       flex-direction: column;
 
       gap: 8px;
@@ -579,9 +617,12 @@
         padding: 110px 48px;
       }
 
+      .events-intro {
+        margin-bottom: 55px;
+      }
+
       .merch {
         grid-template-columns: 1.1fr .9fr;
-
         min-height: 90svh;
       }
 
@@ -591,9 +632,7 @@
 
       .merch-copy {
         display: flex;
-
         flex-direction: column;
-
         justify-content: center;
 
         padding: 70px;
@@ -601,13 +640,11 @@
 
       .contact-grid {
         grid-template-columns: .9fr 1.1fr;
-
         align-items: start;
       }
 
       .site-footer {
         flex-direction: row;
-
         justify-content: space-between;
 
         padding: 34px 48px;
@@ -619,13 +656,14 @@
 
 <body>
 
-  <!-- ======================================
-       HEADER
-  ======================================= -->
+  <!-- HEADER -->
 
   <header class="site-header">
 
-    <a href="index.html" aria-label="Holy Youth Movement entrance page">
+    <a
+      href="index.html"
+      aria-label="Holy Youth Movement entrance page"
+    >
 
       <img
         class="nav-logo"
@@ -646,37 +684,22 @@
   </header>
 
 
-  <!-- ======================================
-       NAVIGATION
-  ======================================= -->
+  <!-- NAVIGATION -->
 
   <nav
     class="nav-panel"
     id="navPanel"
   >
 
-    <a href="#events">
-      Events
-    </a>
-
-    <a href="#merch">
-      Merch
-    </a>
-
-    <a href="#listen">
-      Listen
-    </a>
-
-    <a href="#contact">
-      Contact
-    </a>
+    <a href="#events">Live</a>
+    <a href="#merch">Merch</a>
+    <a href="#listen">Listen</a>
+    <a href="#contact">Contact</a>
 
   </nav>
 
 
-  <!-- ======================================
-       MAIN WEBSITE
-  ======================================= -->
+  <!-- MAIN -->
 
   <main id="top">
 
@@ -735,28 +758,56 @@
     </section>
 
 
-    <!-- EVENTS -->
+    <!-- LIVE / BANDSINTOWN -->
 
     <section
       class="section events"
       id="events"
     >
 
-      <h2 class="section-title">
-        upcoming<br>
-        events
-      </h2>
+      <div class="events-inner">
 
-      <div class="events-empty">
-        No items found.
+        <div class="events-intro">
+
+          <div class="events-eyebrow">
+            Holy Youth Movement
+          </div>
+
+          <h2 class="section-title">
+            live<span>.</span>
+          </h2>
+
+          <p class="events-copy">
+            Upcoming Holy Youth Movement shows, tour dates and ticket links.
+          </p>
+
+        </div>
+
+
+        <div class="bit-widget-shell">
+
+          <script
+            charset="utf-8"
+            src="https://widgetv3.bandsintown.com/main.min.js">
+          </script>
+
+          <a
+            class="bit-widget-initializer"
+
+            data-artist-name="id_15542629"
+
+            data-app-id="3c9d183150cd2ab67c8e3459c2243e53"
+
+          ></a>
+
+        </div>
+
+
+        <div class="events-note">
+          Live dates powered by Bandsintown
+        </div>
+
       </div>
-
-      <a
-        class="outline-button"
-        href="https://holyyouthmovement.co.uk/events/"
-      >
-        View all upcoming events
-      </a>
 
     </section>
 
@@ -768,8 +819,7 @@
       id="merch"
     >
 
-      <div class="merch-image">
-      </div>
+      <div class="merch-image"></div>
 
       <div class="merch-copy">
 
@@ -833,7 +883,6 @@
 
       <div class="contact-grid">
 
-
         <div class="contact-copy">
 
           <h2>
@@ -849,44 +898,30 @@
         </div>
 
 
-        <form
-          onsubmit="return false;"
-        >
+        <form onsubmit="return false;">
 
           <label>
-
             Name
-
             <input
               type="text"
               name="name"
             >
-
           </label>
 
-
           <label>
-
             Email Address
-
             <input
               type="email"
               name="email"
             >
-
           </label>
 
-
           <label>
-
             Message
-
             <textarea
               name="message"
             ></textarea>
-
           </label>
-
 
           <button
             class="send-button"
@@ -897,7 +932,6 @@
 
         </form>
 
-
       </div>
 
     </section>
@@ -906,9 +940,7 @@
   </main>
 
 
-  <!-- ======================================
-       FOOTER
-  ======================================= -->
+  <!-- FOOTER -->
 
   <footer class="site-footer">
 
@@ -923,9 +955,7 @@
   </footer>
 
 
-  <!-- ======================================
-       JAVASCRIPT
-  ======================================= -->
+  <!-- JAVASCRIPT -->
 
   <script>
 
@@ -939,9 +969,7 @@
     menuButton.addEventListener(
       "click",
       () => {
-
         navPanel.classList.toggle("open");
-
       }
     );
 
@@ -953,9 +981,7 @@
         link.addEventListener(
           "click",
           () => {
-
             navPanel.classList.remove("open");
-
           }
         );
 
