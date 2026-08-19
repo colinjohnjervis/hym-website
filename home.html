@@ -16,7 +16,6 @@
 
   <title>Holy Youth Movement</title>
 
-  <!-- EXTERNAL STYLESHEET -->
   <link
     rel="stylesheet"
     href="style.css"
@@ -26,9 +25,7 @@
 
 <body>
 
-  <!-- =========================
-       HEADER
-  ========================== -->
+  <!-- HEADER -->
 
   <header class="site-header">
 
@@ -54,30 +51,17 @@
   </header>
 
 
-  <!-- =========================
-       NAVIGATION
-  ========================== -->
+  <!-- NAVIGATION -->
 
   <nav
     class="nav-panel"
     id="navPanel"
   >
 
-    <a href="#events">
-      Live
-    </a>
-
-    <a href="#merch">
-      Merch
-    </a>
-
-    <a href="#listen">
-      Listen
-    </a>
-
-    <a href="#contact">
-      Contact
-    </a>
+    <a href="#events">Live</a>
+    <a href="#merch">Merch</a>
+    <a href="#listen">Listen</a>
+    <a href="#contact">Contact</a>
 
   </nav>
 
@@ -85,9 +69,7 @@
   <main id="top">
 
 
-    <!-- =========================
-         HERO
-    ========================== -->
+    <!-- HERO -->
 
     <section class="hero">
 
@@ -114,9 +96,7 @@
     </section>
 
 
-    <!-- =========================
-         QUOTE
-    ========================== -->
+    <!-- QUOTE -->
 
     <section class="quote-section">
 
@@ -134,19 +114,7 @@
     </section>
 
 
-    <!-- =========================
-         BAND IMAGE
-    ========================== -->
-
-    <section
-      class="band-shot"
-      aria-label="Holy Youth Movement band photograph"
-    ></section>
-
-
-    <!-- =========================
-         LIVE
-    ========================== -->
+    <!-- LIVE -->
 
     <section
       class="section events"
@@ -169,9 +137,7 @@
         </p>
 
 
-        <!-- =========================
-             BANDSINTOWN WIDGET
-        ========================== -->
+        <!-- BANDSINTOWN WIDGET -->
 
         <div
           class="bit-widget-shell"
@@ -228,17 +194,7 @@
         </div>
 
 
-        <!--
-          IMPORTANT:
-
-          This block is OUTSIDE the Bandsintown widget.
-
-          The wording is ours.
-
-          The empty logo container will receive
-          a clone of the ACTUAL logo rendered
-          by Bandsintown above.
-        -->
+        <!-- EXTERNAL BANDSINTOWN CREDIT -->
 
         <div
           class="bandsintown-credit"
@@ -261,9 +217,7 @@
     </section>
 
 
-    <!-- =========================
-         MERCH
-    ========================== -->
+    <!-- MERCH -->
 
     <section
       class="merch"
@@ -299,9 +253,7 @@
     </section>
 
 
-    <!-- =========================
-         LISTEN
-    ========================== -->
+    <!-- LISTEN -->
 
     <section
       class="section listen"
@@ -326,9 +278,7 @@
     </section>
 
 
-    <!-- =========================
-         CONTACT
-    ========================== -->
+    <!-- CONTACT -->
 
     <section
       class="section contact"
@@ -363,7 +313,6 @@
             >
           </label>
 
-
           <label>
             Email Address
 
@@ -373,7 +322,6 @@
             >
           </label>
 
-
           <label>
             Message
 
@@ -381,7 +329,6 @@
               name="message"
             ></textarea>
           </label>
-
 
           <button
             class="send-button"
@@ -399,9 +346,7 @@
   </main>
 
 
-  <!-- =========================
-       FOOTER
-  ========================== -->
+  <!-- FOOTER -->
 
   <footer class="site-footer">
 
@@ -417,15 +362,11 @@
   </footer>
 
 
-  <!-- =========================
-       JAVASCRIPT
-  ========================== -->
+  <!-- JAVASCRIPT -->
 
   <script>
 
-    /* -------------------------
-       MENU
-    ------------------------- */
+    /* MENU */
 
     const menuButton =
       document.getElementById("menuButton");
@@ -433,16 +374,12 @@
     const navPanel =
       document.getElementById("navPanel");
 
-
     menuButton.addEventListener(
       "click",
       () => {
-
         navPanel.classList.toggle("open");
-
       }
     );
-
 
     document
       .querySelectorAll(".nav-panel a")
@@ -451,9 +388,7 @@
         link.addEventListener(
           "click",
           () => {
-
             navPanel.classList.remove("open");
-
           }
         );
 
@@ -482,9 +417,7 @@
 
 
 
-    /* -------------------------
-       REMOVE PLAY MY CITY
-    ------------------------- */
+    /* REMOVE PLAY MY CITY */
 
     function removePlayMyCity() {
 
@@ -511,10 +444,6 @@
         });
 
 
-      /*
-        Backup check based on visible wording.
-      */
-
       widget
         .querySelectorAll(
           "div, p, span, a, button"
@@ -539,12 +468,6 @@
             let wrapper =
               element;
 
-
-            /*
-              Move up through small wrappers,
-              but never anywhere near the
-              entire widget.
-            */
 
             for (
               let i = 0;
@@ -600,9 +523,7 @@
 
 
 
-    /* -------------------------
-       FIND REAL LOGO
-    ------------------------- */
+    /* FIND REAL BANDSINTOWN LOGO */
 
     function findBandsintownLogo() {
 
@@ -610,13 +531,6 @@
         return null;
       }
 
-
-      /*
-        Search every link inside the widget.
-
-        We don't assume Bandsintown uses
-        one particular class name.
-      */
 
       const links =
         Array.from(
@@ -640,11 +554,6 @@
             .toLowerCase();
 
 
-        /*
-          Only interested in links that
-          belong to Bandsintown.
-        */
-
         if (
           !href.includes("bandsintown")
         ) {
@@ -662,10 +571,6 @@
             .toLowerCase();
 
 
-        /*
-          Exclude event action buttons.
-        */
-
         if (
           text.includes("tickets") ||
           text.includes("ticket") ||
@@ -681,10 +586,6 @@
         const rect =
           link.getBoundingClientRect();
 
-
-        /*
-          Ignore invisible/zero-size links.
-        */
 
         if (
           rect.width <= 0 ||
@@ -709,12 +610,6 @@
       });
 
 
-
-      /*
-        Prefer candidates containing actual
-        SVG/image artwork.
-      */
-
       const artworkCandidates =
         candidates.filter(
           candidate =>
@@ -727,11 +622,6 @@
           ? artworkCandidates
           : candidates;
 
-
-      /*
-        Bandsintown's branding is the
-        LOWEST qualifying link in the widget.
-      */
 
       usableCandidates.sort(
         (a, b) =>
@@ -747,15 +637,6 @@
 
       }
 
-
-
-      /*
-        SECOND FALLBACK:
-
-        Search SVGs/images directly and see
-        whether they're inside a Bandsintown
-        link.
-      */
 
       const artwork =
         Array.from(
@@ -830,9 +711,7 @@
 
 
 
-    /* -------------------------
-       COPY COMPUTED STYLES
-    ------------------------- */
+    /* COPY THE LOGO'S EXISTING STYLES */
 
     function copyComputedStyles(
       original,
@@ -900,9 +779,7 @@
 
 
 
-    /* -------------------------
-       FIND ORIGINAL LOGO WRAPPER
-    ------------------------- */
+    /* FIND ORIGINAL LOGO WRAPPER */
 
     function findLogoWrapper(
       logo
@@ -916,13 +793,6 @@
       let wrapper =
         logo;
 
-
-      /*
-        Only climb through SMALL containers.
-
-        This prevents us from accidentally
-        hiding the whole widget.
-      */
 
       for (
         let i = 0;
@@ -978,9 +848,7 @@
 
 
 
-    /* -------------------------
-       BUILD EXTERNAL CREDIT
-    ------------------------- */
+    /* BUILD EXTERNAL CREDIT */
 
     function buildExternalCredit() {
 
@@ -993,11 +861,6 @@
       }
 
 
-      /*
-        If successful already,
-        leave everything alone.
-      */
-
       if (
         credit.classList.contains(
           "ready"
@@ -1007,18 +870,9 @@
       }
 
 
-      /*
-        Locate the ACTUAL logo currently
-        rendered by Bandsintown.
-      */
-
       const realLogo =
         findBandsintownLogo();
 
-
-      /*
-        Widget may still be loading.
-      */
 
       if (!realLogo) {
         return;
@@ -1026,18 +880,13 @@
 
 
       /*
-        Clone exactly what Bandsintown
-        rendered.
+        Clone the ACTUAL logo that
+        Bandsintown rendered.
       */
 
       const clonedLogo =
         realLogo.cloneNode(true);
 
-
-      /*
-        Copy the rendered CSS BEFORE
-        touching the original.
-      */
 
       copyComputedStyles(
         realLogo,
@@ -1045,9 +894,8 @@
       );
 
 
-
       /*
-        Remove duplicate IDs from clone.
+        Remove duplicate IDs.
       */
 
       clonedLogo.removeAttribute(
@@ -1066,14 +914,9 @@
         });
 
 
-
       /*
-        Reset ONLY positioning on the
-        outside wrapper.
-
-        The actual logo artwork inside
-        remains exactly as Bandsintown
-        rendered it.
+        Reset only the positioning of
+        the cloned outer element.
       */
 
       clonedLogo.style.setProperty(
@@ -1137,18 +980,9 @@
       );
 
 
-
       /*
-        Insert the clone OUTSIDE the widget.
-
-        Structure becomes:
-
-        LAST EVENT
-        ----------------
-
-        LIVE EVENTS POWERED BY
-
-        [GENUINE BANDSINTOWN LOGO]
+        Put genuine cloned logo
+        OUTSIDE the widget.
       */
 
       logoCopy.innerHTML =
@@ -1160,10 +994,9 @@
       );
 
 
-
       /*
-        Make absolutely sure the clone
-        exists before hiding anything.
+        Don't hide original until
+        clone definitely exists.
       */
 
       if (
@@ -1172,12 +1005,6 @@
         return;
       }
 
-
-
-      /*
-        Now hide the ORIGINAL Bandsintown
-        logo inside the widget.
-      */
 
       const originalWrapper =
         findLogoWrapper(
@@ -1205,10 +1032,9 @@
       }
 
 
-
       /*
-        Finally reveal our external
-        wording + genuine cloned logo.
+        Reveal external wording
+        and genuine logo.
       */
 
       credit.classList.add(
@@ -1218,10 +1044,6 @@
     }
 
 
-
-    /* -------------------------
-       RUN CLEANUP
-    ------------------------- */
 
     function tidyBandsintown() {
 
@@ -1234,10 +1056,8 @@
 
 
     /*
-      Bandsintown renders asynchronously.
-
-      Watch the widget while it creates
-      the event list and logo.
+      Watch Bandsintown while it
+      asynchronously builds the widget.
     */
 
     if (widget) {
@@ -1275,50 +1095,25 @@
     }
 
 
-
     /*
-      Backup checks during initial load.
+      Backup checks while loading.
     */
 
-    setTimeout(
-      tidyBandsintown,
-      300
-    );
+    setTimeout(tidyBandsintown, 300);
 
-    setTimeout(
-      tidyBandsintown,
-      700
-    );
+    setTimeout(tidyBandsintown, 700);
 
-    setTimeout(
-      tidyBandsintown,
-      1200
-    );
+    setTimeout(tidyBandsintown, 1200);
 
-    setTimeout(
-      tidyBandsintown,
-      2000
-    );
+    setTimeout(tidyBandsintown, 2000);
 
-    setTimeout(
-      tidyBandsintown,
-      3500
-    );
+    setTimeout(tidyBandsintown, 3500);
 
-    setTimeout(
-      tidyBandsintown,
-      5000
-    );
+    setTimeout(tidyBandsintown, 5000);
 
-    setTimeout(
-      tidyBandsintown,
-      7500
-    );
+    setTimeout(tidyBandsintown, 7500);
 
-    setTimeout(
-      tidyBandsintown,
-      10000
-    );
+    setTimeout(tidyBandsintown, 10000);
 
   </script>
 
