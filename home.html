@@ -56,6 +56,7 @@
       position: sticky;
       top: 0;
       z-index: 100;
+
       height: 74px;
 
       display: flex;
@@ -91,6 +92,7 @@
     .menu-button::before,
     .menu-button::after {
       content: "";
+
       display: block;
 
       width: 28px;
@@ -151,6 +153,7 @@
       align-items: flex-end;
 
       overflow: hidden;
+
       background: #111;
     }
 
@@ -191,12 +194,15 @@
 
     .hero-logo {
       width: min(72vw, 520px);
+
       margin-bottom: 18px;
     }
 
     .hero-kicker {
       font-size: .8rem;
+
       letter-spacing: .2em;
+
       text-transform: uppercase;
     }
 
@@ -214,6 +220,7 @@
       margin-bottom: 32px;
 
       font-size: clamp(2.8rem, 12vw, 6rem);
+
       line-height: .88;
 
       letter-spacing: -.055em;
@@ -236,6 +243,7 @@
       padding: 90px 24px;
 
       background: var(--white);
+
       color: #050505;
 
       text-align: center;
@@ -245,6 +253,7 @@
       max-width: 950px;
 
       font-size: clamp(2rem, 7vw, 4.6rem);
+
       line-height: 1.02;
 
       font-weight: 800;
@@ -283,9 +292,11 @@
 
     .events {
       position: relative;
+
       overflow: hidden;
 
       background: #050505;
+
       color: #ffffff;
     }
 
@@ -309,6 +320,7 @@
       z-index: 2;
 
       max-width: 1100px;
+
       margin: 0 auto;
     }
 
@@ -321,6 +333,7 @@
       font-weight: 800;
 
       letter-spacing: .2em;
+
       text-transform: uppercase;
     }
 
@@ -334,11 +347,13 @@
       color: #b8b8b8;
 
       font-size: 1rem;
+
       line-height: 1.6;
     }
 
     .bit-widget-shell {
       margin-top: 42px;
+
       padding-top: 28px;
 
       border-top: 1px solid #333;
@@ -346,11 +361,13 @@
 
     .bit-widget-initializer {
       display: block;
+
       width: 100%;
+
       min-height: 80px;
     }
 
-    /* PLAY MY CITY FALLBACK */
+    /* KEEP PLAY MY CITY HIDDEN */
 
     .bit-play-my-city-wrapper,
     .bit-play-my-city,
@@ -360,25 +377,31 @@
     }
 
     /*
-      ===========================================
-      BANDSINTOWN CREDIT OUTSIDE THE WIDGET
-      ===========================================
+      ====================================
+      CREDIT OUTSIDE THE WIDGET
+      ====================================
 
-      These are the ONLY two spacing values
-      we should need to adjust afterwards.
+      44px = gap after final divider
+      22px = gap from wording to logo
 
-      48px = gap below final event/divider
-      26px = gap between wording and logo
+      THESE are the spacing values we'll
+      adjust later if required.
     */
 
     .bandsintown-credit {
-      margin-top: 48px;
+      display: none;
+
+      margin-top: 44px;
 
       text-align: center;
     }
 
+    .bandsintown-credit.ready {
+      display: block;
+    }
+
     .bandsintown-credit-label {
-      margin-bottom: 26px;
+      margin-bottom: 22px;
 
       color: #888;
 
@@ -392,34 +415,45 @@
     }
 
     .bandsintown-credit-logo {
-      min-height: 40px;
-
       display: flex;
+
       align-items: center;
       justify-content: center;
+
+      min-height: 36px;
 
       width: 100%;
     }
 
     /*
-      We are cloning the widget's actual logo,
-      so avoid restyling its internal artwork.
-      We only centre the complete cloned wrapper.
+      The copied logo keeps the exact artwork
+      and internal styling Bandsintown rendered.
+
+      We only control the outer positioning.
     */
 
     .bandsintown-credit-logo > * {
+      position: static !important;
+
       display: inline-flex !important;
+
       align-items: center !important;
       justify-content: center !important;
 
+      width: auto !important;
+
       margin: 0 auto !important;
+
+      transform: none !important;
     }
 
     /* MERCH */
 
     .merch {
       padding: 0;
+
       display: grid;
+
       background: #090909;
     }
 
@@ -437,26 +471,38 @@
 
     .merch-copy h2 {
       font-size: clamp(3rem, 14vw, 7rem);
+
       line-height: .85;
+
       letter-spacing: -.06em;
+
       text-transform: lowercase;
     }
 
     .merch-copy p {
       margin-top: 20px;
+
       max-width: 460px;
+
       color: var(--soft);
     }
 
     .outline-button {
       display: inline-flex;
+
       margin-top: 34px;
+
       padding: 14px 18px;
+
       border: 2px solid currentColor;
+
       font-size: .8rem;
       font-weight: 800;
+
       letter-spacing: .1em;
+
       text-transform: uppercase;
+
       transition: .2s;
     }
 
@@ -466,7 +512,9 @@
 
     .outline-button:hover {
       background: var(--pink);
+
       border-color: var(--pink);
+
       color: #050505;
     }
 
@@ -478,12 +526,15 @@
 
     .spotify-wrap {
       max-width: 900px;
+
       margin: auto;
     }
 
     .spotify-wrap iframe {
       width: 100%;
+
       min-height: 500px;
+
       border: 0;
       border-radius: 12px;
     }
@@ -492,68 +543,97 @@
 
     .contact {
       background: var(--white);
+
       color: #050505;
     }
 
     .contact-grid {
       display: grid;
+
       gap: 44px;
+
       max-width: 1100px;
+
       margin: auto;
     }
 
     .contact-copy h2 {
       font-size: clamp(3rem, 13vw, 7rem);
+
       line-height: .86;
+
       letter-spacing: -.06em;
+
       text-transform: lowercase;
     }
 
     .contact-copy p {
       margin-top: 24px;
+
       max-width: 450px;
     }
 
     form {
       display: grid;
+
       gap: 20px;
     }
 
     label {
       display: grid;
+
       gap: 8px;
+
       font-size: .75rem;
       font-weight: 800;
+
       letter-spacing: .1em;
+
       text-transform: uppercase;
     }
 
     input,
     textarea {
       width: 100%;
+
       padding: 14px 0;
+
       border: 0;
+
       border-bottom: 2px solid #111;
+
       border-radius: 0;
+
       background: transparent;
+
       color: #050505;
+
       outline: none;
     }
 
     textarea {
       min-height: 130px;
+
       resize: vertical;
     }
 
     .send-button {
       justify-self: start;
+
       border: 2px solid #050505;
+
       background: #050505;
+
       color: white;
+
       padding: 14px 24px;
+
       text-transform: uppercase;
+
       letter-spacing: .1em;
+
       font-weight: 800;
+
       cursor: pointer;
     }
 
@@ -561,11 +641,16 @@
 
     .site-footer {
       padding: 34px 22px;
+
       display: flex;
       flex-direction: column;
+
       gap: 8px;
+
       color: #999;
+
       font-size: .78rem;
+
       border-top: 1px solid #222;
     }
 
@@ -591,6 +676,7 @@
 
       .merch {
         grid-template-columns: 1.1fr .9fr;
+
         min-height: 90svh;
       }
 
@@ -602,17 +688,21 @@
         display: flex;
         flex-direction: column;
         justify-content: center;
+
         padding: 70px;
       }
 
       .contact-grid {
         grid-template-columns: .9fr 1.1fr;
+
         align-items: start;
       }
 
       .site-footer {
         flex-direction: row;
+
         justify-content: space-between;
+
         padding: 34px 48px;
       }
     }
@@ -620,6 +710,8 @@
 </head>
 
 <body>
+
+  <!-- HEADER -->
 
   <header class="site-header">
 
@@ -645,14 +737,18 @@
   </header>
 
 
+  <!-- NAV -->
+
   <nav
     class="nav-panel"
     id="navPanel"
   >
+
     <a href="#events">Live</a>
     <a href="#merch">Merch</a>
     <a href="#listen">Listen</a>
     <a href="#contact">Contact</a>
+
   </nav>
 
 
@@ -690,12 +786,14 @@
     <section class="quote-section">
 
       <blockquote>
+
         “From the ashes rise Holy Youth Movement and they’re more ambitious,
         anthemic and electrifying than ever.”
 
         <footer>
           — GigSlutz.co.uk
         </footer>
+
       </blockquote>
 
     </section>
@@ -705,7 +803,8 @@
 
     <section
       class="band-shot"
-      aria-label="Holy Youth Movement band photograph">
+      aria-label="Holy Youth Movement band photograph"
+    >
     </section>
 
 
@@ -731,6 +830,8 @@
         </p>
 
 
+        <!-- BANDSINTOWN WIDGET -->
+
         <div
           class="bit-widget-shell"
           id="bandsintownWidget"
@@ -738,8 +839,8 @@
 
           <script
             charset="utf-8"
-            src="https://widgetv3.bandsintown.com/main.min.js">
-          </script>
+            src="https://widgetv3.bandsintown.com/main.min.js"
+          ></script>
 
           <a
             class="bit-widget-initializer"
@@ -787,11 +888,13 @@
 
 
         <!--
-          EVERYTHING BELOW THIS POINT IS OUTSIDE
-          THE BANDSINTOWN WIDGET.
+          THIS WHOLE CREDIT IS OUTSIDE THE WIDGET.
         -->
 
-        <div class="bandsintown-credit">
+        <div
+          class="bandsintown-credit"
+          id="bandsintownCredit"
+        >
 
           <div class="bandsintown-credit-label">
             Live events powered by
@@ -925,6 +1028,8 @@
   </main>
 
 
+  <!-- FOOTER -->
+
   <footer class="site-footer">
 
     <span>
@@ -940,7 +1045,9 @@
 
   <script>
 
-    /* MENU */
+    /* =============================
+       MENU
+    ============================= */
 
     const menuButton =
       document.getElementById("menuButton");
@@ -952,7 +1059,9 @@
     menuButton.addEventListener(
       "click",
       () => {
+
         navPanel.classList.toggle("open");
+
       }
     );
 
@@ -964,23 +1073,36 @@
         link.addEventListener(
           "click",
           () => {
+
             navPanel.classList.remove("open");
+
           }
         );
 
       });
 
 
-    /* ==========================================
+    /* =============================
        BANDSINTOWN
-       ========================================== */
+    ============================= */
 
     const bitWidget =
-      document.getElementById("bandsintownWidget");
+      document.getElementById(
+        "bandsintownWidget"
+      );
 
-    const clonedLogoHolder =
-      document.getElementById("bandsintownCreditLogo");
+    const credit =
+      document.getElementById(
+        "bandsintownCredit"
+      );
 
+    const logoHolder =
+      document.getElementById(
+        "bandsintownCreditLogo"
+      );
+
+
+    /* REMOVE PLAY MY CITY */
 
     function removePlayMyCity() {
 
@@ -989,26 +1111,32 @@
       }
 
 
-      const unwanted =
-        bitWidget.querySelectorAll(
+      bitWidget
+        .querySelectorAll(
           '.bit-play-my-city-wrapper,' +
           '.bit-play-my-city,' +
           '[class*="play-my-city"],' +
           '[class*="playMyCity"]'
-        );
+        )
+        .forEach(element => {
 
+          element.style.display =
+            "none";
 
-      unwanted.forEach(element => {
-        element.style.display = "none";
-      });
+        });
 
 
       bitWidget
-        .querySelectorAll("div, p, span")
+        .querySelectorAll(
+          "div, p, span"
+        )
         .forEach(element => {
 
           const text =
-            (element.textContent || "")
+            (
+              element.textContent ||
+              ""
+            )
               .trim()
               .toLowerCase();
 
@@ -1018,12 +1146,15 @@
             text === "play my city"
           ) {
 
-            const wrapper =
+            const parent =
               element.closest("div");
 
 
-            if (wrapper) {
-              wrapper.style.display = "none";
+            if (parent) {
+
+              parent.style.display =
+                "none";
+
             }
 
           }
@@ -1034,110 +1165,86 @@
 
 
     /*
-      FIND THE GENUINE BANDSINTOWN LOGO.
+      COPY ALL COMPUTED STYLES FROM THE REAL
+      LOGO TO ITS CLONE.
 
-      The key difference here is that we DO NOT
-      search generic Bandsintown links first,
-      because event/ticket links can also contain
-      Bandsintown URLs.
-
-      We look first for the visible logo wording,
-      then its nearest small wrapper.
+      This is important because the clone is
+      being moved OUTSIDE the widget, where
+      Bandsintown's CSS selectors may no longer
+      apply to it.
     */
 
-    function findGenuineBandsintownLogo() {
+    function copyStylesDeep(
+      source,
+      target
+    ) {
 
-      if (!bitWidget) {
-        return null;
-      }
-
-
-      const allElements =
-        Array.from(
-          bitWidget.querySelectorAll(
-            "span, div, img, svg, a"
-          )
-        );
+      const sourceElements =
+        [
+          source,
+          ...source.querySelectorAll("*")
+        ];
 
 
-      /*
-        1. Look for an element whose own visible
-           text is exactly "bandsintown".
-      */
-
-      const exactTextElement =
-        allElements.find(element => {
-
-          const ownText =
-            (element.textContent || "")
-              .trim()
-              .replace(/\s+/g, " ")
-              .toLowerCase();
-
-          return ownText === "bandsintown";
-
-        });
+      const targetElements =
+        [
+          target,
+          ...target.querySelectorAll("*")
+        ];
 
 
-      if (exactTextElement) {
+      sourceElements.forEach(
+        (sourceElement, index) => {
 
-        /*
-          Walk upward only a few levels and choose
-          the smallest wrapper that contains that
-          element and looks like a compact logo row.
-        */
-
-        let candidate =
-          exactTextElement;
+          const targetElement =
+            targetElements[index];
 
 
-        for (
-          let i = 0;
-          i < 4 && candidate.parentElement;
-          i++
-        ) {
-
-          const parent =
-            candidate.parentElement;
+          if (!targetElement) {
+            return;
+          }
 
 
-          const rect =
-            parent.getBoundingClientRect();
+          const styles =
+            window.getComputedStyle(
+              sourceElement
+            );
 
 
-          if (
-            rect.width > 80 &&
-            rect.width < 320 &&
-            rect.height > 20 &&
-            rect.height < 100
+          for (
+            let i = 0;
+            i < styles.length;
+            i++
           ) {
 
-            candidate =
-              parent;
+            const property =
+              styles[i];
 
-          }
-          else {
-            break;
+
+            targetElement.style.setProperty(
+              property,
+              styles.getPropertyValue(
+                property
+              ),
+              styles.getPropertyPriority(
+                property
+              )
+            );
+
           }
 
         }
+      );
+
+    }
 
 
-        return candidate;
+    /*
+      FIND THE ACTUAL LOGO.
 
-      }
+      We do NOT depend on the word "bandsintown"
+      appearing as normal HTML text.
 
+      Instead:
 
-      /*
-        2. Fallback: an image specifically
-           labelled Bandsintown.
-      */
-
-      const labelledImage =
-        allElements.find(element => {
-
-          const alt =
-            (
-              element.getAttribute("alt") ||
-              ""
-      
+      1. Find 
