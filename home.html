@@ -284,7 +284,6 @@
 
     .events {
       position: relative;
-
       overflow: hidden;
 
       background: #050505;
@@ -352,15 +351,24 @@
       min-height: 80px;
     }
 
-    .events-note {
-      margin-top: 28px;
+    /*
+      This sits immediately above the Bandsintown logo,
+      so together they read:
+      LIVE DATES POWERED BY [Bandsintown logo]
+    */
 
-      color: #777;
+    .events-credit {
+      margin-top: 18px;
+      margin-bottom: -4px;
 
-      font-size: .7rem;
+      text-align: center;
+
+      color: #888;
+
+      font-size: .68rem;
       font-weight: 700;
 
-      letter-spacing: .1em;
+      letter-spacing: .14em;
 
       text-transform: uppercase;
     }
@@ -599,7 +607,6 @@
 
       .contact-grid {
         grid-template-columns: .9fr 1.1fr;
-
         align-items: start;
       }
 
@@ -654,6 +661,8 @@
 
   <main id="top">
 
+    <!-- HERO -->
+
     <section class="hero">
 
       <img
@@ -679,6 +688,8 @@
     </section>
 
 
+    <!-- QUOTE -->
+
     <section class="quote-section">
 
       <blockquote>
@@ -695,12 +706,16 @@
     </section>
 
 
+    <!-- BAND IMAGE -->
+
     <section
       class="band-shot"
       aria-label="Holy Youth Movement band photograph"
     >
     </section>
 
+
+    <!-- LIVE -->
 
     <section
       class="section events"
@@ -747,7 +762,7 @@
 
             data-widget-width="100%"
 
-            data-display-logo="false"
+            data-display-logo="true"
             data-display-track-button="false"
             data-display-play-my-city="false"
 
@@ -763,15 +778,16 @@
 
         </div>
 
-
-        <div class="events-note">
-          Live dates powered by Bandsintown
+        <div class="events-credit">
+          Live dates powered by
         </div>
 
       </div>
 
     </section>
 
+
+    <!-- MERCH -->
 
     <section
       class="merch"
@@ -807,6 +823,8 @@
     </section>
 
 
+    <!-- LISTEN -->
+
     <section
       class="section listen"
       id="listen"
@@ -830,6 +848,8 @@
 
     </section>
 
+
+    <!-- CONTACT -->
 
     <section
       class="section contact"
@@ -915,14 +935,12 @@
     const navPanel =
       document.getElementById("navPanel");
 
-
     menuButton.addEventListener(
       "click",
       () => {
         navPanel.classList.toggle("open");
       }
     );
-
 
     document
       .querySelectorAll(".nav-panel a")
