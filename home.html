@@ -50,15 +50,12 @@
       font: inherit;
     }
 
-    /* =========================
-       HEADER
-    ========================= */
+    /* HEADER */
 
     .site-header {
       position: sticky;
       top: 0;
       z-index: 100;
-
       height: 74px;
 
       display: flex;
@@ -80,7 +77,6 @@
     .menu-button {
       width: 42px;
       height: 42px;
-
       border: 0;
       background: transparent;
 
@@ -94,12 +90,9 @@
     .menu-button::before,
     .menu-button::after {
       content: "";
-
       display: block;
-
       width: 28px;
       height: 2px;
-
       background: white;
     }
 
@@ -107,9 +100,7 @@
       margin: 6px 0;
     }
 
-    /* =========================
-       NAV
-    ========================= */
+    /* NAV */
 
     .nav-panel {
       position: fixed;
@@ -146,9 +137,7 @@
       border-bottom: 1px solid rgba(255,255,255,.12);
     }
 
-    /* =========================
-       HERO
-    ========================= */
+    /* HERO */
 
     .hero {
       position: relative;
@@ -205,15 +194,11 @@
 
     .hero-kicker {
       font-size: .8rem;
-
       letter-spacing: .2em;
-
       text-transform: uppercase;
     }
 
-    /* =========================
-       GENERAL
-    ========================= */
+    /* GENERAL */
 
     section {
       scroll-margin-top: 74px;
@@ -227,7 +212,6 @@
       margin-bottom: 32px;
 
       font-size: clamp(2.8rem, 12vw, 6rem);
-
       line-height: .88;
 
       letter-spacing: -.055em;
@@ -239,9 +223,7 @@
       color: var(--pink);
     }
 
-    /* =========================
-       QUOTE
-    ========================= */
+    /* QUOTE */
 
     .quote-section {
       min-height: 70svh;
@@ -261,7 +243,6 @@
       max-width: 950px;
 
       font-size: clamp(2rem, 7vw, 4.6rem);
-
       line-height: 1.02;
 
       font-weight: 800;
@@ -280,9 +261,7 @@
       text-transform: uppercase;
     }
 
-    /* =========================
-       BAND IMAGE
-    ========================= */
+    /* BAND IMAGE */
 
     .band-shot {
       min-height: 75svh;
@@ -298,13 +277,10 @@
       background-position: center;
     }
 
-    /* =========================
-       LIVE
-    ========================= */
+    /* LIVE */
 
     .events {
       position: relative;
-
       overflow: hidden;
 
       background: #050505;
@@ -331,7 +307,6 @@
       z-index: 2;
 
       max-width: 1100px;
-
       margin: 0 auto;
     }
 
@@ -344,7 +319,6 @@
       font-weight: 800;
 
       letter-spacing: .2em;
-
       text-transform: uppercase;
     }
 
@@ -363,7 +337,6 @@
 
     .bit-widget-shell {
       margin-top: 42px;
-
       padding-top: 28px;
 
       border-top: 1px solid #333;
@@ -371,47 +344,25 @@
 
     .bit-widget-initializer {
       display: block;
-
       width: 100%;
-
       min-height: 80px;
     }
 
-    /* Keep Play My City hidden */
-
-    .bit-play-my-city-wrapper,
-    .bit-play-my-city,
-    [class*="play-my-city"],
-    [class*="playMyCity"] {
-      display: none !important;
-    }
-
     /*
-       OUR OWN STABLE BANDSINTOWN CREDIT
+      ALWAYS-VISIBLE CREDIT.
 
-       The script copies the official
-       Bandsintown logo into this block.
+      This stays outside Bandsintown's generated HTML,
+      so their widget cannot delete it.
     */
 
-    .bandsintown-credit {
-      display: none;
+    .events-credit {
+      margin-top: -64px;
+      margin-bottom: 58px;
 
-      margin-top: 34px;
-
-      padding-top: 30px;
-      padding-bottom: 18px;
+      position: relative;
+      z-index: 10;
 
       text-align: center;
-
-      border-top: 1px solid #333;
-    }
-
-    .bandsintown-credit.ready {
-      display: block;
-    }
-
-    .bandsintown-credit-label {
-      margin-bottom: 16px;
 
       color: #888;
 
@@ -421,36 +372,22 @@
       letter-spacing: .14em;
 
       text-transform: uppercase;
+
+      pointer-events: none;
     }
 
-    .bandsintown-credit-logo {
-      display: flex;
+    /*
+      Keep Play My City hidden.
+    */
 
-      align-items: center;
-      justify-content: center;
-
-      width: 100%;
+    .bit-play-my-city-wrapper,
+    .bit-play-my-city,
+    [class*="play-my-city"],
+    [class*="playMyCity"] {
+      display: none !important;
     }
 
-    .bandsintown-credit-logo > * {
-      max-width: 230px;
-    }
-
-    .bandsintown-credit-logo img {
-      width: auto !important;
-      max-width: 230px !important;
-      height: auto !important;
-      margin: 0 auto;
-    }
-
-    .bandsintown-credit-logo svg {
-      max-width: 230px;
-      height: auto;
-    }
-
-    /* =========================
-       MERCH
-    ========================= */
+    /* MERCH */
 
     .merch {
       padding: 0;
@@ -520,9 +457,7 @@
       color: #050505;
     }
 
-    /* =========================
-       LISTEN
-    ========================= */
+    /* LISTEN */
 
     .listen {
       background: #111;
@@ -530,7 +465,6 @@
 
     .spotify-wrap {
       max-width: 900px;
-
       margin: auto;
     }
 
@@ -543,23 +477,18 @@
       border-radius: 12px;
     }
 
-    /* =========================
-       CONTACT
-    ========================= */
+    /* CONTACT */
 
     .contact {
       background: var(--white);
-
       color: #050505;
     }
 
     .contact-grid {
       display: grid;
-
       gap: 44px;
 
       max-width: 1100px;
-
       margin: auto;
     }
 
@@ -575,19 +504,16 @@
 
     .contact-copy p {
       margin-top: 24px;
-
       max-width: 450px;
     }
 
     form {
       display: grid;
-
       gap: 20px;
     }
 
     label {
       display: grid;
-
       gap: 8px;
 
       font-size: .75rem;
@@ -610,7 +536,6 @@
       border-radius: 0;
 
       background: transparent;
-
       color: #050505;
 
       outline: none;
@@ -618,7 +543,6 @@
 
     textarea {
       min-height: 130px;
-
       resize: vertical;
     }
 
@@ -628,7 +552,6 @@
       border: 2px solid #050505;
 
       background: #050505;
-
       color: white;
 
       padding: 14px 24px;
@@ -642,9 +565,7 @@
       cursor: pointer;
     }
 
-    /* =========================
-       FOOTER
-    ========================= */
+    /* FOOTER */
 
     .site-footer {
       padding: 34px 22px;
@@ -661,9 +582,7 @@
       border-top: 1px solid #222;
     }
 
-    /* =========================
-       DESKTOP
-    ========================= */
+    /* DESKTOP */
 
     @media (min-width: 800px) {
 
@@ -683,9 +602,13 @@
         padding: 110px 48px;
       }
 
+      .events-credit {
+        margin-top: -58px;
+        margin-bottom: 64px;
+      }
+
       .merch {
         grid-template-columns: 1.1fr .9fr;
-
         min-height: 90svh;
       }
 
@@ -703,13 +626,11 @@
 
       .contact-grid {
         grid-template-columns: .9fr 1.1fr;
-
         align-items: start;
       }
 
       .site-footer {
         flex-direction: row;
-
         justify-content: space-between;
 
         padding: 34px 48px;
@@ -720,25 +641,15 @@
 
 <body>
 
-  <!-- =========================
-       HEADER
-  ========================= -->
-
   <header class="site-header">
 
-    <a
-      href="index.html"
-      aria-label="Holy Youth Movement entrance page"
-    >
-
+    <a href="index.html" aria-label="Holy Youth Movement entrance page">
       <img
         class="nav-logo"
         src="https://holyyouthmovement.co.uk/assets/images/hymlogo.png"
         alt="Holy Youth Movement"
       >
-
     </a>
-
 
     <button
       class="menu-button"
@@ -751,40 +662,20 @@
   </header>
 
 
-  <!-- =========================
-       NAV
-  ========================= -->
-
   <nav
     class="nav-panel"
     id="navPanel"
   >
-
-    <a href="#events">
-      Live
-    </a>
-
-    <a href="#merch">
-      Merch
-    </a>
-
-    <a href="#listen">
-      Listen
-    </a>
-
-    <a href="#contact">
-      Contact
-    </a>
-
+    <a href="#events">Live</a>
+    <a href="#merch">Merch</a>
+    <a href="#listen">Listen</a>
+    <a href="#contact">Contact</a>
   </nav>
 
 
   <main id="top">
 
-
-    <!-- =========================
-         HERO
-    ========================= -->
+    <!-- HERO -->
 
     <section class="hero">
 
@@ -793,7 +684,6 @@
         src="https://holyyouthmovement.co.uk/assets/images/hym-new-press-shot-.jpg"
         alt="Holy Youth Movement band"
       >
-
 
       <div class="hero-content">
 
@@ -812,9 +702,7 @@
     </section>
 
 
-    <!-- =========================
-         QUOTE
-    ========================= -->
+    <!-- QUOTE -->
 
     <section class="quote-section">
 
@@ -832,20 +720,15 @@
     </section>
 
 
-    <!-- =========================
-         BAND IMAGE
-    ========================= -->
+    <!-- BAND IMAGE -->
 
     <section
       class="band-shot"
-      aria-label="Holy Youth Movement band photograph"
-    >
+      aria-label="Holy Youth Movement band photograph">
     </section>
 
 
-    <!-- =========================
-         LIVE
-    ========================= -->
+    <!-- LIVE -->
 
     <section
       class="section events"
@@ -873,8 +756,8 @@
 
           <script
             charset="utf-8"
-            src="https://widgetv3.bandsintown.com/main.min.js"
-          ></script>
+            src="https://widgetv3.bandsintown.com/main.min.js">
+          </script>
 
 
           <a
@@ -923,27 +806,12 @@
 
 
         <!--
-          OUR OWN STABLE CREDIT.
-          JavaScript copies the official
-          Bandsintown logo into this block.
+          This is deliberately OUTSIDE
+          the Bandsintown widget.
         -->
 
-        <div
-          class="bandsintown-credit"
-          id="bandsintownCredit"
-        >
-
-          <div class="bandsintown-credit-label">
-            Live dates powered by
-          </div>
-
-
-          <div
-            class="bandsintown-credit-logo"
-            id="bandsintownCreditLogo"
-          >
-          </div>
-
+        <div class="events-credit">
+          Live dates powered by
         </div>
 
       </div>
@@ -951,17 +819,14 @@
     </section>
 
 
-    <!-- =========================
-         MERCH
-    ========================= -->
+    <!-- MERCH -->
 
     <section
       class="merch"
       id="merch"
     >
 
-      <div class="merch-image">
-      </div>
+      <div class="merch-image"></div>
 
 
       <div class="merch-copy">
@@ -993,9 +858,7 @@
     </section>
 
 
-    <!-- =========================
-         LISTEN
-    ========================= -->
+    <!-- LISTEN -->
 
     <section
       class="section listen"
@@ -1022,9 +885,7 @@
     </section>
 
 
-    <!-- =========================
-         CONTACT
-    ========================= -->
+    <!-- CONTACT -->
 
     <section
       class="section contact"
@@ -1105,10 +966,6 @@
   </main>
 
 
-  <!-- =========================
-       FOOTER
-  ========================= -->
-
   <footer class="site-footer">
 
     <span>
@@ -1124,9 +981,7 @@
 
   <script>
 
-    /* =========================
-       MENU
-    ========================= */
+    /* MENU */
 
     const menuButton =
       document.getElementById("menuButton");
@@ -1161,9 +1016,9 @@
       });
 
 
-    /* =========================
-       BANDSINTOWN CLEANUP
-    ========================= */
+    /*
+      REMOVE PLAY MY CITY
+    */
 
     function removePlayMyCity() {
 
@@ -1220,24 +1075,17 @@
 
 
     /*
-       Find the official Bandsintown logo
-       inside the generated widget.
-
-       COPY it into our own footer.
-
-       Then hide the original.
-
-       We never move our footer INTO the
-       widget, so Bandsintown cannot delete it.
+      Bandsintown builds asynchronously.
+      Check several times as it loads.
     */
 
-    function buildBandsintownCredit() {
+    setTimeout(removePlayMyCity, 500);
+    setTimeout(removePlayMyCity, 1000);
+    setTimeout(removePlayMyCity, 2000);
+    setTimeout(removePlayMyCity, 4000);
+    setTimeout(removePlayMyCity, 7000);
 
-      const widget =
-        document.querySelector(
-          ".bit-widget-shell"
-        );
+  </script>
 
-
-      const credit =
-   
+</body>
+</html>
