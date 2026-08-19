@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#050505">
+
   <title>Holy Youth Movement</title>
 
   <style>
@@ -56,12 +57,16 @@
       top: 0;
       z-index: 100;
       height: 74px;
+
       display: flex;
       align-items: center;
       justify-content: space-between;
+
       padding: 0 22px;
+
       background: rgba(5,5,5,.94);
       backdrop-filter: blur(10px);
+
       border-bottom: 1px solid rgba(255,255,255,.08);
     }
 
@@ -72,10 +77,13 @@
     .menu-button {
       width: 42px;
       height: 42px;
+
       border: 0;
       background: transparent;
+
       display: grid;
       place-items: center;
+
       cursor: pointer;
     }
 
@@ -83,9 +91,12 @@
     .menu-button::before,
     .menu-button::after {
       content: "";
+
       display: block;
+
       width: 28px;
       height: 2px;
+
       background: white;
     }
 
@@ -98,12 +109,17 @@
     .nav-panel {
       position: fixed;
       z-index: 90;
+
       top: 74px;
       left: 0;
       right: 0;
+
       padding: 30px 24px 38px;
+
       background: #090909;
+
       border-bottom: 1px solid var(--line);
+
       transform: translateY(-130%);
       transition: transform .35s ease;
     }
@@ -114,10 +130,14 @@
 
     .nav-panel a {
       display: block;
+
       padding: 13px 0;
+
       font-size: 1.35rem;
       font-weight: 700;
+
       text-transform: uppercase;
+
       border-bottom: 1px solid rgba(255,255,255,.12);
     }
 
@@ -125,26 +145,34 @@
 
     .hero {
       position: relative;
+
       min-height: calc(100svh - 74px);
+
       display: flex;
       align-items: flex-end;
+
       overflow: hidden;
+
       background: #111;
     }
 
     .hero-image {
       position: absolute;
       inset: 0;
+
       width: 100%;
       height: 100%;
+
       object-fit: cover;
       object-position: center;
     }
 
     .hero::after {
       content: "";
+
       position: absolute;
       inset: 0;
+
       background:
         linear-gradient(
           to top,
@@ -157,7 +185,9 @@
     .hero-content {
       position: relative;
       z-index: 2;
+
       width: 100%;
+
       padding: 38px 22px 42px;
     }
 
@@ -184,9 +214,12 @@
 
     .section-title {
       margin-bottom: 32px;
+
       font-size: clamp(2.8rem, 12vw, 6rem);
       line-height: .88;
+
       letter-spacing: -.055em;
+
       text-transform: lowercase;
     }
 
@@ -198,27 +231,37 @@
 
     .quote-section {
       min-height: 70svh;
+
       display: grid;
       place-items: center;
+
       padding: 90px 24px;
+
       background: var(--white);
       color: #050505;
+
       text-align: center;
     }
 
     blockquote {
       max-width: 950px;
+
       font-size: clamp(2rem, 7vw, 4.6rem);
       line-height: 1.02;
+
       font-weight: 800;
+
       letter-spacing: -.045em;
     }
 
     blockquote footer {
       margin-top: 28px;
+
       font-size: .9rem;
       font-weight: 700;
+
       letter-spacing: .14em;
+
       text-transform: uppercase;
     }
 
@@ -226,9 +269,14 @@
 
     .band-shot {
       min-height: 75svh;
+
       background-image:
-        linear-gradient(rgba(0,0,0,.08), rgba(0,0,0,.08)),
+        linear-gradient(
+          rgba(0,0,0,.08),
+          rgba(0,0,0,.08)
+        ),
         url("https://holyyouthmovement.co.uk/assets/images/hym-new-press-shot-.jpg");
+
       background-size: cover;
       background-position: center;
     }
@@ -238,17 +286,22 @@
     .events {
       position: relative;
       overflow: hidden;
+
       background: #050505;
       color: #ffffff;
     }
 
     .events::before {
       content: "";
+
       position: absolute;
+
       width: 420px;
       height: 420px;
+
       right: -250px;
       top: -200px;
+
       border: 1px solid rgba(255,41,236,.25);
       border-radius: 50%;
     }
@@ -256,16 +309,21 @@
     .events-inner {
       position: relative;
       z-index: 2;
+
       max-width: 1100px;
       margin: 0 auto;
     }
 
     .events-eyebrow {
       margin-bottom: 14px;
+
       color: var(--pink);
+
       font-size: .76rem;
       font-weight: 800;
+
       letter-spacing: .2em;
+
       text-transform: uppercase;
     }
 
@@ -275,7 +333,9 @@
 
     .events-copy {
       max-width: 560px;
+
       color: #b8b8b8;
+
       font-size: 1rem;
       line-height: 1.6;
     }
@@ -283,6 +343,7 @@
     .bit-widget-shell {
       margin-top: 42px;
       padding-top: 28px;
+
       border-top: 1px solid #333;
     }
 
@@ -302,57 +363,65 @@
     }
 
     /*
-      OUR STABLE FOOTER
+      OUR CREDIT AREA.
 
-      TWEAK THESE TWO VALUES IF NEEDED:
+      IMPORTANT:
+      This is always visible.
+      It does NOT depend on Bandsintown JavaScript.
 
-      margin-top = gap after final event/divider
-      gap = distance between wording and logo
+      44px = gap after last event/divider.
+      24px = gap between wording and logo.
     */
 
     .bandsintown-credit {
-      display: none;
-      margin-top: 42px;
+      margin-top: 44px;
       text-align: center;
     }
 
-    .bandsintown-credit.ready {
-      display: block;
-    }
-
     .bandsintown-credit-label {
+      margin-bottom: 24px;
+
       color: #888;
+
       font-size: .68rem;
       font-weight: 700;
+
       letter-spacing: .14em;
       line-height: 1.3;
+
       text-transform: uppercase;
-      margin-bottom: 24px;
     }
 
     .bandsintown-credit-logo {
+      min-height: 38px;
+
       display: flex;
       justify-content: center;
       align-items: center;
+
       width: 100%;
     }
 
     .bandsintown-credit-logo > * {
-      max-width: 230px;
       margin: 0 auto !important;
+      max-width: 230px;
     }
 
     .bandsintown-credit-logo img {
       width: auto !important;
-      max-width: 230px !important;
       height: auto !important;
+
+      max-width: 230px !important;
+
       margin: 0 auto !important;
     }
 
     .bandsintown-credit-logo svg {
       width: auto !important;
-      max-width: 230px !important;
       height: auto !important;
+
+      max-width: 230px !important;
+
       margin: 0 auto !important;
     }
 
@@ -360,12 +429,15 @@
 
     .merch {
       padding: 0;
+
       display: grid;
+
       background: #090909;
     }
 
     .merch-image {
       min-height: 75svh;
+
       background:
         url("https://holyyouthmovement.co.uk/assets/images/bca96f15-21ef-4f97-a44c-125286d1ba9a.jpg")
         center / cover no-repeat;
@@ -377,26 +449,38 @@
 
     .merch-copy h2 {
       font-size: clamp(3rem, 14vw, 7rem);
+
       line-height: .85;
+
       letter-spacing: -.06em;
+
       text-transform: lowercase;
     }
 
     .merch-copy p {
       margin-top: 20px;
+
       max-width: 460px;
+
       color: var(--soft);
     }
 
     .outline-button {
       display: inline-flex;
+
       margin-top: 34px;
+
       padding: 14px 18px;
+
       border: 2px solid currentColor;
+
       font-size: .8rem;
       font-weight: 800;
+
       letter-spacing: .1em;
+
       text-transform: uppercase;
+
       transition: .2s;
     }
 
@@ -407,6 +491,7 @@
     .outline-button:hover {
       background: var(--pink);
       border-color: var(--pink);
+
       color: #050505;
     }
 
@@ -424,6 +509,7 @@
     .spotify-wrap iframe {
       width: 100%;
       min-height: 500px;
+
       border: 0;
       border-radius: 12px;
     }
@@ -438,14 +524,18 @@
     .contact-grid {
       display: grid;
       gap: 44px;
+
       max-width: 1100px;
       margin: auto;
     }
 
     .contact-copy h2 {
       font-size: clamp(3rem, 13vw, 7rem);
+
       line-height: .86;
+
       letter-spacing: -.06em;
+
       text-transform: lowercase;
     }
 
@@ -462,21 +552,29 @@
     label {
       display: grid;
       gap: 8px;
+
       font-size: .75rem;
       font-weight: 800;
+
       letter-spacing: .1em;
+
       text-transform: uppercase;
     }
 
     input,
     textarea {
       width: 100%;
+
       padding: 14px 0;
+
       border: 0;
       border-bottom: 2px solid #111;
+
       border-radius: 0;
+
       background: transparent;
       color: #050505;
+
       outline: none;
     }
 
@@ -487,13 +585,20 @@
 
     .send-button {
       justify-self: start;
+
       border: 2px solid #050505;
+
       background: #050505;
       color: white;
+
       padding: 14px 24px;
+
       text-transform: uppercase;
+
       letter-spacing: .1em;
+
       font-weight: 800;
+
       cursor: pointer;
     }
 
@@ -501,11 +606,16 @@
 
     .site-footer {
       padding: 34px 22px;
+
       display: flex;
       flex-direction: column;
+
       gap: 8px;
+
       color: #999;
+
       font-size: .78rem;
+
       border-top: 1px solid #222;
     }
 
@@ -542,6 +652,7 @@
         display: flex;
         flex-direction: column;
         justify-content: center;
+
         padding: 70px;
       }
 
@@ -553,6 +664,7 @@
       .site-footer {
         flex-direction: row;
         justify-content: space-between;
+
         padding: 34px 48px;
       }
     }
@@ -563,7 +675,10 @@
 
   <header class="site-header">
 
-    <a href="index.html" aria-label="Holy Youth Movement entrance page">
+    <a
+      href="index.html"
+      aria-label="Holy Youth Movement entrance page"
+    >
       <img
         class="nav-logo"
         src="https://holyyouthmovement.co.uk/assets/images/hymlogo.png"
@@ -571,7 +686,11 @@
       >
     </a>
 
-    <button class="menu-button" id="menuButton" aria-label="Open menu">
+    <button
+      class="menu-button"
+      id="menuButton"
+      aria-label="Open menu"
+    >
       <span></span>
     </button>
 
@@ -620,12 +739,14 @@
     <section class="quote-section">
 
       <blockquote>
+
         “From the ashes rise Holy Youth Movement and they’re more ambitious,
         anthemic and electrifying than ever.”
 
         <footer>
           — GigSlutz.co.uk
         </footer>
+
       </blockquote>
 
     </section>
@@ -635,7 +756,8 @@
 
     <section
       class="band-shot"
-      aria-label="Holy Youth Movement band photograph">
+      aria-label="Holy Youth Movement band photograph"
+    >
     </section>
 
 
@@ -713,12 +835,12 @@
         </div>
 
 
-        <!-- OUR OWN STABLE CREDIT -->
+        <!--
+          THIS TEXT IS PERMANENT.
+          JAVASCRIPT NEVER TOUCHES IT.
+        -->
 
-        <div
-          class="bandsintown-credit"
-          id="bandsintownCredit"
-        >
+        <div class="bandsintown-credit">
 
           <div class="bandsintown-credit-label">
             Live events powered by
@@ -760,7 +882,8 @@
           class="outline-button"
           href="https://holy-youth-movement.sumupstore.com/"
           target="_blank"
-          rel="noopener">
+          rel="noopener"
+        >
           Buy now
         </a>
 
@@ -783,7 +906,8 @@
           src="https://open.spotify.com/embed/artist/4psk2TMuqKYFzMVMS7KCXd?utm_source=generator"
           loading="lazy"
           allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-          title="Holy Youth Movement on Spotify">
+          title="Holy Youth Movement on Spotify"
+        >
         </iframe>
 
       </div>
@@ -831,7 +955,8 @@
 
           <button
             class="send-button"
-            type="button">
+            type="button"
+          >
             Send message
           </button>
 
@@ -867,9 +992,11 @@
     const navPanel =
       document.getElementById("navPanel");
 
+
     menuButton.addEventListener("click", () => {
       navPanel.classList.toggle("open");
     });
+
 
     document
       .querySelectorAll(".nav-panel a")
@@ -882,18 +1009,24 @@
       });
 
 
-    /*
-      REMOVE PLAY MY CITY
-    */
+    /* BANDSINTOWN */
 
-    function removePlayMyCity() {
+    function tidyBandsintown() {
 
       const widget =
         document.getElementById("bandsintownWidget");
 
-      if (!widget) {
+      const logoDestination =
+        document.getElementById("bandsintownCreditLogo");
+
+      if (!widget || !logoDestination) {
         return;
       }
+
+
+      /*
+        REMOVE PLAY MY CITY
+      */
 
       const unwanted =
         widget.querySelectorAll(
@@ -906,6 +1039,7 @@
       unwanted.forEach(element => {
         element.style.display = "none";
       });
+
 
       widget
         .querySelectorAll("div, p, span")
@@ -932,45 +1066,37 @@
 
         });
 
-    }
 
-
-    /*
-      CLONE BANDSINTOWN LOGO INTO
-      OUR OWN FOOTER BELOW THE WIDGET
-    */
-
-    function buildBandsintownCredit() {
-
-      const widget =
-        document.getElementById("bandsintownWidget");
-
-      const credit =
-        document.getElementById("bandsintownCredit");
-
-      const creditLogo =
-        document.getElementById("bandsintownCreditLogo");
+      /*
+        IF WE ALREADY HAVE THE COPIED LOGO,
+        DON'T COPY IT AGAIN.
+      */
 
       if (
-        !widget ||
-        !credit ||
-        !creditLogo
+        logoDestination.children.length > 0
       ) {
         return;
       }
 
-      if (
-        credit.classList.contains("ready")
-      ) {
-        return;
-      }
+
+      /*
+        SEARCH FOR BANDSINTOWN'S LOGO.
+      */
 
       const candidates =
         widget.querySelectorAll(
-          "img, svg, a, div"
+          'a[href*="bandsintown"],' +
+          'img,' +
+          'svg,' +
+          '[aria-label]'
         );
 
+
       for (const element of candidates) {
+
+        const href =
+          (element.getAttribute("href") || "")
+            .toLowerCase();
 
         const alt =
           (element.getAttribute("alt") || "")
@@ -980,84 +1106,90 @@
           (element.getAttribute("aria-label") || "")
             .toLowerCase();
 
-        const href =
-          (element.getAttribute("href") || "")
-            .toLowerCase();
-
         const text =
           (element.textContent || "")
             .trim()
             .toLowerCase();
 
-        const isBandsintown =
+
+        const looksLikeLogo =
+          href.includes("bandsintown") ||
           alt.includes("bandsintown") ||
           aria.includes("bandsintown") ||
-          href.includes("bandsintown") ||
           text === "bandsintown";
 
-        if (!isBandsintown) {
+
+        if (!looksLikeLogo) {
           continue;
         }
 
+
+        /*
+          USE THE LINK WRAPPING THE LOGO,
+          OTHERWISE ITS CLOSEST WRAPPER.
+        */
+
         let originalLogo =
+          element.closest("a") ||
           element;
 
-        /*
-          Prefer surrounding link/wrapper
-          if one exists.
-        */
-
-        const linkWrapper =
-          element.closest("a");
-
-        if (linkWrapper) {
-          originalLogo = linkWrapper;
-        }
-        else if (
-          element.parentElement &&
-          element.parentElement !== widget
-        ) {
-          originalLogo = element.parentElement;
-        }
 
         /*
-          Clone logo
+          COPY IT.
         */
 
-        const clone =
+        const copy =
           originalLogo.cloneNode(true);
 
+
         /*
-          Remove duplicate IDs
+          REMOVE DUPLICATE IDs.
         */
 
-        if (clone.removeAttribute) {
-          clone.removeAttribute("id");
+        if (copy.removeAttribute) {
+          copy.removeAttribute("id");
         }
 
-        clone
+        copy
           .querySelectorAll("[id]")
           .forEach(child => {
             child.removeAttribute("id");
           });
 
-        /*
-          Put clone in our own footer
-        */
-
-        creditLogo.innerHTML = "";
-        creditLogo.appendChild(clone);
 
         /*
-          Hide original logo
+          PUT THE COPY UNDER OUR PERMANENT TEXT.
         */
 
-        originalLogo.style.display = "none";
+        logoDestination.appendChild(copy);
+
 
         /*
-          Show footer
+          ONLY NOW HIDE THE ORIGINAL.
         */
 
-        credit.classList.add("ready");
+        originalLogo.style.display =
+          "none";
 
-      
+
+        break;
+
+      }
+
+    }
+
+
+    /*
+      Bandsintown loads after the page,
+      so watch for changes.
+    */
+
+    const widget =
+      document.getElementById(
+        "bandsintownWidget"
+      );
+
+
+    if (widget) {
+
+            
