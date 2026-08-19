@@ -292,8 +292,14 @@
       min-height: 80px;
     }
 
+    /*
+      This text will be moved by JavaScript
+      so it sits immediately ABOVE the
+      Bandsintown logo.
+    */
+
     .events-credit {
-      margin: 30px 0 12px;
+      margin: 0 0 14px;
       text-align: center;
       color: #888;
       font-size: .68rem;
@@ -303,10 +309,7 @@
     }
 
     /*
-      FALLBACK:
-      Bandsintown currently still renders Play My City
-      on some widget/mobile combinations even when the
-      supported display attribute is false.
+      Keep Play My City hidden.
     */
 
     .bit-play-my-city-wrapper,
@@ -472,6 +475,7 @@
     /* DESKTOP */
 
     @media (min-width: 800px) {
+
       .site-header {
         padding: 0 48px;
       }
@@ -547,6 +551,8 @@
 
   <main id="top">
 
+    <!-- HERO -->
+
     <section class="hero">
 
       <img
@@ -572,6 +578,8 @@
     </section>
 
 
+    <!-- QUOTE -->
+
     <section class="quote-section">
 
       <blockquote>
@@ -586,11 +594,15 @@
     </section>
 
 
+    <!-- BAND IMAGE -->
+
     <section
       class="band-shot"
       aria-label="Holy Youth Movement band photograph">
     </section>
 
+
+    <!-- LIVE -->
 
     <section class="section events" id="events">
 
@@ -618,6 +630,7 @@
 
           <a
             class="bit-widget-initializer"
+
             data-artist-name="id_15542629"
             data-app-id="3c9d183150cd2ab67c8e3459c2243e53"
 
@@ -648,7 +661,15 @@
 
         </div>
 
-        <div class="events-credit">
+
+        <!--
+          JavaScript moves this above
+          the Bandsintown logo.
+        -->
+
+        <div
+          class="events-credit"
+          id="eventsCredit">
           Live dates powered by
         </div>
 
@@ -656,6 +677,8 @@
 
     </section>
 
+
+    <!-- MERCH -->
 
     <section class="merch" id="merch">
 
@@ -685,6 +708,8 @@
     </section>
 
 
+    <!-- LISTEN -->
+
     <section class="section listen" id="listen">
 
       <div class="spotify-wrap">
@@ -704,6 +729,8 @@
 
     </section>
 
+
+    <!-- CONTACT -->
 
     <section class="section contact" id="contact">
 
@@ -741,7 +768,9 @@
             <textarea name="message"></textarea>
           </label>
 
-          <button class="send-button" type="button">
+          <button
+            class="send-button"
+            type="button">
             Send message
           </button>
 
@@ -769,6 +798,8 @@
 
   <script>
 
+    /* MENU */
+
     const menuButton =
       document.getElementById("menuButton");
 
@@ -789,18 +820,19 @@
 
       });
 
-    /*
-      Bandsintown's documented
-      data-display-play-my-city="false"
-      should remove Play My City.
 
-      As a fallback, inspect the generated widget after it loads
-      and remove the Play My City block if it still appears.
+    /*
+      CLEAN UP BANDSINTOWN
     */
 
-    function removePlayMyCity() {
+    function tidyBandsintown() {
 
-      const elements =
+      /*
+        1. Remove Play My City if
+        Bandsintown renders it anyway.
+      */
+
+      const unwanted =
         document.querySelectorAll(
           '.bit-play-my-city-wrapper,' +
           '.bit-play-my-city,' +
@@ -808,12 +840,13 @@
           '[class*="playMyCity"]'
         );
 
-      elements.forEach(element => {
+      unwanted.forEach(element => {
         element.style.display = "none";
       });
 
+
       document
-        .querySelectorAll("div, p, span")
+        .querySelectorAll(".bit-widget-shell div, .bit-widget-shell p, .bit-widget-shell span")
         .forEach(element => {
 
           const text =
@@ -825,21 +858,113 @@
             text === "want a show near you?" ||
             text === "play my city"
           ) {
+
             const parent =
               element.closest("div");
 
             if (parent) {
               parent.style.display = "none";
             }
+
           }
 
         });
 
+
+      /*
+        2. Find the Bandsintown logo and
+        move LIVE DATES POWERED BY
+        directly above it.
+      */
+
+      const credit =
+        document.getElementById("eventsCredit");
+
+      const widget =
+        document.querySelector(".bit-widget-shell");
+
+      if (!credit || !widget) {
+        return;
+      }
+
+
+      const possibleLogoElements =
+        widget.querySelectorAll(
+          'img, svg, a, div'
+        );
+
+
+      for (const element of possibleLogoElements) {
+
+        const alt =
+          (element.getAttribute("alt") || "")
+            .toLowerCase();
+
+        const aria =
+          (element.getAttribute("aria-label") || "")
+            .toLowerCase();
+
+        const href =
+          (element.getAttribute("href") || "")
+            .toLowerCase();
+
+        const text =
+          (element.textContent || "")
+            .trim()
+            .toLowerCase();
+
+
+        const looksLikeBandsintown =
+          alt.includes("bandsintown") ||
+          aria.includes("bandsintown") ||
+          href.includes("bandsintown") ||
+          text === "bandsintown";
+
+
+        if (looksLikeBandsintown) {
+
+          let logoContainer = element;
+
+          /*
+            If we found the image/SVG/text inside
+            a wrapper, use its parent so the credit
+            sits above the complete logo.
+          */
+
+          if (
+            element.parentElement &&
+            element.parentElement !== widget
+          ) {
+            logoContainer = element.parentElement;
+          }
+
+
+          logoContainer.parentNode.insertBefore(
+            credit,
+            logoContainer
+          );
+
+          credit.style.marginTop = "34px";
+          credit.style.marginBottom = "12px";
+
+          break;
+        }
+
+      }
+
     }
 
-    setTimeout(removePlayMyCity, 1000);
-    setTimeout(removePlayMyCity, 2500);
-    setTimeout(removePlayMyCity, 5000);
+
+    /*
+      Bandsintown builds the widget after
+      our page has loaded, so check it a
+      few times while it appears.
+    */
+
+    setTimeout(tidyBandsintown, 500);
+    setTimeout(tidyBandsintown, 1000);
+    setTimeout(tidyBandsintown, 2000);
+    setTimeout(tidyBandsintown, 4000);
 
   </script>
 
