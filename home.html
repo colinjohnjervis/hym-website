@@ -349,15 +349,18 @@
     }
 
     /*
-      ALWAYS-VISIBLE CREDIT.
+      LIVE DATES POWERED BY
 
-      This stays outside Bandsintown's generated HTML,
-      so their widget cannot delete it.
+      Positioned over the lower area of the
+      Bandsintown widget, but remains normal
+      page content so Bandsintown cannot remove it.
+
+      Extra spacing has been added above and below.
     */
 
     .events-credit {
-      margin-top: -64px;
-      margin-bottom: 58px;
+      margin-top: -48px;
+      margin-bottom: 74px;
 
       position: relative;
       z-index: 10;
@@ -376,9 +379,7 @@
       pointer-events: none;
     }
 
-    /*
-      Keep Play My City hidden.
-    */
+    /* Keep Play My City hidden */
 
     .bit-play-my-city-wrapper,
     .bit-play-my-city,
@@ -603,8 +604,8 @@
       }
 
       .events-credit {
-        margin-top: -58px;
-        margin-bottom: 64px;
+        margin-top: -42px;
+        margin-bottom: 80px;
       }
 
       .merch {
@@ -741,11 +742,9 @@
           Holy Youth Movement
         </div>
 
-
         <h2 class="section-title">
           live<span>.</span>
         </h2>
-
 
         <p class="events-copy">
           Upcoming Holy Youth Movement shows, tour dates and ticket links.
@@ -759,44 +758,32 @@
             src="https://widgetv3.bandsintown.com/main.min.js">
           </script>
 
-
           <a
             class="bit-widget-initializer"
 
             data-artist-name="id_15542629"
-
             data-app-id="3c9d183150cd2ab67c8e3459c2243e53"
 
             data-text-color="#ffffff"
-
             data-link-color="#ff29ec"
-
             data-link-text-color="#050505"
 
             data-background-color="#050505"
-
             data-popup-background-color="#050505"
-
             data-separator-color="#333333"
 
             data-font="Arial"
-
             data-widget-width="100%"
 
             data-display-logo="true"
-
             data-display-track-button="false"
-
             data-display-play-my-city="false"
 
             data-display-local-dates="false"
-
             data-display-past-dates="false"
 
             data-display-start-time="false"
-
             data-display-lineup="false"
-
             data-display-details="false"
 
             data-language="en"
@@ -804,11 +791,6 @@
 
         </div>
 
-
-        <!--
-          This is deliberately OUTSIDE
-          the Bandsintown widget.
-        -->
 
         <div class="events-credit">
           Live dates powered by
@@ -828,7 +810,6 @@
 
       <div class="merch-image"></div>
 
-
       <div class="merch-copy">
 
         <h2>
@@ -838,11 +819,9 @@
           </span>
         </h2>
 
-
         <p>
           Official Holy Youth Movement merchandise.
         </p>
-
 
         <a
           class="outline-button"
@@ -871,7 +850,6 @@
           listen<span class="pink">.</span>
         </h2>
 
-
         <iframe
           src="https://open.spotify.com/embed/artist/4psk2TMuqKYFzMVMS7KCXd?utm_source=generator"
           loading="lazy"
@@ -894,14 +872,12 @@
 
       <div class="contact-grid">
 
-
         <div class="contact-copy">
 
           <h2>
             contact &<br>
             bookings
           </h2>
-
 
           <p>
             For bookings, press and general enquiries,
@@ -913,41 +889,28 @@
 
         <form onsubmit="return false;">
 
-
           <label>
-
             Name
-
             <input
               type="text"
               name="name"
             >
-
           </label>
 
-
           <label>
-
             Email Address
-
             <input
               type="email"
               name="email"
             >
-
           </label>
 
-
           <label>
-
             Message
-
             <textarea
               name="message"
             ></textarea>
-
           </label>
-
 
           <button
             class="send-button"
@@ -955,7 +918,6 @@
           >
             Send message
           </button>
-
 
         </form>
 
@@ -989,16 +951,12 @@
     const navPanel =
       document.getElementById("navPanel");
 
-
     menuButton.addEventListener(
       "click",
       () => {
-
         navPanel.classList.toggle("open");
-
       }
     );
-
 
     document
       .querySelectorAll(".nav-panel a")
@@ -1007,18 +965,14 @@
         link.addEventListener(
           "click",
           () => {
-
             navPanel.classList.remove("open");
-
           }
         );
 
       });
 
 
-    /*
-      REMOVE PLAY MY CITY
-    */
+    /* REMOVE PLAY MY CITY */
 
     function removePlayMyCity() {
 
@@ -1030,11 +984,8 @@
           '[class*="playMyCity"]'
         );
 
-
       unwanted.forEach(element => {
-
         element.style.display = "none";
-
       });
 
 
@@ -1051,7 +1002,6 @@
               .trim()
               .toLowerCase();
 
-
           if (
             text === "want a show near you?" ||
             text === "play my city"
@@ -1060,11 +1010,8 @@
             const wrapper =
               element.closest("div");
 
-
             if (wrapper) {
-
               wrapper.style.display = "none";
-
             }
 
           }
@@ -1073,11 +1020,6 @@
 
     }
 
-
-    /*
-      Bandsintown builds asynchronously.
-      Check several times as it loads.
-    */
 
     setTimeout(removePlayMyCity, 500);
     setTimeout(removePlayMyCity, 1000);
