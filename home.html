@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#050505">
-
   <title>Holy Youth Movement</title>
 
   <style>
@@ -57,16 +56,12 @@
       top: 0;
       z-index: 100;
       height: 74px;
-
       display: flex;
       align-items: center;
       justify-content: space-between;
-
       padding: 0 22px;
-
       background: rgba(5,5,5,.94);
       backdrop-filter: blur(10px);
-
       border-bottom: 1px solid rgba(255,255,255,.08);
     }
 
@@ -77,13 +72,10 @@
     .menu-button {
       width: 42px;
       height: 42px;
-
       border: 0;
       background: transparent;
-
       display: grid;
       place-items: center;
-
       cursor: pointer;
     }
 
@@ -91,12 +83,9 @@
     .menu-button::before,
     .menu-button::after {
       content: "";
-
       display: block;
-
       width: 28px;
       height: 2px;
-
       background: white;
     }
 
@@ -109,17 +98,12 @@
     .nav-panel {
       position: fixed;
       z-index: 90;
-
       top: 74px;
       left: 0;
       right: 0;
-
       padding: 30px 24px 38px;
-
       background: #090909;
-
       border-bottom: 1px solid var(--line);
-
       transform: translateY(-130%);
       transition: transform .35s ease;
     }
@@ -130,14 +114,10 @@
 
     .nav-panel a {
       display: block;
-
       padding: 13px 0;
-
       font-size: 1.35rem;
       font-weight: 700;
-
       text-transform: uppercase;
-
       border-bottom: 1px solid rgba(255,255,255,.12);
     }
 
@@ -145,12 +125,9 @@
 
     .hero {
       position: relative;
-
       min-height: calc(100svh - 74px);
-
       display: flex;
       align-items: flex-end;
-
       overflow: hidden;
       background: #111;
     }
@@ -158,20 +135,16 @@
     .hero-image {
       position: absolute;
       inset: 0;
-
       width: 100%;
       height: 100%;
-
       object-fit: cover;
       object-position: center;
     }
 
     .hero::after {
       content: "";
-
       position: absolute;
       inset: 0;
-
       background:
         linear-gradient(
           to top,
@@ -184,9 +157,7 @@
     .hero-content {
       position: relative;
       z-index: 2;
-
       width: 100%;
-
       padding: 38px 22px 42px;
     }
 
@@ -213,12 +184,9 @@
 
     .section-title {
       margin-bottom: 32px;
-
       font-size: clamp(2.8rem, 12vw, 6rem);
       line-height: .88;
-
       letter-spacing: -.055em;
-
       text-transform: lowercase;
     }
 
@@ -230,37 +198,27 @@
 
     .quote-section {
       min-height: 70svh;
-
       display: grid;
       place-items: center;
-
       padding: 90px 24px;
-
       background: var(--white);
       color: #050505;
-
       text-align: center;
     }
 
     blockquote {
       max-width: 950px;
-
       font-size: clamp(2rem, 7vw, 4.6rem);
       line-height: 1.02;
-
       font-weight: 800;
-
       letter-spacing: -.045em;
     }
 
     blockquote footer {
       margin-top: 28px;
-
       font-size: .9rem;
       font-weight: 700;
-
       letter-spacing: .14em;
-
       text-transform: uppercase;
     }
 
@@ -268,14 +226,9 @@
 
     .band-shot {
       min-height: 75svh;
-
       background-image:
-        linear-gradient(
-          rgba(0,0,0,.08),
-          rgba(0,0,0,.08)
-        ),
+        linear-gradient(rgba(0,0,0,.08), rgba(0,0,0,.08)),
         url("https://holyyouthmovement.co.uk/assets/images/hym-new-press-shot-.jpg");
-
       background-size: cover;
       background-position: center;
     }
@@ -285,22 +238,17 @@
     .events {
       position: relative;
       overflow: hidden;
-
       background: #050505;
       color: #ffffff;
     }
 
     .events::before {
       content: "";
-
       position: absolute;
-
       width: 420px;
       height: 420px;
-
       right: -250px;
       top: -200px;
-
       border: 1px solid rgba(255,41,236,.25);
       border-radius: 50%;
     }
@@ -308,19 +256,15 @@
     .events-inner {
       position: relative;
       z-index: 2;
-
       max-width: 1100px;
       margin: 0 auto;
     }
 
     .events-eyebrow {
       margin-bottom: 14px;
-
       color: var(--pink);
-
       font-size: .76rem;
       font-weight: 800;
-
       letter-spacing: .2em;
       text-transform: uppercase;
     }
@@ -331,9 +275,7 @@
 
     .events-copy {
       max-width: 560px;
-
       color: #b8b8b8;
-
       font-size: 1rem;
       line-height: 1.6;
     }
@@ -341,7 +283,6 @@
     .bit-widget-shell {
       margin-top: 42px;
       padding-top: 28px;
-
       border-top: 1px solid #333;
     }
 
@@ -351,41 +292,40 @@
       min-height: 80px;
     }
 
-    /*
-      This sits immediately above the Bandsintown logo,
-      so together they read:
-      LIVE DATES POWERED BY [Bandsintown logo]
-    */
-
     .events-credit {
-      margin-top: 18px;
-      margin-bottom: -4px;
-
+      margin: 30px 0 12px;
       text-align: center;
-
       color: #888;
-
       font-size: .68rem;
       font-weight: 700;
-
       letter-spacing: .14em;
-
       text-transform: uppercase;
+    }
+
+    /*
+      FALLBACK:
+      Bandsintown currently still renders Play My City
+      on some widget/mobile combinations even when the
+      supported display attribute is false.
+    */
+
+    .bit-play-my-city-wrapper,
+    .bit-play-my-city,
+    [class*="play-my-city"],
+    [class*="playMyCity"] {
+      display: none !important;
     }
 
     /* MERCH */
 
     .merch {
       padding: 0;
-
       display: grid;
-
       background: #090909;
     }
 
     .merch-image {
       min-height: 75svh;
-
       background:
         url("https://holyyouthmovement.co.uk/assets/images/bca96f15-21ef-4f97-a44c-125286d1ba9a.jpg")
         center / cover no-repeat;
@@ -397,38 +337,26 @@
 
     .merch-copy h2 {
       font-size: clamp(3rem, 14vw, 7rem);
-
       line-height: .85;
-
       letter-spacing: -.06em;
-
       text-transform: lowercase;
     }
 
     .merch-copy p {
       margin-top: 20px;
-
       max-width: 460px;
-
       color: var(--soft);
     }
 
     .outline-button {
       display: inline-flex;
-
       margin-top: 34px;
-
       padding: 14px 18px;
-
       border: 2px solid currentColor;
-
       font-size: .8rem;
       font-weight: 800;
-
       letter-spacing: .1em;
-
       text-transform: uppercase;
-
       transition: .2s;
     }
 
@@ -439,7 +367,6 @@
     .outline-button:hover {
       background: var(--pink);
       border-color: var(--pink);
-
       color: #050505;
     }
 
@@ -457,7 +384,6 @@
     .spotify-wrap iframe {
       width: 100%;
       min-height: 500px;
-
       border: 0;
       border-radius: 12px;
     }
@@ -472,24 +398,19 @@
     .contact-grid {
       display: grid;
       gap: 44px;
-
       max-width: 1100px;
       margin: auto;
     }
 
     .contact-copy h2 {
       font-size: clamp(3rem, 13vw, 7rem);
-
       line-height: .86;
-
       letter-spacing: -.06em;
-
       text-transform: lowercase;
     }
 
     .contact-copy p {
       margin-top: 24px;
-
       max-width: 450px;
     }
 
@@ -501,29 +422,21 @@
     label {
       display: grid;
       gap: 8px;
-
       font-size: .75rem;
       font-weight: 800;
-
       letter-spacing: .1em;
-
       text-transform: uppercase;
     }
 
     input,
     textarea {
       width: 100%;
-
       padding: 14px 0;
-
       border: 0;
       border-bottom: 2px solid #111;
-
       border-radius: 0;
-
       background: transparent;
       color: #050505;
-
       outline: none;
     }
 
@@ -534,20 +447,13 @@
 
     .send-button {
       justify-self: start;
-
       border: 2px solid #050505;
-
       background: #050505;
       color: white;
-
       padding: 14px 24px;
-
       text-transform: uppercase;
-
       letter-spacing: .1em;
-
       font-weight: 800;
-
       cursor: pointer;
     }
 
@@ -555,23 +461,17 @@
 
     .site-footer {
       padding: 34px 22px;
-
       display: flex;
       flex-direction: column;
-
       gap: 8px;
-
       color: #999;
-
       font-size: .78rem;
-
       border-top: 1px solid #222;
     }
 
     /* DESKTOP */
 
     @media (min-width: 800px) {
-
       .site-header {
         padding: 0 48px;
       }
@@ -601,7 +501,6 @@
         display: flex;
         flex-direction: column;
         justify-content: center;
-
         padding: 70px;
       }
 
@@ -613,7 +512,6 @@
       .site-footer {
         flex-direction: row;
         justify-content: space-between;
-
         padding: 34px 48px;
       }
     }
@@ -624,10 +522,7 @@
 
   <header class="site-header">
 
-    <a
-      href="index.html"
-      aria-label="Holy Youth Movement entrance page"
-    >
+    <a href="index.html" aria-label="Holy Youth Movement entrance page">
       <img
         class="nav-logo"
         src="https://holyyouthmovement.co.uk/assets/images/hymlogo.png"
@@ -635,33 +530,22 @@
       >
     </a>
 
-    <button
-      class="menu-button"
-      id="menuButton"
-      aria-label="Open menu"
-    >
+    <button class="menu-button" id="menuButton" aria-label="Open menu">
       <span></span>
     </button>
 
   </header>
 
 
-  <nav
-    class="nav-panel"
-    id="navPanel"
-  >
-
+  <nav class="nav-panel" id="navPanel">
     <a href="#events">Live</a>
     <a href="#merch">Merch</a>
     <a href="#listen">Listen</a>
     <a href="#contact">Contact</a>
-
   </nav>
 
 
   <main id="top">
-
-    <!-- HERO -->
 
     <section class="hero">
 
@@ -688,39 +572,27 @@
     </section>
 
 
-    <!-- QUOTE -->
-
     <section class="quote-section">
 
       <blockquote>
-
         “From the ashes rise Holy Youth Movement and they’re more ambitious,
         anthemic and electrifying than ever.”
 
         <footer>
           — GigSlutz.co.uk
         </footer>
-
       </blockquote>
 
     </section>
 
 
-    <!-- BAND IMAGE -->
-
     <section
       class="band-shot"
-      aria-label="Holy Youth Movement band photograph"
-    >
+      aria-label="Holy Youth Movement band photograph">
     </section>
 
 
-    <!-- LIVE -->
-
-    <section
-      class="section events"
-      id="events"
-    >
+    <section class="section events" id="events">
 
       <div class="events-inner">
 
@@ -746,7 +618,6 @@
 
           <a
             class="bit-widget-initializer"
-
             data-artist-name="id_15542629"
             data-app-id="3c9d183150cd2ab67c8e3459c2243e53"
 
@@ -759,7 +630,6 @@
             data-separator-color="#333333"
 
             data-font="Arial"
-
             data-widget-width="100%"
 
             data-display-logo="true"
@@ -787,12 +657,7 @@
     </section>
 
 
-    <!-- MERCH -->
-
-    <section
-      class="merch"
-      id="merch"
-    >
+    <section class="merch" id="merch">
 
       <div class="merch-image"></div>
 
@@ -800,9 +665,7 @@
 
         <h2>
           buy<br>
-          <span class="pink">
-            merch
-          </span>
+          <span class="pink">merch</span>
         </h2>
 
         <p>
@@ -813,8 +676,7 @@
           class="outline-button"
           href="https://holy-youth-movement.sumupstore.com/"
           target="_blank"
-          rel="noopener"
-        >
+          rel="noopener">
           Buy now
         </a>
 
@@ -823,12 +685,7 @@
     </section>
 
 
-    <!-- LISTEN -->
-
-    <section
-      class="section listen"
-      id="listen"
-    >
+    <section class="section listen" id="listen">
 
       <div class="spotify-wrap">
 
@@ -840,8 +697,7 @@
           src="https://open.spotify.com/embed/artist/4psk2TMuqKYFzMVMS7KCXd?utm_source=generator"
           loading="lazy"
           allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-          title="Holy Youth Movement on Spotify"
-        >
+          title="Holy Youth Movement on Spotify">
         </iframe>
 
       </div>
@@ -849,12 +705,7 @@
     </section>
 
 
-    <!-- CONTACT -->
-
-    <section
-      class="section contact"
-      id="contact"
-    >
+    <section class="section contact" id="contact">
 
       <div class="contact-grid">
 
@@ -877,31 +728,20 @@
 
           <label>
             Name
-            <input
-              type="text"
-              name="name"
-            >
+            <input type="text" name="name">
           </label>
 
           <label>
             Email Address
-            <input
-              type="email"
-              name="email"
-            >
+            <input type="email" name="email">
           </label>
 
           <label>
             Message
-            <textarea
-              name="message"
-            ></textarea>
+            <textarea name="message"></textarea>
           </label>
 
-          <button
-            class="send-button"
-            type="button"
-          >
+          <button class="send-button" type="button">
             Send message
           </button>
 
@@ -935,25 +775,71 @@
     const navPanel =
       document.getElementById("navPanel");
 
-    menuButton.addEventListener(
-      "click",
-      () => {
-        navPanel.classList.toggle("open");
-      }
-    );
+    menuButton.addEventListener("click", () => {
+      navPanel.classList.toggle("open");
+    });
 
     document
       .querySelectorAll(".nav-panel a")
       .forEach(link => {
 
-        link.addEventListener(
-          "click",
-          () => {
-            navPanel.classList.remove("open");
-          }
-        );
+        link.addEventListener("click", () => {
+          navPanel.classList.remove("open");
+        });
 
       });
+
+    /*
+      Bandsintown's documented
+      data-display-play-my-city="false"
+      should remove Play My City.
+
+      As a fallback, inspect the generated widget after it loads
+      and remove the Play My City block if it still appears.
+    */
+
+    function removePlayMyCity() {
+
+      const elements =
+        document.querySelectorAll(
+          '.bit-play-my-city-wrapper,' +
+          '.bit-play-my-city,' +
+          '[class*="play-my-city"],' +
+          '[class*="playMyCity"]'
+        );
+
+      elements.forEach(element => {
+        element.style.display = "none";
+      });
+
+      document
+        .querySelectorAll("div, p, span")
+        .forEach(element => {
+
+          const text =
+            element.textContent
+              .trim()
+              .toLowerCase();
+
+          if (
+            text === "want a show near you?" ||
+            text === "play my city"
+          ) {
+            const parent =
+              element.closest("div");
+
+            if (parent) {
+              parent.style.display = "none";
+            }
+          }
+
+        });
+
+    }
+
+    setTimeout(removePlayMyCity, 1000);
+    setTimeout(removePlayMyCity, 2500);
+    setTimeout(removePlayMyCity, 5000);
 
   </script>
 
