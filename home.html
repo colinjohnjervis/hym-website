@@ -1,717 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#050505">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <meta
+    name="theme-color"
+    content="#050505"
+  >
 
   <title>Holy Youth Movement</title>
 
-  <style>
-    :root {
-      --black: #050505;
-      --white: #ffffff;
-      --pink: #ff29ec;
-      --soft: #b8b8b8;
-      --line: rgba(255,255,255,.18);
-    }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      background: var(--black);
-      color: var(--white);
-      font-family: Arial, Helvetica, sans-serif;
-      line-height: 1.4;
-      overflow-x: hidden;
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    img {
-      display: block;
-      width: 100%;
-    }
-
-    button,
-    input,
-    textarea {
-      font: inherit;
-    }
-
-    /* HEADER */
-
-    .site-header {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-
-      height: 74px;
-
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-
-      padding: 0 22px;
-
-      background: rgba(5,5,5,.94);
-      backdrop-filter: blur(10px);
-
-      border-bottom: 1px solid rgba(255,255,255,.08);
-    }
-
-    .nav-logo {
-      width: 92px;
-    }
-
-    .menu-button {
-      width: 42px;
-      height: 42px;
-
-      border: 0;
-      background: transparent;
-
-      display: grid;
-      place-items: center;
-
-      cursor: pointer;
-    }
-
-    .menu-button span,
-    .menu-button::before,
-    .menu-button::after {
-      content: "";
-
-      display: block;
-
-      width: 28px;
-      height: 2px;
-
-      background: white;
-    }
-
-    .menu-button span {
-      margin: 6px 0;
-    }
-
-    /* NAV */
-
-    .nav-panel {
-      position: fixed;
-      z-index: 90;
-
-      top: 74px;
-      left: 0;
-      right: 0;
-
-      padding: 30px 24px 38px;
-
-      background: #090909;
-
-      border-bottom: 1px solid var(--line);
-
-      transform: translateY(-130%);
-      transition: transform .35s ease;
-    }
-
-    .nav-panel.open {
-      transform: translateY(0);
-    }
-
-    .nav-panel a {
-      display: block;
-
-      padding: 13px 0;
-
-      font-size: 1.35rem;
-      font-weight: 700;
-
-      text-transform: uppercase;
-
-      border-bottom: 1px solid rgba(255,255,255,.12);
-    }
-
-    /* HERO */
-
-    .hero {
-      position: relative;
-
-      min-height: calc(100svh - 74px);
-
-      display: flex;
-      align-items: flex-end;
-
-      overflow: hidden;
-
-      background: #111;
-    }
-
-    .hero-image {
-      position: absolute;
-      inset: 0;
-
-      width: 100%;
-      height: 100%;
-
-      object-fit: cover;
-      object-position: center;
-    }
-
-    .hero::after {
-      content: "";
-
-      position: absolute;
-      inset: 0;
-
-      background:
-        linear-gradient(
-          to top,
-          rgba(0,0,0,.92) 0%,
-          rgba(0,0,0,.18) 55%,
-          rgba(0,0,0,.32) 100%
-        );
-    }
-
-    .hero-content {
-      position: relative;
-      z-index: 2;
-
-      width: 100%;
-
-      padding: 38px 22px 42px;
-    }
-
-    .hero-logo {
-      width: min(72vw, 520px);
-
-      margin-bottom: 18px;
-    }
-
-    .hero-kicker {
-      font-size: .8rem;
-
-      letter-spacing: .2em;
-
-      text-transform: uppercase;
-    }
-
-    /* GENERAL */
-
-    section {
-      scroll-margin-top: 74px;
-    }
-
-    .section {
-      padding: 78px 22px;
-    }
-
-    .section-title {
-      margin-bottom: 32px;
-
-      font-size: clamp(2.8rem, 12vw, 6rem);
-
-      line-height: .88;
-
-      letter-spacing: -.055em;
-
-      text-transform: lowercase;
-    }
-
-    .pink {
-      color: var(--pink);
-    }
-
-    /* QUOTE */
-
-    .quote-section {
-      min-height: 70svh;
-
-      display: grid;
-      place-items: center;
-
-      padding: 90px 24px;
-
-      background: var(--white);
-
-      color: #050505;
-
-      text-align: center;
-    }
-
-    blockquote {
-      max-width: 950px;
-
-      font-size: clamp(2rem, 7vw, 4.6rem);
-
-      line-height: 1.02;
-
-      font-weight: 800;
-
-      letter-spacing: -.045em;
-    }
-
-    blockquote footer {
-      margin-top: 28px;
-
-      font-size: .9rem;
-      font-weight: 700;
-
-      letter-spacing: .14em;
-
-      text-transform: uppercase;
-    }
-
-    /* BAND IMAGE */
-
-    .band-shot {
-      min-height: 75svh;
-
-      background-image:
-        linear-gradient(
-          rgba(0,0,0,.08),
-          rgba(0,0,0,.08)
-        ),
-        url("https://holyyouthmovement.co.uk/assets/images/hym-new-press-shot-.jpg");
-
-      background-size: cover;
-      background-position: center;
-    }
-
-    /* LIVE */
-
-    .events {
-      position: relative;
-
-      overflow: hidden;
-
-      background: #050505;
-
-      color: #ffffff;
-    }
-
-    .events::before {
-      content: "";
-
-      position: absolute;
-
-      width: 420px;
-      height: 420px;
-
-      right: -250px;
-      top: -200px;
-
-      border: 1px solid rgba(255,41,236,.25);
-      border-radius: 50%;
-    }
-
-    .events-inner {
-      position: relative;
-      z-index: 2;
-
-      max-width: 1100px;
-
-      margin: 0 auto;
-    }
-
-    .events-eyebrow {
-      margin-bottom: 14px;
-
-      color: var(--pink);
-
-      font-size: .76rem;
-      font-weight: 800;
-
-      letter-spacing: .2em;
-
-      text-transform: uppercase;
-    }
-
-    .events .section-title span {
-      color: var(--pink);
-    }
-
-    .events-copy {
-      max-width: 560px;
-
-      color: #b8b8b8;
-
-      font-size: 1rem;
-
-      line-height: 1.6;
-    }
-
-    .bit-widget-shell {
-      margin-top: 42px;
-
-      padding-top: 28px;
-
-      border-top: 1px solid #333;
-    }
-
-    .bit-widget-initializer {
-      display: block;
-
-      width: 100%;
-
-      min-height: 80px;
-    }
-
-    /* KEEP PLAY MY CITY HIDDEN */
-
-    .bit-play-my-city-wrapper,
-    .bit-play-my-city,
-    [class*="play-my-city"],
-    [class*="playMyCity"] {
-      display: none !important;
-    }
-
-    /*
-      ====================================
-      CREDIT OUTSIDE THE WIDGET
-      ====================================
-
-      44px = gap after final divider
-      22px = gap from wording to logo
-
-      THESE are the spacing values we'll
-      adjust later if required.
-    */
-
-    .bandsintown-credit {
-      display: none;
-
-      margin-top: 44px;
-
-      text-align: center;
-    }
-
-    .bandsintown-credit.ready {
-      display: block;
-    }
-
-    .bandsintown-credit-label {
-      margin-bottom: 22px;
-
-      color: #888;
-
-      font-size: .68rem;
-      font-weight: 700;
-
-      letter-spacing: .14em;
-      line-height: 1.3;
-
-      text-transform: uppercase;
-    }
-
-    .bandsintown-credit-logo {
-      display: flex;
-
-      align-items: center;
-      justify-content: center;
-
-      min-height: 36px;
-
-      width: 100%;
-    }
-
-    /*
-      The copied logo keeps the exact artwork
-      and internal styling Bandsintown rendered.
-
-      We only control the outer positioning.
-    */
-
-    .bandsintown-credit-logo > * {
-      position: static !important;
-
-      display: inline-flex !important;
-
-      align-items: center !important;
-      justify-content: center !important;
-
-      width: auto !important;
-
-      margin: 0 auto !important;
-
-      transform: none !important;
-    }
-
-    /* MERCH */
-
-    .merch {
-      padding: 0;
-
-      display: grid;
-
-      background: #090909;
-    }
-
-    .merch-image {
-      min-height: 75svh;
-
-      background:
-        url("https://holyyouthmovement.co.uk/assets/images/bca96f15-21ef-4f97-a44c-125286d1ba9a.jpg")
-        center / cover no-repeat;
-    }
-
-    .merch-copy {
-      padding: 56px 22px 72px;
-    }
-
-    .merch-copy h2 {
-      font-size: clamp(3rem, 14vw, 7rem);
-
-      line-height: .85;
-
-      letter-spacing: -.06em;
-
-      text-transform: lowercase;
-    }
-
-    .merch-copy p {
-      margin-top: 20px;
-
-      max-width: 460px;
-
-      color: var(--soft);
-    }
-
-    .outline-button {
-      display: inline-flex;
-
-      margin-top: 34px;
-
-      padding: 14px 18px;
-
-      border: 2px solid currentColor;
-
-      font-size: .8rem;
-      font-weight: 800;
-
-      letter-spacing: .1em;
-
-      text-transform: uppercase;
-
-      transition: .2s;
-    }
-
-    .merch-copy .outline-button {
-      color: white;
-    }
-
-    .outline-button:hover {
-      background: var(--pink);
-
-      border-color: var(--pink);
-
-      color: #050505;
-    }
-
-    /* LISTEN */
-
-    .listen {
-      background: #111;
-    }
-
-    .spotify-wrap {
-      max-width: 900px;
-
-      margin: auto;
-    }
-
-    .spotify-wrap iframe {
-      width: 100%;
-
-      min-height: 500px;
-
-      border: 0;
-      border-radius: 12px;
-    }
-
-    /* CONTACT */
-
-    .contact {
-      background: var(--white);
-
-      color: #050505;
-    }
-
-    .contact-grid {
-      display: grid;
-
-      gap: 44px;
-
-      max-width: 1100px;
-
-      margin: auto;
-    }
-
-    .contact-copy h2 {
-      font-size: clamp(3rem, 13vw, 7rem);
-
-      line-height: .86;
-
-      letter-spacing: -.06em;
-
-      text-transform: lowercase;
-    }
-
-    .contact-copy p {
-      margin-top: 24px;
-
-      max-width: 450px;
-    }
-
-    form {
-      display: grid;
-
-      gap: 20px;
-    }
-
-    label {
-      display: grid;
-
-      gap: 8px;
-
-      font-size: .75rem;
-      font-weight: 800;
-
-      letter-spacing: .1em;
-
-      text-transform: uppercase;
-    }
-
-    input,
-    textarea {
-      width: 100%;
-
-      padding: 14px 0;
-
-      border: 0;
-
-      border-bottom: 2px solid #111;
-
-      border-radius: 0;
-
-      background: transparent;
-
-      color: #050505;
-
-      outline: none;
-    }
-
-    textarea {
-      min-height: 130px;
-
-      resize: vertical;
-    }
-
-    .send-button {
-      justify-self: start;
-
-      border: 2px solid #050505;
-
-      background: #050505;
-
-      color: white;
-
-      padding: 14px 24px;
-
-      text-transform: uppercase;
-
-      letter-spacing: .1em;
-
-      font-weight: 800;
-
-      cursor: pointer;
-    }
-
-    /* FOOTER */
-
-    .site-footer {
-      padding: 34px 22px;
-
-      display: flex;
-      flex-direction: column;
-
-      gap: 8px;
-
-      color: #999;
-
-      font-size: .78rem;
-
-      border-top: 1px solid #222;
-    }
-
-    /* DESKTOP */
-
-    @media (min-width: 800px) {
-
-      .site-header {
-        padding: 0 48px;
-      }
-
-      .nav-logo {
-        width: 112px;
-      }
-
-      .hero-content {
-        padding: 55px 48px;
-      }
-
-      .section {
-        padding: 110px 48px;
-      }
-
-      .merch {
-        grid-template-columns: 1.1fr .9fr;
-
-        min-height: 90svh;
-      }
-
-      .merch-image {
-        min-height: 90svh;
-      }
-
-      .merch-copy {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-
-        padding: 70px;
-      }
-
-      .contact-grid {
-        grid-template-columns: .9fr 1.1fr;
-
-        align-items: start;
-      }
-
-      .site-footer {
-        flex-direction: row;
-
-        justify-content: space-between;
-
-        padding: 34px 48px;
-      }
-    }
-  </style>
+  <!-- EXTERNAL STYLESHEET -->
+  <link
+    rel="stylesheet"
+    href="style.css"
+  >
 </head>
+
 
 <body>
 
-  <!-- HEADER -->
+  <!-- =========================
+       HEADER
+  ========================== -->
 
   <header class="site-header">
 
@@ -737,24 +54,40 @@
   </header>
 
 
-  <!-- NAV -->
+  <!-- =========================
+       NAVIGATION
+  ========================== -->
 
   <nav
     class="nav-panel"
     id="navPanel"
   >
 
-    <a href="#events">Live</a>
-    <a href="#merch">Merch</a>
-    <a href="#listen">Listen</a>
-    <a href="#contact">Contact</a>
+    <a href="#events">
+      Live
+    </a>
+
+    <a href="#merch">
+      Merch
+    </a>
+
+    <a href="#listen">
+      Listen
+    </a>
+
+    <a href="#contact">
+      Contact
+    </a>
 
   </nav>
 
 
   <main id="top">
 
-    <!-- HERO -->
+
+    <!-- =========================
+         HERO
+    ========================== -->
 
     <section class="hero">
 
@@ -781,7 +114,9 @@
     </section>
 
 
-    <!-- QUOTE -->
+    <!-- =========================
+         QUOTE
+    ========================== -->
 
     <section class="quote-section">
 
@@ -799,16 +134,19 @@
     </section>
 
 
-    <!-- BAND IMAGE -->
+    <!-- =========================
+         BAND IMAGE
+    ========================== -->
 
     <section
       class="band-shot"
       aria-label="Holy Youth Movement band photograph"
-    >
-    </section>
+    ></section>
 
 
-    <!-- LIVE -->
+    <!-- =========================
+         LIVE
+    ========================== -->
 
     <section
       class="section events"
@@ -826,11 +164,14 @@
         </h2>
 
         <p class="events-copy">
-          Upcoming Holy Youth Movement shows, tour dates and ticket links.
+          Upcoming Holy Youth Movement shows,
+          tour dates and ticket links.
         </p>
 
 
-        <!-- BANDSINTOWN WIDGET -->
+        <!-- =========================
+             BANDSINTOWN WIDGET
+        ========================== -->
 
         <div
           class="bit-widget-shell"
@@ -888,7 +229,15 @@
 
 
         <!--
-          THIS WHOLE CREDIT IS OUTSIDE THE WIDGET.
+          IMPORTANT:
+
+          This block is OUTSIDE the Bandsintown widget.
+
+          The wording is ours.
+
+          The empty logo container will receive
+          a clone of the ACTUAL logo rendered
+          by Bandsintown above.
         -->
 
         <div
@@ -896,13 +245,13 @@
           id="bandsintownCredit"
         >
 
-          <div class="bandsintown-credit-label">
+          <div class="bandsintown-credit-text">
             Live events powered by
           </div>
 
           <div
-            class="bandsintown-credit-logo"
-            id="bandsintownCreditLogo"
+            class="bandsintown-logo-copy"
+            id="bandsintownLogoCopy"
           ></div>
 
         </div>
@@ -912,7 +261,9 @@
     </section>
 
 
-    <!-- MERCH -->
+    <!-- =========================
+         MERCH
+    ========================== -->
 
     <section
       class="merch"
@@ -925,7 +276,9 @@
 
         <h2>
           buy<br>
-          <span class="pink">merch</span>
+          <span class="pink">
+            merch
+          </span>
         </h2>
 
         <p>
@@ -946,7 +299,9 @@
     </section>
 
 
-    <!-- LISTEN -->
+    <!-- =========================
+         LISTEN
+    ========================== -->
 
     <section
       class="section listen"
@@ -971,7 +326,9 @@
     </section>
 
 
-    <!-- CONTACT -->
+    <!-- =========================
+         CONTACT
+    ========================== -->
 
     <section
       class="section contact"
@@ -999,18 +356,32 @@
 
           <label>
             Name
-            <input type="text" name="name">
+
+            <input
+              type="text"
+              name="name"
+            >
           </label>
+
 
           <label>
             Email Address
-            <input type="email" name="email">
+
+            <input
+              type="email"
+              name="email"
+            >
           </label>
+
 
           <label>
             Message
-            <textarea name="message"></textarea>
+
+            <textarea
+              name="message"
+            ></textarea>
           </label>
+
 
           <button
             class="send-button"
@@ -1028,12 +399,15 @@
   </main>
 
 
-  <!-- FOOTER -->
+  <!-- =========================
+       FOOTER
+  ========================== -->
 
   <footer class="site-footer">
 
     <span>
-      © 2026 Holy Youth Movement. All rights reserved.
+      © 2026 Holy Youth Movement.
+      All rights reserved.
     </span>
 
     <span>
@@ -1043,11 +417,15 @@
   </footer>
 
 
+  <!-- =========================
+       JAVASCRIPT
+  ========================== -->
+
   <script>
 
-    /* =============================
+    /* -------------------------
        MENU
-    ============================= */
+    ------------------------- */
 
     const menuButton =
       document.getElementById("menuButton");
@@ -1082,11 +460,12 @@
       });
 
 
-    /* =============================
-       BANDSINTOWN
-    ============================= */
 
-    const bitWidget =
+    /* =========================
+       BANDSINTOWN
+    ========================== */
+
+    const widget =
       document.getElementById(
         "bandsintownWidget"
       );
@@ -1096,22 +475,25 @@
         "bandsintownCredit"
       );
 
-    const logoHolder =
+    const logoCopy =
       document.getElementById(
-        "bandsintownCreditLogo"
+        "bandsintownLogoCopy"
       );
 
 
-    /* REMOVE PLAY MY CITY */
+
+    /* -------------------------
+       REMOVE PLAY MY CITY
+    ------------------------- */
 
     function removePlayMyCity() {
 
-      if (!bitWidget) {
+      if (!widget) {
         return;
       }
 
 
-      bitWidget
+      widget
         .querySelectorAll(
           '.bit-play-my-city-wrapper,' +
           '.bit-play-my-city,' +
@@ -1120,15 +502,22 @@
         )
         .forEach(element => {
 
-          element.style.display =
-            "none";
+          element.style.setProperty(
+            "display",
+            "none",
+            "important"
+          );
 
         });
 
 
-      bitWidget
+      /*
+        Backup check based on visible wording.
+      */
+
+      widget
         .querySelectorAll(
-          "div, p, span"
+          "div, p, span, a, button"
         )
         .forEach(element => {
 
@@ -1138,6 +527,7 @@
               ""
             )
               .trim()
+              .replace(/\s+/g, " ")
               .toLowerCase();
 
 
@@ -1146,16 +536,61 @@
             text === "play my city"
           ) {
 
-            const parent =
-              element.closest("div");
+            let wrapper =
+              element;
 
 
-            if (parent) {
+            /*
+              Move up through small wrappers,
+              but never anywhere near the
+              entire widget.
+            */
 
-              parent.style.display =
-                "none";
+            for (
+              let i = 0;
+              i < 3;
+              i++
+            ) {
+
+              const parent =
+                wrapper.parentElement;
+
+
+              if (
+                !parent ||
+                parent === widget
+              ) {
+                break;
+              }
+
+
+              const rect =
+                parent.getBoundingClientRect();
+
+
+              if (
+                rect.height > 0 &&
+                rect.height < 180
+              ) {
+
+                wrapper =
+                  parent;
+
+              }
+              else {
+
+                break;
+
+              }
 
             }
+
+
+            wrapper.style.setProperty(
+              "display",
+              "none",
+              "important"
+            );
 
           }
 
@@ -1164,50 +599,275 @@
     }
 
 
-    /*
-      COPY ALL COMPUTED STYLES FROM THE REAL
-      LOGO TO ITS CLONE.
 
-      This is important because the clone is
-      being moved OUTSIDE the widget, where
-      Bandsintown's CSS selectors may no longer
-      apply to it.
-    */
+    /* -------------------------
+       FIND REAL LOGO
+    ------------------------- */
 
-    function copyStylesDeep(
-      source,
-      target
+    function findBandsintownLogo() {
+
+      if (!widget) {
+        return null;
+      }
+
+
+      /*
+        Search every link inside the widget.
+
+        We don't assume Bandsintown uses
+        one particular class name.
+      */
+
+      const links =
+        Array.from(
+          widget.querySelectorAll(
+            "a[href]"
+          )
+        );
+
+
+      const candidates =
+        [];
+
+
+      links.forEach(link => {
+
+        const href =
+          (
+            link.getAttribute("href") ||
+            ""
+          )
+            .toLowerCase();
+
+
+        /*
+          Only interested in links that
+          belong to Bandsintown.
+        */
+
+        if (
+          !href.includes("bandsintown")
+        ) {
+          return;
+        }
+
+
+        const text =
+          (
+            link.textContent ||
+            ""
+          )
+            .trim()
+            .replace(/\s+/g, " ")
+            .toLowerCase();
+
+
+        /*
+          Exclude event action buttons.
+        */
+
+        if (
+          text.includes("tickets") ||
+          text.includes("ticket") ||
+          text.includes("rsvp") ||
+          text.includes("follow") ||
+          text.includes("track") ||
+          text.includes("play my city")
+        ) {
+          return;
+        }
+
+
+        const rect =
+          link.getBoundingClientRect();
+
+
+        /*
+          Ignore invisible/zero-size links.
+        */
+
+        if (
+          rect.width <= 0 ||
+          rect.height <= 0
+        ) {
+          return;
+        }
+
+
+        const hasArtwork =
+          !!link.querySelector(
+            "svg, img"
+          );
+
+
+        candidates.push({
+          element: link,
+          top: rect.top,
+          hasArtwork: hasArtwork
+        });
+
+      });
+
+
+
+      /*
+        Prefer candidates containing actual
+        SVG/image artwork.
+      */
+
+      const artworkCandidates =
+        candidates.filter(
+          candidate =>
+            candidate.hasArtwork
+        );
+
+
+      const usableCandidates =
+        artworkCandidates.length
+          ? artworkCandidates
+          : candidates;
+
+
+      /*
+        Bandsintown's branding is the
+        LOWEST qualifying link in the widget.
+      */
+
+      usableCandidates.sort(
+        (a, b) =>
+          b.top - a.top
+      );
+
+
+      if (
+        usableCandidates.length
+      ) {
+
+        return usableCandidates[0].element;
+
+      }
+
+
+
+      /*
+        SECOND FALLBACK:
+
+        Search SVGs/images directly and see
+        whether they're inside a Bandsintown
+        link.
+      */
+
+      const artwork =
+        Array.from(
+          widget.querySelectorAll(
+            "svg, img"
+          )
+        );
+
+
+      const artworkMatches =
+        [];
+
+
+      artwork.forEach(element => {
+
+        const link =
+          element.closest(
+            "a[href]"
+          );
+
+
+        if (!link) {
+          return;
+        }
+
+
+        const href =
+          (
+            link.getAttribute("href") ||
+            ""
+          )
+            .toLowerCase();
+
+
+        if (
+          !href.includes("bandsintown")
+        ) {
+          return;
+        }
+
+
+        const rect =
+          link.getBoundingClientRect();
+
+
+        artworkMatches.push({
+          element: link,
+          top: rect.top
+        });
+
+      });
+
+
+      artworkMatches.sort(
+        (a, b) =>
+          b.top - a.top
+      );
+
+
+      if (
+        artworkMatches.length
+      ) {
+
+        return artworkMatches[0].element;
+
+      }
+
+
+      return null;
+
+    }
+
+
+
+    /* -------------------------
+       COPY COMPUTED STYLES
+    ------------------------- */
+
+    function copyComputedStyles(
+      original,
+      clone
     ) {
 
-      const sourceElements =
+      const originals =
         [
-          source,
-          ...source.querySelectorAll("*")
+          original,
+          ...original.querySelectorAll("*")
         ];
 
 
-      const targetElements =
+      const clones =
         [
-          target,
-          ...target.querySelectorAll("*")
+          clone,
+          ...clone.querySelectorAll("*")
         ];
 
 
-      sourceElements.forEach(
-        (sourceElement, index) => {
+      originals.forEach(
+        (originalElement, index) => {
 
-          const targetElement =
-            targetElements[index];
+          const cloneElement =
+            clones[index];
 
 
-          if (!targetElement) {
+          if (!cloneElement) {
             return;
           }
 
 
           const styles =
             window.getComputedStyle(
-              sourceElement
+              originalElement
             );
 
 
@@ -1221,7 +881,7 @@
               styles[i];
 
 
-            targetElement.style.setProperty(
+            cloneElement.style.setProperty(
               property,
               styles.getPropertyValue(
                 property
@@ -1239,12 +899,428 @@
     }
 
 
+
+    /* -------------------------
+       FIND ORIGINAL LOGO WRAPPER
+    ------------------------- */
+
+    function findLogoWrapper(
+      logo
+    ) {
+
+      if (!logo) {
+        return null;
+      }
+
+
+      let wrapper =
+        logo;
+
+
+      /*
+        Only climb through SMALL containers.
+
+        This prevents us from accidentally
+        hiding the whole widget.
+      */
+
+      for (
+        let i = 0;
+        i < 3;
+        i++
+      ) {
+
+        const parent =
+          wrapper.parentElement;
+
+
+        if (
+          !parent ||
+          parent === widget ||
+          !widget.contains(parent)
+        ) {
+          break;
+        }
+
+
+        const rect =
+          parent.getBoundingClientRect();
+
+
+        const interactiveElements =
+          parent.querySelectorAll(
+            "a, button"
+          ).length;
+
+
+        if (
+          rect.height > 0 &&
+          rect.height < 150 &&
+          interactiveElements <= 1
+        ) {
+
+          wrapper =
+            parent;
+
+        }
+        else {
+
+          break;
+
+        }
+
+      }
+
+
+      return wrapper;
+
+    }
+
+
+
+    /* -------------------------
+       BUILD EXTERNAL CREDIT
+    ------------------------- */
+
+    function buildExternalCredit() {
+
+      if (
+        !widget ||
+        !credit ||
+        !logoCopy
+      ) {
+        return;
+      }
+
+
+      /*
+        If successful already,
+        leave everything alone.
+      */
+
+      if (
+        credit.classList.contains(
+          "ready"
+        )
+      ) {
+        return;
+      }
+
+
+      /*
+        Locate the ACTUAL logo currently
+        rendered by Bandsintown.
+      */
+
+      const realLogo =
+        findBandsintownLogo();
+
+
+      /*
+        Widget may still be loading.
+      */
+
+      if (!realLogo) {
+        return;
+      }
+
+
+      /*
+        Clone exactly what Bandsintown
+        rendered.
+      */
+
+      const clonedLogo =
+        realLogo.cloneNode(true);
+
+
+      /*
+        Copy the rendered CSS BEFORE
+        touching the original.
+      */
+
+      copyComputedStyles(
+        realLogo,
+        clonedLogo
+      );
+
+
+
+      /*
+        Remove duplicate IDs from clone.
+      */
+
+      clonedLogo.removeAttribute(
+        "id"
+      );
+
+
+      clonedLogo
+        .querySelectorAll("[id]")
+        .forEach(element => {
+
+          element.removeAttribute(
+            "id"
+          );
+
+        });
+
+
+
+      /*
+        Reset ONLY positioning on the
+        outside wrapper.
+
+        The actual logo artwork inside
+        remains exactly as Bandsintown
+        rendered it.
+      */
+
+      clonedLogo.style.setProperty(
+        "position",
+        "static",
+        "important"
+      );
+
+      clonedLogo.style.setProperty(
+        "left",
+        "auto",
+        "important"
+      );
+
+      clonedLogo.style.setProperty(
+        "right",
+        "auto",
+        "important"
+      );
+
+      clonedLogo.style.setProperty(
+        "top",
+        "auto",
+        "important"
+      );
+
+      clonedLogo.style.setProperty(
+        "bottom",
+        "auto",
+        "important"
+      );
+
+      clonedLogo.style.setProperty(
+        "transform",
+        "none",
+        "important"
+      );
+
+      clonedLogo.style.setProperty(
+        "opacity",
+        "1",
+        "important"
+      );
+
+      clonedLogo.style.setProperty(
+        "visibility",
+        "visible",
+        "important"
+      );
+
+      clonedLogo.style.setProperty(
+        "margin-left",
+        "auto",
+        "important"
+      );
+
+      clonedLogo.style.setProperty(
+        "margin-right",
+        "auto",
+        "important"
+      );
+
+
+
+      /*
+        Insert the clone OUTSIDE the widget.
+
+        Structure becomes:
+
+        LAST EVENT
+        ----------------
+
+        LIVE EVENTS POWERED BY
+
+        [GENUINE BANDSINTOWN LOGO]
+      */
+
+      logoCopy.innerHTML =
+        "";
+
+
+      logoCopy.appendChild(
+        clonedLogo
+      );
+
+
+
+      /*
+        Make absolutely sure the clone
+        exists before hiding anything.
+      */
+
+      if (
+        !logoCopy.firstElementChild
+      ) {
+        return;
+      }
+
+
+
+      /*
+        Now hide the ORIGINAL Bandsintown
+        logo inside the widget.
+      */
+
+      const originalWrapper =
+        findLogoWrapper(
+          realLogo
+        );
+
+
+      if (originalWrapper) {
+
+        originalWrapper.style.setProperty(
+          "display",
+          "none",
+          "important"
+        );
+
+      }
+      else {
+
+        realLogo.style.setProperty(
+          "display",
+          "none",
+          "important"
+        );
+
+      }
+
+
+
+      /*
+        Finally reveal our external
+        wording + genuine cloned logo.
+      */
+
+      credit.classList.add(
+        "ready"
+      );
+
+    }
+
+
+
+    /* -------------------------
+       RUN CLEANUP
+    ------------------------- */
+
+    function tidyBandsintown() {
+
+      removePlayMyCity();
+
+      buildExternalCredit();
+
+    }
+
+
+
     /*
-      FIND THE ACTUAL LOGO.
+      Bandsintown renders asynchronously.
 
-      We do NOT depend on the word "bandsintown"
-      appearing as normal HTML text.
+      Watch the widget while it creates
+      the event list and logo.
+    */
 
-      Instead:
+    if (widget) {
 
-      1. Find 
+      let tidyTimer;
+
+
+      const observer =
+        new MutationObserver(
+          () => {
+
+            clearTimeout(
+              tidyTimer
+            );
+
+
+            tidyTimer =
+              setTimeout(
+                tidyBandsintown,
+                100
+              );
+
+          }
+        );
+
+
+      observer.observe(
+        widget,
+        {
+          childList: true,
+          subtree: true
+        }
+      );
+
+    }
+
+
+
+    /*
+      Backup checks during initial load.
+    */
+
+    setTimeout(
+      tidyBandsintown,
+      300
+    );
+
+    setTimeout(
+      tidyBandsintown,
+      700
+    );
+
+    setTimeout(
+      tidyBandsintown,
+      1200
+    );
+
+    setTimeout(
+      tidyBandsintown,
+      2000
+    );
+
+    setTimeout(
+      tidyBandsintown,
+      3500
+    );
+
+    setTimeout(
+      tidyBandsintown,
+      5000
+    );
+
+    setTimeout(
+      tidyBandsintown,
+      7500
+    );
+
+    setTimeout(
+      tidyBandsintown,
+      10000
+    );
+
+  </script>
+
+</body>
+</html>
