@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#050505">
+
   <title>Holy Youth Movement</title>
 
   <style>
@@ -49,19 +50,26 @@
       font: inherit;
     }
 
-    /* HEADER */
+    /* =========================
+       HEADER
+    ========================= */
 
     .site-header {
       position: sticky;
       top: 0;
       z-index: 100;
+
       height: 74px;
+
       display: flex;
       align-items: center;
       justify-content: space-between;
+
       padding: 0 22px;
+
       background: rgba(5,5,5,.94);
       backdrop-filter: blur(10px);
+
       border-bottom: 1px solid rgba(255,255,255,.08);
     }
 
@@ -72,10 +80,13 @@
     .menu-button {
       width: 42px;
       height: 42px;
+
       border: 0;
       background: transparent;
+
       display: grid;
       place-items: center;
+
       cursor: pointer;
     }
 
@@ -83,9 +94,12 @@
     .menu-button::before,
     .menu-button::after {
       content: "";
+
       display: block;
+
       width: 28px;
       height: 2px;
+
       background: white;
     }
 
@@ -93,17 +107,24 @@
       margin: 6px 0;
     }
 
-    /* NAV */
+    /* =========================
+       NAV
+    ========================= */
 
     .nav-panel {
       position: fixed;
       z-index: 90;
+
       top: 74px;
       left: 0;
       right: 0;
+
       padding: 30px 24px 38px;
+
       background: #090909;
+
       border-bottom: 1px solid var(--line);
+
       transform: translateY(-130%);
       transition: transform .35s ease;
     }
@@ -114,37 +135,51 @@
 
     .nav-panel a {
       display: block;
+
       padding: 13px 0;
+
       font-size: 1.35rem;
       font-weight: 700;
+
       text-transform: uppercase;
+
       border-bottom: 1px solid rgba(255,255,255,.12);
     }
 
-    /* HERO */
+    /* =========================
+       HERO
+    ========================= */
 
     .hero {
       position: relative;
+
       min-height: calc(100svh - 74px);
+
       display: flex;
       align-items: flex-end;
+
       overflow: hidden;
+
       background: #111;
     }
 
     .hero-image {
       position: absolute;
       inset: 0;
+
       width: 100%;
       height: 100%;
+
       object-fit: cover;
       object-position: center;
     }
 
     .hero::after {
       content: "";
+
       position: absolute;
       inset: 0;
+
       background:
         linear-gradient(
           to top,
@@ -157,7 +192,9 @@
     .hero-content {
       position: relative;
       z-index: 2;
+
       width: 100%;
+
       padding: 38px 22px 42px;
     }
 
@@ -168,11 +205,15 @@
 
     .hero-kicker {
       font-size: .8rem;
+
       letter-spacing: .2em;
+
       text-transform: uppercase;
     }
 
-    /* GENERAL */
+    /* =========================
+       GENERAL
+    ========================= */
 
     section {
       scroll-margin-top: 74px;
@@ -184,9 +225,13 @@
 
     .section-title {
       margin-bottom: 32px;
+
       font-size: clamp(2.8rem, 12vw, 6rem);
+
       line-height: .88;
+
       letter-spacing: -.055em;
+
       text-transform: lowercase;
     }
 
@@ -194,61 +239,89 @@
       color: var(--pink);
     }
 
-    /* QUOTE */
+    /* =========================
+       QUOTE
+    ========================= */
 
     .quote-section {
       min-height: 70svh;
+
       display: grid;
       place-items: center;
+
       padding: 90px 24px;
+
       background: var(--white);
       color: #050505;
+
       text-align: center;
     }
 
     blockquote {
       max-width: 950px;
+
       font-size: clamp(2rem, 7vw, 4.6rem);
+
       line-height: 1.02;
+
       font-weight: 800;
+
       letter-spacing: -.045em;
     }
 
     blockquote footer {
       margin-top: 28px;
+
       font-size: .9rem;
       font-weight: 700;
+
       letter-spacing: .14em;
+
       text-transform: uppercase;
     }
 
-    /* BAND IMAGE */
+    /* =========================
+       BAND IMAGE
+    ========================= */
 
     .band-shot {
       min-height: 75svh;
+
       background-image:
-        linear-gradient(rgba(0,0,0,.08), rgba(0,0,0,.08)),
+        linear-gradient(
+          rgba(0,0,0,.08),
+          rgba(0,0,0,.08)
+        ),
         url("https://holyyouthmovement.co.uk/assets/images/hym-new-press-shot-.jpg");
+
       background-size: cover;
       background-position: center;
     }
 
-    /* LIVE */
+    /* =========================
+       LIVE
+    ========================= */
 
     .events {
       position: relative;
+
       overflow: hidden;
+
       background: #050505;
       color: #ffffff;
     }
 
     .events::before {
       content: "";
+
       position: absolute;
+
       width: 420px;
       height: 420px;
+
       right: -250px;
       top: -200px;
+
       border: 1px solid rgba(255,41,236,.25);
       border-radius: 50%;
     }
@@ -256,16 +329,22 @@
     .events-inner {
       position: relative;
       z-index: 2;
+
       max-width: 1100px;
+
       margin: 0 auto;
     }
 
     .events-eyebrow {
       margin-bottom: 14px;
+
       color: var(--pink);
+
       font-size: .76rem;
       font-weight: 800;
+
       letter-spacing: .2em;
+
       text-transform: uppercase;
     }
 
@@ -275,42 +354,30 @@
 
     .events-copy {
       max-width: 560px;
+
       color: #b8b8b8;
+
       font-size: 1rem;
       line-height: 1.6;
     }
 
     .bit-widget-shell {
       margin-top: 42px;
+
       padding-top: 28px;
+
       border-top: 1px solid #333;
     }
 
     .bit-widget-initializer {
       display: block;
+
       width: 100%;
+
       min-height: 80px;
     }
 
-    /*
-      This text will be moved by JavaScript
-      so it sits immediately ABOVE the
-      Bandsintown logo.
-    */
-
-    .events-credit {
-      margin: 0 0 14px;
-      text-align: center;
-      color: #888;
-      font-size: .68rem;
-      font-weight: 700;
-      letter-spacing: .14em;
-      text-transform: uppercase;
-    }
-
-    /*
-      Keep Play My City hidden.
-    */
+    /* Keep Play My City hidden */
 
     .bit-play-my-city-wrapper,
     .bit-play-my-city,
@@ -319,16 +386,83 @@
       display: none !important;
     }
 
-    /* MERCH */
+    /*
+       OUR OWN STABLE BANDSINTOWN CREDIT
+
+       The script copies the official
+       Bandsintown logo into this block.
+    */
+
+    .bandsintown-credit {
+      display: none;
+
+      margin-top: 34px;
+
+      padding-top: 30px;
+      padding-bottom: 18px;
+
+      text-align: center;
+
+      border-top: 1px solid #333;
+    }
+
+    .bandsintown-credit.ready {
+      display: block;
+    }
+
+    .bandsintown-credit-label {
+      margin-bottom: 16px;
+
+      color: #888;
+
+      font-size: .68rem;
+      font-weight: 700;
+
+      letter-spacing: .14em;
+
+      text-transform: uppercase;
+    }
+
+    .bandsintown-credit-logo {
+      display: flex;
+
+      align-items: center;
+      justify-content: center;
+
+      width: 100%;
+    }
+
+    .bandsintown-credit-logo > * {
+      max-width: 230px;
+    }
+
+    .bandsintown-credit-logo img {
+      width: auto !important;
+      max-width: 230px !important;
+      height: auto !important;
+      margin: 0 auto;
+    }
+
+    .bandsintown-credit-logo svg {
+      max-width: 230px;
+      height: auto;
+    }
+
+    /* =========================
+       MERCH
+    ========================= */
 
     .merch {
       padding: 0;
+
       display: grid;
+
       background: #090909;
     }
 
     .merch-image {
       min-height: 75svh;
+
       background:
         url("https://holyyouthmovement.co.uk/assets/images/bca96f15-21ef-4f97-a44c-125286d1ba9a.jpg")
         center / cover no-repeat;
@@ -340,26 +474,38 @@
 
     .merch-copy h2 {
       font-size: clamp(3rem, 14vw, 7rem);
+
       line-height: .85;
+
       letter-spacing: -.06em;
+
       text-transform: lowercase;
     }
 
     .merch-copy p {
       margin-top: 20px;
+
       max-width: 460px;
+
       color: var(--soft);
     }
 
     .outline-button {
       display: inline-flex;
+
       margin-top: 34px;
+
       padding: 14px 18px;
+
       border: 2px solid currentColor;
+
       font-size: .8rem;
       font-weight: 800;
+
       letter-spacing: .1em;
+
       text-transform: uppercase;
+
       transition: .2s;
     }
 
@@ -370,10 +516,13 @@
     .outline-button:hover {
       background: var(--pink);
       border-color: var(--pink);
+
       color: #050505;
     }
 
-    /* LISTEN */
+    /* =========================
+       LISTEN
+    ========================= */
 
     .listen {
       background: #111;
@@ -381,98 +530,140 @@
 
     .spotify-wrap {
       max-width: 900px;
+
       margin: auto;
     }
 
     .spotify-wrap iframe {
       width: 100%;
+
       min-height: 500px;
+
       border: 0;
       border-radius: 12px;
     }
 
-    /* CONTACT */
+    /* =========================
+       CONTACT
+    ========================= */
 
     .contact {
       background: var(--white);
+
       color: #050505;
     }
 
     .contact-grid {
       display: grid;
+
       gap: 44px;
+
       max-width: 1100px;
+
       margin: auto;
     }
 
     .contact-copy h2 {
       font-size: clamp(3rem, 13vw, 7rem);
+
       line-height: .86;
+
       letter-spacing: -.06em;
+
       text-transform: lowercase;
     }
 
     .contact-copy p {
       margin-top: 24px;
+
       max-width: 450px;
     }
 
     form {
       display: grid;
+
       gap: 20px;
     }
 
     label {
       display: grid;
+
       gap: 8px;
+
       font-size: .75rem;
       font-weight: 800;
+
       letter-spacing: .1em;
+
       text-transform: uppercase;
     }
 
     input,
     textarea {
       width: 100%;
+
       padding: 14px 0;
+
       border: 0;
       border-bottom: 2px solid #111;
+
       border-radius: 0;
+
       background: transparent;
+
       color: #050505;
+
       outline: none;
     }
 
     textarea {
       min-height: 130px;
+
       resize: vertical;
     }
 
     .send-button {
       justify-self: start;
+
       border: 2px solid #050505;
+
       background: #050505;
+
       color: white;
+
       padding: 14px 24px;
+
       text-transform: uppercase;
+
       letter-spacing: .1em;
+
       font-weight: 800;
+
       cursor: pointer;
     }
 
-    /* FOOTER */
+    /* =========================
+       FOOTER
+    ========================= */
 
     .site-footer {
       padding: 34px 22px;
+
       display: flex;
       flex-direction: column;
+
       gap: 8px;
+
       color: #999;
+
       font-size: .78rem;
+
       border-top: 1px solid #222;
     }
 
-    /* DESKTOP */
+    /* =========================
+       DESKTOP
+    ========================= */
 
     @media (min-width: 800px) {
 
@@ -494,6 +685,7 @@
 
       .merch {
         grid-template-columns: 1.1fr .9fr;
+
         min-height: 90svh;
       }
 
@@ -505,17 +697,21 @@
         display: flex;
         flex-direction: column;
         justify-content: center;
+
         padding: 70px;
       }
 
       .contact-grid {
         grid-template-columns: .9fr 1.1fr;
+
         align-items: start;
       }
 
       .site-footer {
         flex-direction: row;
+
         justify-content: space-between;
+
         padding: 34px 48px;
       }
     }
@@ -524,34 +720,71 @@
 
 <body>
 
+  <!-- =========================
+       HEADER
+  ========================= -->
+
   <header class="site-header">
 
-    <a href="index.html" aria-label="Holy Youth Movement entrance page">
+    <a
+      href="index.html"
+      aria-label="Holy Youth Movement entrance page"
+    >
+
       <img
         class="nav-logo"
         src="https://holyyouthmovement.co.uk/assets/images/hymlogo.png"
         alt="Holy Youth Movement"
       >
+
     </a>
 
-    <button class="menu-button" id="menuButton" aria-label="Open menu">
+
+    <button
+      class="menu-button"
+      id="menuButton"
+      aria-label="Open menu"
+    >
       <span></span>
     </button>
 
   </header>
 
 
-  <nav class="nav-panel" id="navPanel">
-    <a href="#events">Live</a>
-    <a href="#merch">Merch</a>
-    <a href="#listen">Listen</a>
-    <a href="#contact">Contact</a>
+  <!-- =========================
+       NAV
+  ========================= -->
+
+  <nav
+    class="nav-panel"
+    id="navPanel"
+  >
+
+    <a href="#events">
+      Live
+    </a>
+
+    <a href="#merch">
+      Merch
+    </a>
+
+    <a href="#listen">
+      Listen
+    </a>
+
+    <a href="#contact">
+      Contact
+    </a>
+
   </nav>
 
 
   <main id="top">
 
-    <!-- HERO -->
+
+    <!-- =========================
+         HERO
+    ========================= -->
 
     <section class="hero">
 
@@ -560,6 +793,7 @@
         src="https://holyyouthmovement.co.uk/assets/images/hym-new-press-shot-.jpg"
         alt="Holy Youth Movement band"
       >
+
 
       <div class="hero-content">
 
@@ -578,33 +812,45 @@
     </section>
 
 
-    <!-- QUOTE -->
+    <!-- =========================
+         QUOTE
+    ========================= -->
 
     <section class="quote-section">
 
       <blockquote>
+
         “From the ashes rise Holy Youth Movement and they’re more ambitious,
         anthemic and electrifying than ever.”
 
         <footer>
           — GigSlutz.co.uk
         </footer>
+
       </blockquote>
 
     </section>
 
 
-    <!-- BAND IMAGE -->
+    <!-- =========================
+         BAND IMAGE
+    ========================= -->
 
     <section
       class="band-shot"
-      aria-label="Holy Youth Movement band photograph">
+      aria-label="Holy Youth Movement band photograph"
+    >
     </section>
 
 
-    <!-- LIVE -->
+    <!-- =========================
+         LIVE
+    ========================= -->
 
-    <section class="section events" id="events">
+    <section
+      class="section events"
+      id="events"
+    >
 
       <div class="events-inner">
 
@@ -612,9 +858,11 @@
           Holy Youth Movement
         </div>
 
+
         <h2 class="section-title">
           live<span>.</span>
         </h2>
+
 
         <p class="events-copy">
           Upcoming Holy Youth Movement shows, tour dates and ticket links.
@@ -625,35 +873,47 @@
 
           <script
             charset="utf-8"
-            src="https://widgetv3.bandsintown.com/main.min.js">
-          </script>
+            src="https://widgetv3.bandsintown.com/main.min.js"
+          ></script>
+
 
           <a
             class="bit-widget-initializer"
 
             data-artist-name="id_15542629"
+
             data-app-id="3c9d183150cd2ab67c8e3459c2243e53"
 
             data-text-color="#ffffff"
+
             data-link-color="#ff29ec"
+
             data-link-text-color="#050505"
 
             data-background-color="#050505"
+
             data-popup-background-color="#050505"
+
             data-separator-color="#333333"
 
             data-font="Arial"
+
             data-widget-width="100%"
 
             data-display-logo="true"
+
             data-display-track-button="false"
+
             data-display-play-my-city="false"
 
             data-display-local-dates="false"
+
             data-display-past-dates="false"
 
             data-display-start-time="false"
+
             data-display-lineup="false"
+
             data-display-details="false"
 
             data-language="en"
@@ -663,14 +923,27 @@
 
 
         <!--
-          JavaScript moves this above
-          the Bandsintown logo.
+          OUR OWN STABLE CREDIT.
+          JavaScript copies the official
+          Bandsintown logo into this block.
         -->
 
         <div
-          class="events-credit"
-          id="eventsCredit">
-          Live dates powered by
+          class="bandsintown-credit"
+          id="bandsintownCredit"
+        >
+
+          <div class="bandsintown-credit-label">
+            Live dates powered by
+          </div>
+
+
+          <div
+            class="bandsintown-credit-logo"
+            id="bandsintownCreditLogo"
+          >
+          </div>
+
         </div>
 
       </div>
@@ -678,28 +951,40 @@
     </section>
 
 
-    <!-- MERCH -->
+    <!-- =========================
+         MERCH
+    ========================= -->
 
-    <section class="merch" id="merch">
+    <section
+      class="merch"
+      id="merch"
+    >
 
-      <div class="merch-image"></div>
+      <div class="merch-image">
+      </div>
+
 
       <div class="merch-copy">
 
         <h2>
           buy<br>
-          <span class="pink">merch</span>
+          <span class="pink">
+            merch
+          </span>
         </h2>
+
 
         <p>
           Official Holy Youth Movement merchandise.
         </p>
 
+
         <a
           class="outline-button"
           href="https://holy-youth-movement.sumupstore.com/"
           target="_blank"
-          rel="noopener">
+          rel="noopener"
+        >
           Buy now
         </a>
 
@@ -708,9 +993,14 @@
     </section>
 
 
-    <!-- LISTEN -->
+    <!-- =========================
+         LISTEN
+    ========================= -->
 
-    <section class="section listen" id="listen">
+    <section
+      class="section listen"
+      id="listen"
+    >
 
       <div class="spotify-wrap">
 
@@ -718,11 +1008,13 @@
           listen<span class="pink">.</span>
         </h2>
 
+
         <iframe
           src="https://open.spotify.com/embed/artist/4psk2TMuqKYFzMVMS7KCXd?utm_source=generator"
           loading="lazy"
           allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-          title="Holy Youth Movement on Spotify">
+          title="Holy Youth Movement on Spotify"
+        >
         </iframe>
 
       </div>
@@ -730,11 +1022,17 @@
     </section>
 
 
-    <!-- CONTACT -->
+    <!-- =========================
+         CONTACT
+    ========================= -->
 
-    <section class="section contact" id="contact">
+    <section
+      class="section contact"
+      id="contact"
+    >
 
       <div class="contact-grid">
+
 
         <div class="contact-copy">
 
@@ -742,6 +1040,7 @@
             contact &<br>
             bookings
           </h2>
+
 
           <p>
             For bookings, press and general enquiries,
@@ -753,26 +1052,49 @@
 
         <form onsubmit="return false;">
 
+
           <label>
+
             Name
-            <input type="text" name="name">
+
+            <input
+              type="text"
+              name="name"
+            >
+
           </label>
 
+
           <label>
+
             Email Address
-            <input type="email" name="email">
+
+            <input
+              type="email"
+              name="email"
+            >
+
           </label>
 
+
           <label>
+
             Message
-            <textarea name="message"></textarea>
+
+            <textarea
+              name="message"
+            ></textarea>
+
           </label>
+
 
           <button
             class="send-button"
-            type="button">
+            type="button"
+          >
             Send message
           </button>
+
 
         </form>
 
@@ -782,6 +1104,10 @@
 
   </main>
 
+
+  <!-- =========================
+       FOOTER
+  ========================= -->
 
   <footer class="site-footer">
 
@@ -798,7 +1124,9 @@
 
   <script>
 
-    /* MENU */
+    /* =========================
+       MENU
+    ========================= */
 
     const menuButton =
       document.getElementById("menuButton");
@@ -806,31 +1134,38 @@
     const navPanel =
       document.getElementById("navPanel");
 
-    menuButton.addEventListener("click", () => {
-      navPanel.classList.toggle("open");
-    });
+
+    menuButton.addEventListener(
+      "click",
+      () => {
+
+        navPanel.classList.toggle("open");
+
+      }
+    );
+
 
     document
       .querySelectorAll(".nav-panel a")
       .forEach(link => {
 
-        link.addEventListener("click", () => {
-          navPanel.classList.remove("open");
-        });
+        link.addEventListener(
+          "click",
+          () => {
+
+            navPanel.classList.remove("open");
+
+          }
+        );
 
       });
 
 
-    /*
-      CLEAN UP BANDSINTOWN
-    */
+    /* =========================
+       BANDSINTOWN CLEANUP
+    ========================= */
 
-    function tidyBandsintown() {
-
-      /*
-        1. Remove Play My City if
-        Bandsintown renders it anyway.
-      */
+    function removePlayMyCity() {
 
       const unwanted =
         document.querySelectorAll(
@@ -840,133 +1175,69 @@
           '[class*="playMyCity"]'
         );
 
+
       unwanted.forEach(element => {
+
         element.style.display = "none";
+
       });
 
 
       document
-        .querySelectorAll(".bit-widget-shell div, .bit-widget-shell p, .bit-widget-shell span")
+        .querySelectorAll(
+          ".bit-widget-shell div, " +
+          ".bit-widget-shell p, " +
+          ".bit-widget-shell span"
+        )
         .forEach(element => {
 
           const text =
-            element.textContent
+            (element.textContent || "")
               .trim()
               .toLowerCase();
+
 
           if (
             text === "want a show near you?" ||
             text === "play my city"
           ) {
 
-            const parent =
+            const wrapper =
               element.closest("div");
 
-            if (parent) {
-              parent.style.display = "none";
+
+            if (wrapper) {
+
+              wrapper.style.display = "none";
+
             }
 
           }
 
         });
 
-
-      /*
-        2. Find the Bandsintown logo and
-        move LIVE DATES POWERED BY
-        directly above it.
-      */
-
-      const credit =
-        document.getElementById("eventsCredit");
-
-      const widget =
-        document.querySelector(".bit-widget-shell");
-
-      if (!credit || !widget) {
-        return;
-      }
-
-
-      const possibleLogoElements =
-        widget.querySelectorAll(
-          'img, svg, a, div'
-        );
-
-
-      for (const element of possibleLogoElements) {
-
-        const alt =
-          (element.getAttribute("alt") || "")
-            .toLowerCase();
-
-        const aria =
-          (element.getAttribute("aria-label") || "")
-            .toLowerCase();
-
-        const href =
-          (element.getAttribute("href") || "")
-            .toLowerCase();
-
-        const text =
-          (element.textContent || "")
-            .trim()
-            .toLowerCase();
-
-
-        const looksLikeBandsintown =
-          alt.includes("bandsintown") ||
-          aria.includes("bandsintown") ||
-          href.includes("bandsintown") ||
-          text === "bandsintown";
-
-
-        if (looksLikeBandsintown) {
-
-          let logoContainer = element;
-
-          /*
-            If we found the image/SVG/text inside
-            a wrapper, use its parent so the credit
-            sits above the complete logo.
-          */
-
-          if (
-            element.parentElement &&
-            element.parentElement !== widget
-          ) {
-            logoContainer = element.parentElement;
-          }
-
-
-          logoContainer.parentNode.insertBefore(
-            credit,
-            logoContainer
-          );
-
-          credit.style.marginTop = "34px";
-          credit.style.marginBottom = "12px";
-
-          break;
-        }
-
-      }
-
     }
 
 
     /*
-      Bandsintown builds the widget after
-      our page has loaded, so check it a
-      few times while it appears.
+       Find the official Bandsintown logo
+       inside the generated widget.
+
+       COPY it into our own footer.
+
+       Then hide the original.
+
+       We never move our footer INTO the
+       widget, so Bandsintown cannot delete it.
     */
 
-    setTimeout(tidyBandsintown, 500);
-    setTimeout(tidyBandsintown, 1000);
-    setTimeout(tidyBandsintown, 2000);
-    setTimeout(tidyBandsintown, 4000);
+    function buildBandsintownCredit() {
 
-  </script>
+      const widget =
+        document.querySelector(
+          ".bit-widget-shell"
+        );
 
-</body>
-</html>
+
+      const credit =
+   
