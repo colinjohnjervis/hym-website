@@ -3,35 +3,24 @@
 ========================= */
 
 const widget =
-  document.getElementById(
-    "bandsintownWidget"
-  );
+  document.getElementById("bandsintownWidget");
 
 const credit =
-  document.getElementById(
-    "bandsintownCredit"
-  );
+  document.getElementById("bandsintownCredit");
 
 const logoCopy =
-  document.getElementById(
-    "bandsintownLogoCopy"
-  );
+  document.getElementById("bandsintownLogoCopy");
 
 
 /* =========================
-   REMOVE UNWANTED CONTENT
+   REMOVE PLAY MY CITY
 ========================= */
 
-function removeUnwantedBandsintownContent() {
+function removePlayMyCity() {
 
   if (!widget) {
     return;
   }
-
-
-  /*
-    Hide Play My City elements
-  */
 
   widget
     .querySelectorAll(
@@ -50,126 +39,156 @@ function removeUnwantedBandsintownContent() {
 
     });
 
+}
+
+
+/* =========================
+   REMOVE FOLLOW / UPDATES BLOCK
+========================= */
+
+function removeFollowBlock() {
+
+  if (!widget) {
+    return;
+  }
+
+
+  const elements =
+    Array.from(
+      widget.querySelectorAll(
+        "div, p, span, a, button"
+      )
+    );
+
 
   /*
-    Hide unwanted text-based sections:
-
-    - Want a show near you?
-    - Play My City
-    - Get updates on new shows...
-    - Follow Holy Youth Movement
+    Find the text:
+    "Get updates on new shows, new music, and more"
   */
 
-  widget
-    .querySelectorAll(
-      "div, p, span, a, button"
-    )
-    .forEach(element => {
+  const updatesText =
+    elements.find(element => {
 
       const text =
-        (
-          element.textContent ||
-          ""
-        )
+        (element.textContent || "")
           .trim()
           .replace(/\s+/g, " ")
           .toLowerCase();
 
-
-      const isPlayMyCity =
-        text ===
-          "want a show near you?" ||
-
-        text ===
-          "play my city";
-
-
-      const isUpdatesText =
-        text.includes(
-          "get updates on new shows"
-        );
-
-
-      const isFollowButton =
-        text.includes(
-          "follow holy youth movement"
-        );
-
-
-      if (
-        !isPlayMyCity &&
-        !isUpdatesText &&
-        !isFollowButton
-      ) {
-        return;
-      }
-
-
-      let wrapper =
-        element;
-
-
-      /*
-        Move upwards through compact
-        containers only.
-
-        This removes the whole unwanted
-        block without hiding the event list.
-      */
-
-      for (
-        let i = 0;
-        i < 4;
-        i++
-      ) {
-
-        const parent =
-          wrapper.parentElement;
-
-
-        if (
-          !parent ||
-          parent === widget
-        ) {
-          break;
-        }
-
-
-        const rect =
-          parent.getBoundingClientRect();
-
-
-        if (
-          rect.height > 0 &&
-          rect.height < 320
-        ) {
-
-          wrapper =
-            parent;
-
-        }
-        else {
-
-          break;
-
-        }
-
-      }
-
-
-      wrapper.style.setProperty(
-        "display",
-        "none",
-        "important"
+      return text.includes(
+        "get updates on new shows"
       );
 
     });
+
+
+  /*
+    Find the follow button separately
+  */
+
+  const followButton =
+    elements.find(element => {
+
+      const text =
+        (element.textContent || "")
+          .trim()
+          .replace(/\s+/g, " ")
+          .toLowerCase();
+
+      return text.includes(
+        "follow holy youth movement"
+      );
+
+    });
+
+
+  /*
+    Hide only the immediate compact
+    container around the updates text.
+  */
+
+  if (updatesText) {
+
+    const parent =
+      updatesText.parentElement;
+
+    if (parent) {
+
+      const rect =
+        parent.getBoundingClientRect();
+
+      if (
+        rect.height > 0 &&
+        rect.height < 220
+      ) {
+
+        parent.style.setProperty(
+          "display",
+          "none",
+          "important"
+        );
+
+      }
+      else {
+
+        updatesText.style.setProperty(
+          "display",
+          "none",
+          "important"
+        );
+
+      }
+
+    }
+
+  }
+
+
+  /*
+    Hide follow button / its direct wrapper.
+  */
+
+  if (followButton) {
+
+    const parent =
+      followButton.parentElement;
+
+    if (parent) {
+
+      const rect =
+        parent.getBoundingClientRect();
+
+      if (
+        rect.height > 0 &&
+        rect.height < 160
+      ) {
+
+        parent.style.setProperty(
+          "display",
+          "none",
+          "important"
+        );
+
+      }
+      else {
+
+        followButton.style.setProperty(
+          "display",
+          "none",
+          "important"
+        );
+
+      }
+
+    }
+
+  }
 
 }
 
 
 /* =========================
-   FIND REAL LOGO
+   FIND GENUINE BANDSINTOWN LOGO
 ========================= */
 
 function findBandsintownLogo() {
@@ -188,193 +207,108 @@ function findBandsintownLogo() {
 
 
   const candidates =
-    [];
+    links
+      .map(link => {
+
+        const href =
+          (
+            link.getAttribute("href") ||
+            ""
+          )
+            .toLowerCase();
 
 
-  links.forEach(link => {
-
-    const href =
-      (
-        link.getAttribute("href") ||
-        ""
-      )
-        .toLowerCase();
+        if (
+          !href.includes("bandsintown")
+        ) {
+          return null;
+        }
 
 
-    if (
-      !href.includes("bandsintown")
-    ) {
-      return;
-    }
+        const text =
+          (
+            link.textContent ||
+            ""
+          )
+            .trim()
+            .replace(/\s+/g, " ")
+            .toLowerCase();
 
 
-    const text =
-      (
-        link.textContent ||
-        ""
-      )
-        .trim()
-        .replace(/\s+/g, " ")
-        .toLowerCase();
+        /*
+          Reject action links.
+        */
+
+        if (
+          text.includes("ticket") ||
+          text.includes("rsvp") ||
+          text.includes("follow") ||
+          text.includes("track") ||
+          text.includes("play my city")
+        ) {
+          return null;
+        }
 
 
-    /*
-      Ignore tickets, RSVP,
-      follow and tracking links.
-    */
-
-    if (
-      text.includes("tickets") ||
-      text.includes("ticket") ||
-      text.includes("rsvp") ||
-      text.includes("follow") ||
-      text.includes("track") ||
-      text.includes("play my city")
-    ) {
-      return;
-    }
+        const hasArtwork =
+          !!link.querySelector(
+            "svg, img"
+          );
 
 
-    const rect =
-      link.getBoundingClientRect();
+        const rect =
+          link.getBoundingClientRect();
 
 
-    if (
-      rect.width <= 0 ||
-      rect.height <= 0
-    ) {
-      return;
-    }
+        if (
+          rect.width <= 0 ||
+          rect.height <= 0
+        ) {
+          return null;
+        }
 
 
-    const hasArtwork =
-      !!link.querySelector(
-        "svg, img"
-      );
+        return {
+          link,
+          top: rect.top,
+          hasArtwork
+        };
 
-
-    candidates.push({
-      element: link,
-      top: rect.top,
-      hasArtwork: hasArtwork
-    });
-
-  });
+      })
+      .filter(Boolean);
 
 
   /*
-    Prefer a candidate containing
-    SVG/image artwork.
+    Prefer links containing actual logo artwork.
   */
 
   const artworkCandidates =
     candidates.filter(
-      candidate =>
-        candidate.hasArtwork
+      item =>
+        item.hasArtwork
     );
 
 
-  const usableCandidates =
+  const usable =
     artworkCandidates.length
       ? artworkCandidates
       : candidates;
 
 
-  usableCandidates.sort(
-    (a, b) =>
-      b.top - a.top
-  );
-
-
-  if (
-    usableCandidates.length
-  ) {
-
-    return (
-      usableCandidates[0]
-        .element
-    );
-
-  }
-
-
   /*
-    Backup search:
-    look for artwork inside
-    Bandsintown links.
+    Bandsintown logo should be the
+    lowest suitable Bandsintown link.
   */
 
-  const artwork =
-    Array.from(
-      widget.querySelectorAll(
-        "svg, img"
-      )
-    );
-
-
-  const artworkMatches =
-    [];
-
-
-  artwork.forEach(element => {
-
-    const link =
-      element.closest(
-        "a[href]"
-      );
-
-
-    if (!link) {
-      return;
-    }
-
-
-    const href =
-      (
-        link.getAttribute("href") ||
-        ""
-      )
-        .toLowerCase();
-
-
-    if (
-      !href.includes("bandsintown")
-    ) {
-      return;
-    }
-
-
-    const rect =
-      link.getBoundingClientRect();
-
-
-    artworkMatches.push({
-      element: link,
-      top: rect.top
-    });
-
-  });
-
-
-  artworkMatches.sort(
+  usable.sort(
     (a, b) =>
       b.top - a.top
   );
 
 
-  if (
-    artworkMatches.length
-  ) {
-
-    return (
-      artworkMatches[0]
-        .element
-    );
-
-  }
-
-
-  return null;
+  return usable.length
+    ? usable[0].link
+    : null;
 
 }
 
@@ -403,10 +337,7 @@ function copyComputedStyles(
 
 
   originals.forEach(
-    (
-      originalElement,
-      index
-    ) => {
+    (originalElement, index) => {
 
       const cloneElement =
         clones[index];
@@ -434,93 +365,19 @@ function copyComputedStyles(
 
 
         cloneElement.style.setProperty(
-
           property,
-
           styles.getPropertyValue(
             property
           ),
-
           styles.getPropertyPriority(
             property
           )
-
         );
 
       }
 
     }
   );
-
-}
-
-
-/* =========================
-   FIND LOGO WRAPPER
-========================= */
-
-function findLogoWrapper(
-  logo
-) {
-
-  if (!logo) {
-    return null;
-  }
-
-
-  let wrapper =
-    logo;
-
-
-  for (
-    let i = 0;
-    i < 3;
-    i++
-  ) {
-
-    const parent =
-      wrapper.parentElement;
-
-
-    if (
-      !parent ||
-      parent === widget ||
-      !widget.contains(parent)
-    ) {
-      break;
-    }
-
-
-    const rect =
-      parent.getBoundingClientRect();
-
-
-    const interactiveElements =
-      parent.querySelectorAll(
-        "a, button"
-      ).length;
-
-
-    if (
-      rect.height > 0 &&
-      rect.height < 150 &&
-      interactiveElements <= 1
-    ) {
-
-      wrapper =
-        parent;
-
-    }
-    else {
-
-      break;
-
-    }
-
-  }
-
-
-  return wrapper;
 
 }
 
@@ -539,11 +396,6 @@ function buildExternalCredit() {
     return;
   }
 
-
-  /*
-    If already built successfully,
-    leave it alone.
-  */
 
   if (
     credit.classList.contains(
@@ -564,19 +416,12 @@ function buildExternalCredit() {
 
 
   /*
-    Clone the ACTUAL logo
-    rendered by Bandsintown.
+    Clone the genuine logo.
   */
 
   const clonedLogo =
-    realLogo.cloneNode(
-      true
-    );
+    realLogo.cloneNode(true);
 
-
-  /*
-    Preserve its actual appearance.
-  */
 
   copyComputedStyles(
     realLogo,
@@ -588,25 +433,20 @@ function buildExternalCredit() {
     Remove duplicate IDs.
   */
 
-  clonedLogo.removeAttribute(
-    "id"
-  );
+  clonedLogo.removeAttribute("id");
 
 
   clonedLogo
     .querySelectorAll("[id]")
     .forEach(element => {
 
-      element.removeAttribute(
-        "id"
-      );
+      element.removeAttribute("id");
 
     });
 
 
   /*
-    Reset only positioning
-    on the outer clone.
+    Reset only outer positioning.
   */
 
   clonedLogo.style.setProperty(
@@ -658,12 +498,6 @@ function buildExternalCredit() {
   );
 
   clonedLogo.style.setProperty(
-    "display",
-    "inline-flex",
-    "important"
-  );
-
-  clonedLogo.style.setProperty(
     "margin-left",
     "auto",
     "important"
@@ -677,22 +511,15 @@ function buildExternalCredit() {
 
 
   /*
-    Put cloned real logo
-    OUTSIDE the widget.
+    Put clone outside widget.
   */
 
-  logoCopy.innerHTML =
-    "";
-
+  logoCopy.innerHTML = "";
 
   logoCopy.appendChild(
     clonedLogo
   );
 
-
-  /*
-    Safety check.
-  */
 
   if (
     !logoCopy.firstElementChild
@@ -702,39 +529,20 @@ function buildExternalCredit() {
 
 
   /*
-    Hide original logo
-    inside the widget.
+    IMPORTANT:
+    Hide only the original logo link.
+    Do NOT hide any parent wrapper.
   */
 
-  const originalWrapper =
-    findLogoWrapper(
-      realLogo
-    );
-
-
-  if (originalWrapper) {
-
-    originalWrapper.style.setProperty(
-      "display",
-      "none",
-      "important"
-    );
-
-  }
-  else {
-
-    realLogo.style.setProperty(
-      "display",
-      "none",
-      "important"
-    );
-
-  }
+  realLogo.style.setProperty(
+    "display",
+    "none",
+    "important"
+  );
 
 
   /*
-    Reveal external wording
-    and cloned real logo.
+    Reveal external text + clone.
   */
 
   credit.classList.add(
@@ -745,12 +553,14 @@ function buildExternalCredit() {
 
 
 /* =========================
-   RUN BANDSINTOWN CLEANUP
+   RUN CLEANUP
 ========================= */
 
 function tidyBandsintown() {
 
-  removeUnwantedBandsintownContent();
+  removePlayMyCity();
+
+  removeFollowBlock();
 
   buildExternalCredit();
 
@@ -763,26 +573,22 @@ function tidyBandsintown() {
 
 if (widget) {
 
-  let tidyTimer;
+  let timer;
 
 
   const observer =
-    new MutationObserver(
-      () => {
+    new MutationObserver(() => {
 
-        clearTimeout(
-          tidyTimer
+      clearTimeout(timer);
+
+
+      timer =
+        setTimeout(
+          tidyBandsintown,
+          100
         );
 
-
-        tidyTimer =
-          setTimeout(
-            tidyBandsintown,
-            100
-          );
-
-      }
-    );
+    });
 
 
   observer.observe(
@@ -796,47 +602,16 @@ if (widget) {
 }
 
 
-/*
-  Backup checks while
-  Bandsintown is loading.
-*/
+/* Backup checks */
 
-setTimeout(
-  tidyBandsintown,
-  300
-);
+setTimeout(tidyBandsintown, 300);
 
-setTimeout(
-  tidyBandsintown,
-  700
-);
+setTimeout(tidyBandsintown, 700);
 
-setTimeout(
-  tidyBandsintown,
-  1200
-);
+setTimeout(tidyBandsintown, 1200);
 
-setTimeout(
-  tidyBandsintown,
-  2000
-);
+setTimeout(tidyBandsintown, 2000);
 
-setTimeout(
-  tidyBandsintown,
-  3500
-);
+setTimeout(tidyBandsintown, 3500);
 
-setTimeout(
-  tidyBandsintown,
-  5000
-);
-
-setTimeout(
-  tidyBandsintown,
-  7500
-);
-
-setTimeout(
-  tidyBandsintown,
-  10000
-);
+setTimeout(tidyBandsintown, 5000);
