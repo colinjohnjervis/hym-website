@@ -4,7 +4,6 @@
   --charcoal-dark: #17191b;
   --white: #ffffff;
   --pink: #ff29ec;
-  --purple: #8f45ff;
   --soft: #b8b8b8;
   --soft-light: #d5d5d5;
   --line: rgba(255, 255, 255, .16);
@@ -66,9 +65,7 @@ section {
 
 .site-header {
   position: sticky;
-
   top: 0;
-
   z-index: 100;
 
   height: 110px;
@@ -77,18 +74,14 @@ section {
   align-items: center;
   justify-content: space-between;
 
-  padding:
-    0
-    34px;
+  padding: 0 34px;
 
-  background:
-    #050505;
+  background: #050505;
 
   border-bottom:
     1px solid
     rgba(255,255,255,.05);
 }
-
 
 .nav-logo {
   width: 122px;
@@ -99,23 +92,19 @@ section {
     invert(1);
 }
 
-
 .menu-button {
   width: 46px;
   height: 46px;
 
   border: 0;
 
-  background:
-    transparent;
+  background: transparent;
 
   display: grid;
-
   place-items: center;
 
   cursor: pointer;
 }
-
 
 .menu-button span,
 .menu-button::before,
@@ -129,15 +118,11 @@ section {
 
   border-radius: 3px;
 
-  background:
-    white;
+  background: white;
 }
 
-
 .menu-button span {
-  margin:
-    5px
-    0;
+  margin: 5px 0;
 }
 
 
@@ -147,7 +132,6 @@ section {
 
 .nav-panel {
   position: fixed;
-
   z-index: 90;
 
   top: 110px;
@@ -159,8 +143,7 @@ section {
     34px
     38px;
 
-  background:
-    #050505;
+  background: #050505;
 
   border-bottom:
     1px solid
@@ -170,46 +153,34 @@ section {
     translateY(-140%);
 
   transition:
-    transform
-    .35s
-    ease;
+    transform .35s ease;
 }
-
 
 .nav-panel.open {
   transform:
     translateY(0);
 }
 
-
 .nav-panel a {
   display: block;
 
   padding:
-    15px
-    0;
+    15px 0;
 
-  font-size:
-    1.2rem;
+  font-size: 1.2rem;
+  font-weight: 800;
 
-  font-weight:
-    800;
+  letter-spacing: .04em;
 
-  letter-spacing:
-    .04em;
-
-  text-transform:
-    uppercase;
+  text-transform: uppercase;
 
   border-bottom:
     1px solid
     rgba(255,255,255,.12);
 }
 
-
 .nav-panel a:hover {
-  color:
-    var(--pink);
+  color: var(--pink);
 }
 
 
@@ -218,11 +189,8 @@ section {
 ========================= */
 
 .home-intro {
-  background:
-    var(--charcoal);
-
-  color:
-    var(--white);
+  background: var(--charcoal);
+  color: var(--white);
 
   padding:
     58px
@@ -230,14 +198,11 @@ section {
     150px;
 }
 
-
 .home-intro-inner {
   width: 100%;
-
   max-width: 980px;
 
-  margin:
-    0 auto;
+  margin: 0 auto;
 }
 
 
@@ -252,8 +217,7 @@ section {
     0 auto
     58px;
 
-  text-align:
-    center;
+  text-align: center;
 
   font-size:
     clamp(
@@ -262,33 +226,23 @@ section {
       4.6rem
     );
 
-  font-weight:
-    800;
+  font-weight: 800;
 
-  line-height:
-    1.03;
+  line-height: 1.03;
 
-  letter-spacing:
-    -.045em;
+  letter-spacing: -.045em;
 }
-
 
 .home-quote span {
-  display:
-    inline;
+  display: inline;
 }
 
-
-.home-quote
-.quote-highlight {
-  color:
-    var(--pink);
+.home-quote .quote-highlight {
+  color: var(--pink);
 }
-
 
 .home-quote footer {
-  margin-top:
-    28px;
+  margin-top: 28px;
 
   color:
     rgba(
@@ -305,17 +259,13 @@ section {
       1.4rem
     );
 
-  font-weight:
-    300;
+  font-weight: 300;
 
-  line-height:
-    1.2;
+  line-height: 1.2;
 
-  letter-spacing:
-    0;
+  letter-spacing: 0;
 
-  text-transform:
-    none;
+  text-transform: none;
 }
 
 
@@ -326,32 +276,23 @@ section {
 .home-band-photo {
   width: 100%;
 
-  margin:
-    0 auto;
+  margin: 0 auto;
 
-  overflow:
-    hidden;
+  overflow: hidden;
 
-  border-radius:
-    22px;
+  border-radius: 22px;
 }
 
-
 .home-band-photo img {
-  width:
-    100%;
+  width: 100%;
 
-  aspect-ratio:
-    1.68 / 1;
+  aspect-ratio: 1.68 / 1;
 
-  object-fit:
-    cover;
+  object-fit: cover;
 
-  object-position:
-    center;
+  object-position: center;
 
-  border-radius:
-    inherit;
+  border-radius: inherit;
 }
 
 
@@ -365,10 +306,8 @@ section {
     36px;
 }
 
-
 .section-title {
-  margin-bottom:
-    34px;
+  margin-bottom: 34px;
 
   font-size:
     clamp(
@@ -377,23 +316,17 @@ section {
       7rem
     );
 
-  line-height:
-    .86;
+  line-height: .86;
 
-  font-weight:
-    900;
+  font-weight: 900;
 
-  letter-spacing:
-    -.065em;
+  letter-spacing: -.065em;
 
-  text-transform:
-    lowercase;
+  text-transform: lowercase;
 }
 
-
 .pink {
-  color:
-    var(--pink);
+  color: var(--pink);
 }
 
 
@@ -410,180 +343,160 @@ section {
     var(--charcoal);
 }
 
-
 .mailing-list-inner {
-  max-width:
-    900px;
+  max-width: 900px;
 
-  margin:
-    0 auto;
+  margin: 0 auto;
 
-  overflow:
-    hidden;
+  overflow: hidden;
 
-  border-radius:
-    18px;
+  border-radius: 18px;
 
-  background:
-    #050505;
+  background: #050505;
 }
-
 
 .mailing-list-inner iframe {
-  display:
-    block;
+  display: block;
 
-  width:
-    100%;
+  width: 100%;
 
-  border:
-    0;
+  border: 0;
 
-  background:
-    #050505;
+  background: #050505;
 }
 
 
-/* =========================
+/* ==================================================
    UPCOMING EVENTS
-========================= */
 
-.events {
-  position: relative;
+   CLEAN REBUILD
+================================================== */
+
+.upcoming-events {
+  background: var(--charcoal);
+
+  color: var(--white);
 
   padding:
-    92px
+    88px
     34px
-    110px;
-
-  background:
-    var(--charcoal);
-
-  color:
-    var(--white);
-
-  overflow:
-    hidden;
+    120px;
 }
 
+.upcoming-events-inner {
+  width: 100%;
 
-.events-inner {
-  position: relative;
+  max-width: 1000px;
 
-  z-index: 2;
-
-  width:
-    100%;
-
-  max-width:
-    1050px;
-
-  margin:
-    0 auto;
+  margin: 0 auto;
 }
 
 
 /*
-   Matches the simple,
-   bold heading treatment
-   from the live HYM site.
+   Two-line heading inspired by the
+   existing Holy Youth Movement site.
 */
 
-.events-title {
+.upcoming-events-title {
   margin:
-    0
-    0
-    52px;
+    0 auto
+    64px;
 
-  color:
-    #ffffff;
+  text-align: center;
+
+  color: #ffffff;
 
   font-size:
     clamp(
-      3rem,
-      11vw,
-      6rem
+      3.1rem,
+      13vw,
+      7rem
     );
 
-  font-weight:
-    900;
+  font-weight: 900;
 
-  line-height:
-    .94;
+  font-style: italic;
 
-  letter-spacing:
-    -.045em;
+  line-height: .83;
 
-  text-align:
-    center;
+  letter-spacing: -.065em;
 
-  text-transform:
-    uppercase;
+  text-transform: uppercase;
+}
+
+.upcoming-events-title span {
+  display: block;
+}
+
+
+/*
+   Approximate the slightly aggressive
+   angled display treatment of the
+   original site heading.
+*/
+
+.upcoming-events-title span:first-child {
+  transform: skewX(-5deg);
+}
+
+.upcoming-events-title span:last-child {
+  margin-top: 12px;
+
+  transform: skewX(-5deg);
 }
 
 
 /* =========================
-   PURPLE EVENTS FRAME
+   PINK / PURPLE EVENT BORDER
 ========================= */
 
 /*
-   The frame sits OUTSIDE the
-   Bandsintown widget.
+   This is completely outside
+   Bandsintown.
 
-   This means we can style it
-   without interfering with the
-   widget or its event rows.
+   No widget parent containers
+   are being modified.
 */
 
-.events-frame {
-  width:
-    100%;
+.upcoming-events-frame {
+  width: 100%;
 
   padding:
-    24px
     20px
-    30px;
+    16px
+    28px;
 
   border:
-    2px solid
-    var(--purple);
-
-  border-radius:
-    0;
+    4px solid
+    var(--pink);
 
   background:
-    var(--charcoal-dark);
+    transparent;
 }
 
 
 /* =========================
-   BANDSINTOWN WIDGET
+   BANDSINTOWN
 ========================= */
 
 .bit-widget-shell {
-  width:
-    100%;
+  width: 100%;
 
-  margin:
-    0;
+  margin: 0;
 
-  padding:
-    0;
+  padding: 0;
 
-  border:
-    0;
+  border: 0;
+
+  background: transparent;
 }
 
-
 .bit-widget-initializer {
-  display:
-    block;
+  display: block;
 
-  width:
-    100%;
+  width: 100%;
 
-  min-height:
-    80px;
+  min-height: 80px;
 }
 
 
@@ -593,21 +506,15 @@ section {
 .bit-play-my-city,
 [class*="play-my-city"],
 [class*="playMyCity"] {
-  display:
-    none !important;
+  display: none !important;
 }
 
 
 /*
-   Preserve the existing
-   first-event separator fix.
+   No decorative circle.
+   No heading separator.
+   No old .events rules.
 */
-
-#bandsintownWidget
-.bit-event:first-of-type {
-  border-top:
-    0 !important;
-}
 
 
 /* =========================
@@ -615,71 +522,47 @@ section {
 ========================= */
 
 .bandsintown-credit {
-  display:
-    none;
+  display: none;
 
-  width:
-    100%;
+  width: 100%;
 
-  margin-top:
-    42px;
+  margin-top: 42px;
 
-  text-align:
-    center;
+  text-align: center;
 }
-
 
 .bandsintown-credit.ready {
-  display:
-    block;
+  display: block;
 }
-
 
 .bandsintown-credit-text {
-  margin-bottom:
-    26px;
+  margin-bottom: 26px;
 
-  color:
-    #929292;
+  color: #929292;
 
-  font-size:
-    .7rem;
+  font-size: .7rem;
 
-  font-weight:
-    800;
+  font-weight: 800;
 
-  letter-spacing:
-    .17em;
+  letter-spacing: .17em;
 
-  line-height:
-    1.3;
+  line-height: 1.3;
 
-  text-transform:
-    uppercase;
+  text-transform: uppercase;
 }
-
 
 .bandsintown-logo-copy {
-  display:
-    flex;
+  display: flex;
 
-  justify-content:
-    center;
+  justify-content: center;
+  align-items: center;
 
-  align-items:
-    center;
-
-  width:
-    100%;
+  width: 100%;
 }
 
-
 .bandsintown-logo-copy > * {
-  margin-left:
-    auto !important;
-
-  margin-right:
-    auto !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
 }
 
 
@@ -688,29 +571,21 @@ section {
 ========================= */
 
 .merch {
-  padding:
-    34px;
+  padding: 34px;
 
-  display:
-    grid;
+  display: grid;
 
-  gap:
-    34px;
+  gap: 34px;
 
-  background:
-    var(--charcoal);
+  background: var(--charcoal);
 }
 
-
 .merch-image {
-  min-height:
-    68svh;
+  min-height: 68svh;
 
-  overflow:
-    hidden;
+  overflow: hidden;
 
-  border-radius:
-    22px;
+  border-radius: 22px;
 
   background:
     url(
@@ -721,14 +596,12 @@ section {
     no-repeat;
 }
 
-
 .merch-copy {
   padding:
     34px
     4px
     58px;
 }
-
 
 .merch-copy h2 {
   font-size:
@@ -738,44 +611,31 @@ section {
       8rem
     );
 
-  line-height:
-    .82;
+  line-height: .82;
 
-  font-weight:
-    900;
+  font-weight: 900;
 
-  letter-spacing:
-    -.065em;
+  letter-spacing: -.065em;
 
-  text-transform:
-    lowercase;
+  text-transform: lowercase;
 }
-
 
 .merch-copy p {
-  margin-top:
-    24px;
+  margin-top: 24px;
 
-  max-width:
-    460px;
+  max-width: 460px;
 
-  color:
-    var(--soft-light);
+  color: var(--soft-light);
 
-  font-size:
-    1.05rem;
+  font-size: 1.05rem;
 
-  line-height:
-    1.65;
+  line-height: 1.65;
 }
 
-
 .outline-button {
-  display:
-    inline-flex;
+  display: inline-flex;
 
-  margin-top:
-    34px;
+  margin-top: 34px;
 
   padding:
     15px
@@ -785,42 +645,29 @@ section {
     2px solid
     var(--white);
 
-  border-radius:
-    6px;
+  border-radius: 6px;
 
-  font-size:
-    .8rem;
+  font-size: .8rem;
 
-  font-weight:
-    900;
+  font-weight: 900;
 
-  letter-spacing:
-    .1em;
+  letter-spacing: .1em;
 
-  text-transform:
-    uppercase;
+  text-transform: uppercase;
 
-  transition:
-    .2s ease;
+  transition: .2s ease;
 }
 
-
-.merch-copy
-.outline-button {
-  color:
-    white;
+.merch-copy .outline-button {
+  color: white;
 }
-
 
 .outline-button:hover {
-  background:
-    var(--pink);
+  background: var(--pink);
 
-  border-color:
-    var(--pink);
+  border-color: var(--pink);
 
-  color:
-    #050505;
+  color: #050505;
 }
 
 
@@ -833,28 +680,20 @@ section {
     var(--charcoal-dark);
 }
 
-
 .spotify-wrap {
-  max-width:
-    900px;
+  max-width: 900px;
 
-  margin:
-    auto;
+  margin: auto;
 }
 
-
 .spotify-wrap iframe {
-  width:
-    100%;
+  width: 100%;
 
-  min-height:
-    500px;
+  min-height: 500px;
 
-  border:
-    0;
+  border: 0;
 
-  border-radius:
-    18px;
+  border-radius: 18px;
 }
 
 
@@ -870,21 +709,15 @@ section {
     var(--white);
 }
 
-
 .contact-grid {
-  display:
-    grid;
+  display: grid;
 
-  gap:
-    54px;
+  gap: 54px;
 
-  max-width:
-    1100px;
+  max-width: 1100px;
 
-  margin:
-    auto;
+  margin: auto;
 }
-
 
 .contact-copy h2 {
   font-size:
@@ -894,97 +727,67 @@ section {
       7rem
     );
 
-  line-height:
-    .84;
+  line-height: .84;
 
-  font-weight:
-    900;
+  font-weight: 900;
 
-  letter-spacing:
-    -.06em;
+  letter-spacing: -.06em;
 
-  text-transform:
-    lowercase;
+  text-transform: lowercase;
 }
-
 
 .contact-copy p {
-  margin-top:
-    26px;
+  margin-top: 26px;
 
-  max-width:
-    450px;
+  max-width: 450px;
 
-  color:
-    var(--soft-light);
+  color: var(--soft-light);
 
-  line-height:
-    1.7;
+  line-height: 1.7;
 }
-
 
 form {
-  display:
-    grid;
+  display: grid;
 
-  gap:
-    24px;
+  gap: 24px;
 }
-
 
 label {
-  display:
-    grid;
+  display: grid;
 
-  gap:
-    10px;
+  gap: 10px;
 
-  color:
-    var(--pink);
+  color: var(--pink);
 
-  font-size:
-    .75rem;
+  font-size: .75rem;
 
-  font-weight:
-    900;
+  font-weight: 900;
 
-  letter-spacing:
-    .12em;
+  letter-spacing: .12em;
 
-  text-transform:
-    uppercase;
+  text-transform: uppercase;
 }
-
 
 input,
 textarea {
-  width:
-    100%;
+  width: 100%;
 
-  padding:
-    16px
-    0;
+  padding: 16px 0;
 
-  border:
-    0;
+  border: 0;
 
   border-bottom:
     2px solid
     rgba(255,255,255,.55);
 
-  border-radius:
-    0;
+  border-radius: 0;
 
-  background:
-    transparent;
+  background: transparent;
 
-  color:
-    var(--white);
+  color: var(--white);
 
-  outline:
-    none;
+  outline: none;
 }
-
 
 input:focus,
 textarea:focus {
@@ -992,48 +795,36 @@ textarea:focus {
     var(--pink);
 }
 
-
 textarea {
-  min-height:
-    140px;
+  min-height: 140px;
 
-  resize:
-    vertical;
+  resize: vertical;
 }
 
-
 .send-button {
-  justify-self:
-    start;
+  justify-self: start;
 
   border:
     2px solid
     var(--pink);
 
-  border-radius:
-    6px;
+  border-radius: 6px;
 
-  background:
-    var(--pink);
+  background: var(--pink);
 
-  color:
-    #050505;
+  color: #050505;
 
   padding:
     15px
     26px;
 
-  text-transform:
-    uppercase;
+  text-transform: uppercase;
 
-  letter-spacing:
-    .1em;
+  letter-spacing: .1em;
 
-  font-weight:
-    900;
+  font-weight: 900;
 
-  cursor:
-    pointer;
+  cursor: pointer;
 }
 
 
@@ -1046,23 +837,17 @@ textarea {
     38px
     34px;
 
-  display:
-    flex;
+  display: flex;
 
-  flex-direction:
-    column;
+  flex-direction: column;
 
-  gap:
-    10px;
+  gap: 10px;
 
-  background:
-    #050505;
+  background: #050505;
 
-  color:
-    #929292;
+  color: #929292;
 
-  font-size:
-    .76rem;
+  font-size: .76rem;
 
   border-top:
     1px solid
@@ -1077,8 +862,7 @@ textarea {
 @media (min-width: 800px) {
 
   .site-header {
-    height:
-      126px;
+    height: 126px;
 
     padding:
       0
@@ -1087,20 +871,15 @@ textarea {
 
 
   .nav-panel {
-    top:
-      126px;
+    top: 126px;
 
-    padding-left:
-      56px;
-
-    padding-right:
-      56px;
+    padding-left: 56px;
+    padding-right: 56px;
   }
 
 
   .nav-logo {
-    width:
-      150px;
+    width: 150px;
   }
 
 
@@ -1113,20 +892,16 @@ textarea {
 
 
   .home-quote {
-    max-width:
-      760px;
+    max-width: 760px;
 
-    margin-bottom:
-      70px;
+    margin-bottom: 70px;
   }
 
 
   .home-band-photo {
-    max-width:
-      900px;
+    max-width: 900px;
 
-    border-radius:
-      28px;
+    border-radius: 28px;
   }
 
 
@@ -1144,25 +919,26 @@ textarea {
   }
 
 
-  .events {
+  .upcoming-events {
     padding:
       120px
       56px
-      140px;
+      150px;
   }
 
 
-  .events-title {
-    margin-bottom:
-      64px;
+  .upcoming-events-title {
+    margin-bottom: 80px;
   }
 
 
-  .events-frame {
+  .upcoming-events-frame {
     padding:
-      34px
-      34px
-      40px;
+      30px
+      30px
+      38px;
+
+    border-width: 4px;
   }
 
 
@@ -1171,32 +947,25 @@ textarea {
       1.05fr
       .95fr;
 
-    min-height:
-      90svh;
+    min-height: 90svh;
 
-    padding:
-      56px;
+    padding: 56px;
 
-    gap:
-      56px;
+    gap: 56px;
   }
 
 
   .merch-image {
-    min-height:
-      78svh;
+    min-height: 78svh;
   }
 
 
   .merch-copy {
-    display:
-      flex;
+    display: flex;
 
-    flex-direction:
-      column;
+    flex-direction: column;
 
-    justify-content:
-      center;
+    justify-content: center;
 
     padding:
       70px
@@ -1209,14 +978,12 @@ textarea {
       .9fr
       1.1fr;
 
-    align-items:
-      start;
+    align-items: start;
   }
 
 
   .site-footer {
-    flex-direction:
-      row;
+    flex-direction: row;
 
     justify-content:
       space-between;
