@@ -223,8 +223,15 @@ section {
   color:
     var(--white);
 
+  /*
+    Reduced from 98px at the top.
+
+    This pulls the quote closer
+    to the black header.
+  */
+
   padding:
-    98px
+    58px
     34px
     150px;
 }
@@ -247,9 +254,16 @@ section {
 .home-quote {
   max-width: 650px;
 
+  /*
+    58px below the quote.
+
+    This now closely matches the
+    58px space above the quote.
+  */
+
   margin:
     0 auto
-    82px;
+    58px;
 
   text-align:
     center;
@@ -1060,8 +1074,7 @@ textarea {
    DESKTOP
 ========================= */
 
-@media
-(min-width: 800px) {
+@media (min-width: 800px) {
 
   .site-header {
     height:
@@ -1091,20 +1104,31 @@ textarea {
   }
 
 
+  /*
+    Same balancing principle on desktop:
+    reduce the space above the quote.
+  */
+
   .home-intro {
     padding:
-      120px
+      70px
       56px
       180px;
   }
 
+
+  /*
+    Keep the space below the quote
+    approximately in balance with
+    the 70px above it.
+  */
 
   .home-quote {
     max-width:
       760px;
 
     margin-bottom:
-      95px;
+      70px;
   }
 
 
