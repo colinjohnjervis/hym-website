@@ -102,7 +102,6 @@ section {
   height: 46px;
 
   border: 0;
-
   background: transparent;
 
   display: grid;
@@ -351,7 +350,6 @@ section {
     center;
 }
 
-
 .slice-heading span {
   position: relative;
 
@@ -361,7 +359,6 @@ section {
 
   color: transparent;
 }
-
 
 .slice-heading span::before,
 .slice-heading span::after {
@@ -427,39 +424,106 @@ section {
 }
 
 
-/* =========================
+/* ==================================================
    MAILING LIST
-========================= */
+================================================== */
 
 .mailing-list-section {
   padding:
-    72px
-    22px;
+    94px
+    34px
+    110px;
 
   background:
     var(--charcoal);
 }
 
-.mailing-list-inner {
-  max-width: 900px;
+
+.mailing-list-content {
+  width: 100%;
+
+  max-width: 1000px;
 
   margin: 0 auto;
-
-  overflow: hidden;
-
-  border-radius: 18px;
-
-  background: #050505;
 }
 
-.mailing-list-inner iframe {
+
+/* MAILING LIST HEADING */
+
+.mailing-list-title {
+  max-width: 850px;
+
+  margin-bottom: 34px;
+
+  font-size:
+    clamp(
+      3.15rem,
+      12vw,
+      7rem
+    );
+}
+
+
+/* SUPPORTING TEXT */
+
+.mailing-list-copy {
+  max-width: 620px;
+
+  margin:
+    0 auto
+    46px;
+
+  color:
+    var(--soft-light);
+
+  font-size:
+    1rem;
+
+  line-height:
+    1.65;
+
+  text-align:
+    center;
+}
+
+
+/* MAILING LIST BORDER */
+
+.mailing-list-frame {
+  width: 100%;
+
+  padding:
+    18px
+    14px;
+
+  border:
+    4px solid
+    var(--pink);
+
+  background:
+    transparent;
+}
+
+
+/*
+   Bandsintown remains responsible
+   for the form functionality.
+
+   We remove its outer border and
+   let our own frame define the section.
+*/
+
+.mailing-list-frame iframe {
   display: block;
 
   width: 100%;
 
+  height: 150px;
+
   border: 0;
 
-  background: #050505;
+  background:
+    var(--charcoal);
 }
 
 
@@ -626,9 +690,6 @@ section {
     var(--charcoal);
 }
 
-
-/* BUY MERCH HEADING */
-
 .merch-heading-wrap {
   width: 100%;
 
@@ -645,9 +706,6 @@ section {
       7rem
     );
 }
-
-
-/* MERCH IMAGE */
 
 .merch-image {
   width: 100%;
@@ -666,9 +724,6 @@ section {
     cover
     no-repeat;
 }
-
-
-/* MERCH COPY */
 
 .merch-copy {
   padding:
@@ -744,9 +799,6 @@ section {
   margin: 0 auto;
 }
 
-
-/* LISTEN HEADING */
-
 .listen-title {
   max-width: 620px;
 
@@ -759,9 +811,6 @@ section {
       7rem
     );
 }
-
-
-/* SPOTIFY */
 
 .spotify-wrap {
   max-width: 900px;
@@ -894,8 +943,7 @@ textarea {
 
   border-radius: 6px;
 
-  background:
-    var(--pink);
+  background: var(--pink);
 
   color: #050505;
 
@@ -1000,12 +1048,45 @@ textarea {
   }
 
 
+  /* MAILING LIST */
+
   .mailing-list-section {
     padding:
-      90px
-      56px;
+      120px
+      56px
+      130px;
   }
 
+
+  .mailing-list-title {
+    margin-bottom: 40px;
+
+    font-size:
+      clamp(
+        5rem,
+        8vw,
+        7.5rem
+      );
+  }
+
+
+  .mailing-list-copy {
+    margin-bottom: 58px;
+
+    font-size: 1.08rem;
+  }
+
+
+  .mailing-list-frame {
+    padding:
+      24px
+      24px;
+
+    border-width: 4px;
+  }
+
+
+  /* UPCOMING EVENTS */
 
   .upcoming-events {
     padding:
@@ -1041,6 +1122,8 @@ textarea {
     border-width: 4px;
   }
 
+
+  /* MERCH */
 
   .merch {
     padding:
@@ -1083,6 +1166,8 @@ textarea {
   }
 
 
+  /* LISTEN */
+
   .listen {
     padding:
       120px
@@ -1102,6 +1187,8 @@ textarea {
       );
   }
 
+
+  /* CONTACT */
 
   .contact-grid {
     grid-template-columns:
