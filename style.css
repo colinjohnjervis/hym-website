@@ -1,3 +1,12 @@
+/* =========================
+   DISPLAY FONT
+========================= */
+
+@import url(
+  'https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap'
+);
+
+
 :root {
   --black: #050505;
   --charcoal: #24282b;
@@ -66,6 +75,7 @@ section {
 .site-header {
   position: sticky;
   top: 0;
+
   z-index: 100;
 
   height: 110px;
@@ -83,6 +93,7 @@ section {
     rgba(255, 255, 255, .05);
 }
 
+
 .nav-logo {
   width: 122px;
 
@@ -91,6 +102,7 @@ section {
     brightness(0)
     invert(1);
 }
+
 
 .menu-button {
   width: 46px;
@@ -105,6 +117,7 @@ section {
 
   cursor: pointer;
 }
+
 
 .menu-button span,
 .menu-button::before,
@@ -121,6 +134,7 @@ section {
   background: white;
 }
 
+
 .menu-button span {
   margin: 5px 0;
 }
@@ -132,6 +146,7 @@ section {
 
 .nav-panel {
   position: fixed;
+
   z-index: 90;
 
   top: 110px;
@@ -156,10 +171,12 @@ section {
     transform .35s ease;
 }
 
+
 .nav-panel.open {
   transform:
     translateY(0);
 }
+
 
 .nav-panel a {
   display: block;
@@ -176,8 +193,9 @@ section {
 
   border-bottom:
     1px solid
-    rgba(255, 255, 255, .12);
+    rgba(255,255,255,.12);
 }
+
 
 .nav-panel a:hover {
   color: var(--pink);
@@ -197,6 +215,7 @@ section {
     34px
     150px;
 }
+
 
 .home-intro-inner {
   width: 100%;
@@ -233,13 +252,16 @@ section {
   letter-spacing: -.045em;
 }
 
+
 .home-quote span {
   display: inline;
 }
 
+
 .home-quote .quote-highlight {
   color: var(--pink);
 }
+
 
 .home-quote footer {
   margin-top: 28px;
@@ -283,6 +305,7 @@ section {
   border-radius: 22px;
 }
 
+
 .home-band-photo img {
   width: 100%;
 
@@ -306,6 +329,7 @@ section {
     36px;
 }
 
+
 .section-title {
   margin-bottom: 34px;
 
@@ -325,6 +349,7 @@ section {
   text-transform: lowercase;
 }
 
+
 .pink {
   color: var(--pink);
 }
@@ -343,6 +368,7 @@ section {
     var(--charcoal);
 }
 
+
 .mailing-list-inner {
   max-width: 900px;
 
@@ -354,6 +380,7 @@ section {
 
   background: #050505;
 }
+
 
 .mailing-list-inner iframe {
   display: block;
@@ -381,6 +408,7 @@ section {
     120px;
 }
 
+
 .upcoming-events-inner {
   width: 100%;
 
@@ -392,13 +420,12 @@ section {
 
 /* ==================================================
    UPCOMING EVENTS HEADING
-   HEAVIER / CHUNKIER / CLEANER SLICE
 ================================================== */
 
 .upcoming-events-title {
   position: relative;
 
-  max-width: 760px;
+  max-width: 820px;
 
   margin:
     0 auto
@@ -409,37 +436,45 @@ section {
   color: transparent;
 
   font-family:
-    Impact,
-    "Arial Black",
-    "Helvetica Neue Condensed Black",
+    "Archivo Black",
+    Arial Black,
     Arial,
-    Helvetica,
     sans-serif;
 
   font-size:
     clamp(
-      3.8rem,
-      14vw,
-      7.5rem
+      3.35rem,
+      13vw,
+      7.2rem
     );
 
-  font-weight: 900;
+  font-weight: 400;
 
-  font-style: italic;
-
-  line-height: .76;
+  line-height: .78;
 
   letter-spacing: -.075em;
 
   text-transform: uppercase;
 
-  transform: scaleX(.92);
-  transform-origin: center;
+  /*
+    The original treatment leans
+    strongly forward.
+
+    Skew the whole heading rather
+    than using an italic font.
+  */
+
+  transform:
+    skewX(-10deg);
+
+  transform-origin:
+    center;
 }
 
 
 /*
-   Each word sits on its own line.
+   UPCOMING and EVENTS
+   remain separate lines.
 */
 
 .upcoming-events-title span {
@@ -447,101 +482,109 @@ section {
 
   display: block;
 
-  min-height: .82em;
+  min-height: .86em;
 
   color: transparent;
 }
 
 
 /*
-   Two copies of each word:
-   top half + bottom half.
+   Each word is drawn twice.
+
+   The two layers meet along one
+   clean diagonal cut.
 */
 
 .upcoming-events-title span::before,
 .upcoming-events-title span::after {
-  content: attr(data-text);
+  content:
+    attr(data-text);
 
   position: absolute;
 
   top: 0;
   left: 50%;
 
-  width: 100%;
+  width: max-content;
+
+  min-width: 100%;
 
   color: #ffffff;
 
-  font: inherit;
+  font-family: inherit;
 
-  font-weight: 900;
+  font-size: inherit;
+
+  font-weight: inherit;
+
+  line-height: inherit;
 
   letter-spacing: inherit;
 
   text-align: center;
 
   white-space: nowrap;
-
-  -webkit-text-stroke:
-    .35px
-    #ffffff;
 }
 
 
-/*
-   TOP HALF
-
-   Cleaner, flatter slice.
-   Only a tiny shift to the right.
-*/
+/* =========================
+   UPPER SECTION
+========================= */
 
 .upcoming-events-title span::before {
   clip-path:
     polygon(
       0 0,
       100% 0,
-      100% 49%,
+      100% 48%,
       0 57%
     );
 
   transform:
-    translateX(calc(-50% + 2px));
+    translateX(
+      calc(-50% + 2px)
+    );
 }
 
 
-/*
-   BOTTOM HALF
-
-   Mirrors the same cut and
-   shifts very slightly left.
-*/
+/* =========================
+   LOWER SECTION
+========================= */
 
 .upcoming-events-title span::after {
   clip-path:
     polygon(
       0 57%,
-      100% 49%,
+      100% 48%,
       100% 100%,
       0 100%
     );
 
   transform:
-    translateX(calc(-50% - 2px));
+    translateX(
+      calc(-50% - 2px)
+    );
 }
 
 
 /*
-   Tighter gap between words,
-   closer to the original.
+   Original wording is compact
+   rather than widely separated.
 */
 
 .upcoming-events-title span + span {
-  margin-top: 7px;
+  margin-top: 8px;
 }
 
 
 /* =========================
    PURPLE EVENTS FRAME
 ========================= */
+
+/*
+   LEAVE THIS BORDER
+   EXACTLY AS BEFORE.
+*/
 
 .upcoming-events-frame {
   width: 100%;
@@ -574,6 +617,7 @@ section {
 
   background: transparent;
 }
+
 
 .bit-widget-initializer {
   display: block;
@@ -608,9 +652,11 @@ section {
   text-align: center;
 }
 
+
 .bandsintown-credit.ready {
   display: block;
 }
+
 
 .bandsintown-credit-text {
   margin-bottom: 26px;
@@ -628,6 +674,7 @@ section {
   text-transform: uppercase;
 }
 
+
 .bandsintown-logo-copy {
   display: flex;
 
@@ -636,6 +683,7 @@ section {
 
   width: 100%;
 }
+
 
 .bandsintown-logo-copy > * {
   margin-left: auto !important;
@@ -657,6 +705,7 @@ section {
   background: var(--charcoal);
 }
 
+
 .merch-image {
   min-height: 68svh;
 
@@ -673,12 +722,14 @@ section {
     no-repeat;
 }
 
+
 .merch-copy {
   padding:
     34px
     4px
     58px;
 }
+
 
 .merch-copy h2 {
   font-size:
@@ -697,6 +748,7 @@ section {
   text-transform: lowercase;
 }
 
+
 .merch-copy p {
   margin-top: 24px;
 
@@ -708,6 +760,7 @@ section {
 
   line-height: 1.65;
 }
+
 
 .outline-button {
   display: inline-flex;
@@ -735,9 +788,11 @@ section {
   transition: .2s ease;
 }
 
+
 .merch-copy .outline-button {
   color: white;
 }
+
 
 .outline-button:hover {
   background: var(--pink);
@@ -757,11 +812,13 @@ section {
     var(--charcoal-dark);
 }
 
+
 .spotify-wrap {
   max-width: 900px;
 
   margin: auto;
 }
+
 
 .spotify-wrap iframe {
   width: 100%;
@@ -786,6 +843,7 @@ section {
     var(--white);
 }
 
+
 .contact-grid {
   display: grid;
 
@@ -795,6 +853,7 @@ section {
 
   margin: auto;
 }
+
 
 .contact-copy h2 {
   font-size:
@@ -813,6 +872,7 @@ section {
   text-transform: lowercase;
 }
 
+
 .contact-copy p {
   margin-top: 26px;
 
@@ -823,11 +883,13 @@ section {
   line-height: 1.7;
 }
 
+
 form {
   display: grid;
 
   gap: 24px;
 }
+
 
 label {
   display: grid;
@@ -844,6 +906,7 @@ label {
 
   text-transform: uppercase;
 }
+
 
 input,
 textarea {
@@ -866,17 +929,20 @@ textarea {
   outline: none;
 }
 
+
 input:focus,
 textarea:focus {
   border-bottom-color:
     var(--pink);
 }
 
+
 textarea {
   min-height: 140px;
 
   resize: vertical;
 }
+
 
 .send-button {
   justify-self: start;
@@ -946,6 +1012,7 @@ textarea {
       56px;
   }
 
+
   .nav-panel {
     top: 126px;
 
@@ -953,9 +1020,11 @@ textarea {
     padding-right: 56px;
   }
 
+
   .nav-logo {
     width: 150px;
   }
+
 
   .home-intro {
     padding:
@@ -964,11 +1033,13 @@ textarea {
       180px;
   }
 
+
   .home-quote {
     max-width: 760px;
 
     margin-bottom: 70px;
   }
+
 
   .home-band-photo {
     max-width: 900px;
@@ -976,17 +1047,20 @@ textarea {
     border-radius: 28px;
   }
 
+
   .section {
     padding:
       120px
       56px;
   }
 
+
   .mailing-list-section {
     padding:
       90px
       56px;
   }
+
 
   .upcoming-events {
     padding:
@@ -995,15 +1069,23 @@ textarea {
       150px;
   }
 
+
   .upcoming-events-title {
     margin-bottom: 80px;
 
-    transform: scaleX(.94);
+    font-size:
+      clamp(
+        5rem,
+        8vw,
+        7.5rem
+      );
   }
+
 
   .upcoming-events-title span + span {
     margin-top: 10px;
   }
+
 
   .upcoming-events-frame {
     padding:
@@ -1013,6 +1095,7 @@ textarea {
 
     border-width: 4px;
   }
+
 
   .merch {
     grid-template-columns:
@@ -1026,9 +1109,11 @@ textarea {
     gap: 56px;
   }
 
+
   .merch-image {
     min-height: 78svh;
   }
+
 
   .merch-copy {
     display: flex;
@@ -1042,6 +1127,7 @@ textarea {
       34px;
   }
 
+
   .contact-grid {
     grid-template-columns:
       .9fr
@@ -1049,6 +1135,7 @@ textarea {
 
     align-items: start;
   }
+
 
   .site-footer {
     flex-direction: row;
@@ -1061,4 +1148,4 @@ textarea {
       56px;
   }
 
-}
+  }
