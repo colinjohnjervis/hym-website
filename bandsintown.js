@@ -13,14 +13,19 @@ const logoCopy =
 
 
 /* =========================
-   REMOVE PLAY MY CITY
+   HIDE UNWANTED TEXT ONLY
 ========================= */
 
-function removePlayMyCity() {
+function hideUnwantedBandsintownContent() {
 
   if (!widget) {
     return;
   }
+
+
+  /*
+    Known Play My City classes.
+  */
 
   widget
     .querySelectorAll(
@@ -39,35 +44,24 @@ function removePlayMyCity() {
 
     });
 
-}
-
-
-/* =========================
-   REMOVE FOLLOW / UPDATES BLOCK
-========================= */
-
-function removeFollowBlock() {
-
-  if (!widget) {
-    return;
-  }
-
-
-  const elements =
-    Array.from(
-      widget.querySelectorAll(
-        "div, p, span, a, button"
-      )
-    );
-
 
   /*
-    Find the text:
-    "Get updates on new shows, new music, and more"
+    IMPORTANT:
+
+    We hide ONLY the exact matching
+    element.
+
+    We DO NOT hide parents.
+
+    That prevents the event list
+    disappearing again.
   */
 
-  const updatesText =
-    elements.find(element => {
+  widget
+    .querySelectorAll(
+      "div, p, span, a, button"
+    )
+    .forEach(element => {
 
       const text =
         (element.textContent || "")
@@ -75,63 +69,38 @@ function removeFollowBlock() {
           .replace(/\s+/g, " ")
           .toLowerCase();
 
-      return text.includes(
-        "get updates on new shows"
-      );
 
-    });
+      const exactUnwantedText =
 
+        text === "want a show near you?" ||
 
-  /*
-    Find the follow button separately
-  */
+        text === "play my city" ||
 
-  const followButton =
-    elements.find(element => {
+        text ===
+          "get updates on new shows, new music, and more" ||
 
-      const text =
-        (element.textContent || "")
-          .trim()
-          .replace(/\s+/g, " ")
-          .toLowerCase();
-
-      return text.includes(
-        "follow holy youth movement"
-      );
-
-    });
+        text ===
+          "follow holy youth movement";
 
 
-  /*
-    Hide only the immediate compact
-    container around the updates text.
-  */
+      if (!exactUnwantedText) {
+        return;
+      }
 
-  if (updatesText) {
 
-    const parent =
-      updatesText.parentElement;
+      /*
+        Only hide small / leaf-like elements.
 
-    if (parent) {
-
-      const rect =
-        parent.getBoundingClientRect();
+        If this element contains lots of
+        children, it may be a whole widget
+        container, so leave it alone.
+      */
 
       if (
-        rect.height > 0 &&
-        rect.height < 220
+        element.children.length <= 2
       ) {
 
-        parent.style.setProperty(
-          "display",
-          "none",
-          "important"
-        );
-
-      }
-      else {
-
-        updatesText.style.setProperty(
+        element.style.setProperty(
           "display",
           "none",
           "important"
@@ -139,56 +108,13 @@ function removeFollowBlock() {
 
       }
 
-    }
-
-  }
-
-
-  /*
-    Hide follow button / its direct wrapper.
-  */
-
-  if (followButton) {
-
-    const parent =
-      followButton.parentElement;
-
-    if (parent) {
-
-      const rect =
-        parent.getBoundingClientRect();
-
-      if (
-        rect.height > 0 &&
-        rect.height < 160
-      ) {
-
-        parent.style.setProperty(
-          "display",
-          "none",
-          "important"
-        );
-
-      }
-      else {
-
-        followButton.style.setProperty(
-          "display",
-          "none",
-          "important"
-        );
-
-      }
-
-    }
-
-  }
+    });
 
 }
 
 
 /* =========================
-   FIND GENUINE BANDSINTOWN LOGO
+   FIND REAL BANDSINTOWN LOGO
 ========================= */
 
 function findBandsintownLogo() {
@@ -207,108 +133,120 @@ function findBandsintownLogo() {
 
 
   const candidates =
-    links
-      .map(link => {
-
-        const href =
-          (
-            link.getAttribute("href") ||
-            ""
-          )
-            .toLowerCase();
+    [];
 
 
-        if (
-          !href.includes("bandsintown")
-        ) {
-          return null;
-        }
+  links.forEach(link => {
+
+    const href =
+      (
+        link.getAttribute("href") ||
+        ""
+      )
+        .toLowerCase();
 
 
-        const text =
-          (
-            link.textContent ||
-            ""
-          )
-            .trim()
-            .replace(/\s+/g, " ")
-            .toLowerCase();
+    if (
+      !href.includes("bandsintown")
+    ) {
+      return;
+    }
 
 
-        /*
-          Reject action links.
-        */
-
-        if (
-          text.includes("ticket") ||
-          text.includes("rsvp") ||
-          text.includes("follow") ||
-          text.includes("track") ||
-          text.includes("play my city")
-        ) {
-          return null;
-        }
+    const text =
+      (
+        link.textContent ||
+        ""
+      )
+        .trim()
+        .replace(/\s+/g, " ")
+        .toLowerCase();
 
 
-        const hasArtwork =
-          !!link.querySelector(
-            "svg, img"
-          );
+    /*
+      Reject action links.
+    */
+
+    if (
+      text.includes("ticket") ||
+      text.includes("rsvp") ||
+      text.includes("follow") ||
+      text.includes("track") ||
+      text.includes("play my city")
+    ) {
+      return;
+    }
 
 
-        const rect =
-          link.getBoundingClientRect();
+    const rect =
+      link.getBoundingClientRect();
 
 
-        if (
-          rect.width <= 0 ||
-          rect.height <= 0
-        ) {
-          return null;
-        }
+    if (
+      rect.width <= 0 ||
+      rect.height <= 0
+    ) {
+      return;
+    }
 
 
-        return {
-          link,
-          top: rect.top,
-          hasArtwork
-        };
+    const hasArtwork =
+      !!link.querySelector(
+        "svg, img"
+      );
 
-      })
-      .filter(Boolean);
+
+    candidates.push({
+      element: link,
+      top: rect.top,
+      hasArtwork: hasArtwork
+    });
+
+  });
 
 
   /*
-    Prefer links containing actual logo artwork.
+    Prefer elements containing
+    actual logo artwork.
   */
 
   const artworkCandidates =
     candidates.filter(
-      item =>
-        item.hasArtwork
+      candidate =>
+        candidate.hasArtwork
     );
 
 
-  const usable =
+  const usableCandidates =
     artworkCandidates.length
       ? artworkCandidates
       : candidates;
 
 
   /*
-    Bandsintown logo should be the
-    lowest suitable Bandsintown link.
+    Genuine Bandsintown branding
+    should be the lowest valid item.
   */
 
-  usable.sort(
+  usableCandidates.sort(
     (a, b) =>
       b.top - a.top
   );
 
 
-  return usable.length
-    ? usable[0].link
-    : null;
+  if (
+    usableCandidates.length
+  ) {
+
+    return (
+      usableCandidates[0]
+        .element
+    );
+
+  }
+
+
+  return null;
 
 }
 
@@ -397,6 +335,10 @@ function buildExternalCredit() {
   }
 
 
+  /*
+    Already successful.
+  */
+
   if (
     credit.classList.contains(
       "ready"
@@ -416,7 +358,8 @@ function buildExternalCredit() {
 
 
   /*
-    Clone the genuine logo.
+    Clone the REAL logo rendered
+    by Bandsintown.
   */
 
   const clonedLogo =
@@ -433,20 +376,25 @@ function buildExternalCredit() {
     Remove duplicate IDs.
   */
 
-  clonedLogo.removeAttribute("id");
+  clonedLogo.removeAttribute(
+    "id"
+  );
 
 
   clonedLogo
     .querySelectorAll("[id]")
     .forEach(element => {
 
-      element.removeAttribute("id");
+      element.removeAttribute(
+        "id"
+      );
 
     });
 
 
   /*
-    Reset only outer positioning.
+    Reset only the cloned
+    outer element positioning.
   */
 
   clonedLogo.style.setProperty(
@@ -511,7 +459,7 @@ function buildExternalCredit() {
 
 
   /*
-    Put clone outside widget.
+    Put genuine clone outside widget.
   */
 
   logoCopy.innerHTML = "";
@@ -529,9 +477,9 @@ function buildExternalCredit() {
 
 
   /*
-    IMPORTANT:
-    Hide only the original logo link.
-    Do NOT hide any parent wrapper.
+    Hide ONLY the original logo itself.
+
+    Do not touch its parents.
   */
 
   realLogo.style.setProperty(
@@ -542,7 +490,7 @@ function buildExternalCredit() {
 
 
   /*
-    Reveal external text + clone.
+    Reveal our external credit.
   */
 
   credit.classList.add(
@@ -553,14 +501,12 @@ function buildExternalCredit() {
 
 
 /* =========================
-   RUN CLEANUP
+   RUN
 ========================= */
 
 function tidyBandsintown() {
 
-  removePlayMyCity();
-
-  removeFollowBlock();
+  hideUnwantedBandsintownContent();
 
   buildExternalCredit();
 
@@ -568,7 +514,7 @@ function tidyBandsintown() {
 
 
 /* =========================
-   WATCH WIDGET
+   WATCH BANDSINTOWN LOAD
 ========================= */
 
 if (widget) {
@@ -602,7 +548,10 @@ if (widget) {
 }
 
 
-/* Backup checks */
+/*
+  Backup checks while the
+  widget finishes loading.
+*/
 
 setTimeout(tidyBandsintown, 300);
 
