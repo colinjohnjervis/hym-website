@@ -80,8 +80,9 @@ section {
 
   border-bottom:
     1px solid
-    rgba(255,255,255,.05);
+    rgba(255, 255, 255, .05);
 }
+
 
 .nav-logo {
   width: 122px;
@@ -91,6 +92,7 @@ section {
     brightness(0)
     invert(1);
 }
+
 
 .menu-button {
   width: 46px;
@@ -106,6 +108,7 @@ section {
   cursor: pointer;
 }
 
+
 .menu-button span,
 .menu-button::before,
 .menu-button::after {
@@ -120,6 +123,7 @@ section {
 
   background: white;
 }
+
 
 .menu-button span {
   margin: 5px 0;
@@ -156,10 +160,12 @@ section {
     transform .35s ease;
 }
 
+
 .nav-panel.open {
   transform:
     translateY(0);
 }
+
 
 .nav-panel a {
   display: block;
@@ -176,8 +182,9 @@ section {
 
   border-bottom:
     1px solid
-    rgba(255,255,255,.12);
+    rgba(255, 255, 255, .12);
 }
+
 
 .nav-panel a:hover {
   color: var(--pink);
@@ -197,6 +204,7 @@ section {
     34px
     150px;
 }
+
 
 .home-intro-inner {
   width: 100%;
@@ -233,13 +241,16 @@ section {
   letter-spacing: -.045em;
 }
 
+
 .home-quote span {
   display: inline;
 }
 
+
 .home-quote .quote-highlight {
   color: var(--pink);
 }
+
 
 .home-quote footer {
   margin-top: 28px;
@@ -283,6 +294,7 @@ section {
   border-radius: 22px;
 }
 
+
 .home-band-photo img {
   width: 100%;
 
@@ -306,6 +318,7 @@ section {
     36px;
 }
 
+
 .section-title {
   margin-bottom: 34px;
 
@@ -325,6 +338,7 @@ section {
   text-transform: lowercase;
 }
 
+
 .pink {
   color: var(--pink);
 }
@@ -343,6 +357,7 @@ section {
     var(--charcoal);
 }
 
+
 .mailing-list-inner {
   max-width: 900px;
 
@@ -354,6 +369,7 @@ section {
 
   background: #050505;
 }
+
 
 .mailing-list-inner iframe {
   display: block;
@@ -368,8 +384,6 @@ section {
 
 /* ==================================================
    UPCOMING EVENTS
-
-   CLEAN REBUILD
 ================================================== */
 
 .upcoming-events {
@@ -383,6 +397,7 @@ section {
     120px;
 }
 
+
 .upcoming-events-inner {
   width: 100%;
 
@@ -392,23 +407,35 @@ section {
 }
 
 
-/*
-   Two-line heading inspired by the
-   existing Holy Youth Movement site.
-*/
+/* ==================================================
+   UPCOMING EVENTS HEADING
+
+   CLEAN SINGLE-SLICE EFFECT
+================================================== */
 
 .upcoming-events-title {
+  position: relative;
+
+  max-width: 760px;
+
   margin:
     0 auto
     64px;
 
   text-align: center;
 
-  color: #ffffff;
+  color: transparent;
+
+  font-family:
+    "Arial Black",
+    Impact,
+    Arial,
+    Helvetica,
+    sans-serif;
 
   font-size:
     clamp(
-      3.1rem,
+      3.4rem,
       13vw,
       7rem
     );
@@ -417,45 +444,132 @@ section {
 
   font-style: italic;
 
-  line-height: .83;
+  line-height: .82;
 
-  letter-spacing: -.065em;
+  letter-spacing: -.055em;
 
   text-transform: uppercase;
 }
 
+
+/*
+   Each word occupies its own line.
+*/
+
 .upcoming-events-title span {
+  position: relative;
+
   display: block;
+
+  min-height: .88em;
+
+  color: transparent;
 }
 
 
 /*
-   Approximate the slightly aggressive
-   angled display treatment of the
-   original site heading.
+   We draw each word twice.
+
+   The first copy creates the
+   upper portion of the letters.
+
+   The second copy creates the
+   lower portion.
 */
 
-.upcoming-events-title span:first-child {
-  transform: skewX(-5deg);
+.upcoming-events-title span::before,
+.upcoming-events-title span::after {
+  content: attr(data-text);
+
+  position: absolute;
+
+  top: 0;
+  left: 50%;
+
+  width: 100%;
+
+  color: #ffffff;
+
+  font: inherit;
+
+  letter-spacing: inherit;
+
+  text-align: center;
+
+  white-space: nowrap;
 }
 
-.upcoming-events-title span:last-child {
-  margin-top: 12px;
 
-  transform: skewX(-5deg);
+/*
+   UPPER HALF
+
+   A diagonal clipping line runs
+   through the word.
+
+   The top section moves very
+   slightly to the right.
+*/
+
+.upcoming-events-title span::before {
+  clip-path:
+    polygon(
+      0 0,
+      100% 0,
+      100% 47%,
+      0 59%
+    );
+
+  transform:
+    translateX(calc(-50% + 3px));
+}
+
+
+/*
+   LOWER HALF
+
+   Uses the opposite side of the
+   exact same diagonal cut.
+
+   It moves slightly left.
+
+   Together these create one clean
+   sliced-through effect rather
+   than a shattered effect.
+*/
+
+.upcoming-events-title span::after {
+  clip-path:
+    polygon(
+      0 59%,
+      100% 47%,
+      100% 100%,
+      0 100%
+    );
+
+  transform:
+    translateX(calc(-50% - 3px));
+}
+
+
+/*
+   Small gap between the two words.
+*/
+
+.upcoming-events-title span + span {
+  margin-top: 12px;
 }
 
 
 /* =========================
-   PINK / PURPLE EVENT BORDER
+   PURPLE EVENTS FRAME
 ========================= */
 
 /*
-   This is completely outside
-   Bandsintown.
+   Keep the purple frame exactly
+   around the Bandsintown area.
 
-   No widget parent containers
-   are being modified.
+   It remains independent of the
+   widget itself.
 */
 
 .upcoming-events-frame {
@@ -470,8 +584,7 @@ section {
     4px solid
     var(--pink);
 
-  background:
-    transparent;
+  background: transparent;
 }
 
 
@@ -490,6 +603,7 @@ section {
 
   background: transparent;
 }
+
 
 .bit-widget-initializer {
   display: block;
@@ -510,13 +624,6 @@ section {
 }
 
 
-/*
-   No decorative circle.
-   No heading separator.
-   No old .events rules.
-*/
-
-
 /* =========================
    BANDSINTOWN CREDIT
 ========================= */
@@ -531,9 +638,11 @@ section {
   text-align: center;
 }
 
+
 .bandsintown-credit.ready {
   display: block;
 }
+
 
 .bandsintown-credit-text {
   margin-bottom: 26px;
@@ -551,6 +660,7 @@ section {
   text-transform: uppercase;
 }
 
+
 .bandsintown-logo-copy {
   display: flex;
 
@@ -559,6 +669,7 @@ section {
 
   width: 100%;
 }
+
 
 .bandsintown-logo-copy > * {
   margin-left: auto !important;
@@ -580,6 +691,7 @@ section {
   background: var(--charcoal);
 }
 
+
 .merch-image {
   min-height: 68svh;
 
@@ -596,12 +708,14 @@ section {
     no-repeat;
 }
 
+
 .merch-copy {
   padding:
     34px
     4px
     58px;
 }
+
 
 .merch-copy h2 {
   font-size:
@@ -620,6 +734,7 @@ section {
   text-transform: lowercase;
 }
 
+
 .merch-copy p {
   margin-top: 24px;
 
@@ -631,6 +746,7 @@ section {
 
   line-height: 1.65;
 }
+
 
 .outline-button {
   display: inline-flex;
@@ -658,9 +774,11 @@ section {
   transition: .2s ease;
 }
 
+
 .merch-copy .outline-button {
   color: white;
 }
+
 
 .outline-button:hover {
   background: var(--pink);
@@ -680,11 +798,13 @@ section {
     var(--charcoal-dark);
 }
 
+
 .spotify-wrap {
   max-width: 900px;
 
   margin: auto;
 }
+
 
 .spotify-wrap iframe {
   width: 100%;
@@ -709,6 +829,7 @@ section {
     var(--white);
 }
 
+
 .contact-grid {
   display: grid;
 
@@ -718,6 +839,7 @@ section {
 
   margin: auto;
 }
+
 
 .contact-copy h2 {
   font-size:
@@ -736,6 +858,7 @@ section {
   text-transform: lowercase;
 }
 
+
 .contact-copy p {
   margin-top: 26px;
 
@@ -746,11 +869,13 @@ section {
   line-height: 1.7;
 }
 
+
 form {
   display: grid;
 
   gap: 24px;
 }
+
 
 label {
   display: grid;
@@ -767,6 +892,7 @@ label {
 
   text-transform: uppercase;
 }
+
 
 input,
 textarea {
@@ -789,17 +915,20 @@ textarea {
   outline: none;
 }
 
+
 input:focus,
 textarea:focus {
   border-bottom-color:
     var(--pink);
 }
 
+
 textarea {
   min-height: 140px;
 
   resize: vertical;
 }
+
 
 .send-button {
   justify-self: start;
@@ -929,6 +1058,11 @@ textarea {
 
   .upcoming-events-title {
     margin-bottom: 80px;
+  }
+
+
+  .upcoming-events-title span + span {
+    margin-top: 16px;
   }
 
 
