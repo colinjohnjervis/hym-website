@@ -25,7 +25,9 @@
 
 <body>
 
-  <!-- HEADER -->
+  <!-- =========================
+       HEADER
+  ========================== -->
 
   <header class="site-header">
 
@@ -44,6 +46,8 @@
       class="menu-button"
       id="menuButton"
       aria-label="Open menu"
+      aria-controls="navPanel"
+      aria-expanded="false"
     >
       <span></span>
     </button>
@@ -51,17 +55,34 @@
   </header>
 
 
-  <!-- NAVIGATION -->
+  <!-- =========================
+       NAVIGATION
+  ========================== -->
 
   <nav
     class="nav-panel"
     id="navPanel"
   >
 
-    <a href="#events">Live</a>
-    <a href="#merch">Merch</a>
-    <a href="#listen">Listen</a>
-    <a href="#contact">Contact</a>
+    <a href="#mailing-list">
+      Mailing List
+    </a>
+
+    <a href="#events">
+      Live
+    </a>
+
+    <a href="#merch">
+      Merch
+    </a>
+
+    <a href="#listen">
+      Listen
+    </a>
+
+    <a href="#contact">
+      Contact
+    </a>
 
   </nav>
 
@@ -69,7 +90,9 @@
   <main id="top">
 
 
-    <!-- HERO -->
+    <!-- =========================
+         HERO
+    ========================== -->
 
     <section class="hero">
 
@@ -96,14 +119,17 @@
     </section>
 
 
-    <!-- QUOTE -->
+    <!-- =========================
+         GIGSLUTZ QUOTE
+    ========================== -->
 
     <section class="quote-section">
 
       <blockquote>
 
-        “From the ashes rise Holy Youth Movement and they’re more ambitious,
-        anthemic and electrifying than ever.”
+        “From the ashes rise Holy Youth Movement
+        and they’re more ambitious, anthemic and
+        electrifying than ever.”
 
         <footer>
           — GigSlutz.co.uk
@@ -114,7 +140,35 @@
     </section>
 
 
-    <!-- LIVE -->
+    <!-- =========================
+         MAILING LIST
+    ========================== -->
+
+    <section
+      class="mailing-list-section"
+      id="mailing-list"
+    >
+
+      <div class="mailing-list-inner">
+
+        <iframe
+          src="https://bandsintown.com/artist/15542629/email_signup_form?headerTextColor=rgba(255,255,255,1)&backgroundColor=rgba(5,5,5,1)&ctaBackgroundColor=rgba(255,41,236,1)&title=MAILING%20LIST&headerTextStyle=normal&headerText=Sign%20up%20to%20get%20the%20latest%20updates&font=Helvetica&ctaIcon=show&ctaBorderRadius=4px&ctaBorderWidth=2px&ctaBorderColor=rgba(255,41,236,1)&ctaFontColor=rgba(5,5,5,1)&alignment=center&emailInputField=show&ctaLabel=Subscribe&layout=wide&locale=en"
+          width="100%"
+          height="220"
+          title="Holy Youth Movement mailing list"
+          loading="lazy"
+          frameborder="0"
+          scrolling="no"
+        ></iframe>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         LIVE
+    ========================== -->
 
     <section
       class="section events"
@@ -137,7 +191,9 @@
         </p>
 
 
-        <!-- BANDSINTOWN WIDGET -->
+        <!-- =========================
+             BANDSINTOWN LIVE WIDGET
+        ========================== -->
 
         <div
           class="bit-widget-shell"
@@ -194,7 +250,10 @@
         </div>
 
 
-        <!-- EXTERNAL BANDSINTOWN CREDIT -->
+        <!-- =========================
+             EXTERNAL BANDSINTOWN
+             CREDIT
+        ========================== -->
 
         <div
           class="bandsintown-credit"
@@ -217,7 +276,9 @@
     </section>
 
 
-    <!-- MERCH -->
+    <!-- =========================
+         MERCH
+    ========================== -->
 
     <section
       class="merch"
@@ -253,7 +314,9 @@
     </section>
 
 
-    <!-- LISTEN -->
+    <!-- =========================
+         LISTEN
+    ========================== -->
 
     <section
       class="section listen"
@@ -278,7 +341,9 @@
     </section>
 
 
-    <!-- CONTACT -->
+    <!-- =========================
+         CONTACT
+    ========================== -->
 
     <section
       class="section contact"
@@ -306,22 +371,27 @@
 
           <label>
             Name
+
             <input
               type="text"
               name="name"
+              autocomplete="name"
             >
           </label>
 
           <label>
             Email Address
+
             <input
               type="email"
               name="email"
+              autocomplete="email"
             >
           </label>
 
           <label>
             Message
+
             <textarea
               name="message"
             ></textarea>
@@ -343,7 +413,9 @@
   </main>
 
 
-  <!-- FOOTER -->
+  <!-- =========================
+       FOOTER
+  ========================== -->
 
   <footer class="site-footer">
 
@@ -359,7 +431,9 @@
   </footer>
 
 
-  <!-- EXTERNAL JAVASCRIPT -->
+  <!-- =========================
+       EXTERNAL JAVASCRIPT
+  ========================== -->
 
   <script src="script.js"></script>
   <script src="bandsintown.js"></script>
