@@ -394,6 +394,23 @@ blockquote footer {
 }
 
 
+/* =========================
+   REMOVE EXTRA FIRST
+   EVENT SEPARATOR
+========================= */
+
+/*
+   Keep our own horizontal line above
+   the widget, but remove Bandsintown's
+   additional separator immediately
+   before the first event.
+*/
+
+#bandsintownWidget .bit-event:first-of-type {
+  border-top: 0 !important;
+}
+
+
 /*
    EXTERNAL BANDSINTOWN CREDIT
 
