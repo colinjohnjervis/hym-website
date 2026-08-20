@@ -4,6 +4,7 @@
   --charcoal-dark: #17191b;
   --white: #ffffff;
   --pink: #ff29ec;
+  --purple: #8f45ff;
   --soft: #b8b8b8;
   --soft-light: #d5d5d5;
   --line: rgba(255, 255, 255, .16);
@@ -223,13 +224,6 @@ section {
   color:
     var(--white);
 
-  /*
-    Reduced from 98px at the top.
-
-    This pulls the quote closer
-    to the black header.
-  */
-
   padding:
     58px
     34px
@@ -253,13 +247,6 @@ section {
 
 .home-quote {
   max-width: 650px;
-
-  /*
-    58px below the quote.
-
-    This now closely matches the
-    58px space above the quote.
-  */
 
   margin:
     0 auto
@@ -458,58 +445,35 @@ section {
 
 
 /* =========================
-   LIVE / BANDSINTOWN
+   UPCOMING EVENTS
 ========================= */
 
 .events {
-  position:
-    relative;
+  position: relative;
+
+  padding:
+    92px
+    34px
+    110px;
+
+  background:
+    var(--charcoal);
+
+  color:
+    var(--white);
 
   overflow:
     hidden;
-
-  background:
-    var(--charcoal-dark);
-
-  color:
-    #ffffff;
-}
-
-
-.events::before {
-  content:
-    "";
-
-  position:
-    absolute;
-
-  width:
-    460px;
-
-  height:
-    460px;
-
-  right:
-    -285px;
-
-  top:
-    -180px;
-
-  border:
-    1px solid
-    rgba(255,41,236,.28);
-
-  border-radius:
-    50%;
 }
 
 
 .events-inner {
-  position:
-    relative;
+  position: relative;
 
-  z-index:
-    2;
+  z-index: 2;
+
+  width:
+    100%;
 
   max-width:
     1050px;
@@ -519,66 +483,95 @@ section {
 }
 
 
-.events-eyebrow {
-  margin-bottom:
-    18px;
+/*
+   Matches the simple,
+   bold heading treatment
+   from the live HYM site.
+*/
+
+.events-title {
+  margin:
+    0
+    0
+    52px;
 
   color:
-    var(--pink);
+    #ffffff;
 
   font-size:
-    .82rem;
+    clamp(
+      3rem,
+      11vw,
+      6rem
+    );
 
   font-weight:
     900;
 
+  line-height:
+    .94;
+
   letter-spacing:
-    .24em;
+    -.045em;
+
+  text-align:
+    center;
 
   text-transform:
     uppercase;
 }
 
 
-.events
-.section-title {
-  color:
-    var(--white);
+/* =========================
+   PURPLE EVENTS FRAME
+========================= */
+
+/*
+   The frame sits OUTSIDE the
+   Bandsintown widget.
+
+   This means we can style it
+   without interfering with the
+   widget or its event rows.
+*/
+
+.events-frame {
+  width:
+    100%;
+
+  padding:
+    24px
+    20px
+    30px;
+
+  border:
+    2px solid
+    var(--purple);
+
+  border-radius:
+    0;
+
+  background:
+    var(--charcoal-dark);
 }
 
 
-.events
-.section-title span {
-  color:
-    var(--pink);
-}
-
-
-.events-copy {
-  max-width:
-    650px;
-
-  color:
-    #c8c8c8;
-
-  font-size:
-    1.12rem;
-
-  line-height:
-    1.7;
-}
-
+/* =========================
+   BANDSINTOWN WIDGET
+========================= */
 
 .bit-widget-shell {
-  margin-top:
-    54px;
+  width:
+    100%;
 
-  padding-top:
-    34px;
+  margin:
+    0;
 
-  border-top:
-    1px solid
-    rgba(255,255,255,.16);
+  padding:
+    0;
+
+  border:
+    0;
 }
 
 
@@ -594,6 +587,8 @@ section {
 }
 
 
+/* Hide Play My City */
+
 .bit-play-my-city-wrapper,
 .bit-play-my-city,
 [class*="play-my-city"],
@@ -602,6 +597,11 @@ section {
     none !important;
 }
 
+
+/*
+   Preserve the existing
+   first-event separator fix.
+*/
 
 #bandsintownWidget
 .bit-event:first-of-type {
@@ -622,7 +622,7 @@ section {
     100%;
 
   margin-top:
-    48px;
+    42px;
 
   text-align:
     center;
@@ -1104,11 +1104,6 @@ textarea {
   }
 
 
-  /*
-    Same balancing principle on desktop:
-    reduce the space above the quote.
-  */
-
   .home-intro {
     padding:
       70px
@@ -1116,12 +1111,6 @@ textarea {
       180px;
   }
 
-
-  /*
-    Keep the space below the quote
-    approximately in balance with
-    the 70px above it.
-  */
 
   .home-quote {
     max-width:
@@ -1152,6 +1141,28 @@ textarea {
     padding:
       90px
       56px;
+  }
+
+
+  .events {
+    padding:
+      120px
+      56px
+      140px;
+  }
+
+
+  .events-title {
+    margin-bottom:
+      64px;
+  }
+
+
+  .events-frame {
+    padding:
+      34px
+      34px
+      40px;
   }
 
 
