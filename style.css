@@ -1,6 +1,6 @@
 :root {
   --black: #050505;
-  --charcoal: #25292c;
+  --charcoal: #24282b;
   --charcoal-dark: #17191b;
   --white: #ffffff;
   --pink: #ff29ec;
@@ -65,6 +65,7 @@ section {
 
 .site-header {
   position: sticky;
+
   top: 0;
 
   z-index: 100;
@@ -75,27 +76,21 @@ section {
   align-items: center;
   justify-content: space-between;
 
-  padding: 0 34px;
+  padding:
+    0
+    34px;
 
-  background: #050505;
+  background:
+    #050505;
 
   border-bottom:
     1px solid
-    rgba(255, 255, 255, .06);
+    rgba(255,255,255,.05);
 }
 
 
-/*
-   The source logo is pink.
-
-   On the homepage reference the
-   navigation logo is white, so we
-   convert the existing genuine HYM
-   image to white with CSS.
-*/
-
 .nav-logo {
-  width: 120px;
+  width: 122px;
 
   filter:
     grayscale(1)
@@ -110,9 +105,11 @@ section {
 
   border: 0;
 
-  background: transparent;
+  background:
+    transparent;
 
   display: grid;
+
   place-items: center;
 
   cursor: pointer;
@@ -131,12 +128,15 @@ section {
 
   border-radius: 3px;
 
-  background: white;
+  background:
+    white;
 }
 
 
 .menu-button span {
-  margin: 5px 0;
+  margin:
+    5px
+    0;
 }
 
 
@@ -153,18 +153,25 @@ section {
   left: 0;
   right: 0;
 
-  padding: 28px 34px 38px;
+  padding:
+    28px
+    34px
+    38px;
 
-  background: #050505;
+  background:
+    #050505;
 
   border-bottom:
-    1px solid var(--line);
+    1px solid
+    var(--line);
 
   transform:
     translateY(-140%);
 
   transition:
-    transform .35s ease;
+    transform
+    .35s
+    ease;
 }
 
 
@@ -177,45 +184,55 @@ section {
 .nav-panel a {
   display: block;
 
-  padding: 15px 0;
+  padding:
+    15px
+    0;
 
-  font-size: 1.2rem;
-  font-weight: 800;
+  font-size:
+    1.2rem;
 
-  letter-spacing: .04em;
+  font-weight:
+    800;
 
-  text-transform: uppercase;
+  letter-spacing:
+    .04em;
+
+  text-transform:
+    uppercase;
 
   border-bottom:
     1px solid
-    rgba(255, 255, 255, .12);
+    rgba(255,255,255,.12);
 }
 
 
 .nav-panel a:hover {
-  color: var(--pink);
+  color:
+    var(--pink);
 }
 
 
-/* ==================================================
+/* =========================
    HOMEPAGE INTRO
-
-   THIS IS THE MAIN CHANGE
-================================================== */
+========================= */
 
 .home-intro {
-  background: var(--charcoal);
+  background:
+    var(--charcoal);
 
-  color: var(--white);
+  color:
+    var(--white);
 
   padding:
-    76px
+    98px
     34px
     150px;
 }
 
 
 .home-intro-inner {
+  width: 100%;
+
   max-width: 980px;
 
   margin:
@@ -228,100 +245,117 @@ section {
 ========================= */
 
 .home-quote {
-  max-width: 760px;
+  max-width: 650px;
 
   margin:
     0 auto
-    72px;
+    82px;
 
-  text-align: center;
+  text-align:
+    center;
 
   font-size:
     clamp(
-      2.25rem,
-      7.5vw,
-      4.7rem
+      2.3rem,
+      7.6vw,
+      4.6rem
     );
 
-  font-weight: 800;
+  font-weight:
+    800;
 
-  line-height: 1.02;
+  line-height:
+    1.03;
 
-  letter-spacing: -.04em;
+  letter-spacing:
+    -.045em;
 }
 
 
 .home-quote span {
-  display: inline;
+  display:
+    inline;
 }
 
 
-.home-quote .quote-highlight {
-  color: var(--pink);
+.home-quote
+.quote-highlight {
+  color:
+    var(--pink);
 }
 
 
 .home-quote footer {
-  margin-top: 28px;
+  margin-top:
+    28px;
 
   color:
     rgba(
       255,
       255,
       255,
-      .55
+      .48
     );
 
   font-size:
     clamp(
       1rem,
-      3.6vw,
-      1.45rem
+      3.8vw,
+      1.4rem
     );
 
-  font-weight: 300;
+  font-weight:
+    300;
 
-  letter-spacing: .01em;
+  line-height:
+    1.2;
 
-  text-transform: none;
+  letter-spacing:
+    0;
+
+  text-transform:
+    none;
 }
 
 
 /* =========================
-   HOMEPAGE BAND PHOTO
+   HOMEPAGE PHOTO
 ========================= */
 
 .home-band-photo {
   width: 100%;
 
-  max-width: 900px;
-
   margin:
     0 auto;
 
-  overflow: hidden;
+  overflow:
+    hidden;
 
-  border-radius: 22px;
+  border-radius:
+    22px;
 }
 
 
 .home-band-photo img {
-  display: block;
+  width:
+    100%;
 
-  width: 100%;
+  aspect-ratio:
+    1.68 / 1;
 
-  aspect-ratio: 1.72 / 1;
+  object-fit:
+    cover;
 
-  object-fit: cover;
+  object-position:
+    center;
 
-  object-position: center;
-
-  border-radius: inherit;
+  border-radius:
+    inherit;
 }
 
 
 /* =========================
-   GENERAL SECTION STYLING
+   GENERAL SECTIONS
 ========================= */
 
 .section {
@@ -332,7 +366,8 @@ section {
 
 
 .section-title {
-  margin-bottom: 34px;
+  margin-bottom:
+    34px;
 
   font-size:
     clamp(
@@ -341,18 +376,23 @@ section {
       7rem
     );
 
-  line-height: .86;
+  line-height:
+    .86;
 
-  font-weight: 900;
+  font-weight:
+    900;
 
-  letter-spacing: -.065em;
+  letter-spacing:
+    -.065em;
 
-  text-transform: lowercase;
+  text-transform:
+    lowercase;
 }
 
 
 .pink {
-  color: var(--pink);
+  color:
+    var(--pink);
 }
 
 
@@ -361,8 +401,6 @@ section {
 ========================= */
 
 .mailing-list-section {
-  position: relative;
-
   padding:
     72px
     22px;
@@ -373,26 +411,35 @@ section {
 
 
 .mailing-list-inner {
-  max-width: 900px;
+  max-width:
+    900px;
 
-  margin: 0 auto;
+  margin:
+    0 auto;
 
-  overflow: hidden;
+  overflow:
+    hidden;
 
-  border-radius: 18px;
+  border-radius:
+    18px;
 
-  background: #050505;
+  background:
+    #050505;
 }
 
 
 .mailing-list-inner iframe {
-  display: block;
+  display:
+    block;
 
-  width: 100%;
+  width:
+    100%;
 
-  border: 0;
+  border:
+    0;
 
-  background: #050505;
+  background:
+    #050505;
 }
 
 
@@ -401,120 +448,144 @@ section {
 ========================= */
 
 .events {
-  position: relative;
+  position:
+    relative;
 
-  overflow: hidden;
+  overflow:
+    hidden;
 
   background:
     var(--charcoal-dark);
 
-  color: #ffffff;
+  color:
+    #ffffff;
 }
 
 
 .events::before {
-  content: "";
+  content:
+    "";
 
-  position: absolute;
+  position:
+    absolute;
 
-  width: 460px;
-  height: 460px;
+  width:
+    460px;
 
-  right: -285px;
-  top: -180px;
+  height:
+    460px;
+
+  right:
+    -285px;
+
+  top:
+    -180px;
 
   border:
     1px solid
-    rgba(
-      255,
-      41,
-      236,
-      .28
-    );
+    rgba(255,41,236,.28);
 
-  border-radius: 50%;
+  border-radius:
+    50%;
 }
 
 
 .events-inner {
-  position: relative;
+  position:
+    relative;
 
-  z-index: 2;
+  z-index:
+    2;
 
-  max-width: 1050px;
+  max-width:
+    1050px;
 
-  margin: 0 auto;
+  margin:
+    0 auto;
 }
 
 
 .events-eyebrow {
-  margin-bottom: 18px;
+  margin-bottom:
+    18px;
 
-  color: var(--pink);
+  color:
+    var(--pink);
 
-  font-size: .82rem;
+  font-size:
+    .82rem;
 
-  font-weight: 900;
+  font-weight:
+    900;
 
-  letter-spacing: .24em;
+  letter-spacing:
+    .24em;
 
-  text-transform: uppercase;
+  text-transform:
+    uppercase;
 }
 
 
-.events .section-title {
-  color: var(--white);
+.events
+.section-title {
+  color:
+    var(--white);
 }
 
 
-.events .section-title span {
-  color: var(--pink);
+.events
+.section-title span {
+  color:
+    var(--pink);
 }
 
 
 .events-copy {
-  max-width: 650px;
+  max-width:
+    650px;
 
-  color: #c8c8c8;
+  color:
+    #c8c8c8;
 
-  font-size: 1.12rem;
+  font-size:
+    1.12rem;
 
-  line-height: 1.7;
+  line-height:
+    1.7;
 }
 
 
 .bit-widget-shell {
-  margin-top: 54px;
+  margin-top:
+    54px;
 
-  padding-top: 34px;
+  padding-top:
+    34px;
 
   border-top:
     1px solid
-    rgba(
-      255,
-      255,
-      255,
-      .16
-    );
+    rgba(255,255,255,.16);
 }
 
 
 .bit-widget-initializer {
-  display: block;
+  display:
+    block;
 
-  width: 100%;
+  width:
+    100%;
 
-  min-height: 80px;
+  min-height:
+    80px;
 }
 
-
-/* Hide Play My City */
 
 .bit-play-my-city-wrapper,
 .bit-play-my-city,
 [class*="play-my-city"],
 [class*="playMyCity"] {
-  display: none !important;
+  display:
+    none !important;
 }
 
 
@@ -530,45 +601,62 @@ section {
 ========================= */
 
 .bandsintown-credit {
-  display: none;
+  display:
+    none;
 
-  width: 100%;
+  width:
+    100%;
 
-  margin-top: 48px;
+  margin-top:
+    48px;
 
-  text-align: center;
+  text-align:
+    center;
 }
 
 
 .bandsintown-credit.ready {
-  display: block;
+  display:
+    block;
 }
 
 
 .bandsintown-credit-text {
-  margin-bottom: 26px;
+  margin-bottom:
+    26px;
 
-  color: #929292;
+  color:
+    #929292;
 
-  font-size: .7rem;
+  font-size:
+    .7rem;
 
-  font-weight: 800;
+  font-weight:
+    800;
 
-  letter-spacing: .17em;
+  letter-spacing:
+    .17em;
 
-  line-height: 1.3;
+  line-height:
+    1.3;
 
-  text-transform: uppercase;
+  text-transform:
+    uppercase;
 }
 
 
 .bandsintown-logo-copy {
-  display: flex;
+  display:
+    flex;
 
-  justify-content: center;
-  align-items: center;
+  justify-content:
+    center;
 
-  width: 100%;
+  align-items:
+    center;
+
+  width:
+    100%;
 }
 
 
@@ -586,11 +674,14 @@ section {
 ========================= */
 
 .merch {
-  padding: 34px;
+  padding:
+    34px;
 
-  display: grid;
+  display:
+    grid;
 
-  gap: 34px;
+  gap:
+    34px;
 
   background:
     var(--charcoal);
@@ -598,11 +689,14 @@ section {
 
 
 .merch-image {
-  min-height: 68svh;
+  min-height:
+    68svh;
 
-  overflow: hidden;
+  overflow:
+    hidden;
 
-  border-radius: 22px;
+  border-radius:
+    22px;
 
   background:
     url(
@@ -630,34 +724,44 @@ section {
       8rem
     );
 
-  line-height: .82;
+  line-height:
+    .82;
 
-  font-weight: 900;
+  font-weight:
+    900;
 
-  letter-spacing: -.065em;
+  letter-spacing:
+    -.065em;
 
-  text-transform: lowercase;
+  text-transform:
+    lowercase;
 }
 
 
 .merch-copy p {
-  margin-top: 24px;
+  margin-top:
+    24px;
 
-  max-width: 460px;
+  max-width:
+    460px;
 
   color:
     var(--soft-light);
 
-  font-size: 1.05rem;
+  font-size:
+    1.05rem;
 
-  line-height: 1.65;
+  line-height:
+    1.65;
 }
 
 
 .outline-button {
-  display: inline-flex;
+  display:
+    inline-flex;
 
-  margin-top: 34px;
+  margin-top:
+    34px;
 
   padding:
     15px
@@ -667,15 +771,20 @@ section {
     2px solid
     var(--white);
 
-  border-radius: 6px;
+  border-radius:
+    6px;
 
-  font-size: .8rem;
+  font-size:
+    .8rem;
 
-  font-weight: 900;
+  font-weight:
+    900;
 
-  letter-spacing: .1em;
+  letter-spacing:
+    .1em;
 
-  text-transform: uppercase;
+  text-transform:
+    uppercase;
 
   transition:
     .2s ease;
@@ -684,7 +793,8 @@ section {
 
 .merch-copy
 .outline-button {
-  color: white;
+  color:
+    white;
 }
 
 
@@ -695,7 +805,8 @@ section {
   border-color:
     var(--pink);
 
-  color: #050505;
+  color:
+    #050505;
 }
 
 
@@ -710,20 +821,26 @@ section {
 
 
 .spotify-wrap {
-  max-width: 900px;
+  max-width:
+    900px;
 
-  margin: auto;
+  margin:
+    auto;
 }
 
 
 .spotify-wrap iframe {
-  width: 100%;
+  width:
+    100%;
 
-  min-height: 500px;
+  min-height:
+    500px;
 
-  border: 0;
+  border:
+    0;
 
-  border-radius: 18px;
+  border-radius:
+    18px;
 }
 
 
@@ -741,13 +858,17 @@ section {
 
 
 .contact-grid {
-  display: grid;
+  display:
+    grid;
 
-  gap: 54px;
+  gap:
+    54px;
 
-  max-width: 1100px;
+  max-width:
+    1100px;
 
-  margin: auto;
+  margin:
+    auto;
 }
 
 
@@ -759,76 +880,95 @@ section {
       7rem
     );
 
-  line-height: .84;
+  line-height:
+    .84;
 
-  font-weight: 900;
+  font-weight:
+    900;
 
-  letter-spacing: -.06em;
+  letter-spacing:
+    -.06em;
 
-  text-transform: lowercase;
+  text-transform:
+    lowercase;
 }
 
 
 .contact-copy p {
-  margin-top: 26px;
+  margin-top:
+    26px;
 
-  max-width: 450px;
+  max-width:
+    450px;
 
   color:
     var(--soft-light);
 
-  line-height: 1.7;
+  line-height:
+    1.7;
 }
 
 
 form {
-  display: grid;
+  display:
+    grid;
 
-  gap: 24px;
+  gap:
+    24px;
 }
 
 
 label {
-  display: grid;
+  display:
+    grid;
 
-  gap: 10px;
+  gap:
+    10px;
 
-  color: var(--pink);
+  color:
+    var(--pink);
 
-  font-size: .75rem;
+  font-size:
+    .75rem;
 
-  font-weight: 900;
+  font-weight:
+    900;
 
-  letter-spacing: .12em;
+  letter-spacing:
+    .12em;
 
-  text-transform: uppercase;
+  text-transform:
+    uppercase;
 }
 
 
 input,
 textarea {
-  width: 100%;
+  width:
+    100%;
 
-  padding: 16px 0;
+  padding:
+    16px
+    0;
 
-  border: 0;
+  border:
+    0;
 
   border-bottom:
     2px solid
-    rgba(
-      255,
-      255,
-      255,
-      .55
-    );
+    rgba(255,255,255,.55);
 
-  border-radius: 0;
+  border-radius:
+    0;
 
-  background: transparent;
+  background:
+    transparent;
 
-  color: var(--white);
+  color:
+    var(--white);
 
-  outline: none;
+  outline:
+    none;
 }
 
 
@@ -840,37 +980,46 @@ textarea:focus {
 
 
 textarea {
-  min-height: 140px;
+  min-height:
+    140px;
 
-  resize: vertical;
+  resize:
+    vertical;
 }
 
 
 .send-button {
-  justify-self: start;
+  justify-self:
+    start;
 
   border:
     2px solid
     var(--pink);
 
-  border-radius: 6px;
+  border-radius:
+    6px;
 
   background:
     var(--pink);
 
-  color: #050505;
+  color:
+    #050505;
 
   padding:
     15px
     26px;
 
-  text-transform: uppercase;
+  text-transform:
+    uppercase;
 
-  letter-spacing: .1em;
+  letter-spacing:
+    .1em;
 
-  font-weight: 900;
+  font-weight:
+    900;
 
-  cursor: pointer;
+  cursor:
+    pointer;
 }
 
 
@@ -883,26 +1032,27 @@ textarea {
     38px
     34px;
 
-  display: flex;
+  display:
+    flex;
 
-  flex-direction: column;
+  flex-direction:
+    column;
 
-  gap: 10px;
+  gap:
+    10px;
 
-  background: #050505;
+  background:
+    #050505;
 
-  color: #929292;
+  color:
+    #929292;
 
-  font-size: .76rem;
+  font-size:
+    .76rem;
 
   border-top:
     1px solid
-    rgba(
-      255,
-      255,
-      255,
-      .08
-    );
+    rgba(255,255,255,.08);
 }
 
 
@@ -914,7 +1064,8 @@ textarea {
 (min-width: 800px) {
 
   .site-header {
-    height: 126px;
+    height:
+      126px;
 
     padding:
       0
@@ -923,34 +1074,46 @@ textarea {
 
 
   .nav-panel {
-    top: 126px;
+    top:
+      126px;
 
-    padding-left: 56px;
+    padding-left:
+      56px;
 
-    padding-right: 56px;
+    padding-right:
+      56px;
   }
 
 
   .nav-logo {
-    width: 150px;
+    width:
+      150px;
   }
 
 
   .home-intro {
     padding:
-      110px
+      120px
       56px
       180px;
   }
 
 
   .home-quote {
-    margin-bottom: 90px;
+    max-width:
+      760px;
+
+    margin-bottom:
+      95px;
   }
 
 
   .home-band-photo {
-    border-radius: 28px;
+    max-width:
+      900px;
+
+    border-radius:
+      28px;
   }
 
 
@@ -973,25 +1136,32 @@ textarea {
       1.05fr
       .95fr;
 
-    min-height: 90svh;
+    min-height:
+      90svh;
 
-    padding: 56px;
+    padding:
+      56px;
 
-    gap: 56px;
+    gap:
+      56px;
   }
 
 
   .merch-image {
-    min-height: 78svh;
+    min-height:
+      78svh;
   }
 
 
   .merch-copy {
-    display: flex;
+    display:
+      flex;
 
-    flex-direction: column;
+    flex-direction:
+      column;
 
-    justify-content: center;
+    justify-content:
+      center;
 
     padding:
       70px
@@ -1004,12 +1174,14 @@ textarea {
       .9fr
       1.1fr;
 
-    align-items: start;
+    align-items:
+      start;
   }
 
 
   .site-footer {
-    flex-direction: row;
+    flex-direction:
+      row;
 
     justify-content:
       space-between;
