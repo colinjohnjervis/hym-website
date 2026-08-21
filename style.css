@@ -196,17 +196,17 @@ section {
   color: var(--white);
 
   /*
-     Reduced bottom padding.
+     IMPORTANT:
+     No large bottom padding here.
 
-     This is the main change that closes
-     the large grey gap between the band
-     photo and Upcoming Events.
+     The Upcoming Events section itself
+     now controls the gap below the photo.
   */
 
   padding:
     58px
     34px
-    58px;
+    0;
 }
 
 .home-intro-inner {
@@ -439,11 +439,16 @@ section {
   color: var(--white);
 
   /*
-     Reduced top and bottom spacing.
+     44px = gap between bottom of photo
+     and beginning of heading.
+
+     There is no longer additional
+     bottom padding on .home-intro
+     adding to this.
   */
 
   padding:
-    52px
+    44px
     34px
     70px;
 }
@@ -462,8 +467,14 @@ section {
   max-width: 820px;
 
   /*
-     Reduced gap between heading
-     and purple events frame.
+     Matches the 44px space above
+     the heading.
+
+     PHOTO
+       ↓ 44px
+     UPCOMING EVENTS
+       ↓ 44px
+     PURPLE FRAME
   */
 
   margin-bottom: 44px;
@@ -588,8 +599,7 @@ section {
 .merch {
   padding:
     70px
-    34px
-    70px;
+    34px;
 
   display: block;
 
@@ -599,7 +609,7 @@ section {
 .merch-heading-wrap {
   width: 100%;
 
-  margin-bottom: 46px;
+  margin-bottom: 44px;
 }
 
 .merch-title {
@@ -689,8 +699,7 @@ section {
 .mailing-list-section {
   padding:
     70px
-    34px
-    70px;
+    34px;
 
   background: var(--charcoal);
 }
@@ -702,9 +711,6 @@ section {
 
   margin: 0 auto;
 }
-
-
-/* MAILING LIST HEADING */
 
 .mailing-list-title {
   max-width: 850px;
@@ -718,9 +724,6 @@ section {
       7rem
     );
 }
-
-
-/* SUPPORTING TEXT */
 
 .mailing-list-copy {
   max-width: 620px;
@@ -737,9 +740,6 @@ section {
 
   text-align: center;
 }
-
-
-/* MAILING LIST BORDER */
 
 .mailing-list-frame {
   width: 100%;
@@ -792,7 +792,7 @@ section {
 .listen-title {
   max-width: 620px;
 
-  margin-bottom: 50px;
+  margin-bottom: 44px;
 
   font-size:
     clamp(
@@ -989,14 +989,12 @@ textarea {
       56px;
   }
 
-
   .nav-panel {
     top: 126px;
 
     padding-left: 56px;
     padding-right: 56px;
   }
-
 
   .nav-logo {
     width: 150px;
@@ -1009,9 +1007,8 @@ textarea {
     padding:
       70px
       56px
-      72px;
+      0;
   }
-
 
   .home-quote {
     max-width: 760px;
@@ -1019,13 +1016,14 @@ textarea {
     margin-bottom: 70px;
   }
 
-
   .home-band-photo {
     max-width: 900px;
 
     border-radius: 28px;
   }
 
+
+  /* GENERAL */
 
   .section {
     padding:
@@ -1038,14 +1036,18 @@ textarea {
 
   .upcoming-events {
     padding:
-      70px
+      64px
       56px
       90px;
   }
 
-
   .upcoming-events-title {
-    margin-bottom: 56px;
+    /*
+       Same spacing above and below
+       the heading on desktop.
+    */
+
+    margin-bottom: 64px;
 
     font-size:
       clamp(
@@ -1055,11 +1057,9 @@ textarea {
       );
   }
 
-
   .upcoming-events-title span + span {
     margin-top: 10px;
   }
-
 
   .upcoming-events-frame {
     padding:
@@ -1079,11 +1079,9 @@ textarea {
       56px;
   }
 
-
   .merch-heading-wrap {
     margin-bottom: 58px;
   }
-
 
   .merch-title {
     font-size:
@@ -1094,7 +1092,6 @@ textarea {
       );
   }
 
-
   .merch-image {
     max-width: 1000px;
 
@@ -1102,7 +1099,6 @@ textarea {
 
     margin: 0 auto;
   }
-
 
   .merch-copy {
     max-width: 1000px;
@@ -1121,7 +1117,6 @@ textarea {
       56px;
   }
 
-
   .mailing-list-title {
     margin-bottom: 32px;
 
@@ -1133,17 +1128,14 @@ textarea {
       );
   }
 
-
   .mailing-list-copy {
     margin-bottom: 40px;
 
     font-size: 1.08rem;
   }
 
-
   .mailing-list-frame {
-    padding:
-      24px;
+    padding: 24px;
 
     border-width: 4px;
   }
@@ -1157,7 +1149,6 @@ textarea {
       56px
       100px;
   }
-
 
   .listen-title {
     margin-bottom: 60px;
@@ -1182,11 +1173,12 @@ textarea {
   }
 
 
+  /* FOOTER */
+
   .site-footer {
     flex-direction: row;
 
-    justify-content:
-      space-between;
+    justify-content: space-between;
 
     padding:
       38px
