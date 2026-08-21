@@ -12,6 +12,10 @@
   --soft: #b8b8b8;
   --soft-light: #d5d5d5;
   --line: rgba(255, 255, 255, .16);
+
+  /* Shared spacing system */
+  --section-gap: 44px;
+  --section-side: 34px;
 }
 
 
@@ -195,14 +199,6 @@ section {
   background: var(--charcoal);
   color: var(--white);
 
-  /*
-     IMPORTANT:
-     No large bottom padding here.
-
-     The Upcoming Events section itself
-     now controls the gap below the photo.
-  */
-
   padding:
     58px
     34px
@@ -313,8 +309,8 @@ section {
 
 .section {
   padding:
-    70px
-    36px;
+    var(--section-gap)
+    var(--section-side);
 }
 
 .pink {
@@ -438,19 +434,10 @@ section {
   background: var(--charcoal);
   color: var(--white);
 
-  /*
-     44px = gap between bottom of photo
-     and beginning of heading.
-
-     There is no longer additional
-     bottom padding on .home-intro
-     adding to this.
-  */
-
   padding:
-    44px
-    34px
-    70px;
+    var(--section-gap)
+    var(--section-side)
+    var(--section-gap);
 }
 
 .upcoming-events-inner {
@@ -466,18 +453,8 @@ section {
 .upcoming-events-title {
   max-width: 820px;
 
-  /*
-     Matches the 44px space above
-     the heading.
-
-     PHOTO
-       ↓ 44px
-     UPCOMING EVENTS
-       ↓ 44px
-     PURPLE FRAME
-  */
-
-  margin-bottom: 44px;
+  margin-bottom:
+    var(--section-gap);
 
   font-size:
     clamp(
@@ -520,7 +497,6 @@ section {
   width: 100%;
 
   margin: 0;
-
   padding: 0;
 
   border: 0;
@@ -598,8 +574,8 @@ section {
 
 .merch {
   padding:
-    70px
-    34px;
+    var(--section-gap)
+    var(--section-side);
 
   display: block;
 
@@ -609,7 +585,8 @@ section {
 .merch-heading-wrap {
   width: 100%;
 
-  margin-bottom: 44px;
+  margin-bottom:
+    var(--section-gap);
 }
 
 .merch-title {
@@ -698,8 +675,8 @@ section {
 
 .mailing-list-section {
   padding:
-    70px
-    34px;
+    var(--section-gap)
+    var(--section-side);
 
   background: var(--charcoal);
 }
@@ -715,7 +692,8 @@ section {
 .mailing-list-title {
   max-width: 850px;
 
-  margin-bottom: 28px;
+  margin-bottom:
+    var(--section-gap);
 
   font-size:
     clamp(
@@ -730,7 +708,7 @@ section {
 
   margin:
     0 auto
-    34px;
+    var(--section-gap);
 
   color: var(--soft-light);
 
@@ -774,9 +752,8 @@ section {
 
 .listen {
   padding:
-    70px
-    34px
-    80px;
+    var(--section-gap)
+    var(--section-side);
 
   background: var(--charcoal);
 }
@@ -792,7 +769,8 @@ section {
 .listen-title {
   max-width: 620px;
 
-  margin-bottom: 44px;
+  margin-bottom:
+    var(--section-gap);
 
   font-size:
     clamp(
@@ -829,12 +807,17 @@ section {
   background: var(--charcoal);
 
   color: var(--white);
+
+  padding:
+    var(--section-gap)
+    var(--section-side);
 }
 
 .contact-grid {
   display: grid;
 
-  gap: 54px;
+  gap:
+    var(--section-gap);
 
   max-width: 1100px;
 
@@ -842,6 +825,9 @@ section {
 }
 
 .contact-copy h2 {
+  margin-bottom:
+    var(--section-gap);
+
   font-size:
     clamp(
       3.5rem,
@@ -859,8 +845,6 @@ section {
 }
 
 .contact-copy p {
-  margin-top: 26px;
-
   max-width: 450px;
 
   color: var(--soft-light);
@@ -981,6 +965,12 @@ textarea {
 
 @media (min-width: 800px) {
 
+  :root {
+    --section-gap: 64px;
+    --section-side: 56px;
+  }
+
+
   .site-header {
     height: 126px;
 
@@ -989,12 +979,14 @@ textarea {
       56px;
   }
 
+
   .nav-panel {
     top: 126px;
 
     padding-left: 56px;
     padding-right: 56px;
   }
+
 
   .nav-logo {
     width: 150px;
@@ -1023,32 +1015,9 @@ textarea {
   }
 
 
-  /* GENERAL */
-
-  .section {
-    padding:
-      90px
-      56px;
-  }
-
-
   /* UPCOMING EVENTS */
 
-  .upcoming-events {
-    padding:
-      64px
-      56px
-      90px;
-  }
-
   .upcoming-events-title {
-    /*
-       Same spacing above and below
-       the heading on desktop.
-    */
-
-    margin-bottom: 64px;
-
     font-size:
       clamp(
         5rem,
@@ -1072,16 +1041,6 @@ textarea {
 
 
   /* MERCH */
-
-  .merch {
-    padding:
-      90px
-      56px;
-  }
-
-  .merch-heading-wrap {
-    margin-bottom: 58px;
-  }
 
   .merch-title {
     font-size:
@@ -1111,15 +1070,7 @@ textarea {
 
   /* MAILING LIST */
 
-  .mailing-list-section {
-    padding:
-      90px
-      56px;
-  }
-
   .mailing-list-title {
-    margin-bottom: 32px;
-
     font-size:
       clamp(
         5rem,
@@ -1129,8 +1080,6 @@ textarea {
   }
 
   .mailing-list-copy {
-    margin-bottom: 40px;
-
     font-size: 1.08rem;
   }
 
@@ -1143,16 +1092,7 @@ textarea {
 
   /* LISTEN */
 
-  .listen {
-    padding:
-      90px
-      56px
-      100px;
-  }
-
   .listen-title {
-    margin-bottom: 60px;
-
     font-size:
       clamp(
         5rem,
