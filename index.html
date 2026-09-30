@@ -32,6 +32,8 @@
       background: #000;
     }
 
+    /* VIDEO */
+
     .hero-video {
       position: absolute;
       inset: 0;
@@ -46,12 +48,15 @@
       position: absolute;
       inset: 0;
       z-index: 2;
-      background: rgba(0, 0, 0, 0.15);
+      background: rgba(0, 0, 0, 0.12);
     }
+
+    /* CONTENT */
 
     .hero-content {
       position: relative;
       z-index: 3;
+
       width: 100%;
       height: 100%;
 
@@ -64,75 +69,104 @@
       text-align: center;
     }
 
+    /* HYM LOGO */
+
+    .hero-logo {
+      width: min(55vw, 340px);
+      height: auto;
+
+      opacity: 0;
+      transform: scale(0);
+
+      animation: logoEntrance 0.8s ease-out 0.4s forwards;
+    }
+
+    @keyframes logoEntrance {
+      0% {
+        opacity: 0;
+        transform: scale(0);
+      }
+
+      70% {
+        opacity: 1;
+        transform: scale(1.08);
+      }
+
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    /* BAND NAME */
+
+    .title-wrap {
+      position: relative;
+      margin-top: 22px;
+
+      opacity: 0;
+      transform: scale(0);
+
+      animation: titleEntrance 0.7s ease-out 1.05s forwards;
+    }
+
+    @keyframes titleEntrance {
+      0% {
+        opacity: 0;
+        transform: scale(0);
+      }
+
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
     .hero-title {
+      position: relative;
+
       color: #fff;
-      font-size: clamp(22px, 5vw, 48px);
+
+      font-size: clamp(20px, 5vw, 46px);
       font-weight: 700;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
+
+      letter-spacing: 0.1em;
+      line-height: 1;
+
+      white-space: nowrap;
     }
 
-    .enter-button {
-      margin-top: 40px;
+    /* GLITCH COPIES */
 
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
+    .hero-title::before,
+    .hero-title::after {
+      content: "HOLY YOUTH MOVEMENT";
 
-      min-width: 220px;
-      height: 68px;
+      position: absolute;
+      top: 0;
+      left: 0;
 
-      border: 2px solid #fff;
-      background: rgba(0, 0, 0, 0.25);
+      width: 100%;
+      height: 100%;
 
-      color: #fff;
-      text-decoration: none;
-
-      font-size: 15px;
-      letter-spacing: 0.2em;
-
-      transition: 0.25s ease;
+      opacity: 0;
+      pointer-events: none;
     }
 
-    .enter-button:hover {
-      background: #fff;
-      color: #000;
+    .hero-title::before {
+      text-shadow: -3px 0 #ff00c8;
+      animation: glitchOne 3s infinite 2s;
     }
-  </style>
-</head>
 
-<body>
+    .hero-title::after {
+      text-shadow: 3px 0 #00ffff;
+      animation: glitchTwo 3s infinite 2s;
+    }
 
-  <main class="hero">
+    @keyframes glitchOne {
+      0%, 88%, 100% {
+        opacity: 0;
+        transform: translate(0);
+      }
 
-    <video
-      class="hero-video"
-      autoplay
-      muted
-      loop
-      playsinline
-    >
-      <source
-        src="6456cc03b18521dd74a8f3ca_Short%20HYM-transcode.mp4"
-        type="video/mp4"
-      >
-    </video>
-
-    <div class="hero-overlay"></div>
-
-    <div class="hero-content">
-
-      <div class="hero-title">
-        HOLY YOUTH MOVEMENT
-      </div>
-
-      <a class="enter-button" href="home.html">
-        ENTER SITE
-      </a>
-
-    </div>
-
-  </main>
-
-</body>
-</html>
+      
