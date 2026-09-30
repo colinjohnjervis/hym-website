@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,6 +9,7 @@
   <title>Holy Youth Movement</title>
 
   <style>
+
     * {
       box-sizing: border-box;
       margin: 0;
@@ -23,6 +25,10 @@
       font-family: Arial, Helvetica, sans-serif;
     }
 
+    /* =========================
+       HERO
+       ========================= */
+
     .hero {
       position: relative;
       width: 100%;
@@ -32,26 +38,35 @@
       background: #000;
     }
 
-    /* VIDEO */
+    /* =========================
+       VIDEO
+       ========================= */
 
     .hero-video {
       position: absolute;
       inset: 0;
+
       width: 100%;
       height: 100%;
+
       object-fit: cover;
       object-position: center;
+
       z-index: 1;
     }
 
     .hero-overlay {
       position: absolute;
       inset: 0;
-      z-index: 2;
+
       background: rgba(0, 0, 0, 0.12);
+
+      z-index: 2;
     }
 
-    /* CONTENT */
+    /* =========================
+       CONTENT
+       ========================= */
 
     .hero-content {
       position: relative;
@@ -66,22 +81,29 @@
       justify-content: center;
 
       padding: 24px;
+
       text-align: center;
     }
 
-    /* HYM LOGO */
+    /* =========================
+       HYM LOGO
+       ========================= */
 
     .hero-logo {
+      display: block;
+
       width: min(55vw, 340px);
       height: auto;
 
       opacity: 0;
       transform: scale(0);
 
-      animation: logoEntrance 0.8s ease-out 0.4s forwards;
+      animation:
+        logoEntrance 0.8s ease-out 0.4s forwards;
     }
 
     @keyframes logoEntrance {
+
       0% {
         opacity: 0;
         transform: scale(0);
@@ -96,21 +118,27 @@
         opacity: 1;
         transform: scale(1);
       }
+
     }
 
-    /* BAND NAME */
+    /* =========================
+       BAND NAME
+       ========================= */
 
     .title-wrap {
       position: relative;
+
       margin-top: 22px;
 
       opacity: 0;
       transform: scale(0);
 
-      animation: titleEntrance 0.7s ease-out 1.05s forwards;
+      animation:
+        titleEntrance 0.7s ease-out 1.05s forwards;
     }
 
     @keyframes titleEntrance {
+
       0% {
         opacity: 0;
         transform: scale(0);
@@ -120,6 +148,7 @@
         opacity: 1;
         transform: scale(1);
       }
+
     }
 
     .hero-title {
@@ -136,37 +165,240 @@
       white-space: nowrap;
     }
 
-    /* GLITCH COPIES */
+    /* =========================
+       GLITCH EFFECT
+       ========================= */
 
     .hero-title::before,
     .hero-title::after {
+
       content: "HOLY YOUTH MOVEMENT";
 
       position: absolute;
-      top: 0;
-      left: 0;
+      inset: 0;
 
       width: 100%;
       height: 100%;
 
-      opacity: 0;
       pointer-events: none;
+
+      opacity: 0;
     }
 
     .hero-title::before {
+
       text-shadow: -3px 0 #ff00c8;
-      animation: glitchOne 3s infinite 2s;
+
+      animation:
+        glitchLeft 3s infinite 2s;
     }
 
     .hero-title::after {
+
       text-shadow: 3px 0 #00ffff;
-      animation: glitchTwo 3s infinite 2s;
+
+      animation:
+        glitchRight 3s infinite 2s;
     }
 
-    @keyframes glitchOne {
-      0%, 88%, 100% {
+    @keyframes glitchLeft {
+
+      0%,
+      88%,
+      100% {
         opacity: 0;
         transform: translate(0);
       }
 
-      
+      89% {
+        opacity: 0.8;
+        transform: translate(-5px, 2px);
+        clip-path: inset(15% 0 60% 0);
+      }
+
+      91% {
+        opacity: 0.8;
+        transform: translate(4px, -2px);
+        clip-path: inset(55% 0 20% 0);
+      }
+
+      93% {
+        opacity: 0;
+        transform: translate(0);
+      }
+
+    }
+
+    @keyframes glitchRight {
+
+      0%,
+      90%,
+      100% {
+        opacity: 0;
+        transform: translate(0);
+      }
+
+      91% {
+        opacity: 0.7;
+        transform: translate(5px, -1px);
+        clip-path: inset(65% 0 10% 0);
+      }
+
+      93% {
+        opacity: 0.7;
+        transform: translate(-4px, 2px);
+        clip-path: inset(25% 0 50% 0);
+      }
+
+      95% {
+        opacity: 0;
+        transform: translate(0);
+      }
+
+    }
+
+    /* =========================
+       ENTER SITE BUTTON
+       ========================= */
+
+    .enter-button {
+
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+
+      min-width: 220px;
+      height: 68px;
+
+      margin-top: 42px;
+
+      border: 2px solid #fff;
+
+      background: rgba(0, 0, 0, 0.20);
+
+      color: #fff;
+
+      text-decoration: none;
+
+      font-size: 14px;
+      letter-spacing: 0.22em;
+
+      opacity: 0;
+      transform: scale(0);
+
+      animation:
+        buttonEntrance 0.6s ease-out 1.65s forwards;
+
+      transition:
+        background 0.25s ease,
+        color 0.25s ease;
+    }
+
+    @keyframes buttonEntrance {
+
+      0% {
+        opacity: 0;
+        transform: scale(0);
+      }
+
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+
+    }
+
+    .enter-button:hover {
+      background: #fff;
+      color: #000;
+    }
+
+    /* =========================
+       MOBILE
+       ========================= */
+
+    @media (max-width: 500px) {
+
+      .hero-logo {
+        width: 58vw;
+        max-width: 270px;
+      }
+
+      .hero-title {
+        font-size: clamp(16px, 5.2vw, 25px);
+        letter-spacing: 0.07em;
+      }
+
+      .enter-button {
+        min-width: 190px;
+        height: 58px;
+        margin-top: 34px;
+      }
+
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+  <main class="hero">
+
+    <!-- Background video -->
+
+    <video
+      class="hero-video"
+      autoplay
+      muted
+      loop
+      playsinline
+    >
+
+      <source
+        src="6456cc03b18521dd74a8f3ca_Short%20HYM-transcode.mp4"
+        type="video/mp4"
+      >
+
+    </video>
+
+
+    <!-- Slight dark overlay -->
+
+    <div class="hero-overlay"></div>
+
+
+    <!-- Landing page content -->
+
+    <div class="hero-content">
+
+      <img
+        class="hero-logo"
+        src="hymlogo.png"
+        alt="HYM"
+      >
+
+
+      <div class="title-wrap">
+
+        <div class="hero-title">
+          HOLY YOUTH MOVEMENT
+        </div>
+
+      </div>
+
+
+      <a
+        class="enter-button"
+        href="home.html"
+      >
+        ENTER SITE
+      </a>
+
+    </div>
+
+  </main>
+
+</body>
+
+</html>
