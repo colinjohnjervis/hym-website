@@ -1,11 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
   <title>Holy Youth Movement</title>
 
+  <!-- Archivo Black -->
+  <link
+    rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap"
+  >
+
   <style>
+
+    /* =========================
+       RESET
+    ========================= */
+
     * {
       box-sizing: border-box;
     }
@@ -15,14 +33,23 @@
       width: 100%;
       height: 100%;
       margin: 0;
+
       overflow: hidden;
+
       background: #000;
     }
 
+
+    /* =========================
+       HERO
+    ========================= */
+
     .hero {
       position: relative;
+
       width: 100%;
       height: 100vh;
+
       overflow: hidden;
 
       display: flex;
@@ -33,12 +60,14 @@
       padding-top: 140px;
     }
 
+
     /* =========================
        VIDEO
-       ========================= */
+    ========================= */
 
     .hero-video {
       position: absolute;
+
       inset: 0;
 
       width: 100%;
@@ -49,12 +78,14 @@
       z-index: 0;
     }
 
+
     /* =========================
-       FOREGROUND CONTENT
-       ========================= */
+       MAIN CONTENT
+    ========================= */
 
     .hero-content {
       position: relative;
+
       z-index: 2;
 
       width: 100%;
@@ -64,23 +95,30 @@
       align-items: center;
     }
 
+
     /* =========================
        HYM LOGO
-       ========================= */
+    ========================= */
 
     .hym-logo {
+      display: block;
+
       width: min(100vw, 468px);
       height: auto;
-
-      display: block;
 
       transform: scale(0);
 
       animation:
-        logo-in 0.65s ease-out 0.35s forwards;
+        logo-in
+        .65s
+        ease-out
+        .35s
+        forwards;
     }
 
+
     @keyframes logo-in {
+
       0% {
         transform: scale(0);
       }
@@ -92,27 +130,40 @@
       100% {
         transform: scale(1);
       }
+
     }
 
+
     /* =========================
-       TITLE
-       ========================= */
+       TITLE CONTAINER
+    ========================= */
 
     .title-wrapper {
-      max-width: 100%;
+      position: relative;
+
+      z-index: 3;
+
+      width: 100%;
 
       padding-left: 10px;
       padding-right: 10px;
 
-      overflow: hidden;
+      display: flex;
+      justify-content: center;
 
       transform: scale(0);
 
       animation:
-        title-in 0.55s ease-out 0.95s forwards;
+        title-in
+        .55s
+        ease-out
+        .95s
+        forwards;
     }
 
+
     @keyframes title-in {
+
       from {
         transform: scale(0);
       }
@@ -120,336 +171,471 @@
       to {
         transform: scale(1);
       }
+
     }
 
-    /*
-      We are deliberately using a system font here.
 
-      CSS stretching, skewing and slicing are used
-      to move it towards the original HYM appearance
-      without requiring the original font file.
-    */
+    /* =========================
+       SLICED HYM TYPOGRAPHY
+    ========================= */
 
-    .glitched {
-      --duration: 1s;
-
+    .slice-title {
       position: relative;
-      display: inline-block;
 
-      color: #fff;
+      margin-left: auto;
+      margin-right: auto;
+
+      color: transparent;
 
       text-align: center;
-      text-transform: uppercase;
 
       font-family:
-        Impact,
-        Haettenschweiler,
+        "Archivo Black",
         "Arial Black",
+        Arial,
         sans-serif;
 
       font-size: 50px;
-      font-weight: 900;
-      line-height: 1.12;
+      font-weight: 400;
 
-      letter-spacing: -1px;
+      line-height: .86;
 
-      transform:
-        scaleX(1.04)
-        skewX(-5deg);
+      letter-spacing: -.075em;
 
-      animation:
-        glitch var(--duration) linear infinite;
+      text-transform: uppercase;
+
+      transform: skewX(-10deg);
+
+      transform-origin: center;
     }
 
+
     /*
-      Duplicate copies of the title are sliced.
-      These create the broken/distorted sections
-      through the lettering.
+      Each line is constructed from two copies.
+
+      One copy shows the top half.
+      The other shows the bottom half.
+
+      They are offset in opposite directions.
     */
 
-    .glitched::before,
-    .glitched::after {
+    .slice-title span {
+      position: relative;
+
+      display: block;
+
+      min-height: .95em;
+
+      color: transparent;
+    }
+
+
+    .slice-title span::before,
+    .slice-title span::after {
+
       content: attr(data-text);
 
       position: absolute;
 
-      left: 0;
       top: 0;
+      left: 50%;
 
-      width: 100%;
+      width: max-content;
+
+      min-width: 100%;
 
       color: #fff;
 
-      text-align: center;
-
-      font: inherit;
+      font-family: inherit;
+      font-size: inherit;
+      font-weight: inherit;
+      line-height: inherit;
       letter-spacing: inherit;
 
-      pointer-events: none;
+      text-align: center;
+
+      white-space: nowrap;
     }
 
-    /*
-      Upper slice
-    */
-
-    .glitched::before {
-      clip-path: polygon(
-        0 0,
-        100% 0,
-        100% 42%,
-        0 42%
-      );
-
-      transform: translateX(3px);
-
-      animation:
-        slice-top 2.4s steps(1) infinite,
-        glitch-top var(--duration) linear infinite;
-    }
-
-    /*
-      Lower slice
-    */
-
-    .glitched::after {
-      clip-path: polygon(
-        0 62%,
-        100% 62%,
-        100% 100%,
-        0 100%
-      );
-
-      transform: translateX(-3px);
-
-      animation:
-        slice-bottom 2.1s steps(1) infinite,
-        glitch-bottom var(--duration) linear infinite;
-    }
 
     /* =========================
-       MAIN GLITCH
-       ========================= */
+       TOP HALF
+    ========================= */
 
-    @keyframes glitch {
+    .slice-title span::before {
+
+      clip-path:
+        polygon(
+          0 0,
+          100% 0,
+          100% 48%,
+          0 57%
+        );
+
+      transform:
+        translateX(
+          calc(-50% + 2px)
+        );
+
+      animation:
+        glitch-top
+        1s
+        linear
+        infinite;
+    }
+
+
+    /* =========================
+       BOTTOM HALF
+    ========================= */
+
+    .slice-title span::after {
+
+      clip-path:
+        polygon(
+          0 57%,
+          100% 48%,
+          100% 100%,
+          0 100%
+        );
+
+      transform:
+        translateX(
+          calc(-50% - 2px)
+        );
+
+      animation:
+        glitch-bottom
+        1s
+        linear
+        infinite;
+    }
+
+
+    /*
+      These animations are based on the
+      original site's glitch movement.
+
+      Most of the time the lettering remains
+      in its normal sliced position.
+    */
+
+    @keyframes glitch-top {
+
       0%,
       1%,
       5%,
       59%,
+      61%,
+      63%,
       65%,
       100% {
+
         transform:
-          scaleX(1.04)
-          skewX(-5deg);
+          translateX(
+            calc(-50% + 2px)
+          );
       }
+
 
       2%,
       64% {
+
         transform:
-          scaleX(1.04)
-          skewX(-5deg)
-          translate(2px, 0);
+          translate(
+            calc(-50% + 4px),
+            -2px
+          );
       }
+
 
       4%,
       60% {
+
         transform:
-          scaleX(1.04)
-          skewX(-5deg)
-          translate(-2px, 0);
+          translate(
+            calc(-50% - 2px),
+            2px
+          );
       }
+
 
       62% {
-        transform:
-          scaleX(1.04)
-          skewX(2deg)
-          translate(0, 0);
-      }
-    }
 
-    /*
-      Original-style upper glitch movement
-    */
-
-    @keyframes glitch-top {
-      2%,
-      64% {
         transform:
-          translate(2px, -2px);
-      }
-
-      4%,
-      60% {
-        transform:
-          translate(-2px, 2px);
-      }
-
-      62% {
-        transform:
-          translate(13px, -1px)
+          translate(
+            calc(-50% + 15px),
+            -1px
+          )
           skew(-13deg);
       }
+
     }
 
-    /*
-      Original-style lower glitch movement
-    */
 
     @keyframes glitch-bottom {
+
+      0%,
+      1%,
+      5%,
+      59%,
+      61%,
+      63%,
+      65%,
+      100% {
+
+        transform:
+          translateX(
+            calc(-50% - 2px)
+          );
+      }
+
+
       2%,
       64% {
+
         transform:
-          translate(-2px, 0);
+          translateX(
+            calc(-50% - 4px)
+          );
       }
+
 
       4%,
       60% {
+
         transform:
-          translate(-2px, 0);
+          translateX(
+            calc(-50% - 4px)
+          );
       }
+
 
       62% {
+
         transform:
-          translate(-22px, 5px)
+          translate(
+            calc(-50% - 24px),
+            5px
+          )
           skew(21deg);
       }
+
     }
 
-    /*
-      Additional permanent-ish distortion.
-      This stops the normal system font from
-      looking completely clean between glitches.
-    */
-
-    @keyframes slice-top {
-      0%,
-      79%,
-      100% {
-        transform: translateX(3px);
-      }
-
-      80%,
-      84% {
-        transform: translateX(-5px);
-      }
-
-      85%,
-      89% {
-        transform: translateX(6px);
-      }
-    }
-
-    @keyframes slice-bottom {
-      0%,
-      74%,
-      100% {
-        transform: translateX(-3px);
-      }
-
-      75%,
-      80% {
-        transform: translateX(5px);
-      }
-
-      81%,
-      86% {
-        transform: translateX(-7px);
-      }
-    }
 
     /* =========================
-       ENTER SITE BUTTON
-       ========================= */
+       ENTER SITE
+    ========================= */
 
     .enter-site {
+
       position: absolute;
 
-      z-index: 3;
+      z-index: 4;
 
       left: 50%;
       bottom: 25%;
 
-      color: #fff;
+      padding:
+        5px
+        20px
+        7px;
+
+      border:
+        5px solid
+        #fb38fc;
 
       background: transparent;
 
-      border:
-        5px solid #fb38fc;
-
-      padding:
-        3px 20px 5px;
+      color: transparent;
 
       text-decoration: none;
-      text-transform: uppercase;
-
-      white-space: nowrap;
-
-      font-family:
-        Impact,
-        Haettenschweiler,
-        "Arial Black",
-        sans-serif;
-
-      font-size: 30px;
-      font-weight: 900;
-      line-height: 30px;
-
-      letter-spacing: 0;
 
       transform:
         translateX(-50%)
-        scale(0)
-        skewX(-5deg);
+        scale(0);
 
       animation:
-        button-in 0.5s ease-out 1.5s forwards;
+        button-in
+        .5s
+        ease-out
+        1.5s
+        forwards;
     }
 
-    .enter-site:hover {
-      color: #fb38fc;
-    }
 
     @keyframes button-in {
+
       from {
+
         transform:
           translateX(-50%)
-          scale(0)
-          skewX(-5deg);
+          scale(0);
+
       }
 
       to {
+
         transform:
           translateX(-50%)
-          scale(1)
-          skewX(-5deg);
+          scale(1);
+
       }
+
     }
 
+
     /* =========================
-       DESKTOP / LARGER SCREENS
-       ========================= */
+       BUTTON SLICED TEXT
+    ========================= */
+
+    .button-text {
+
+      position: relative;
+
+      display: block;
+
+      min-width: 200px;
+      min-height: 32px;
+
+      color: transparent;
+
+      font-family:
+        "Archivo Black",
+        "Arial Black",
+        Arial,
+        sans-serif;
+
+      font-size: 30px;
+      font-weight: 400;
+
+      line-height: 30px;
+
+      letter-spacing: -.06em;
+
+      text-align: center;
+
+      text-transform: uppercase;
+
+      transform: skewX(-10deg);
+    }
+
+
+    .button-text::before,
+    .button-text::after {
+
+      content:
+        attr(data-text);
+
+      position: absolute;
+
+      top: 0;
+      left: 50%;
+
+      width: max-content;
+
+      color: #fff;
+
+      font-family: inherit;
+      font-size: inherit;
+      font-weight: inherit;
+      line-height: inherit;
+      letter-spacing: inherit;
+
+      white-space: nowrap;
+    }
+
+
+    /* BUTTON TOP */
+
+    .button-text::before {
+
+      clip-path:
+        polygon(
+          0 0,
+          100% 0,
+          100% 48%,
+          0 57%
+        );
+
+      transform:
+        translateX(
+          calc(-50% + 2px)
+        );
+    }
+
+
+    /* BUTTON BOTTOM */
+
+    .button-text::after {
+
+      clip-path:
+        polygon(
+          0 57%,
+          100% 48%,
+          100% 100%,
+          0 100%
+        );
+
+      transform:
+        translateX(
+          calc(-50% - 2px)
+        );
+    }
+
+
+    .enter-site:hover
+    .button-text::before,
+
+    .enter-site:hover
+    .button-text::after {
+
+      color: #fb38fc;
+    }
+
+
+    /* =========================
+       DESKTOP
+    ========================= */
 
     @media screen and (min-width: 480px) {
 
       .hero {
+
         justify-content: center;
+
         padding-top: 0;
+
       }
 
-      .glitched {
+
+      .slice-title {
+
         font-size: 4rem;
+
       }
+
 
       .enter-site {
+
         bottom: 40px;
+
       }
+
     }
 
   </style>
+
 </head>
+
 
 <body>
 
   <main class="hero">
+
+
+    <!-- BACKGROUND VIDEO -->
 
     <video
       class="hero-video"
@@ -458,13 +644,19 @@
       muted
       playsinline
     >
+
       <source
         src="6456cc03b18521dd74a8f3ca_Short%20HYM-transcode.mp4"
         type="video/mp4"
       >
+
     </video>
 
+
+    <!-- LOGO + TITLE -->
+
     <div class="hero-content">
+
 
       <img
         class="hym-logo"
@@ -472,27 +664,59 @@
         alt="Holy Youth Movement"
       >
 
+
       <div class="title-wrapper">
 
+
         <div
-          class="glitched"
-          data-text="HOLY YOUTH MOVEMENT"
+          class="slice-title"
+          aria-label="Holy Youth Movement"
         >
-          HOLY YOUTH MOVEMENT
+
+
+          <span
+            data-text="HOLY YOUTH"
+          >
+            HOLY YOUTH
+          </span>
+
+
+          <span
+            data-text="MOVEMENT"
+          >
+            MOVEMENT
+          </span>
+
+
         </div>
+
 
       </div>
 
+
     </div>
+
+
+    <!-- ENTER SITE -->
 
     <a
       class="enter-site"
       href="home.html"
+      aria-label="Enter site"
     >
-      ENTER SITE
+
+      <span
+        class="button-text"
+        data-text="ENTER SITE"
+      >
+        ENTER SITE
+      </span>
+
     </a>
+
 
   </main>
 
 </body>
+
 </html>
