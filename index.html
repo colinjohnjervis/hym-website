@@ -36,7 +36,9 @@
       width: 100%;
       height: 100%;
       margin: 0;
+
       overflow: hidden;
+
       background: #000;
     }
 
@@ -68,6 +70,7 @@
 
     .hero-video {
       position: absolute;
+
       inset: 0;
 
       width: 100%;
@@ -199,18 +202,10 @@
 
       line-height: .78;
 
-      /*
-        Slightly tighter than before to give the
-        lettering more of the compressed original feel.
-      */
       letter-spacing: -.085em;
 
       text-transform: uppercase;
 
-      /*
-        Previous version: -10deg
-        Original is not quite as strongly italicised.
-      */
       transform: skewX(-7deg);
 
       transform-origin: center;
@@ -248,13 +243,8 @@
       line-height: inherit;
       letter-spacing: inherit;
 
-      /*
-        This is the important new ingredient.
-
-        Archivo Black is being artificially thickened
-        to bring it closer to the chunky original font.
-      */
       -webkit-text-stroke: 1.5px #ffffff;
+
       paint-order: stroke fill;
 
       text-align: center;
@@ -300,6 +290,144 @@
         translateX(
           calc(-50% + 2px)
         );
+    }
+
+
+    /* ==================================================
+       HOLY YOUTH MOVEMENT GLITCH
+
+       Only the title receives this animation.
+       The normal sliced appearance remains the base.
+    ================================================== */
+
+    .hero-title span::before {
+      animation:
+        title-glitch-top
+        1s
+        linear
+        infinite;
+    }
+
+
+    .hero-title span::after {
+      animation:
+        title-glitch-bottom
+        1s
+        linear
+        infinite;
+    }
+
+
+    /*
+       TOP HALF
+
+       Normal position:
+       -2px
+
+       Brief glitches move the upper slice further
+       left/right before returning immediately.
+    */
+
+    @keyframes title-glitch-top {
+
+      0%,
+      1%,
+      5%,
+      59%,
+      61%,
+      63%,
+      65%,
+      100% {
+        transform:
+          translateX(
+            calc(-50% - 2px)
+          );
+      }
+
+
+      2%,
+      64% {
+        transform:
+          translate(
+            calc(-50% + 0px),
+            -2px
+          );
+      }
+
+
+      4%,
+      60% {
+        transform:
+          translate(
+            calc(-50% - 4px),
+            2px
+          );
+      }
+
+
+      62% {
+        transform:
+          translate(
+            calc(-50% + 11px),
+            -1px
+          )
+          skewX(-13deg);
+      }
+
+    }
+
+
+    /*
+       BOTTOM HALF
+
+       Normal position:
+       +2px
+    */
+
+    @keyframes title-glitch-bottom {
+
+      0%,
+      1%,
+      5%,
+      59%,
+      61%,
+      63%,
+      65%,
+      100% {
+        transform:
+          translateX(
+            calc(-50% + 2px)
+          );
+      }
+
+
+      2%,
+      64% {
+        transform:
+          translateX(
+            calc(-50% + 0px)
+          );
+      }
+
+
+      4%,
+      60% {
+        transform:
+          translateX(
+            calc(-50% + 4px)
+          );
+      }
+
+
+      62% {
+        transform:
+          translate(
+            calc(-50% - 20px),
+            5px
+          )
+          skewX(21deg);
+      }
+
     }
 
 
@@ -428,10 +556,8 @@
       line-height: inherit;
       letter-spacing: inherit;
 
-      /*
-        Same thickening treatment as the main title.
-      */
       -webkit-text-stroke: 1.25px #ffffff;
+
       paint-order: stroke fill;
 
       white-space: nowrap;
@@ -480,7 +606,9 @@
     .enter-site:hover
     .button-slice::after {
       color: #fb38fc;
-      -webkit-text-stroke-color: #fb38fc;
+
+      -webkit-text-stroke-color:
+        #fb38fc;
     }
 
 
@@ -492,6 +620,7 @@
 
       .hero {
         justify-content: center;
+
         padding-top: 0;
       }
 
