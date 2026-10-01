@@ -16,7 +16,6 @@
 
   <title>Holy Youth Movement</title>
 
-  <!-- Same font used by our earlier sliced headings -->
   <link
     rel="stylesheet"
     href="https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap"
@@ -37,9 +36,7 @@
       width: 100%;
       height: 100%;
       margin: 0;
-
       overflow: hidden;
-
       background: #000;
     }
 
@@ -71,7 +68,6 @@
 
     .hero-video {
       position: absolute;
-
       inset: 0;
 
       width: 100%;
@@ -181,18 +177,6 @@
 
     /* ==================================================
        SLICED HEADING
-
-       This uses the same basic recipe as the headings
-       from the earlier HYM prototype:
-
-       Archivo Black
-       -10 degree skew
-       tight letter spacing
-       diagonal centre slice
-
-       The slice direction has now been REVERSED:
-       TOP    = left
-       BOTTOM = right
     ================================================== */
 
     .slice-heading {
@@ -215,12 +199,19 @@
 
       line-height: .78;
 
-      letter-spacing: -.075em;
+      /*
+        Slightly tighter than before to give the
+        lettering more of the compressed original feel.
+      */
+      letter-spacing: -.085em;
 
       text-transform: uppercase;
 
-      transform:
-        skewX(-10deg);
+      /*
+        Previous version: -10deg
+        Original is not quite as strongly italicised.
+      */
+      transform: skewX(-7deg);
 
       transform-origin: center;
     }
@@ -239,8 +230,7 @@
 
     .slice-heading span::before,
     .slice-heading span::after {
-      content:
-        attr(data-text);
+      content: attr(data-text);
 
       position: absolute;
 
@@ -248,7 +238,6 @@
       left: 50%;
 
       width: max-content;
-
       min-width: 100%;
 
       color: #ffffff;
@@ -259,6 +248,15 @@
       line-height: inherit;
       letter-spacing: inherit;
 
+      /*
+        This is the important new ingredient.
+
+        Archivo Black is being artificially thickened
+        to bring it closer to the chunky original font.
+      */
+      -webkit-text-stroke: 1.5px #ffffff;
+      paint-order: stroke fill;
+
       text-align: center;
 
       white-space: nowrap;
@@ -266,10 +264,7 @@
 
 
     /* =========================
-       TOP HALF
-
-       Reversed from the earlier CSS:
-       upper portion moves LEFT.
+       TOP HALF — LEFT
     ========================= */
 
     .slice-heading span::before {
@@ -289,9 +284,7 @@
 
 
     /* =========================
-       BOTTOM HALF
-
-       Lower portion moves RIGHT.
+       BOTTOM HALF — RIGHT
     ========================= */
 
     .slice-heading span::after {
@@ -382,7 +375,7 @@
 
 
     /* =========================
-       SLICED BUTTON TEXT
+       BUTTON TEXT
     ========================= */
 
     .button-slice {
@@ -406,21 +399,19 @@
 
       line-height: 30px;
 
-      letter-spacing: -.075em;
+      letter-spacing: -.085em;
 
       text-align: center;
 
       text-transform: uppercase;
 
-      transform:
-        skewX(-10deg);
+      transform: skewX(-7deg);
     }
 
 
     .button-slice::before,
     .button-slice::after {
-      content:
-        attr(data-text);
+      content: attr(data-text);
 
       position: absolute;
 
@@ -436,6 +427,12 @@
       font-weight: inherit;
       line-height: inherit;
       letter-spacing: inherit;
+
+      /*
+        Same thickening treatment as the main title.
+      */
+      -webkit-text-stroke: 1.25px #ffffff;
+      paint-order: stroke fill;
 
       white-space: nowrap;
     }
@@ -483,6 +480,7 @@
     .enter-site:hover
     .button-slice::after {
       color: #fb38fc;
+      -webkit-text-stroke-color: #fb38fc;
     }
 
 
@@ -494,7 +492,6 @@
 
       .hero {
         justify-content: center;
-
         padding-top: 0;
       }
 
@@ -538,10 +535,9 @@
     </video>
 
 
-    <!-- LOGO AND TITLE -->
+    <!-- LOGO + TITLE -->
 
     <div class="hero-content">
-
 
       <img
         class="hym-logo"
@@ -552,30 +548,22 @@
 
       <div class="title-wrapper">
 
-
         <div
           class="slice-heading hero-title"
           aria-label="Holy Youth Movement"
         >
 
-          <span
-            data-text="HOLY YOUTH"
-          >
+          <span data-text="HOLY YOUTH">
             HOLY YOUTH
           </span>
 
-
-          <span
-            data-text="MOVEMENT"
-          >
+          <span data-text="MOVEMENT">
             MOVEMENT
           </span>
 
         </div>
 
-
       </div>
-
 
     </div>
 
