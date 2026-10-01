@@ -111,11 +111,16 @@
 
       transform: scale(0);
 
+      /*
+        3.5 second opening pause.
+        Logo then enters exactly as before.
+      */
+
       animation:
         logo-in
         .65s
         ease-out
-        .35s
+        3.5s
         forwards;
     }
 
@@ -156,11 +161,16 @@
 
       transform: scale(0);
 
+      /*
+        Previously .95s.
+        Added the same 3.5 second opening delay.
+      */
+
       animation:
         title-in
         .55s
         ease-out
-        .95s
+        4.45s
         forwards;
     }
 
@@ -296,8 +306,7 @@
     /* ==================================================
        HOLY YOUTH MOVEMENT GLITCH
 
-       Only the title receives this animation.
-       The normal sliced appearance remains the base.
+       Only the white wording glitches.
     ================================================== */
 
     .hero-title span::before {
@@ -317,16 +326,6 @@
         infinite;
     }
 
-
-    /*
-       TOP HALF
-
-       Normal position:
-       -2px
-
-       Brief glitches move the upper slice further
-       left/right before returning immediately.
-    */
 
     @keyframes title-glitch-top {
 
@@ -376,13 +375,6 @@
 
     }
 
-
-    /*
-       BOTTOM HALF
-
-       Normal position:
-       +2px
-    */
 
     @keyframes title-glitch-bottom {
 
@@ -476,11 +468,16 @@
         translateX(-50%)
         scale(0);
 
+      /*
+        Previously 1.5s.
+        Added the same 3.5 second opening delay.
+      */
+
       animation:
         button-in
         .5s
         ease-out
-        1.5s
+        5s
         forwards;
     }
 
