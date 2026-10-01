@@ -1,404 +1,339 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#000000">
-
   <title>Holy Youth Movement</title>
 
   <style>
-
     * {
       box-sizing: border-box;
-      margin: 0;
-      padding: 0;
     }
 
     html,
     body {
       width: 100%;
       height: 100%;
+      margin: 0;
       overflow: hidden;
       background: #000;
-      font-family: Arial, Helvetica, sans-serif;
     }
-
-    /* =========================
-       HERO
-       ========================= */
 
     .hero {
       position: relative;
       width: 100%;
       height: 100vh;
-      height: 100dvh;
       overflow: hidden;
-      background: #000;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      padding-top: 140px;
     }
 
-    /* =========================
-       VIDEO
-       ========================= */
+    /* VIDEO */
 
     .hero-video {
       position: absolute;
       inset: 0;
-
       width: 100%;
       height: 100%;
-
       object-fit: cover;
-      object-position: center;
-
-      z-index: 1;
+      z-index: 0;
     }
 
-    .hero-overlay {
-      position: absolute;
-      inset: 0;
-
-      background: rgba(0, 0, 0, 0.12);
-
-      z-index: 2;
-    }
-
-    /* =========================
-       CONTENT
-       ========================= */
+    /* FOREGROUND */
 
     .hero-content {
       position: relative;
-      z-index: 3;
-
+      z-index: 2;
       width: 100%;
-      height: 100%;
-
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
-
-      padding: 24px;
-
-      text-align: center;
     }
 
-    /* =========================
-       HYM LOGO
-       ========================= */
+    /* HYM LOGO */
 
-    .hero-logo {
+    .hym-logo {
+      width: min(100vw, 468px);
+      height: auto;
       display: block;
 
-      width: min(55vw, 340px);
-      height: auto;
-
-      opacity: 0;
       transform: scale(0);
-
-      animation:
-        logoEntrance 0.8s ease-out 0.4s forwards;
+      animation: logo-in 0.65s ease-out 0.35s forwards;
     }
 
-    @keyframes logoEntrance {
-
+    @keyframes logo-in {
       0% {
-        opacity: 0;
         transform: scale(0);
       }
 
-      70% {
-        opacity: 1;
+      75% {
         transform: scale(1.08);
       }
 
       100% {
-        opacity: 1;
         transform: scale(1);
       }
-
     }
 
-    /* =========================
-       BAND NAME
-       ========================= */
+    /* TITLE */
 
-    .title-wrap {
+    .title-wrapper {
+      max-width: 100%;
+      padding: 0 10px;
+      overflow: hidden;
+
+      transform: scale(0);
+      animation: title-in 0.55s ease-out 0.95s forwards;
+    }
+
+    .glitched {
+      --duration: 1s;
+
       position: relative;
 
-      margin-top: 22px;
+      color: #fff;
+      text-align: center;
+      text-transform: uppercase;
 
-      opacity: 0;
-      transform: scale(0);
+      /*
+        No downloaded font.
+        We're deliberately abusing a heavy system font instead.
+      */
+      font-family: Impact, Haettenschweiler,
+                   "Arial Narrow Bold", "Arial Black",
+                   sans-serif;
 
-      animation:
-        titleEntrance 0.7s ease-out 1.05s forwards;
+      font-size: 50px;
+      font-weight: 900;
+      line-height: 1.05;
+
+      /*
+        Make the ordinary font narrower, taller and slightly
+        slanted to push it towards the HYM appearance.
+      */
+      letter-spacing: -2px;
+      transform: scaleX(0.82) skewX(-7deg);
+
+      animation: glitch var(--duration) linear infinite;
     }
 
-    @keyframes titleEntrance {
+    .glitched::before,
+    .glitched::after {
+      content: attr(data-text);
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      color: #fff;
+    }
 
-      0% {
-        opacity: 0;
+    .glitched::before {
+      animation: glitch-top var(--duration) linear infinite;
+      clip-path: polygon(
+        0 0,
+        100% 0,
+        100% 33%,
+        0 33%
+      );
+    }
+
+    .glitched::after {
+      animation: glitch-bottom var(--duration) linear infinite;
+      clip-path: polygon(
+        0 67%,
+        100% 67%,
+        100% 100%,
+        0 100%
+      );
+    }
+
+    /*
+      Based directly on the original site's glitch movement.
+    */
+
+    @keyframes glitch {
+      2%, 64% {
+        transform:
+          scaleX(0.82)
+          skewX(-7deg)
+          translate(2px, 0);
+      }
+
+      4%, 60% {
+        transform:
+          scaleX(0.82)
+          skewX(-7deg)
+          translate(-2px, 0);
+      }
+
+      62% {
+        transform:
+          scaleX(0.82)
+          skewX(-2deg);
+      }
+    }
+
+    @keyframes glitch-top {
+      2%, 64% {
+        transform: translate(2px, -2px);
+      }
+
+      4%, 60% {
+        transform: translate(-2px, 2px);
+      }
+
+      62% {
+        transform: translate(13px, -1px) skew(-13deg);
+      }
+    }
+
+    @keyframes glitch-bottom {
+      2%, 64% {
+        transform: translate(-2px, 0);
+      }
+
+      4%, 60% {
+        transform: translate(-2px, 0);
+      }
+
+      62% {
+        transform: translate(-22px, 5px) skew(21deg);
+      }
+    }
+
+    @keyframes title-in {
+      from {
         transform: scale(0);
       }
 
-      100% {
-        opacity: 1;
+      to {
         transform: scale(1);
       }
-
     }
 
-    .hero-title {
-      position: relative;
+    /* ENTER SITE */
 
-      color: #fff;
-
-      font-size: clamp(20px, 5vw, 46px);
-      font-weight: 700;
-
-      letter-spacing: 0.1em;
-      line-height: 1;
-
-      white-space: nowrap;
-    }
-
-    /* =========================
-       GLITCH EFFECT
-       ========================= */
-
-    .hero-title::before,
-    .hero-title::after {
-
-      content: "HOLY YOUTH MOVEMENT";
-
+    .enter-site {
       position: absolute;
-      inset: 0;
+      z-index: 3;
 
-      width: 100%;
-      height: 100%;
-
-      pointer-events: none;
-
-      opacity: 0;
-    }
-
-    .hero-title::before {
-
-      text-shadow: -3px 0 #ff00c8;
-
-      animation:
-        glitchLeft 3s infinite 2s;
-    }
-
-    .hero-title::after {
-
-      text-shadow: 3px 0 #00ffff;
-
-      animation:
-        glitchRight 3s infinite 2s;
-    }
-
-    @keyframes glitchLeft {
-
-      0%,
-      88%,
-      100% {
-        opacity: 0;
-        transform: translate(0);
-      }
-
-      89% {
-        opacity: 0.8;
-        transform: translate(-5px, 2px);
-        clip-path: inset(15% 0 60% 0);
-      }
-
-      91% {
-        opacity: 0.8;
-        transform: translate(4px, -2px);
-        clip-path: inset(55% 0 20% 0);
-      }
-
-      93% {
-        opacity: 0;
-        transform: translate(0);
-      }
-
-    }
-
-    @keyframes glitchRight {
-
-      0%,
-      90%,
-      100% {
-        opacity: 0;
-        transform: translate(0);
-      }
-
-      91% {
-        opacity: 0.7;
-        transform: translate(5px, -1px);
-        clip-path: inset(65% 0 10% 0);
-      }
-
-      93% {
-        opacity: 0.7;
-        transform: translate(-4px, 2px);
-        clip-path: inset(25% 0 50% 0);
-      }
-
-      95% {
-        opacity: 0;
-        transform: translate(0);
-      }
-
-    }
-
-    /* =========================
-       ENTER SITE BUTTON
-       ========================= */
-
-    .enter-button {
-
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-
-      min-width: 220px;
-      height: 68px;
-
-      margin-top: 42px;
-
-      border: 2px solid #fff;
-
-      background: rgba(0, 0, 0, 0.20);
+      left: 50%;
+      bottom: 25%;
 
       color: #fff;
+      background: transparent;
+
+      border: 5px solid #fb38fc;
+
+      padding: 3px 20px 5px;
 
       text-decoration: none;
+      text-transform: uppercase;
+      white-space: nowrap;
 
-      font-size: 14px;
-      letter-spacing: 0.22em;
+      font-family: Impact, Haettenschweiler,
+                   "Arial Narrow Bold", "Arial Black",
+                   sans-serif;
 
-      opacity: 0;
-      transform: scale(0);
+      font-size: 30px;
+      font-weight: 900;
+      line-height: 30px;
+      letter-spacing: -1px;
 
-      animation:
-        buttonEntrance 0.6s ease-out 1.65s forwards;
+      transform:
+        translateX(-50%)
+        scale(0)
+        skewX(-6deg);
 
-      transition:
-        background 0.25s ease,
-        color 0.25s ease;
+      animation: button-in 0.5s ease-out 1.5s forwards;
     }
 
-    @keyframes buttonEntrance {
-
-      0% {
-        opacity: 0;
-        transform: scale(0);
-      }
-
-      100% {
-        opacity: 1;
-        transform: scale(1);
-      }
-
+    .enter-site:hover {
+      color: #fb38fc;
     }
 
-    .enter-button:hover {
-      background: #fff;
-      color: #000;
+    @keyframes button-in {
+      from {
+        transform:
+          translateX(-50%)
+          scale(0)
+          skewX(-6deg);
+      }
+
+      to {
+        transform:
+          translateX(-50%)
+          scale(1)
+          skewX(-6deg);
+      }
     }
 
-    /* =========================
-       MOBILE
-       ========================= */
+    /*
+      Desktop / larger screens.
+      The original desktop title was 4rem.
+    */
 
-    @media (max-width: 500px) {
-
-      .hero-logo {
-        width: 58vw;
-        max-width: 270px;
+    @media screen and (min-width: 480px) {
+      .hero {
+        justify-content: center;
+        padding-top: 0;
       }
 
-      .hero-title {
-        font-size: clamp(16px, 5.2vw, 25px);
-        letter-spacing: 0.07em;
+      .glitched {
+        font-size: 4rem;
       }
 
-      .enter-button {
-        min-width: 190px;
-        height: 58px;
-        margin-top: 34px;
+      .enter-site {
+        bottom: 40px;
       }
-
     }
-
   </style>
-
 </head>
 
 <body>
 
   <main class="hero">
 
-    <!-- Background video -->
-
     <video
       class="hero-video"
       autoplay
-      muted
       loop
+      muted
       playsinline
     >
-
       <source
         src="6456cc03b18521dd74a8f3ca_Short%20HYM-transcode.mp4"
         type="video/mp4"
       >
-
     </video>
-
-
-    <!-- Slight dark overlay -->
-
-    <div class="hero-overlay"></div>
-
-
-    <!-- Landing page content -->
 
     <div class="hero-content">
 
       <img
-        class="hero-logo"
+        class="hym-logo"
         src="hymlogo.png"
-        alt="HYM"
+        alt="Holy Youth Movement"
       >
 
-
-      <div class="title-wrap">
-
-        <div class="hero-title">
+      <div class="title-wrapper">
+        <div
+          class="glitched"
+          data-text="HOLY YOUTH MOVEMENT"
+        >
           HOLY YOUTH MOVEMENT
         </div>
-
       </div>
 
-
-      <a
-        class="enter-button"
-        href="home.html"
-      >
-        ENTER SITE
-      </a>
-
     </div>
+
+    <a class="enter-site" href="home.html">
+      ENTER SITE
+    </a>
 
   </main>
 
 </body>
-
 </html>
