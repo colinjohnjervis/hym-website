@@ -24,44 +24,60 @@
       width: 100%;
       height: 100vh;
       overflow: hidden;
+
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: flex-start;
+
       padding-top: 140px;
     }
 
-    /* VIDEO */
+    /* =========================
+       VIDEO
+       ========================= */
 
     .hero-video {
       position: absolute;
       inset: 0;
+
       width: 100%;
       height: 100%;
+
       object-fit: cover;
+
       z-index: 0;
     }
 
-    /* FOREGROUND */
+    /* =========================
+       FOREGROUND CONTENT
+       ========================= */
 
     .hero-content {
       position: relative;
       z-index: 2;
+
       width: 100%;
+
       display: flex;
       flex-direction: column;
       align-items: center;
     }
 
-    /* HYM LOGO */
+    /* =========================
+       HYM LOGO
+       ========================= */
 
     .hym-logo {
       width: min(100vw, 468px);
       height: auto;
+
       display: block;
 
       transform: scale(0);
-      animation: logo-in 0.65s ease-out 0.35s forwards;
+
+      animation:
+        logo-in 0.65s ease-out 0.35s forwards;
     }
 
     @keyframes logo-in {
@@ -78,130 +94,22 @@
       }
     }
 
-    /* TITLE */
+    /* =========================
+       TITLE
+       ========================= */
 
     .title-wrapper {
       max-width: 100%;
-      padding: 0 10px;
+
+      padding-left: 10px;
+      padding-right: 10px;
+
       overflow: hidden;
 
       transform: scale(0);
-      animation: title-in 0.55s ease-out 0.95s forwards;
-    }
 
-    .glitched {
-      --duration: 1s;
-
-      position: relative;
-
-      color: #fff;
-      text-align: center;
-      text-transform: uppercase;
-
-      /*
-        No downloaded font.
-        We're deliberately abusing a heavy system font instead.
-      */
-      font-family: Impact, Haettenschweiler,
-                   "Arial Narrow Bold", "Arial Black",
-                   sans-serif;
-
-      font-size: 50px;
-      font-weight: 900;
-      line-height: 1.05;
-
-      /*
-        Make the ordinary font narrower, taller and slightly
-        slanted to push it towards the HYM appearance.
-      */
-      letter-spacing: -2px;
-      transform: scaleX(0.82) skewX(-7deg);
-
-      animation: glitch var(--duration) linear infinite;
-    }
-
-    .glitched::before,
-    .glitched::after {
-      content: attr(data-text);
-      position: absolute;
-      left: 0;
-      top: 0;
-      width: 100%;
-      color: #fff;
-    }
-
-    .glitched::before {
-      animation: glitch-top var(--duration) linear infinite;
-      clip-path: polygon(
-        0 0,
-        100% 0,
-        100% 33%,
-        0 33%
-      );
-    }
-
-    .glitched::after {
-      animation: glitch-bottom var(--duration) linear infinite;
-      clip-path: polygon(
-        0 67%,
-        100% 67%,
-        100% 100%,
-        0 100%
-      );
-    }
-
-    /*
-      Based directly on the original site's glitch movement.
-    */
-
-    @keyframes glitch {
-      2%, 64% {
-        transform:
-          scaleX(0.82)
-          skewX(-7deg)
-          translate(2px, 0);
-      }
-
-      4%, 60% {
-        transform:
-          scaleX(0.82)
-          skewX(-7deg)
-          translate(-2px, 0);
-      }
-
-      62% {
-        transform:
-          scaleX(0.82)
-          skewX(-2deg);
-      }
-    }
-
-    @keyframes glitch-top {
-      2%, 64% {
-        transform: translate(2px, -2px);
-      }
-
-      4%, 60% {
-        transform: translate(-2px, 2px);
-      }
-
-      62% {
-        transform: translate(13px, -1px) skew(-13deg);
-      }
-    }
-
-    @keyframes glitch-bottom {
-      2%, 64% {
-        transform: translate(-2px, 0);
-      }
-
-      4%, 60% {
-        transform: translate(-2px, 0);
-      }
-
-      62% {
-        transform: translate(-22px, 5px) skew(21deg);
-      }
+      animation:
+        title-in 0.55s ease-out 0.95s forwards;
     }
 
     @keyframes title-in {
@@ -214,41 +122,286 @@
       }
     }
 
-    /* ENTER SITE */
+    /*
+      We are deliberately using a system font here.
+
+      CSS stretching, skewing and slicing are used
+      to move it towards the original HYM appearance
+      without requiring the original font file.
+    */
+
+    .glitched {
+      --duration: 1s;
+
+      position: relative;
+      display: inline-block;
+
+      color: #fff;
+
+      text-align: center;
+      text-transform: uppercase;
+
+      font-family:
+        Impact,
+        Haettenschweiler,
+        "Arial Black",
+        sans-serif;
+
+      font-size: 50px;
+      font-weight: 900;
+      line-height: 1.12;
+
+      letter-spacing: -1px;
+
+      transform:
+        scaleX(1.04)
+        skewX(-5deg);
+
+      animation:
+        glitch var(--duration) linear infinite;
+    }
+
+    /*
+      Duplicate copies of the title are sliced.
+      These create the broken/distorted sections
+      through the lettering.
+    */
+
+    .glitched::before,
+    .glitched::after {
+      content: attr(data-text);
+
+      position: absolute;
+
+      left: 0;
+      top: 0;
+
+      width: 100%;
+
+      color: #fff;
+
+      text-align: center;
+
+      font: inherit;
+      letter-spacing: inherit;
+
+      pointer-events: none;
+    }
+
+    /*
+      Upper slice
+    */
+
+    .glitched::before {
+      clip-path: polygon(
+        0 0,
+        100% 0,
+        100% 42%,
+        0 42%
+      );
+
+      transform: translateX(3px);
+
+      animation:
+        slice-top 2.4s steps(1) infinite,
+        glitch-top var(--duration) linear infinite;
+    }
+
+    /*
+      Lower slice
+    */
+
+    .glitched::after {
+      clip-path: polygon(
+        0 62%,
+        100% 62%,
+        100% 100%,
+        0 100%
+      );
+
+      transform: translateX(-3px);
+
+      animation:
+        slice-bottom 2.1s steps(1) infinite,
+        glitch-bottom var(--duration) linear infinite;
+    }
+
+    /* =========================
+       MAIN GLITCH
+       ========================= */
+
+    @keyframes glitch {
+      0%,
+      1%,
+      5%,
+      59%,
+      65%,
+      100% {
+        transform:
+          scaleX(1.04)
+          skewX(-5deg);
+      }
+
+      2%,
+      64% {
+        transform:
+          scaleX(1.04)
+          skewX(-5deg)
+          translate(2px, 0);
+      }
+
+      4%,
+      60% {
+        transform:
+          scaleX(1.04)
+          skewX(-5deg)
+          translate(-2px, 0);
+      }
+
+      62% {
+        transform:
+          scaleX(1.04)
+          skewX(2deg)
+          translate(0, 0);
+      }
+    }
+
+    /*
+      Original-style upper glitch movement
+    */
+
+    @keyframes glitch-top {
+      2%,
+      64% {
+        transform:
+          translate(2px, -2px);
+      }
+
+      4%,
+      60% {
+        transform:
+          translate(-2px, 2px);
+      }
+
+      62% {
+        transform:
+          translate(13px, -1px)
+          skew(-13deg);
+      }
+    }
+
+    /*
+      Original-style lower glitch movement
+    */
+
+    @keyframes glitch-bottom {
+      2%,
+      64% {
+        transform:
+          translate(-2px, 0);
+      }
+
+      4%,
+      60% {
+        transform:
+          translate(-2px, 0);
+      }
+
+      62% {
+        transform:
+          translate(-22px, 5px)
+          skew(21deg);
+      }
+    }
+
+    /*
+      Additional permanent-ish distortion.
+      This stops the normal system font from
+      looking completely clean between glitches.
+    */
+
+    @keyframes slice-top {
+      0%,
+      79%,
+      100% {
+        transform: translateX(3px);
+      }
+
+      80%,
+      84% {
+        transform: translateX(-5px);
+      }
+
+      85%,
+      89% {
+        transform: translateX(6px);
+      }
+    }
+
+    @keyframes slice-bottom {
+      0%,
+      74%,
+      100% {
+        transform: translateX(-3px);
+      }
+
+      75%,
+      80% {
+        transform: translateX(5px);
+      }
+
+      81%,
+      86% {
+        transform: translateX(-7px);
+      }
+    }
+
+    /* =========================
+       ENTER SITE BUTTON
+       ========================= */
 
     .enter-site {
       position: absolute;
+
       z-index: 3;
 
       left: 50%;
       bottom: 25%;
 
       color: #fff;
+
       background: transparent;
 
-      border: 5px solid #fb38fc;
+      border:
+        5px solid #fb38fc;
 
-      padding: 3px 20px 5px;
+      padding:
+        3px 20px 5px;
 
       text-decoration: none;
       text-transform: uppercase;
+
       white-space: nowrap;
 
-      font-family: Impact, Haettenschweiler,
-                   "Arial Narrow Bold", "Arial Black",
-                   sans-serif;
+      font-family:
+        Impact,
+        Haettenschweiler,
+        "Arial Black",
+        sans-serif;
 
       font-size: 30px;
       font-weight: 900;
       line-height: 30px;
-      letter-spacing: -1px;
+
+      letter-spacing: 0;
 
       transform:
         translateX(-50%)
         scale(0)
-        skewX(-6deg);
+        skewX(-5deg);
 
-      animation: button-in 0.5s ease-out 1.5s forwards;
+      animation:
+        button-in 0.5s ease-out 1.5s forwards;
     }
 
     .enter-site:hover {
@@ -260,23 +413,23 @@
         transform:
           translateX(-50%)
           scale(0)
-          skewX(-6deg);
+          skewX(-5deg);
       }
 
       to {
         transform:
           translateX(-50%)
           scale(1)
-          skewX(-6deg);
+          skewX(-5deg);
       }
     }
 
-    /*
-      Desktop / larger screens.
-      The original desktop title was 4rem.
-    */
+    /* =========================
+       DESKTOP / LARGER SCREENS
+       ========================= */
 
     @media screen and (min-width: 480px) {
+
       .hero {
         justify-content: center;
         padding-top: 0;
@@ -290,6 +443,7 @@
         bottom: 40px;
       }
     }
+
   </style>
 </head>
 
@@ -319,17 +473,22 @@
       >
 
       <div class="title-wrapper">
+
         <div
           class="glitched"
           data-text="HOLY YOUTH MOVEMENT"
         >
           HOLY YOUTH MOVEMENT
         </div>
+
       </div>
 
     </div>
 
-    <a class="enter-site" href="home.html">
+    <a
+      class="enter-site"
+      href="home.html"
+    >
       ENTER SITE
     </a>
 
