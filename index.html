@@ -2,7 +2,6 @@
 <html lang="en">
 
 <head>
-
   <meta charset="UTF-8">
 
   <meta
@@ -10,9 +9,14 @@
     content="width=device-width, initial-scale=1.0"
   >
 
+  <meta
+    name="theme-color"
+    content="#000000"
+  >
+
   <title>Holy Youth Movement</title>
 
-  <!-- Archivo Black -->
+  <!-- Same font used by our earlier sliced headings -->
   <link
     rel="stylesheet"
     href="https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap"
@@ -80,7 +84,7 @@
 
 
     /* =========================
-       MAIN CONTENT
+       HERO CONTENT
     ========================= */
 
     .hero-content {
@@ -135,7 +139,7 @@
 
 
     /* =========================
-       TITLE CONTAINER
+       TITLE ENTRANCE
     ========================= */
 
     .title-wrapper {
@@ -175,11 +179,23 @@
     }
 
 
-    /* =========================
-       SLICED HYM TYPOGRAPHY
-    ========================= */
+    /* ==================================================
+       SLICED HEADING
 
-    .slice-title {
+       This uses the same basic recipe as the headings
+       from the earlier HYM prototype:
+
+       Archivo Black
+       -10 degree skew
+       tight letter spacing
+       diagonal centre slice
+
+       The slice direction has now been REVERSED:
+       TOP    = left
+       BOTTOM = right
+    ================================================== */
+
+    .slice-heading {
       position: relative;
 
       margin-left: auto;
@@ -195,45 +211,36 @@
         Arial,
         sans-serif;
 
-      font-size: 50px;
       font-weight: 400;
 
-      line-height: .86;
+      line-height: .78;
 
       letter-spacing: -.075em;
 
       text-transform: uppercase;
 
-      transform: skewX(-10deg);
+      transform:
+        skewX(-10deg);
 
       transform-origin: center;
     }
 
 
-    /*
-      Each line is constructed from two copies.
-
-      One copy shows the top half.
-      The other shows the bottom half.
-
-      They are offset in opposite directions.
-    */
-
-    .slice-title span {
+    .slice-heading span {
       position: relative;
 
       display: block;
 
-      min-height: .95em;
+      min-height: .86em;
 
       color: transparent;
     }
 
 
-    .slice-title span::before,
-    .slice-title span::after {
-
-      content: attr(data-text);
+    .slice-heading span::before,
+    .slice-heading span::after {
+      content:
+        attr(data-text);
 
       position: absolute;
 
@@ -244,7 +251,7 @@
 
       min-width: 100%;
 
-      color: #fff;
+      color: #ffffff;
 
       font-family: inherit;
       font-size: inherit;
@@ -260,10 +267,12 @@
 
     /* =========================
        TOP HALF
+
+       Reversed from the earlier CSS:
+       upper portion moves LEFT.
     ========================= */
 
-    .slice-title span::before {
-
+    .slice-heading span::before {
       clip-path:
         polygon(
           0 0,
@@ -274,23 +283,18 @@
 
       transform:
         translateX(
-          calc(-50% + 2px)
+          calc(-50% - 2px)
         );
-
-      animation:
-        glitch-top
-        1s
-        linear
-        infinite;
     }
 
 
     /* =========================
        BOTTOM HALF
+
+       Lower portion moves RIGHT.
     ========================= */
 
-    .slice-title span::after {
-
+    .slice-heading span::after {
       clip-path:
         polygon(
           0 57%,
@@ -301,135 +305,32 @@
 
       transform:
         translateX(
-          calc(-50% - 2px)
+          calc(-50% + 2px)
         );
-
-      animation:
-        glitch-bottom
-        1s
-        linear
-        infinite;
-    }
-
-
-    /*
-      These animations are based on the
-      original site's glitch movement.
-
-      Most of the time the lettering remains
-      in its normal sliced position.
-    */
-
-    @keyframes glitch-top {
-
-      0%,
-      1%,
-      5%,
-      59%,
-      61%,
-      63%,
-      65%,
-      100% {
-
-        transform:
-          translateX(
-            calc(-50% + 2px)
-          );
-      }
-
-
-      2%,
-      64% {
-
-        transform:
-          translate(
-            calc(-50% + 4px),
-            -2px
-          );
-      }
-
-
-      4%,
-      60% {
-
-        transform:
-          translate(
-            calc(-50% - 2px),
-            2px
-          );
-      }
-
-
-      62% {
-
-        transform:
-          translate(
-            calc(-50% + 15px),
-            -1px
-          )
-          skew(-13deg);
-      }
-
-    }
-
-
-    @keyframes glitch-bottom {
-
-      0%,
-      1%,
-      5%,
-      59%,
-      61%,
-      63%,
-      65%,
-      100% {
-
-        transform:
-          translateX(
-            calc(-50% - 2px)
-          );
-      }
-
-
-      2%,
-      64% {
-
-        transform:
-          translateX(
-            calc(-50% - 4px)
-          );
-      }
-
-
-      4%,
-      60% {
-
-        transform:
-          translateX(
-            calc(-50% - 4px)
-          );
-      }
-
-
-      62% {
-
-        transform:
-          translate(
-            calc(-50% - 24px),
-            5px
-          )
-          skew(21deg);
-      }
-
     }
 
 
     /* =========================
-       ENTER SITE
+       HERO TITLE
+    ========================= */
+
+    .hero-title {
+      width: 100%;
+
+      font-size: 50px;
+    }
+
+
+    .hero-title span + span {
+      margin-top: 8px;
+    }
+
+
+    /* =========================
+       ENTER SITE BUTTON
     ========================= */
 
     .enter-site {
-
       position: absolute;
 
       z-index: 4;
@@ -438,17 +339,15 @@
       bottom: 25%;
 
       padding:
-        5px
+        3px
         20px
-        7px;
+        5px;
 
       border:
         5px solid
         #fb38fc;
 
       background: transparent;
-
-      color: transparent;
 
       text-decoration: none;
 
@@ -468,36 +367,31 @@
     @keyframes button-in {
 
       from {
-
         transform:
           translateX(-50%)
           scale(0);
-
       }
 
       to {
-
         transform:
           translateX(-50%)
           scale(1);
-
       }
 
     }
 
 
     /* =========================
-       BUTTON SLICED TEXT
+       SLICED BUTTON TEXT
     ========================= */
 
-    .button-text {
-
+    .button-slice {
       position: relative;
 
       display: block;
 
-      min-width: 200px;
-      min-height: 32px;
+      min-width: 195px;
+      min-height: 30px;
 
       color: transparent;
 
@@ -512,19 +406,19 @@
 
       line-height: 30px;
 
-      letter-spacing: -.06em;
+      letter-spacing: -.075em;
 
       text-align: center;
 
       text-transform: uppercase;
 
-      transform: skewX(-10deg);
+      transform:
+        skewX(-10deg);
     }
 
 
-    .button-text::before,
-    .button-text::after {
-
+    .button-slice::before,
+    .button-slice::after {
       content:
         attr(data-text);
 
@@ -535,7 +429,7 @@
 
       width: max-content;
 
-      color: #fff;
+      color: #ffffff;
 
       font-family: inherit;
       font-size: inherit;
@@ -547,10 +441,9 @@
     }
 
 
-    /* BUTTON TOP */
+    /* BUTTON TOP — LEFT */
 
-    .button-text::before {
-
+    .button-slice::before {
       clip-path:
         polygon(
           0 0,
@@ -561,15 +454,14 @@
 
       transform:
         translateX(
-          calc(-50% + 2px)
+          calc(-50% - 2px)
         );
     }
 
 
-    /* BUTTON BOTTOM */
+    /* BUTTON BOTTOM — RIGHT */
 
-    .button-text::after {
-
+    .button-slice::after {
       clip-path:
         polygon(
           0 57%,
@@ -580,17 +472,16 @@
 
       transform:
         translateX(
-          calc(-50% - 2px)
+          calc(-50% + 2px)
         );
     }
 
 
     .enter-site:hover
-    .button-text::before,
+    .button-slice::before,
 
     .enter-site:hover
-    .button-text::after {
-
+    .button-slice::after {
       color: #fb38fc;
     }
 
@@ -602,25 +493,19 @@
     @media screen and (min-width: 480px) {
 
       .hero {
-
         justify-content: center;
 
         padding-top: 0;
-
       }
 
 
-      .slice-title {
-
+      .hero-title {
         font-size: 4rem;
-
       }
 
 
       .enter-site {
-
         bottom: 40px;
-
       }
 
     }
@@ -653,7 +538,7 @@
     </video>
 
 
-    <!-- LOGO + TITLE -->
+    <!-- LOGO AND TITLE -->
 
     <div class="hero-content">
 
@@ -669,10 +554,9 @@
 
 
         <div
-          class="slice-title"
+          class="slice-heading hero-title"
           aria-label="Holy Youth Movement"
         >
-
 
           <span
             data-text="HOLY YOUTH"
@@ -686,7 +570,6 @@
           >
             MOVEMENT
           </span>
-
 
         </div>
 
@@ -706,7 +589,7 @@
     >
 
       <span
-        class="button-text"
+        class="button-slice"
         data-text="ENTER SITE"
       >
         ENTER SITE
