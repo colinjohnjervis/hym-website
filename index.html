@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+
   <meta charset="UTF-8">
 
   <meta
@@ -65,7 +66,7 @@
 
 
     /* =========================
-       VIDEO
+       BACKGROUND VIDEO
     ========================= */
 
     .hero-video {
@@ -110,11 +111,6 @@
       height: auto;
 
       transform: scale(0);
-
-      /*
-        3.5 second opening pause.
-        Logo then enters exactly as before.
-      */
 
       animation:
         logo-in
@@ -161,11 +157,6 @@
 
       transform: scale(0);
 
-      /*
-        Previously .95s.
-        Added the same 3.5 second opening delay.
-      */
-
       animation:
         title-in
         .55s
@@ -189,7 +180,7 @@
 
 
     /* ==================================================
-       SLICED HEADING
+       HOLY YOUTH MOVEMENT TYPOGRAPHY
     ================================================== */
 
     .slice-heading {
@@ -304,9 +295,8 @@
 
 
     /* ==================================================
-       HOLY YOUTH MOVEMENT GLITCH
-
-       Only the white wording glitches.
+       TITLE GLITCH
+       Only HOLY YOUTH MOVEMENT glitches
     ================================================== */
 
     .hero-title span::before {
@@ -424,7 +414,7 @@
 
 
     /* =========================
-       HERO TITLE
+       HERO TITLE SIZE
     ========================= */
 
     .hero-title {
@@ -439,11 +429,11 @@
     }
 
 
-    /* =========================
-       ENTER SITE BUTTON
-    ========================= */
+    /* ==================================================
+       ENTRANCE CONTROLS
+    ================================================== */
 
-    .enter-site {
+    .entrance-controls {
       position: absolute;
 
       z-index: 4;
@@ -451,30 +441,19 @@
       left: 50%;
       bottom: 25%;
 
-      padding:
-        3px
-        20px
-        5px;
+      display: flex;
+      flex-direction: column;
 
-      border:
-        5px solid
-        #fb38fc;
+      align-items: center;
 
-      background: transparent;
-
-      text-decoration: none;
+      gap: 12px;
 
       transform:
         translateX(-50%)
         scale(0);
 
-      /*
-        Previously 1.5s.
-        Added the same 3.5 second opening delay.
-      */
-
       animation:
-        button-in
+        controls-in
         .5s
         ease-out
         5s
@@ -482,7 +461,7 @@
     }
 
 
-    @keyframes button-in {
+    @keyframes controls-in {
 
       from {
         transform:
@@ -500,18 +479,24 @@
 
 
     /* =========================
-       BUTTON TEXT
+       SHARED BUTTON STYLE
     ========================= */
 
-    .button-slice {
-      position: relative;
+    .entrance-button {
+      min-width: 235px;
 
-      display: block;
+      padding:
+        7px
+        20px
+        9px;
 
-      min-width: 195px;
-      min-height: 30px;
+      border:
+        5px solid
+        #fb38fc;
 
-      color: transparent;
+      background: transparent;
+
+      color: #ffffff;
 
       font-family:
         "Archivo Black",
@@ -519,93 +504,39 @@
         Arial,
         sans-serif;
 
-      font-size: 30px;
+      font-size: 25px;
       font-weight: 400;
 
       line-height: 30px;
 
-      letter-spacing: -.085em;
+      letter-spacing: -.04em;
 
       text-align: center;
 
       text-transform: uppercase;
 
-      transform: skewX(-7deg);
-    }
+      text-decoration: none;
 
-
-    .button-slice::before,
-    .button-slice::after {
-      content: attr(data-text);
-
-      position: absolute;
-
-      top: 0;
-      left: 50%;
-
-      width: max-content;
-
-      color: #ffffff;
-
-      font-family: inherit;
-      font-size: inherit;
-      font-weight: inherit;
-      line-height: inherit;
-      letter-spacing: inherit;
-
-      -webkit-text-stroke: 1.25px #ffffff;
-
-      paint-order: stroke fill;
+      cursor: pointer;
 
       white-space: nowrap;
+
+      appearance: none;
+      -webkit-appearance: none;
     }
 
 
-    /* BUTTON TOP — LEFT */
-
-    .button-slice::before {
-      clip-path:
-        polygon(
-          0 0,
-          100% 0,
-          100% 48%,
-          0 57%
-        );
-
-      transform:
-        translateX(
-          calc(-50% - 2px)
-        );
-    }
-
-
-    /* BUTTON BOTTOM — RIGHT */
-
-    .button-slice::after {
-      clip-path:
-        polygon(
-          0 57%,
-          100% 48%,
-          100% 100%,
-          0 100%
-        );
-
-      transform:
-        translateX(
-          calc(-50% + 2px)
-        );
-    }
-
-
-    .enter-site:hover
-    .button-slice::before,
-
-    .enter-site:hover
-    .button-slice::after {
+    .entrance-button:hover {
       color: #fb38fc;
+    }
 
-      -webkit-text-stroke-color:
-        #fb38fc;
+
+    /* =========================
+       SOUND BUTTON
+    ========================= */
+
+    .sound-button {
+      display: block;
     }
 
 
@@ -627,8 +558,12 @@
       }
 
 
-      .enter-site {
+      .entrance-controls {
         bottom: 40px;
+
+        flex-direction: row;
+
+        gap: 16px;
       }
 
     }
@@ -643,7 +578,9 @@
   <main class="hero">
 
 
-    <!-- BACKGROUND VIDEO -->
+    <!-- =========================
+         BACKGROUND VIDEO
+    ========================== -->
 
     <video
       class="hero-video"
@@ -661,9 +598,33 @@
     </video>
 
 
-    <!-- LOGO + TITLE -->
+    <!-- =========================
+         MUSIC TRACK
+
+         Replace hym-track.mp3 with the actual
+         track filename when we add the music.
+    ========================== -->
+
+    <audio
+      id="heroAudio"
+      preload="metadata"
+      loop
+    >
+
+      <source
+        src="hym-track.mp3"
+        type="audio/mpeg"
+      >
+
+    </audio>
+
+
+    <!-- =========================
+         LOGO + TITLE
+    ========================== -->
 
     <div class="hero-content">
+
 
       <img
         class="hym-logo"
@@ -674,45 +635,133 @@
 
       <div class="title-wrapper">
 
+
         <div
           class="slice-heading hero-title"
           aria-label="Holy Youth Movement"
         >
 
+
           <span data-text="HOLY YOUTH">
             HOLY YOUTH
           </span>
+
 
           <span data-text="MOVEMENT">
             MOVEMENT
           </span>
 
+
         </div>
 
+
       </div>
+
 
     </div>
 
 
-    <!-- ENTER SITE -->
+    <!-- =========================
+         CONTROLS
+    ========================== -->
 
-    <a
-      class="enter-site"
-      href="home.html"
-      aria-label="Enter site"
-    >
+    <div class="entrance-controls">
 
-      <span
-        class="button-slice"
-        data-text="ENTER SITE"
+
+      <button
+        class="entrance-button sound-button"
+        id="soundButton"
+        type="button"
+        aria-pressed="false"
+      >
+        SOUND ON
+      </button>
+
+
+      <a
+        class="entrance-button"
+        href="home.html"
       >
         ENTER SITE
-      </span>
+      </a>
 
-    </a>
+
+    </div>
 
 
   </main>
+
+
+  <!-- =========================
+       SOUND CONTROL
+  ========================== -->
+
+  <script>
+
+    const soundButton =
+      document.getElementById("soundButton");
+
+    const heroAudio =
+      document.getElementById("heroAudio");
+
+
+    let soundIsOn = false;
+
+
+    soundButton.addEventListener(
+      "click",
+      async function () {
+
+        if (!soundIsOn) {
+
+          try {
+
+            await heroAudio.play();
+
+            soundIsOn = true;
+
+            soundButton.textContent =
+              "SOUND OFF";
+
+            soundButton.setAttribute(
+              "aria-pressed",
+              "true"
+            );
+
+          }
+
+          catch (error) {
+
+            console.log(
+              "Audio could not be played:",
+              error
+            );
+
+          }
+
+        }
+
+        else {
+
+          heroAudio.pause();
+
+          soundIsOn = false;
+
+          soundButton.textContent =
+            "SOUND ON";
+
+          soundButton.setAttribute(
+            "aria-pressed",
+            "false"
+          );
+
+        }
+
+      }
+    );
+
+  </script>
+
 
 </body>
 
