@@ -24,10 +24,6 @@
 
   <style>
 
-    /* =========================
-       RESET
-    ========================= */
-
     * {
       box-sizing: border-box;
     }
@@ -40,11 +36,6 @@
       overflow: hidden;
       background: #000;
     }
-
-
-    /* =========================
-       HERO
-    ========================= */
 
     .hero {
       position: relative;
@@ -60,11 +51,6 @@
       padding-top: 140px;
     }
 
-
-    /* =========================
-       BACKGROUND VIDEO
-    ========================= */
-
     .hero-video {
       position: absolute;
       inset: 0;
@@ -77,11 +63,6 @@
       z-index: 0;
     }
 
-
-    /* =========================
-       HERO CONTENT
-    ========================= */
-
     .hero-content {
       position: relative;
       z-index: 2;
@@ -92,11 +73,6 @@
       flex-direction: column;
       align-items: center;
     }
-
-
-    /* =========================
-       HYM LOGO
-    ========================= */
 
     .hym-logo {
       display: block;
@@ -114,7 +90,6 @@
         forwards;
     }
 
-
     @keyframes logo-in {
 
       0% {
@@ -130,11 +105,6 @@
       }
 
     }
-
-
-    /* =========================
-       TITLE ENTRANCE
-    ========================= */
 
     .title-wrapper {
       position: relative;
@@ -158,7 +128,6 @@
         forwards;
     }
 
-
     @keyframes title-in {
 
       from {
@@ -170,11 +139,6 @@
       }
 
     }
-
-
-    /* ==================================================
-       HOLY YOUTH MOVEMENT TYPOGRAPHY
-    ================================================== */
 
     .slice-heading {
       position: relative;
@@ -205,7 +169,6 @@
       transform-origin: center;
     }
 
-
     .slice-heading span {
       position: relative;
       display: block;
@@ -214,7 +177,6 @@
 
       color: transparent;
     }
-
 
     .slice-heading span::before,
     .slice-heading span::after {
@@ -245,11 +207,6 @@
       white-space: nowrap;
     }
 
-
-    /* =========================
-       TOP HALF — LEFT
-    ========================= */
-
     .slice-heading span::before {
       clip-path:
         polygon(
@@ -264,11 +221,6 @@
           calc(-50% - 2px)
         );
     }
-
-
-    /* =========================
-       BOTTOM HALF — RIGHT
-    ========================= */
 
     .slice-heading span::after {
       clip-path:
@@ -285,12 +237,6 @@
         );
     }
 
-
-    /* ==================================================
-       TITLE GLITCH
-       ONLY HOLY YOUTH MOVEMENT GLITCHES
-    ================================================== */
-
     .hero-title span::before {
       animation:
         title-glitch-top
@@ -299,7 +245,6 @@
         infinite;
     }
 
-
     .hero-title span::after {
       animation:
         title-glitch-bottom
@@ -307,7 +252,6 @@
         linear
         infinite;
     }
-
 
     @keyframes title-glitch-top {
 
@@ -325,7 +269,6 @@
           );
       }
 
-
       2%,
       64% {
         transform:
@@ -335,7 +278,6 @@
           );
       }
 
-
       4%,
       60% {
         transform:
@@ -344,7 +286,6 @@
             2px
           );
       }
-
 
       62% {
         transform:
@@ -356,7 +297,6 @@
       }
 
     }
-
 
     @keyframes title-glitch-bottom {
 
@@ -374,7 +314,6 @@
           );
       }
 
-
       2%,
       64% {
         transform:
@@ -383,7 +322,6 @@
           );
       }
 
-
       4%,
       60% {
         transform:
@@ -391,7 +329,6 @@
             calc(-50% + 4px)
           );
       }
-
 
       62% {
         transform:
@@ -404,25 +341,18 @@
 
     }
 
-
-    /* =========================
-       HERO TITLE SIZE
-    ========================= */
-
     .hero-title {
       width: 100%;
       font-size: 50px;
     }
 
-
     .hero-title span + span {
       margin-top: 8px;
     }
 
-
-    /* ==================================================
+    /* =========================
        ENTRANCE CONTROLS
-    ================================================== */
+    ========================= */
 
     .entrance-controls {
       position: absolute;
@@ -451,7 +381,6 @@
         forwards;
     }
 
-
     @keyframes controls-in {
 
       from {
@@ -467,7 +396,6 @@
       }
 
     }
-
 
     /* =========================
        BUTTONS
@@ -486,12 +414,6 @@
         #fb38fc;
 
       background: transparent;
-
-      /*
-        IMPORTANT:
-        Button wording remains white
-        in every state.
-      */
 
       color: #ffffff;
 
@@ -524,12 +446,6 @@
       -webkit-tap-highlight-color: transparent;
     }
 
-
-    /*
-      Keep text WHITE on hover,
-      press, focus and after visiting.
-    */
-
     .entrance-button:hover,
     .entrance-button:active,
     .entrance-button:focus,
@@ -537,12 +453,10 @@
       color: #ffffff;
     }
 
-
     .entrance-button:focus-visible {
       outline: 2px solid #ffffff;
       outline-offset: 4px;
     }
-
 
     /* =========================
        DESKTOP
@@ -555,11 +469,9 @@
         padding-top: 0;
       }
 
-
       .hero-title {
         font-size: 4rem;
       }
-
 
       .entrance-controls {
         bottom: 40px;
@@ -582,9 +494,7 @@
   <main class="hero">
 
 
-    <!-- =========================
-         BACKGROUND VIDEO
-    ========================== -->
+    <!-- BACKGROUND VIDEO -->
 
     <video
       class="hero-video"
@@ -602,9 +512,7 @@
     </video>
 
 
-    <!-- =========================
-         LOGO + TITLE
-    ========================== -->
+    <!-- LOGO + TITLE -->
 
     <div class="hero-content">
 
@@ -644,9 +552,7 @@
     </div>
 
 
-    <!-- =========================
-         CONTROLS
-    ========================== -->
+    <!-- CONTROLS -->
 
     <div class="entrance-controls">
 
@@ -676,14 +582,7 @@
 
 
   <!-- ==================================================
-       TEMPORARY SOUND SYSTEM
-
-       This creates a quiet atmospheric musical sequence
-       directly in the browser.
-
-       It can later be removed and replaced with the
-       actual HYM audio file without changing the
-       appearance of the button.
+       TEMPORARY MUSICAL SOUND
   =================================================== -->
 
   <script>
@@ -700,11 +599,11 @@
 
     let masterGain = null;
 
+    let notePosition = 0;
+
 
     /*
-      Notes used by the temporary sequence.
-
-      These form a simple minor / atmospheric pattern.
+      Temporary atmospheric note sequence.
     */
 
     const notes = [
@@ -717,11 +616,8 @@
     ];
 
 
-    let notePosition = 0;
-
-
     /*
-      Create one soft note.
+      CREATE A NOTE
     */
 
     function playNote(frequency) {
@@ -734,7 +630,19 @@
       }
 
 
+      /*
+        Main oscillator.
+      */
+
       const oscillator =
+        audioContext.createOscillator();
+
+
+      /*
+        Second oscillator adds body to the sound.
+      */
+
+      const oscillatorTwo =
         audioContext.createOscillator();
 
 
@@ -742,7 +650,13 @@
         audioContext.createGain();
 
 
-      oscillator.type = "sine";
+      oscillator.type =
+        "sine";
+
+
+      oscillatorTwo.type =
+        "triangle";
+
 
       oscillator.frequency.setValueAtTime(
         frequency,
@@ -750,20 +664,25 @@
       );
 
 
+      oscillatorTwo.frequency.setValueAtTime(
+        frequency / 2,
+        audioContext.currentTime
+      );
+
+
       /*
-        Fade each note in and out so it
-        doesn't sound like a harsh beep.
+        Fade the note in and out.
       */
 
       noteGain.gain.setValueAtTime(
-        0,
+        0.001,
         audioContext.currentTime
       );
 
 
       noteGain.gain.linearRampToValueAtTime(
-        0.12,
-        audioContext.currentTime + 0.12
+        0.35,
+        audioContext.currentTime + 0.08
       );
 
 
@@ -773,14 +692,32 @@
       );
 
 
-      oscillator.connect(noteGain);
+      oscillator.connect(
+        noteGain
+      );
 
-      noteGain.connect(masterGain);
+
+      oscillatorTwo.connect(
+        noteGain
+      );
+
+
+      noteGain.connect(
+        masterGain
+      );
 
 
       oscillator.start();
 
+      oscillatorTwo.start();
+
+
       oscillator.stop(
+        audioContext.currentTime + 1.5
+      );
+
+
+      oscillatorTwo.stop(
         audioContext.currentTime + 1.5
       );
 
@@ -788,7 +725,7 @@
 
 
     /*
-      Play the next note in the sequence.
+      NEXT NOTE
     */
 
     function playNextNote() {
@@ -816,12 +753,9 @@
 
     async function turnSoundOn() {
 
-      /*
-        Browsers allow audio after the user
-        physically presses the button.
-      */
 
       if (!audioContext) {
+
 
         audioContext =
           new (
@@ -834,7 +768,11 @@
           audioContext.createGain();
 
 
-        masterGain.gain.value = 0.35;
+        /*
+          FULL MASTER OUTPUT
+        */
+
+        masterGain.gain.value = 1;
 
 
         masterGain.connect(
@@ -854,13 +792,26 @@
 
 
       /*
-        Change the wording immediately.
+        Restore full volume.
       */
+
+      masterGain.gain.cancelScheduledValues(
+        audioContext.currentTime
+      );
+
+
+      masterGain.gain.setValueAtTime(
+        1,
+        audioContext.currentTime
+      );
+
 
       soundIsOn = true;
 
+
       soundButton.textContent =
         "SOUND OFF";
+
 
       soundButton.setAttribute(
         "aria-pressed",
@@ -869,14 +820,14 @@
 
 
       /*
-        Start music immediately.
+        Play immediately.
       */
 
       playNextNote();
 
 
       /*
-        Continue the temporary sequence.
+        Continue sequence.
       */
 
       sequenceTimer =
@@ -894,25 +845,19 @@
 
     function turnSoundOff() {
 
+
       soundIsOn = false;
 
 
-      /*
-        Change wording immediately.
-      */
-
       soundButton.textContent =
         "SOUND ON";
+
 
       soundButton.setAttribute(
         "aria-pressed",
         "false"
       );
 
-
-      /*
-        Stop any further notes.
-      */
 
       if (sequenceTimer) {
 
@@ -926,10 +871,13 @@
 
 
       /*
-        Silence anything currently fading out.
+        Silence current sound immediately.
       */
 
-      if (masterGain) {
+      if (
+        masterGain &&
+        audioContext
+      ) {
 
         masterGain.gain.cancelScheduledValues(
           audioContext.currentTime
@@ -938,27 +886,6 @@
 
         masterGain.gain.setValueAtTime(
           0,
-          audioContext.currentTime
-        );
-
-      }
-
-    }
-
-
-    /*
-      Restore volume before starting again.
-    */
-
-    function restoreVolume() {
-
-      if (
-        masterGain &&
-        audioContext
-      ) {
-
-        masterGain.gain.setValueAtTime(
-          0.35,
           audioContext.currentTime
         );
 
@@ -984,8 +911,6 @@
 
 
         else {
-
-          restoreVolume();
 
           await turnSoundOn();
 
