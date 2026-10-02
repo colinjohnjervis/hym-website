@@ -37,9 +37,7 @@
       width: 100%;
       height: 100%;
       margin: 0;
-
       overflow: hidden;
-
       background: #000;
     }
 
@@ -50,10 +48,8 @@
 
     .hero {
       position: relative;
-
       width: 100%;
       height: 100vh;
-
       overflow: hidden;
 
       display: flex;
@@ -71,7 +67,6 @@
 
     .hero-video {
       position: absolute;
-
       inset: 0;
 
       width: 100%;
@@ -89,7 +84,6 @@
 
     .hero-content {
       position: relative;
-
       z-index: 2;
 
       width: 100%;
@@ -144,7 +138,6 @@
 
     .title-wrapper {
       position: relative;
-
       z-index: 3;
 
       width: 100%;
@@ -215,7 +208,6 @@
 
     .slice-heading span {
       position: relative;
-
       display: block;
 
       min-height: .86em;
@@ -296,7 +288,7 @@
 
     /* ==================================================
        TITLE GLITCH
-       Only HOLY YOUTH MOVEMENT glitches
+       ONLY HOLY YOUTH MOVEMENT GLITCHES
     ================================================== */
 
     .hero-title span::before {
@@ -419,7 +411,6 @@
 
     .hero-title {
       width: 100%;
-
       font-size: 50px;
     }
 
@@ -479,7 +470,7 @@
 
 
     /* =========================
-       SHARED BUTTON STYLE
+       BUTTONS
     ========================= */
 
     .entrance-button {
@@ -495,6 +486,12 @@
         #fb38fc;
 
       background: transparent;
+
+      /*
+        IMPORTANT:
+        Button wording remains white
+        in every state.
+      */
 
       color: #ffffff;
 
@@ -523,20 +520,27 @@
 
       appearance: none;
       -webkit-appearance: none;
+
+      -webkit-tap-highlight-color: transparent;
     }
 
 
-    .entrance-button:hover {
-      color: #fb38fc;
+    /*
+      Keep text WHITE on hover,
+      press, focus and after visiting.
+    */
+
+    .entrance-button:hover,
+    .entrance-button:active,
+    .entrance-button:focus,
+    .entrance-button:visited {
+      color: #ffffff;
     }
 
 
-    /* =========================
-       SOUND BUTTON
-    ========================= */
-
-    .sound-button {
-      display: block;
+    .entrance-button:focus-visible {
+      outline: 2px solid #ffffff;
+      outline-offset: 4px;
     }
 
 
@@ -548,7 +552,6 @@
 
       .hero {
         justify-content: center;
-
         padding-top: 0;
       }
 
@@ -575,6 +578,7 @@
 
 <body>
 
+
   <main class="hero">
 
 
@@ -596,27 +600,6 @@
       >
 
     </video>
-
-
-    <!-- =========================
-         MUSIC TRACK
-
-         Replace hym-track.mp3 with the actual
-         track filename when we add the music.
-    ========================== -->
-
-    <audio
-      id="heroAudio"
-      preload="metadata"
-      loop
-    >
-
-      <source
-        src="hym-track.mp3"
-        type="audio/mpeg"
-      >
-
-    </audio>
 
 
     <!-- =========================
@@ -669,7 +652,7 @@
 
 
       <button
-        class="entrance-button sound-button"
+        class="entrance-button"
         id="soundButton"
         type="button"
         aria-pressed="false"
@@ -692,70 +675,322 @@
   </main>
 
 
-  <!-- =========================
-       SOUND CONTROL
-  ========================== -->
+  <!-- ==================================================
+       TEMPORARY SOUND SYSTEM
+
+       This creates a quiet atmospheric musical sequence
+       directly in the browser.
+
+       It can later be removed and replaced with the
+       actual HYM audio file without changing the
+       appearance of the button.
+  =================================================== -->
 
   <script>
 
     const soundButton =
       document.getElementById("soundButton");
 
-    const heroAudio =
-      document.getElementById("heroAudio");
 
+    let audioContext = null;
 
     let soundIsOn = false;
 
+    let sequenceTimer = null;
+
+    let masterGain = null;
+
+
+    /*
+      Notes used by the temporary sequence.
+
+      These form a simple minor / atmospheric pattern.
+    */
+
+    const notes = [
+      110.00,
+      130.81,
+      146.83,
+      164.81,
+      146.83,
+      130.81
+    ];
+
+
+    let notePosition = 0;
+
+
+    /*
+      Create one soft note.
+    */
+
+    function playNote(frequency) {
+
+      if (
+        !audioContext ||
+        !soundIsOn
+      ) {
+        return;
+      }
+
+
+      const oscillator =
+        audioContext.createOscillator();
+
+
+      const noteGain =
+        audioContext.createGain();
+
+
+      oscillator.type = "sine";
+
+      oscillator.frequency.setValueAtTime(
+        frequency,
+        audioContext.currentTime
+      );
+
+
+      /*
+        Fade each note in and out so it
+        doesn't sound like a harsh beep.
+      */
+
+      noteGain.gain.setValueAtTime(
+        0,
+        audioContext.currentTime
+      );
+
+
+      noteGain.gain.linearRampToValueAtTime(
+        0.12,
+        audioContext.currentTime + 0.12
+      );
+
+
+      noteGain.gain.exponentialRampToValueAtTime(
+        0.001,
+        audioContext.currentTime + 1.4
+      );
+
+
+      oscillator.connect(noteGain);
+
+      noteGain.connect(masterGain);
+
+
+      oscillator.start();
+
+      oscillator.stop(
+        audioContext.currentTime + 1.5
+      );
+
+    }
+
+
+    /*
+      Play the next note in the sequence.
+    */
+
+    function playNextNote() {
+
+      if (!soundIsOn) {
+        return;
+      }
+
+
+      playNote(
+        notes[notePosition]
+      );
+
+
+      notePosition =
+        (notePosition + 1)
+        % notes.length;
+
+    }
+
+
+    /*
+      SOUND ON
+    */
+
+    async function turnSoundOn() {
+
+      /*
+        Browsers allow audio after the user
+        physically presses the button.
+      */
+
+      if (!audioContext) {
+
+        audioContext =
+          new (
+            window.AudioContext ||
+            window.webkitAudioContext
+          )();
+
+
+        masterGain =
+          audioContext.createGain();
+
+
+        masterGain.gain.value = 0.35;
+
+
+        masterGain.connect(
+          audioContext.destination
+        );
+
+      }
+
+
+      if (
+        audioContext.state === "suspended"
+      ) {
+
+        await audioContext.resume();
+
+      }
+
+
+      /*
+        Change the wording immediately.
+      */
+
+      soundIsOn = true;
+
+      soundButton.textContent =
+        "SOUND OFF";
+
+      soundButton.setAttribute(
+        "aria-pressed",
+        "true"
+      );
+
+
+      /*
+        Start music immediately.
+      */
+
+      playNextNote();
+
+
+      /*
+        Continue the temporary sequence.
+      */
+
+      sequenceTimer =
+        setInterval(
+          playNextNote,
+          900
+        );
+
+    }
+
+
+    /*
+      SOUND OFF
+    */
+
+    function turnSoundOff() {
+
+      soundIsOn = false;
+
+
+      /*
+        Change wording immediately.
+      */
+
+      soundButton.textContent =
+        "SOUND ON";
+
+      soundButton.setAttribute(
+        "aria-pressed",
+        "false"
+      );
+
+
+      /*
+        Stop any further notes.
+      */
+
+      if (sequenceTimer) {
+
+        clearInterval(
+          sequenceTimer
+        );
+
+        sequenceTimer = null;
+
+      }
+
+
+      /*
+        Silence anything currently fading out.
+      */
+
+      if (masterGain) {
+
+        masterGain.gain.cancelScheduledValues(
+          audioContext.currentTime
+        );
+
+
+        masterGain.gain.setValueAtTime(
+          0,
+          audioContext.currentTime
+        );
+
+      }
+
+    }
+
+
+    /*
+      Restore volume before starting again.
+    */
+
+    function restoreVolume() {
+
+      if (
+        masterGain &&
+        audioContext
+      ) {
+
+        masterGain.gain.setValueAtTime(
+          0.35,
+          audioContext.currentTime
+        );
+
+      }
+
+    }
+
+
+    /*
+      BUTTON TOGGLE
+    */
 
     soundButton.addEventListener(
       "click",
       async function () {
 
-        if (!soundIsOn) {
 
-          try {
+        if (soundIsOn) {
 
-            await heroAudio.play();
-
-            soundIsOn = true;
-
-            soundButton.textContent =
-              "SOUND OFF";
-
-            soundButton.setAttribute(
-              "aria-pressed",
-              "true"
-            );
-
-          }
-
-          catch (error) {
-
-            console.log(
-              "Audio could not be played:",
-              error
-            );
-
-          }
+          turnSoundOff();
 
         }
+
 
         else {
 
-          heroAudio.pause();
+          restoreVolume();
 
-          soundIsOn = false;
-
-          soundButton.textContent =
-            "SOUND ON";
-
-          soundButton.setAttribute(
-            "aria-pressed",
-            "false"
-          );
+          await turnSoundOn();
 
         }
+
 
       }
     );
