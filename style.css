@@ -252,13 +252,11 @@ section {
     var(--section-side)
     40px;
 
-  background:
-    var(--charcoal);
+  background: var(--charcoal);
 }
 
 .home-intro-inner {
   width: 100%;
-
   max-width: 1440px;
 
   margin:
@@ -269,11 +267,12 @@ section {
 
 /* ==================================================
    QUOTE
+   Original site:
+   65px desktop / 50px tablet / 32px mobile
 ================================================== */
 
 .home-quote {
   width: 100%;
-
   max-width: 990px;
 
   margin:
@@ -290,13 +289,7 @@ section {
     Arial,
     sans-serif;
 
-  font-size:
-    clamp(
-      2rem,
-      8vw,
-      4.05rem
-    );
-
+  font-size: 65px;
   font-weight: 700;
 
   line-height: 1;
@@ -317,13 +310,7 @@ section {
 
   color: var(--soft-white);
 
-  font-size:
-    clamp(
-      1rem,
-      4.5vw,
-      1.38rem
-    );
-
+  font-size: 22px;
   font-weight: 100;
 
   line-height: 1.55;
@@ -337,8 +324,7 @@ section {
 ================================================== */
 
 .home-band-photo {
-  width: 100%;
-
+  width: 80%;
   max-width: 1080px;
 
   margin:
@@ -385,9 +371,10 @@ section {
     Arial,
     sans-serif;
 
+  font-size: 82px;
   font-weight: 400;
 
-  line-height: .84;
+  line-height: 84px;
 
   letter-spacing: -.075em;
 
@@ -404,7 +391,7 @@ section {
 
   display: block;
 
-  min-height: .9em;
+  min-height: 84px;
 
   color: transparent;
 }
@@ -486,13 +473,11 @@ section {
     var(--section-gap)
     var(--section-side);
 
-  background:
-    var(--charcoal);
+  background: var(--charcoal);
 }
 
 .upcoming-events-inner {
   width: 100%;
-
   max-width: 1100px;
 
   margin:
@@ -504,17 +489,10 @@ section {
   max-width: 820px;
 
   margin-bottom: 70px;
-
-  font-size:
-    clamp(
-      3.6rem,
-      14vw,
-      5.2rem
-    );
 }
 
 .upcoming-events-title span + span {
-  margin-top: 7px;
+  margin-top: 4px;
 }
 
 
@@ -534,8 +512,7 @@ section {
     3px solid
     var(--pink);
 
-  background:
-    transparent;
+  background: transparent;
 }
 
 
@@ -549,8 +526,7 @@ section {
   margin: 0;
   padding: 0;
 
-  background:
-    transparent;
+  background: transparent;
 
   border: 0;
 }
@@ -637,8 +613,7 @@ section {
     var(--section-gap)
     var(--section-side);
 
-  background:
-    var(--charcoal);
+  background: var(--charcoal);
 }
 
 .merch-heading-wrap {
@@ -649,13 +624,6 @@ section {
 
 .merch-title {
   max-width: 900px;
-
-  font-size:
-    clamp(
-      3.6rem,
-      14vw,
-      5.2rem
-    );
 }
 
 .merch-image {
@@ -684,7 +652,6 @@ section {
 
 .merch-copy {
   width: 100%;
-
   max-width: 1000px;
 
   margin:
@@ -703,11 +670,9 @@ section {
     0
     auto;
 
-  color:
-    var(--soft-white);
+  color: var(--soft-white);
 
   font-size: 1rem;
-
   font-weight: 300;
 
   line-height: 1.6;
@@ -715,7 +680,7 @@ section {
 
 
 /* ==================================================
-   GENERAL OUTLINE BUTTON
+   OUTLINE BUTTON
 ================================================== */
 
 .outline-button {
@@ -730,11 +695,9 @@ section {
     11px
     20px;
 
-  color:
-    var(--white);
+  color: var(--white);
 
-  background:
-    transparent;
+  background: transparent;
 
   border:
     3px solid
@@ -749,7 +712,6 @@ section {
     sans-serif;
 
   font-size: 1rem;
-
   font-weight: 400;
 
   letter-spacing: .02em;
@@ -757,16 +719,11 @@ section {
   text-transform: uppercase;
 
   transition:
-    color .2s ease,
-    background .2s ease;
+    color .2s ease;
 }
 
 .outline-button:hover {
-  color:
-    var(--pink);
-
-  background:
-    transparent;
+  color: var(--pink);
 }
 
 
@@ -781,13 +738,11 @@ section {
     var(--section-gap)
     var(--section-side);
 
-  background:
-    var(--charcoal);
+  background: var(--charcoal);
 }
 
 .mailing-list-content {
   width: 100%;
-
   max-width: 1000px;
 
   margin:
@@ -799,13 +754,6 @@ section {
   max-width: 900px;
 
   margin-bottom: 60px;
-
-  font-size:
-    clamp(
-      3.35rem,
-      13vw,
-      5.2rem
-    );
 }
 
 .mailing-list-copy {
@@ -816,19 +764,14 @@ section {
     auto
     40px;
 
-  color:
-    var(--soft-white);
+  color: var(--soft-white);
 
   text-align: center;
 
-  font-size:
-    1rem;
+  font-size: 1rem;
+  font-weight: 300;
 
-  font-weight:
-    300;
-
-  line-height:
-    1.6;
+  line-height: 1.6;
 }
 
 .mailing-list-frame {
@@ -842,8 +785,7 @@ section {
     3px solid
     var(--pink);
 
-  background:
-    transparent;
+  background: transparent;
 }
 
 .mailing-list-frame iframe {
@@ -854,8 +796,7 @@ section {
 
   border: 0;
 
-  background:
-    var(--charcoal);
+  background: var(--charcoal);
 }
 
 
@@ -870,13 +811,11 @@ section {
     var(--section-gap)
     var(--section-side);
 
-  background:
-    var(--charcoal);
+  background: var(--charcoal);
 }
 
 .listen-inner {
   width: 100%;
-
   max-width: 1100px;
 
   margin:
@@ -888,18 +827,10 @@ section {
   max-width: 700px;
 
   margin-bottom: 70px;
-
-  font-size:
-    clamp(
-      3.8rem,
-      15vw,
-      5.2rem
-    );
 }
 
 .spotify-wrap {
   width: 100%;
-
   max-width: 1000px;
 
   margin:
@@ -932,16 +863,13 @@ section {
     var(--section-gap)
     var(--section-side);
 
-  background:
-    var(--charcoal);
+  background: var(--charcoal);
 
-  color:
-    var(--white);
+  color: var(--white);
 }
 
 .contact-grid {
   width: 100%;
-
   max-width: 1050px;
 
   margin:
@@ -950,8 +878,7 @@ section {
 
   display: grid;
 
-  gap:
-    55px;
+  gap: 55px;
 }
 
 .contact-copy h2 {
@@ -960,8 +887,7 @@ section {
     0
     28px;
 
-  color:
-    var(--white);
+  color: var(--white);
 
   font-family:
     "Archivo Black",
@@ -969,24 +895,14 @@ section {
     Arial,
     sans-serif;
 
-  font-size:
-    clamp(
-      3.4rem,
-      13vw,
-      5.2rem
-    );
+  font-size: 82px;
+  font-weight: 400;
 
-  font-weight:
-    400;
+  line-height: 84px;
 
-  line-height:
-    .88;
+  letter-spacing: -.065em;
 
-  letter-spacing:
-    -.065em;
-
-  text-transform:
-    lowercase;
+  text-transform: lowercase;
 
   transform:
     skewX(-7deg);
@@ -996,20 +912,14 @@ section {
 }
 
 .contact-copy p {
-  max-width:
-    450px;
+  max-width: 450px;
 
-  color:
-    var(--soft-white);
+  color: var(--soft-white);
 
-  font-size:
-    1rem;
+  font-size: 1rem;
+  font-weight: 300;
 
-  font-weight:
-    300;
-
-  line-height:
-    1.65;
+  line-height: 1.65;
 }
 
 
@@ -1022,55 +932,41 @@ form {
 
   display: grid;
 
-  gap:
-    25px;
+  gap: 25px;
 }
 
 label {
   display: grid;
 
-  gap:
-    8px;
+  gap: 8px;
 
-  color:
-    var(--white);
+  color: var(--white);
 
-  font-size:
-    .85rem;
+  font-size: .85rem;
+  font-weight: 300;
 
-  font-weight:
-    300;
+  letter-spacing: .02em;
 
-  letter-spacing:
-    .02em;
-
-  text-transform:
-    none;
+  text-transform: none;
 }
 
 input,
 textarea {
-  width:
-    100%;
+  width: 100%;
 
   padding:
     14px
     16px;
 
-  color:
-    var(--near-black);
+  color: var(--near-black);
 
-  background:
-    var(--white);
+  background: var(--white);
 
-  border:
-    0;
+  border: 0;
 
-  border-radius:
-    20px;
+  border-radius: 20px;
 
-  outline:
-    none;
+  outline: none;
 
   box-shadow:
     0
@@ -1087,33 +983,27 @@ textarea:focus {
 }
 
 textarea {
-  min-height:
-    150px;
+  min-height: 150px;
 
-  resize:
-    vertical;
+  resize: vertical;
 }
 
 .send-button {
-  justify-self:
-    start;
+  justify-self: start;
 
   padding:
     10px
     20px;
 
-  color:
-    var(--white);
+  color: var(--white);
 
-  background:
-    transparent;
+  background: transparent;
 
   border:
     3px solid
     var(--pink);
 
-  border-radius:
-    0;
+  border-radius: 0;
 
   font-family:
     "Archivo Black",
@@ -1121,25 +1011,19 @@ textarea {
     Arial,
     sans-serif;
 
-  font-size:
-    1rem;
+  font-size: 1rem;
+  font-weight: 400;
 
-  font-weight:
-    400;
+  text-transform: uppercase;
 
-  text-transform:
-    uppercase;
-
-  cursor:
-    pointer;
+  cursor: pointer;
 
   transition:
     color .2s ease;
 }
 
 .send-button:hover {
-  color:
-    var(--pink);
+  color: var(--pink);
 }
 
 
@@ -1156,32 +1040,44 @@ textarea {
 
   display: flex;
 
-  flex-direction:
-    column;
+  flex-direction: column;
 
-  gap:
-    10px;
+  gap: 10px;
 
   color:
     rgba(255, 255, 255, .6);
 
-  background:
-    var(--black);
+  background: var(--black);
 
   border-top:
     1px solid
     rgba(255, 255, 255, .08);
 
-  font-size:
-    .75rem;
-
-  font-weight:
-    300;
+  font-size: .75rem;
+  font-weight: 300;
 }
 
 
 /* ==================================================
-   TABLET / DESKTOP
+   TABLET
+   Original quote: 50px
+================================================== */
+
+@media (max-width: 991px) and (min-width: 480px) {
+
+  .home-quote {
+    font-size: 50px;
+  }
+
+  .home-quote footer {
+    font-size: 20px;
+  }
+
+}
+
+
+/* ==================================================
+   DESKTOP
 ================================================== */
 
 @media (min-width: 800px) {
@@ -1192,8 +1088,6 @@ textarea {
   }
 
 
-  /* HEADER */
-
   .site-header {
     height: 126px;
 
@@ -1203,13 +1097,11 @@ textarea {
   }
 
   .nav-logo {
-    width:
-      145px;
+    width: 145px;
   }
 
   .nav-panel {
-    top:
-      126px;
+    top: 126px;
 
     padding-left:
       var(--section-side);
@@ -1219,50 +1111,10 @@ textarea {
   }
 
 
-  /* INTRO */
-
   .home-intro {
-    padding-top:
-      100px;
+    padding-top: 100px;
   }
 
-  .home-quote {
-    margin-bottom:
-      48px;
-
-    font-size:
-      clamp(
-        3.5rem,
-        5vw,
-        4.05rem
-      );
-  }
-
-  .home-band-photo {
-    width:
-      80%;
-
-    margin-bottom:
-      60px;
-  }
-
-
-  /* HEADINGS */
-
-  .upcoming-events-title,
-  .merch-title,
-  .mailing-list-title,
-  .listen-title {
-    font-size:
-      clamp(
-        4.8rem,
-        7vw,
-        5.4rem
-      );
-  }
-
-
-  /* EVENTS */
 
   .upcoming-events-frame {
     padding:
@@ -1272,48 +1124,34 @@ textarea {
   }
 
 
-  /* MERCH */
-
   .merch-image {
-    min-height:
-      76svh;
+    min-height: 76svh;
   }
 
-
-  /* MAILING LIST */
 
   .mailing-list-frame {
-    padding:
-      24px;
+    padding: 24px;
   }
 
-
-  /* CONTACT */
 
   .contact-grid {
     grid-template-columns:
       .85fr
       1.15fr;
 
-    align-items:
-      start;
+    align-items: start;
 
-    gap:
-      80px;
+    gap: 80px;
   }
 
 
-  /* FOOTER */
-
   .site-footer {
-    flex-direction:
-      row;
+    flex-direction: row;
 
     justify-content:
       space-between;
 
-    align-items:
-      center;
+    align-items: center;
   }
 
 }
@@ -1326,19 +1164,13 @@ textarea {
 @media (min-width: 1100px) {
 
   .site-header {
-    padding-left:
-      80px;
-
-    padding-right:
-      80px;
+    padding-left: 80px;
+    padding-right: 80px;
   }
 
   .home-intro {
-    padding-left:
-      80px;
-
-    padding-right:
-      80px;
+    padding-left: 80px;
+    padding-right: 80px;
   }
 
   .upcoming-events,
@@ -1346,11 +1178,8 @@ textarea {
   .mailing-list-section,
   .listen,
   .section.contact {
-    padding-left:
-      100px;
-
-    padding-right:
-      100px;
+    padding-left: 100px;
+    padding-right: 100px;
   }
 
 }
@@ -1358,6 +1187,8 @@ textarea {
 
 /* ==================================================
    MOBILE
+   Original headings: 60px / 64px
+   Original quote: 32px
 ================================================== */
 
 @media (max-width: 479px) {
@@ -1369,16 +1200,14 @@ textarea {
 
 
   section {
-    scroll-margin-top:
-      100px;
+    scroll-margin-top: 100px;
   }
 
 
   /* HEADER */
 
   .site-header {
-    height:
-      96px;
+    height: 96px;
 
     padding:
       0
@@ -1386,13 +1215,11 @@ textarea {
   }
 
   .nav-logo {
-    width:
-      105px;
+    width: 105px;
   }
 
   .nav-panel {
-    top:
-      96px;
+    top: 96px;
 
     padding:
       16px
@@ -1411,87 +1238,64 @@ textarea {
   }
 
   .home-quote {
-    width:
-      100%;
+    width: 100%;
 
-    margin-bottom:
-      48px;
+    margin-bottom: 48px;
 
     padding:
       0
       5px;
 
-    font-size:
-      2rem;
+    font-size: 32px;
 
-    line-height:
-      1;
+    line-height: 1;
   }
 
   .home-quote footer {
-    margin-top:
-      20px;
+    margin-top: 20px;
 
-    font-size:
-      1.05rem;
+    font-size: 18px;
   }
 
   .home-band-photo {
-    width:
-      100%;
+    width: 100%;
 
-    margin-bottom:
-      0;
+    margin-bottom: 0;
 
-    border-radius:
-      16px;
+    border-radius: 16px;
   }
 
 
-  /* HEADINGS */
+  /* ORIGINAL SECTION HEADING SCALE */
+
+  .slice-heading {
+    font-size: 60px;
+
+    line-height: 64px;
+  }
+
+  .slice-heading span {
+    min-height: 64px;
+  }
 
   .upcoming-events-title,
   .merch-title,
   .mailing-list-title,
   .listen-title {
-    margin-bottom:
-      55px;
+    margin-bottom: 60px;
   }
 
-  .upcoming-events-title {
-    font-size:
-      clamp(
-        3.2rem,
-        16vw,
-        4rem
-      );
-  }
 
-  .merch-title {
-    font-size:
-      clamp(
-        3.25rem,
-        16vw,
-        4rem
-      );
-  }
+  /* Longer title needs to fit mobile width */
 
   .mailing-list-title {
-    font-size:
-      clamp(
-        2.9rem,
-        14.5vw,
-        3.7rem
-      );
+    font-size: 50px;
+
+    line-height: 54px;
   }
 
-  .listen-title {
-    font-size:
-      clamp(
-        3.5rem,
-        18vw,
-        4.2rem
-      );
+  .mailing-list-title span {
+    min-height: 54px;
   }
 
 
@@ -1503,40 +1307,33 @@ textarea {
       10px
       24px;
 
-    border-width:
-      3px;
+    border-width: 3px;
   }
 
   .bandsintown-credit {
-    margin-top:
-      30px;
+    margin-top: 30px;
   }
 
 
   /* MERCH */
 
   .merch-image {
-    min-height:
-      60svh;
+    min-height: 60svh;
 
-    border-radius:
-      20px;
+    border-radius: 20px;
   }
 
   .merch-copy {
-    padding-top:
-      25px;
+    padding-top: 25px;
   }
 
 
   /* MAILING LIST */
 
   .mailing-list-copy {
-    margin-bottom:
-      32px;
+    margin-bottom: 32px;
 
-    font-size:
-      .95rem;
+    font-size: .95rem;
   }
 
   .mailing-list-frame {
@@ -1544,49 +1341,40 @@ textarea {
       12px
       8px;
 
-    border-width:
-      3px;
+    border-width: 3px;
   }
 
 
   /* LISTEN */
 
   .spotify-wrap iframe {
-    height:
-      500px;
+    height: 500px;
   }
 
 
   /* CONTACT */
 
   .section.contact {
-    min-height:
-      auto;
+    min-height: auto;
   }
 
   .contact-grid {
-    gap:
-      48px;
+    gap: 48px;
   }
 
   .contact-copy h2 {
-    font-size:
-      clamp(
-        3.2rem,
-        16vw,
-        4.3rem
-      );
+    font-size: 60px;
+
+    line-height: 64px;
   }
 
   .contact-copy p {
-    font-size:
-      .95rem;
+    font-size: .95rem;
   }
 
   input,
   textarea {
-    font-size:
-      16px;
+    font-size: 16px;
   }
 
 
@@ -1597,11 +1385,9 @@ textarea {
       30px
       20px;
 
-    text-align:
-      center;
+    text-align: center;
 
-    align-items:
-      center;
+    align-items: center;
   }
 
 }
