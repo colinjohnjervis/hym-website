@@ -298,7 +298,6 @@
 
       <div class="mailing-list-content">
 
-
         <h2 class="slice-heading mailing-list-title">
 
           <span data-text="MAILING LIST">
@@ -370,96 +369,99 @@
 
 
     <!-- =========================
-         CONTACT
+         CONTACT & BOOKINGS
     ========================== -->
 
     <section
-      class="section contact"
+      class="contact"
       id="contact"
     >
 
-      <div class="contact-grid">
+      <div class="contact-inner">
 
-        <div class="contact-copy">
+        <div class="contact-form-area">
 
-          <h2>
-            contact &<br>
-            bookings
+          <h2 class="slice-heading contact-title">
+
+            <span data-text="CONTACT &">
+              CONTACT &
+            </span>
+
+            <span data-text="BOOKINGS">
+              BOOKINGS
+            </span>
+
           </h2>
 
-          <p>
-            For bookings, press and general enquiries,
-            send a message below.
-          </p>
+
+          <form
+            class="contact-form"
+            onsubmit="return false;"
+          >
+
+            <label>
+              Name
+
+              <input
+                type="text"
+                name="name"
+                autocomplete="name"
+              >
+            </label>
+
+
+            <label>
+              Email Address
+
+              <input
+                type="email"
+                name="email"
+                autocomplete="email"
+              >
+            </label>
+
+
+            <label>
+              Message
+
+              <textarea
+                name="message"
+                rows="2"
+              ></textarea>
+            </label>
+
+
+            <button
+              class="send-button"
+              type="button"
+            >
+              Submit
+            </button>
+
+          </form>
 
         </div>
 
 
-        <form onsubmit="return false;">
+        <!-- =========================
+             FOOTER
+        ========================== -->
 
-          <label>
-            Name
+        <footer class="site-footer">
 
-            <input
-              type="text"
-              name="name"
-              autocomplete="name"
-            >
-          </label>
+          <span>
+            © 2026 Holy Youth Movement.
+            All rights reserved
+          </span>
 
-
-          <label>
-            Email Address
-
-            <input
-              type="email"
-              name="email"
-              autocomplete="email"
-            >
-          </label>
-
-
-          <label>
-            Message
-
-            <textarea
-              name="message"
-            ></textarea>
-          </label>
-
-
-          <button
-            class="send-button"
-            type="button"
-          >
-            Send message
-          </button>
-
-        </form>
+        </footer>
 
       </div>
 
     </section>
 
+
   </main>
-
-
-  <!-- =========================
-       FOOTER
-  ========================== -->
-
-  <footer class="site-footer">
-
-    <span>
-      © 2026 Holy Youth Movement.
-      All rights reserved.
-    </span>
-
-    <span>
-      Site redevelopment prototype
-    </span>
-
-  </footer>
 
 
   <script src="script.js"></script>
