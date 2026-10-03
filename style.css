@@ -817,7 +817,7 @@ section {
   display: block;
 
   width: 100%;
-  height: 700px;
+  height: 725px;
 
   border: 0;
 
@@ -1294,7 +1294,7 @@ section {
   /* LISTEN */
 
   .spotify-wrap iframe {
-    height: 700px;
+    height: 725px;
   }
 
 
