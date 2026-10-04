@@ -1162,7 +1162,12 @@ section {
 
   :root {
     --section-side: 20px;
-    --section-gap: 65px;
+
+    /*
+      One deliberate rhythm value for the
+      transition from one section to the next.
+    */
+    --mobile-section-space: 90px;
   }
 
 
@@ -1230,6 +1235,35 @@ section {
     margin-bottom: 0;
 
     border-radius: 16px;
+  }
+
+
+  /* ==================================================
+     MOBILE SECTION RHYTHM
+
+     Each new major section begins 90px after
+     the preceding section's content ends.
+
+     Bottom padding is removed from these
+     sections so two different section paddings
+     do not combine at the boundary.
+  ================================================== */
+
+  .upcoming-events,
+  .merch,
+  .mailing-list-section,
+  .listen {
+    padding-left:
+      var(--section-side);
+
+    padding-right:
+      var(--section-side);
+
+    padding-top:
+      var(--mobile-section-space);
+
+    padding-bottom:
+      0;
   }
 
 
@@ -1302,6 +1336,13 @@ section {
 
   .contact {
     min-height: 100svh;
+
+    /*
+      Match the same transition spacing used
+      by the other major sections.
+    */
+    margin-top:
+      var(--mobile-section-space);
 
     background-position: 20% center;
   }
