@@ -408,9 +408,6 @@ section {
     var(--white);
 }
 
-
-/* TOP HALF — LEFT */
-
 .slice-heading span::before {
   clip-path:
     polygon(
@@ -425,9 +422,6 @@ section {
       calc(-50% - 2px)
     );
 }
-
-
-/* BOTTOM HALF — RIGHT */
 
 .slice-heading span::after {
   clip-path:
@@ -768,10 +762,20 @@ section {
     0
     auto;
 
+  padding:
+    38px
+    46px;
+
   display: flex;
   flex-direction: column;
 
   align-items: center;
+
+  border:
+    3px solid
+    var(--pink);
+
+  background: transparent;
 }
 
 .mailing-list-label {
@@ -829,16 +833,14 @@ section {
 }
 
 .mailing-list-button {
-  margin-top: 22px;
+  margin-top: 28px;
 }
 
 
 /*
-  The holding form is intentionally disabled
-  until a mailing-list provider is connected.
-
-  Keep the finished visual appearance rather
-  than greying the form out.
+  Holding form remains visually finished
+  while deliberately disabled until the
+  mailing-list provider is connected.
 */
 
 .mailing-list-input:disabled,
@@ -1241,11 +1243,6 @@ section {
 
   :root {
     --section-side: 20px;
-
-    /*
-      One deliberate rhythm value for the
-      transition from one section to the next.
-    */
     --mobile-section-space: 90px;
   }
 
@@ -1317,9 +1314,7 @@ section {
   }
 
 
-  /* ==================================================
-     MOBILE SECTION RHYTHM
-  ================================================== */
+  /* MOBILE SECTION RHYTHM */
 
   .upcoming-events,
   .merch,
@@ -1396,6 +1391,10 @@ section {
 
   .mailing-list-form {
     width: 100%;
+
+    padding:
+      30px
+      28px;
   }
 
   .mailing-list-input {
@@ -1407,7 +1406,7 @@ section {
   }
 
   .mailing-list-button {
-    margin-top: 22px;
+    margin-top: 28px;
   }
 
 
