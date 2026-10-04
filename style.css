@@ -663,7 +663,7 @@ section {
 
 
 /* ==================================================
-   BUTTON
+   REUSABLE OUTLINE BUTTON
 ================================================== */
 
 .outline-button {
@@ -686,6 +686,8 @@ section {
     3px solid
     var(--pink);
 
+  border-radius: 0;
+
   font-family:
     "Archivo Black",
     "Arial Black",
@@ -693,6 +695,8 @@ section {
     sans-serif;
 
   font-size: 1rem;
+
+  line-height: 1;
 
   text-transform: uppercase;
 }
@@ -723,6 +727,8 @@ section {
   margin:
     0
     auto;
+
+  text-align: center;
 }
 
 .mailing-list-title {
@@ -737,7 +743,7 @@ section {
   margin:
     0
     auto
-    40px;
+    38px;
 
   color: var(--soft-white);
 
@@ -749,29 +755,106 @@ section {
   line-height: 1.6;
 }
 
-.mailing-list-frame {
+
+/* ==================================================
+   MAILING LIST HOLDING FORM
+================================================== */
+
+.mailing-list-form {
   width: 100%;
+  max-width: 760px;
 
-  padding:
-    18px
-    14px;
+  margin:
+    0
+    auto;
 
-  border:
-    3px solid
-    var(--pink);
+  display: flex;
+  flex-direction: column;
 
-  background: transparent;
+  align-items: center;
 }
 
-.mailing-list-frame iframe {
-  display: block;
+.mailing-list-label {
+  position: absolute;
 
-  width: 100%;
-  height: 150px;
+  width: 1px;
+  height: 1px;
+
+  padding: 0;
+  margin: -1px;
+
+  overflow: hidden;
+
+  clip:
+    rect(0, 0, 0, 0);
+
+  white-space: nowrap;
 
   border: 0;
+}
 
-  background: var(--charcoal);
+.mailing-list-input {
+  width: 100%;
+  height: 58px;
+
+  padding:
+    0
+    20px;
+
+  color: var(--white);
+
+  background: transparent;
+
+  border:
+    2px solid
+    rgba(255, 255, 255, .65);
+
+  border-radius: 0;
+
+  outline: none;
+
+  font-size: 1rem;
+  font-weight: 300;
+
+  text-align: left;
+}
+
+.mailing-list-input::placeholder {
+  color:
+    rgba(255, 255, 255, .7);
+}
+
+.mailing-list-input:focus {
+  border-color: var(--pink);
+}
+
+.mailing-list-button {
+  margin-top: 22px;
+}
+
+
+/*
+  The holding form is intentionally disabled
+  until a mailing-list provider is connected.
+
+  Keep the finished visual appearance rather
+  than greying the form out.
+*/
+
+.mailing-list-input:disabled,
+.mailing-list-button:disabled {
+  opacity: 1;
+
+  cursor: default;
+}
+
+.mailing-list-input:disabled {
+  -webkit-text-fill-color:
+    var(--white);
+}
+
+.mailing-list-button:disabled:hover {
+  color: var(--white);
 }
 
 
@@ -1111,10 +1194,6 @@ section {
     min-height: 76svh;
   }
 
-  .mailing-list-frame {
-    padding: 24px;
-  }
-
   .contact-form-area {
     max-width: 760px;
 
@@ -1240,13 +1319,6 @@ section {
 
   /* ==================================================
      MOBILE SECTION RHYTHM
-
-     Each new major section begins 90px after
-     the preceding section's content ends.
-
-     Bottom padding is removed from these
-     sections so two different section paddings
-     do not combine at the boundary.
   ================================================== */
 
   .upcoming-events,
@@ -1318,10 +1390,24 @@ section {
 
   /* MAILING LIST */
 
-  .mailing-list-frame {
+  .mailing-list-copy {
+    margin-bottom: 34px;
+  }
+
+  .mailing-list-form {
+    width: 100%;
+  }
+
+  .mailing-list-input {
+    height: 56px;
+
     padding:
-      12px
-      8px;
+      0
+      16px;
+  }
+
+  .mailing-list-button {
+    margin-top: 22px;
   }
 
 
@@ -1337,10 +1423,6 @@ section {
   .contact {
     min-height: 100svh;
 
-    /*
-      Match the same transition spacing used
-      by the other major sections.
-    */
     margin-top:
       var(--mobile-section-space);
 
