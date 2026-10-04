@@ -114,6 +114,147 @@ function hideUnwantedBandsintownContent() {
 
 
 /* =========================
+   TIGHTEN TOP DIVIDER SPACE
+========================= */
+
+function tightenTopDividerSpace() {
+
+  if (!widget) {
+    return;
+  }
+
+
+  /*
+    Bandsintown generates its own
+    internal layout.
+
+    We look for horizontal divider
+    elements near the TOP of the
+    widget only.
+
+    This deliberately avoids touching
+    the lower divider beneath the event.
+  */
+
+  const widgetRect =
+    widget.getBoundingClientRect();
+
+
+  const elements =
+    Array.from(
+      widget.querySelectorAll("*")
+    );
+
+
+  const dividerCandidates =
+    elements
+      .map(element => {
+
+        const rect =
+          element.getBoundingClientRect();
+
+        const styles =
+          window.getComputedStyle(
+            element
+          );
+
+
+        const borderTopWidth =
+          parseFloat(
+            styles.borderTopWidth
+          ) || 0;
+
+
+        const borderBottomWidth =
+          parseFloat(
+            styles.borderBottomWidth
+          ) || 0;
+
+
+        const hasHorizontalBorder =
+          borderTopWidth > 0 ||
+          borderBottomWidth > 0;
+
+
+        const isWide =
+          rect.width >
+          widgetRect.width * 0.65;
+
+
+        const isThin =
+          rect.height <= 12;
+
+
+        const distanceFromTop =
+          rect.top -
+          widgetRect.top;
+
+
+        const isNearTop =
+          distanceFromTop >= 0 &&
+          distanceFromTop < 140;
+
+
+        return {
+          element,
+          rect,
+          hasHorizontalBorder,
+          isWide,
+          isThin,
+          isNearTop,
+          distanceFromTop
+        };
+
+      })
+      .filter(candidate =>
+
+        candidate.hasHorizontalBorder &&
+        candidate.isWide &&
+        candidate.isThin &&
+        candidate.isNearTop
+
+      );
+
+
+  if (!dividerCandidates.length) {
+    return;
+  }
+
+
+  /*
+    Choose the first genuine wide,
+    thin divider near the top.
+  */
+
+  dividerCandidates.sort(
+    (a, b) =>
+      a.distanceFromTop -
+      b.distanceFromTop
+  );
+
+
+  const topDivider =
+    dividerCandidates[0].element;
+
+
+  /*
+    Pull ONLY this top divider upward.
+
+    Negative margin reduces the empty
+    space above it without changing the
+    lower event divider.
+  */
+
+  topDivider.style.setProperty(
+    "margin-top",
+    "-12px",
+    "important"
+  );
+
+}
+
+
+/* =========================
    FIND REAL BANDSINTOWN LOGO
 ========================= */
 
@@ -507,6 +648,8 @@ function buildExternalCredit() {
 function tidyBandsintown() {
 
   hideUnwantedBandsintownContent();
+
+  tightenTopDividerSpace();
 
   buildExternalCredit();
 
