@@ -313,19 +313,51 @@
         </p>
 
 
-        <div class="mailing-list-frame">
+        <!--
+          HOLDING FORM
 
-          <iframe
-            src="https://bandsintown.com/artist/15542629/email_signup_form?headerTextColor=rgba(255,255,255,1)&backgroundColor=rgba(36,40,43,1)&ctaBackgroundColor=rgba(255,41,236,1)&title=&headerTextStyle=normal&headerText=&font=Helvetica&ctaIcon=show&ctaBorderRadius=4px&ctaBorderWidth=2px&ctaBorderColor=rgba(255,41,236,1)&ctaFontColor=rgba(5,5,5,1)&alignment=center&emailInputField=show&ctaLabel=Subscribe&layout=wide&locale=en"
-            width="100%"
-            height="150"
-            title="Holy Youth Movement mailing list signup"
-            loading="lazy"
-            frameborder="0"
-            scrolling="no"
-          ></iframe>
+          This is deliberately not connected to a
+          mailing-list provider yet.
 
-        </div>
+          Once the final provider is chosen, this
+          form can be connected without changing
+          the visual design.
+        -->
+
+        <form
+          class="mailing-list-form"
+          onsubmit="return false;"
+        >
+
+          <label
+            class="mailing-list-label"
+            for="mailingEmail"
+          >
+            Email address
+          </label>
+
+
+          <input
+            class="mailing-list-input"
+            id="mailingEmail"
+            name="email"
+            type="email"
+            autocomplete="email"
+            placeholder="Email address"
+            disabled
+          >
+
+
+          <button
+            class="outline-button mailing-list-button"
+            type="button"
+            disabled
+            aria-disabled="true"
+          >
+            Subscribe
+          </button>
+
+        </form>
 
       </div>
 
