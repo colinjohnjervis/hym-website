@@ -46,15 +46,9 @@ function hideUnwantedBandsintownContent() {
 
 
   /*
-    IMPORTANT:
+    Hide ONLY exact unwanted text.
 
-    We hide ONLY the exact matching
-    element.
-
-    We DO NOT hide parents.
-
-    That prevents the event list
-    disappearing again.
+    Do not hide parent containers.
   */
 
   widget
@@ -88,14 +82,6 @@ function hideUnwantedBandsintownContent() {
       }
 
 
-      /*
-        Only hide small / leaf-like elements.
-
-        If this element contains lots of
-        children, it may be a whole widget
-        container, so leave it alone.
-      */
-
       if (
         element.children.length <= 2
       ) {
@@ -114,75 +100,54 @@ function hideUnwantedBandsintownContent() {
 
 
 /* =========================
-   TIGHTEN TOP DIVIDER SPACE
+   TIGHTEN TOP OF WIDGET
 ========================= */
 
-function tightenTopDividerSpace() {
+function tightenTopWidgetSpace() {
 
   if (!widget) {
     return;
   }
 
 
-  /*
-    Bandsintown generates its own
-    internal layout.
-
-    We look for horizontal divider
-    elements near the TOP of the
-    widget only.
-
-    This deliberately avoids touching
-    the lower divider beneath the event.
-  */
-
   const widgetRect =
     widget.getBoundingClientRect();
 
 
-  const elements =
+  if (
+    widgetRect.width <= 0 ||
+    widgetRect.height <= 0
+  ) {
+    return;
+  }
+
+
+  /*
+    Look through rendered Bandsintown
+    elements near the top.
+
+    We are looking for the first
+    wide, very shallow visible element.
+
+    This corresponds to the horizontal
+    separator without relying on a
+    particular Bandsintown class name.
+  */
+
+  const candidates =
     Array.from(
       widget.querySelectorAll("*")
-    );
-
-
-  const dividerCandidates =
-    elements
+    )
       .map(element => {
 
         const rect =
           element.getBoundingClientRect();
 
-        const styles =
+
+        const style =
           window.getComputedStyle(
             element
           );
-
-
-        const borderTopWidth =
-          parseFloat(
-            styles.borderTopWidth
-          ) || 0;
-
-
-        const borderBottomWidth =
-          parseFloat(
-            styles.borderBottomWidth
-          ) || 0;
-
-
-        const hasHorizontalBorder =
-          borderTopWidth > 0 ||
-          borderBottomWidth > 0;
-
-
-        const isWide =
-          rect.width >
-          widgetRect.width * 0.65;
-
-
-        const isThin =
-          rect.height <= 12;
 
 
         const distanceFromTop =
@@ -190,66 +155,140 @@ function tightenTopDividerSpace() {
           widgetRect.top;
 
 
-        const isNearTop =
-          distanceFromTop >= 0 &&
-          distanceFromTop < 140;
+        const visible =
+          style.display !== "none" &&
+          style.visibility !== "hidden" &&
+          parseFloat(style.opacity || "1") > 0;
+
+
+        const wideEnough =
+          rect.width >=
+          widgetRect.width * 0.70;
+
+
+        const shallowEnough =
+          rect.height > 0 &&
+          rect.height <= 8;
+
+
+        const nearTop =
+          distanceFromTop >= 15 &&
+          distanceFromTop <= 180;
 
 
         return {
           element,
           rect,
-          hasHorizontalBorder,
-          isWide,
-          isThin,
-          isNearTop,
-          distanceFromTop
+          distanceFromTop,
+          visible,
+          wideEnough,
+          shallowEnough,
+          nearTop
         };
 
       })
       .filter(candidate =>
 
-        candidate.hasHorizontalBorder &&
-        candidate.isWide &&
-        candidate.isThin &&
-        candidate.isNearTop
+        candidate.visible &&
+        candidate.wideEnough &&
+        candidate.shallowEnough &&
+        candidate.nearTop
 
       );
 
 
-  if (!dividerCandidates.length) {
+  if (!candidates.length) {
     return;
   }
 
 
   /*
-    Choose the first genuine wide,
-    thin divider near the top.
+    Use the highest matching separator.
   */
 
-  dividerCandidates.sort(
+  candidates.sort(
     (a, b) =>
       a.distanceFromTop -
       b.distanceFromTop
   );
 
 
-  const topDivider =
-    dividerCandidates[0].element;
+  const separator =
+    candidates[0].element;
 
 
   /*
-    Pull ONLY this top divider upward.
-
-    Negative margin reduces the empty
-    space above it without changing the
-    lower event divider.
+    First try to reduce spacing on the
+    separator itself.
   */
 
-  topDivider.style.setProperty(
+  separator.style.setProperty(
     "margin-top",
-    "-12px",
+    "-24px",
     "important"
   );
+
+
+  /*
+    Bandsintown may place the spacing on
+    the immediate parent instead.
+
+    If that parent is a relatively small
+    layout wrapper, reduce its top padding.
+
+    We deliberately DON'T climb further
+    through the DOM because that could
+    affect the entire event listing.
+  */
+
+  const parent =
+    separator.parentElement;
+
+
+  if (
+    parent &&
+    parent !== widget
+  ) {
+
+    const parentRect =
+      parent.getBoundingClientRect();
+
+
+    const parentStyle =
+      window.getComputedStyle(
+        parent
+      );
+
+
+    const currentPaddingTop =
+      parseFloat(
+        parentStyle.paddingTop
+      ) || 0;
+
+
+    /*
+      Only alter a parent that occupies
+      the top portion of the widget,
+      rather than the entire event list.
+    */
+
+    if (
+      parentRect.height < 180 &&
+      currentPaddingTop > 0
+    ) {
+
+      parent.style.setProperty(
+        "padding-top",
+        Math.max(
+          0,
+          currentPaddingTop - 24
+        ) + "px",
+        "important"
+      );
+
+    }
+
+  }
 
 }
 
@@ -499,8 +538,7 @@ function buildExternalCredit() {
 
 
   /*
-    Clone the REAL logo rendered
-    by Bandsintown.
+    Clone the REAL Bandsintown logo.
   */
 
   const clonedLogo =
@@ -534,8 +572,7 @@ function buildExternalCredit() {
 
 
   /*
-    Reset only the cloned
-    outer element positioning.
+    Reset cloned outer positioning.
   */
 
   clonedLogo.style.setProperty(
@@ -618,9 +655,9 @@ function buildExternalCredit() {
 
 
   /*
-    Hide ONLY the original logo itself.
+    Hide ONLY the original logo.
 
-    Do not touch its parents.
+    Do not hide its parent.
   */
 
   realLogo.style.setProperty(
@@ -631,7 +668,7 @@ function buildExternalCredit() {
 
 
   /*
-    Reveal our external credit.
+    Reveal external credit.
   */
 
   credit.classList.add(
@@ -649,7 +686,7 @@ function tidyBandsintown() {
 
   hideUnwantedBandsintownContent();
 
-  tightenTopDividerSpace();
+  tightenTopWidgetSpace();
 
   buildExternalCredit();
 
@@ -693,7 +730,7 @@ if (widget) {
 
 /*
   Backup checks while the
-  widget finishes loading.
+  Bandsintown widget finishes loading.
 */
 
 setTimeout(tidyBandsintown, 300);
