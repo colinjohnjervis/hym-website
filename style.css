@@ -1243,7 +1243,12 @@ section {
 
   :root {
     --section-side: 20px;
-    --mobile-section-space: 90px;
+
+    /*
+      Shared spacing between each major section.
+      Reduced from 90px to 60px.
+    */
+    --mobile-section-space: 60px;
   }
 
 
@@ -1314,7 +1319,9 @@ section {
   }
 
 
-  /* MOBILE SECTION RHYTHM */
+  /* ==================================================
+     MOBILE SECTION RHYTHM
+  ================================================== */
 
   .upcoming-events,
   .merch,
