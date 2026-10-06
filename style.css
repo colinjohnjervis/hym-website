@@ -1,11 +1,7 @@
-@import url(
-  'https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@100;300;400;600;700;800;900&display=swap'
-);
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@100;300;400;600;700;800;900&display=swap');
 
 
-/* ==================================================
-   VARIABLES
-================================================== */
+/* VARIABLES */
 
 :root {
   --black: #000000;
@@ -15,15 +11,12 @@
   --pink: #fb38fc;
   --soft-white: rgba(255, 255, 255, .9);
   --line: rgba(255, 255, 255, .14);
-
   --section-side: 34px;
   --section-gap: 80px;
 }
 
 
-/* ==================================================
-   RESET / GENERAL
-================================================== */
+/* GENERAL */
 
 * {
   box-sizing: border-box;
@@ -32,31 +25,15 @@
 }
 
 html {
-  width: 100%;
-  max-width: 100%;
-
   scroll-behavior: smooth;
-
-  overflow-x: hidden;
 }
 
 body {
-  width: 100%;
-  max-width: 100%;
-
   margin: 0;
-
   background: var(--charcoal);
   color: var(--white);
-
-  font-family:
-    "Inter",
-    Arial,
-    Helvetica,
-    sans-serif;
-
+  font-family: "Inter", Arial, Helvetica, sans-serif;
   line-height: 1.4;
-
   overflow-x: hidden;
 }
 
@@ -81,31 +58,20 @@ section {
 }
 
 
-/* ==================================================
-   HEADER
-================================================== */
+/* HEADER */
 
 .site-header {
   position: sticky;
   top: 0;
   z-index: 1000;
-
   width: 100%;
   height: 110px;
-
   display: flex;
   align-items: center;
   justify-content: space-between;
-
-  padding:
-    0
-    var(--section-side);
-
+  padding: 0 var(--section-side);
   background: var(--black);
-
-  border-bottom:
-    1px solid
-    rgba(255, 255, 255, .05);
+  border-bottom: 1px solid rgba(255, 255, 255, .05);
 }
 
 .site-header > a {
@@ -116,28 +82,18 @@ section {
 .nav-logo {
   width: 120px;
   height: auto;
-
-  filter:
-    grayscale(1)
-    brightness(0)
-    invert(1);
+  filter: grayscale(1) brightness(0) invert(1);
 }
 
 
-/* ==================================================
-   MENU BUTTON
-================================================== */
+/* MENU */
 
 .menu-button {
   position: relative;
-
   width: 48px;
   height: 48px;
-
   border: 0;
-
   background: transparent;
-
   cursor: pointer;
 }
 
@@ -145,24 +101,14 @@ section {
 .menu-button::before,
 .menu-button::after {
   content: "";
-
   position: absolute;
   left: 50%;
-
   width: 27px;
   height: 3px;
-
   background: var(--white);
-
   border-radius: 3px;
-
-  transform:
-    translateX(-50%);
-
-  transition:
-    transform .25s ease,
-    opacity .25s ease,
-    top .25s ease;
+  transform: translateX(-50%);
+  transition: transform .25s ease, opacity .25s ease, top .25s ease;
 }
 
 .menu-button::before {
@@ -178,60 +124,33 @@ section {
 }
 
 
-/* ==================================================
-   NAVIGATION
-================================================== */
+/* NAVIGATION */
 
 .nav-panel {
   position: fixed;
-
   z-index: 999;
-
   top: 110px;
   left: 0;
   right: 0;
-
-  padding:
-    20px
-    var(--section-side)
-    30px;
-
+  padding: 20px var(--section-side) 30px;
   background: var(--black);
-
-  border-bottom:
-    1px solid
-    var(--line);
-
-  transform:
-    translateY(-150%);
-
-  transition:
-    transform .35s ease;
+  border-bottom: 1px solid var(--line);
+  transform: translateY(-150%);
+  transition: transform .35s ease;
 }
 
 .nav-panel.open {
-  transform:
-    translateY(0);
+  transform: translateY(0);
 }
 
 .nav-panel a {
   display: block;
-
-  padding:
-    15px
-    0;
-
+  padding: 15px 0;
   color: var(--white);
-
-  border-bottom:
-    1px solid
-    rgba(255, 255, 255, .12);
-
+  border-bottom: 1px solid rgba(255, 255, 255, .12);
   font-size: .9rem;
   font-weight: 700;
-
   letter-spacing: .08em;
-
   text-transform: uppercase;
 }
 
@@ -240,53 +159,29 @@ section {
 }
 
 
-/* ==================================================
-   HOMEPAGE INTRO
-================================================== */
+/* INTRO */
 
 .home-intro {
   width: 100%;
-
-  padding:
-    70px
-    var(--section-side)
-    40px;
-
+  padding: 70px var(--section-side) 40px;
   background: var(--charcoal);
 }
 
 .home-intro-inner {
   width: 100%;
   max-width: 1440px;
-
-  margin:
-    0
-    auto;
+  margin: 0 auto;
 }
-
-
-/* ==================================================
-   QUOTE
-================================================== */
 
 .home-quote {
   width: 100%;
   max-width: 990px;
-
-  margin:
-    0
-    auto
-    48px;
-
+  margin: 0 auto 48px;
   color: var(--white);
-
   text-align: center;
-
   font-size: 65px;
   font-weight: 700;
-
   line-height: 1;
-
   letter-spacing: -.035em;
 }
 
@@ -300,179 +195,99 @@ section {
 
 .home-quote footer {
   margin-top: 28px;
-
   color: var(--soft-white);
-
   font-size: 22px;
   font-weight: 100;
-
   line-height: 1.55;
-
   letter-spacing: 0;
 }
-
-
-/* ==================================================
-   BAND PHOTO
-================================================== */
 
 .home-band-photo {
   width: 80%;
   max-width: 1080px;
-
-  margin:
-    0
-    auto
-    40px;
-
+  margin: 0 auto 40px;
   overflow: hidden;
-
   border-radius: 16px;
 }
 
 .home-band-photo img {
   width: 100%;
   height: auto;
-
   object-fit: cover;
-
   border-radius: inherit;
 }
 
 
-/* ==================================================
-   REUSABLE SLICED HEADING
-================================================== */
+/* SLICED HEADINGS */
 
 .slice-heading {
   position: relative;
-
   width: 100%;
-
   margin-left: auto;
   margin-right: auto;
-
   color: transparent;
-
   text-align: center;
-
-  font-family:
-    "Archivo Black",
-    "Arial Black",
-    Arial,
-    sans-serif;
-
+  font-family: "Archivo Black", "Arial Black", Arial, sans-serif;
   font-size: 82px;
   font-weight: 400;
-
   line-height: 84px;
-
   letter-spacing: -.075em;
-
   text-transform: uppercase;
-
-  transform:
-    skewX(-9deg);
-
+  transform: skewX(-9deg);
   transform-origin: center;
 }
 
 .slice-heading span {
   position: relative;
-
   display: block;
-
   min-height: 84px;
-
   color: transparent;
 }
 
 .slice-heading span::before,
 .slice-heading span::after {
-  content:
-    attr(data-text);
-
+  content: attr(data-text);
   position: absolute;
-
   top: 0;
   left: 50%;
-
   width: max-content;
   min-width: 100%;
-
   color: var(--white);
-
   font: inherit;
-
   line-height: inherit;
   letter-spacing: inherit;
-
   text-align: center;
-
   white-space: nowrap;
-
-  -webkit-text-stroke:
-    .3px
-    var(--white);
+  -webkit-text-stroke: .3px var(--white);
 }
 
 .slice-heading span::before {
-  clip-path:
-    polygon(
-      0 0,
-      100% 0,
-      100% 48%,
-      0 57%
-    );
-
-  transform:
-    translateX(
-      calc(-50% - 2px)
-    );
+  clip-path: polygon(0 0, 100% 0, 100% 48%, 0 57%);
+  transform: translateX(calc(-50% - 2px));
 }
 
 .slice-heading span::after {
-  clip-path:
-    polygon(
-      0 57%,
-      100% 48%,
-      100% 100%,
-      0 100%
-    );
-
-  transform:
-    translateX(
-      calc(-50% + 2px)
-    );
+  clip-path: polygon(0 57%, 100% 48%, 100% 100%, 0 100%);
+  transform: translateX(calc(-50% + 2px));
 }
 
 
-/* ==================================================
-   UPCOMING EVENTS
-================================================== */
+/* EVENTS */
 
 .upcoming-events {
   width: 100%;
-
-  padding:
-    var(--section-gap)
-    var(--section-side);
-
+  padding: var(--section-gap) var(--section-side);
   background: var(--charcoal);
 }
 
 .upcoming-events-inner {
   width: 100%;
   max-width: 1100px;
-
-  margin:
-    0
-    auto;
+  margin: 0 auto;
 }
 
 .upcoming-events-title {
   max-width: 820px;
-
   margin-bottom: 70px;
 }
 
@@ -480,47 +295,24 @@ section {
   margin-top: 4px;
 }
 
-
-/* ==================================================
-   EVENTS FRAME
-================================================== */
-
 .upcoming-events-frame {
   width: 100%;
-
-  padding:
-    18px
-    14px
-    28px;
-
-  border:
-    3px solid
-    var(--pink);
-
+  padding: 18px 14px 28px;
+  border: 3px solid var(--pink);
   background: transparent;
 }
 
-
-/* ==================================================
-   BANDSINTOWN
-================================================== */
-
 .bit-widget-shell {
   width: 100%;
-
   margin: 0;
   padding: 0;
-
   background: transparent;
-
   border: 0;
 }
 
 .bit-widget-initializer {
   display: block;
-
   width: 100%;
-
   min-height: 80px;
 }
 
@@ -528,23 +320,13 @@ section {
 .bit-play-my-city,
 [class*="play-my-city"],
 [class*="playMyCity"] {
-  display:
-    none
-    !important;
+  display: none !important;
 }
-
-
-/* ==================================================
-   BANDSINTOWN CREDIT
-================================================== */
 
 .bandsintown-credit {
   display: none;
-
   width: 100%;
-
   margin-top: 8px;
-
   text-align: center;
 }
 
@@ -554,56 +336,37 @@ section {
 
 .bandsintown-credit-text {
   margin-bottom: 10px;
-
   color: #929292;
-
   font-size: .7rem;
   font-weight: 800;
-
   line-height: 1.3;
-
   letter-spacing: .17em;
-
   text-transform: uppercase;
 }
 
 .bandsintown-logo-copy {
   width: 100%;
-
   display: flex;
-
   justify-content: center;
   align-items: center;
 }
 
 .bandsintown-logo-copy > * {
-  margin-left:
-    auto
-    !important;
-
-  margin-right:
-    auto
-    !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
 }
 
 
-/* ==================================================
-   MERCH
-================================================== */
+/* MERCH */
 
 .merch {
   width: 100%;
-
-  padding:
-    var(--section-gap)
-    var(--section-side);
-
+  padding: var(--section-gap) var(--section-side);
   background: var(--charcoal);
 }
 
 .merch-heading-wrap {
   width: 100%;
-
   margin-bottom: 70px;
 }
 
@@ -613,93 +376,49 @@ section {
 
 .merch-image {
   width: 100%;
-
   max-width: 1000px;
-
   min-height: 70svh;
-
-  margin:
-    0
-    auto;
-
+  margin: 0 auto;
   overflow: hidden;
-
   border-radius: 20px;
-
   background:
-    url(
-      "https://holyyouthmovement.co.uk/assets/images/bca96f15-21ef-4f97-a44c-125286d1ba9a.jpg"
-    )
-    center /
-    cover
-    no-repeat;
+    url("https://holyyouthmovement.co.uk/assets/images/bca96f15-21ef-4f97-a44c-125286d1ba9a.jpg")
+    center / cover no-repeat;
 }
 
 .merch-copy {
   width: 100%;
   max-width: 1000px;
-
-  margin:
-    0
-    auto;
-
+  margin: 0 auto;
   padding-top: 30px;
-
   text-align: center;
 }
 
 .merch-copy p {
   max-width: 600px;
-
-  margin:
-    0
-    auto;
-
+  margin: 0 auto;
   color: var(--soft-white);
-
   font-size: 1rem;
   font-weight: 300;
-
   line-height: 1.6;
 }
 
 
-/* ==================================================
-   REUSABLE OUTLINE BUTTON
-================================================== */
+/* BUTTONS */
 
 .outline-button {
   display: inline-flex;
-
   justify-content: center;
   align-items: center;
-
   margin-top: 28px;
-
-  padding:
-    11px
-    20px;
-
+  padding: 11px 20px;
   color: var(--white);
-
   background: transparent;
-
-  border:
-    3px solid
-    var(--pink);
-
+  border: 3px solid var(--pink);
   border-radius: 0;
-
-  font-family:
-    "Archivo Black",
-    "Arial Black",
-    Arial,
-    sans-serif;
-
+  font-family: "Archivo Black", "Arial Black", Arial, sans-serif;
   font-size: 1rem;
-
   line-height: 1;
-
   text-transform: uppercase;
 }
 
@@ -708,132 +427,76 @@ section {
 }
 
 
-/* ==================================================
-   MAILING LIST
-================================================== */
+/* MAILING LIST */
 
 .mailing-list-section {
   width: 100%;
-
-  padding:
-    var(--section-gap)
-    var(--section-side);
-
+  padding: var(--section-gap) var(--section-side);
   background: var(--charcoal);
 }
 
 .mailing-list-content {
   width: 100%;
   max-width: 1000px;
-
-  margin:
-    0
-    auto;
-
+  margin: 0 auto;
   text-align: center;
 }
 
 .mailing-list-title {
   max-width: 900px;
-
   margin-bottom: 60px;
 }
 
 .mailing-list-copy {
   max-width: 700px;
-
-  margin:
-    0
-    auto
-    38px;
-
+  margin: 0 auto 38px;
   color: var(--soft-white);
-
   text-align: center;
-
   font-size: 1rem;
   font-weight: 300;
-
   line-height: 1.6;
 }
-
-
-/* ==================================================
-   MAILING LIST HOLDING FORM
-================================================== */
 
 .mailing-list-form {
   width: 100%;
   max-width: 760px;
-
-  margin:
-    0
-    auto;
-
-  padding:
-    38px
-    46px;
-
+  margin: 0 auto;
+  padding: 38px 46px;
   display: flex;
   flex-direction: column;
-
   align-items: center;
-
-  border:
-    3px solid
-    var(--pink);
-
+  border: 3px solid var(--pink);
   background: transparent;
 }
 
 .mailing-list-label {
   position: absolute;
-
   width: 1px;
   height: 1px;
-
   padding: 0;
   margin: -1px;
-
   overflow: hidden;
-
-  clip:
-    rect(0, 0, 0, 0);
-
+  clip: rect(0, 0, 0, 0);
   white-space: nowrap;
-
   border: 0;
 }
 
 .mailing-list-input {
   width: 100%;
   height: 58px;
-
-  padding:
-    0
-    20px;
-
+  padding: 0 20px;
   color: var(--white);
-
   background: transparent;
-
-  border:
-    2px solid
-    rgba(255, 255, 255, .65);
-
+  border: 2px solid rgba(255, 255, 255, .65);
   border-radius: 0;
-
   outline: none;
-
   font-size: 1rem;
   font-weight: 300;
-
   text-align: left;
 }
 
 .mailing-list-input::placeholder {
-  color:
-    rgba(255, 255, 255, .7);
+  color: rgba(255, 255, 255, .7);
 }
 
 .mailing-list-input:focus {
@@ -847,13 +510,11 @@ section {
 .mailing-list-input:disabled,
 .mailing-list-button:disabled {
   opacity: 1;
-
   cursor: default;
 }
 
 .mailing-list-input:disabled {
-  -webkit-text-fill-color:
-    var(--white);
+  -webkit-text-fill-color: var(--white);
 }
 
 .mailing-list-button:disabled:hover {
@@ -861,111 +522,46 @@ section {
 }
 
 
-/* ==================================================
-   LISTEN
-================================================== */
+/* LISTEN */
 
 .listen {
   width: 100%;
-
-  padding:
-    var(--section-gap)
-    var(--section-side);
-
+  padding: var(--section-gap) var(--section-side);
   background: var(--charcoal);
 }
 
 .listen-inner {
   width: 100%;
   max-width: 1100px;
-
-  margin:
-    0
-    auto;
+  margin: 0 auto;
 }
 
 .listen-title {
   max-width: 700px;
-
   margin-bottom: 70px;
 }
 
 .spotify-wrap {
   width: 100%;
   max-width: 1000px;
-
-  margin:
-    0
-    auto;
+  margin: 0 auto;
 }
 
 .spotify-wrap iframe {
   display: block;
-
   width: 100%;
   height: 725px;
-
   border: 0;
-
   border-radius: 12px;
 }
 
 
-/* ==================================================
-   MUSIC PLATFORM LINKS
-================================================== */
-
-.music-platforms {
-  width: 100%;
-  max-width: 620px;
-
-  margin:
-    58px
-    auto
-    0;
-
-  display: flex;
-
-  align-items: center;
-  justify-content: space-between;
-
-  gap: 24px;
-}
-
-.music-platforms a {
-  min-width: 0;
-
-  display: flex;
-
-  align-items: center;
-  justify-content: center;
-}
-
-.music-platform-icon {
-  display: block;
-
-  width: 64px;
-  height: 64px;
-
-  object-fit: contain;
-}
-
-.music-platform-youtube {
-  width: 82px;
-}
-
-
-/* ==================================================
-   CONTACT & BOOKINGS
-================================================== */
+/* CONTACT */
 
 .contact {
   position: relative;
-
   width: 100%;
-
   min-height: 100svh;
-
   background-image:
     linear-gradient(
       to bottom,
@@ -974,50 +570,29 @@ section {
       rgba(0, 0, 0, .72) 100%
     ),
     url("hym-band-shot-original-min.jpeg");
-
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
-
   color: var(--white);
 }
 
 .contact-inner {
   min-height: 100svh;
-
   display: flex;
   flex-direction: column;
-
   justify-content: space-between;
 }
 
 .contact-form-area {
   width: 100%;
   max-width: 850px;
-
-  margin:
-    0
-    auto;
-
-  padding:
-    65px
-    var(--section-side)
-    40px;
+  margin: 0 auto;
+  padding: 65px var(--section-side) 40px;
 }
-
-
-/* ==================================================
-   CONTACT HEADING
-================================================== */
 
 .contact-title {
   width: 100%;
-
-  margin:
-    0
-    auto
-    32px;
-
+  margin: 0 auto 32px;
   text-align: center;
 }
 
@@ -1025,113 +600,58 @@ section {
   margin-top: 3px;
 }
 
-
-/* ==================================================
-   CONTACT FORM
-================================================== */
-
 .contact-form {
   width: 100%;
-
   display: grid;
-
   gap: 24px;
 }
 
 .contact-form label {
   display: grid;
-
   gap: 8px;
-
   color: var(--white);
-
   font-size: 18px;
   font-weight: 300;
-
   line-height: 1.3;
 }
 
 .contact-form input,
 .contact-form textarea {
   width: 100%;
-
   height: 64px;
-
-  padding:
-    12px
-    18px;
-
+  padding: 12px 18px;
   color: var(--near-black);
-
   background: var(--white);
-
   border: 0;
-
   border-radius: 32px;
-
   outline: none;
-
-  box-shadow:
-    0
-    2px
-    10px
-    rgba(0, 0, 0, .45);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, .45);
 }
 
 .contact-form textarea {
   min-height: 64px;
   max-height: 120px;
-
   resize: vertical;
 }
 
 .contact-form input:focus,
 .contact-form textarea:focus {
-  outline:
-    3px solid
-    rgba(251, 56, 252, .5);
+  outline: 3px solid rgba(251, 56, 252, .5);
 }
-
-
-/* ==================================================
-   SUBMIT BUTTON
-================================================== */
 
 .send-button {
   justify-self: start;
-
   margin-top: 4px;
-
-  padding:
-    9px
-    20px;
-
+  padding: 9px 20px;
   color: var(--white);
-
-  background:
-    rgba(0, 0, 0, .12);
-
-  border:
-    3px solid
-    var(--pink);
-
+  background: rgba(0, 0, 0, .12);
+  border: 3px solid var(--pink);
   border-radius: 0;
-
-  font-family:
-    "Archivo Black",
-    "Arial Black",
-    Arial,
-    sans-serif;
-
+  font-family: "Archivo Black", "Arial Black", Arial, sans-serif;
   font-size: 22px;
-
   line-height: 1;
-
   text-transform: uppercase;
-
-  transform:
-    skewX(-7deg);
-
+  transform: skewX(-7deg);
   cursor: pointer;
 }
 
@@ -1140,20 +660,12 @@ section {
 }
 
 
-/* ==================================================
-   FOOTER
-================================================== */
+/* FOOTER */
 
 .site-footer {
   width: 100%;
-
-  padding:
-    55px
-    20px
-    24px;
-
+  padding: 55px 20px 24px;
   color: var(--white);
-
   background:
     linear-gradient(
       to top,
@@ -1161,17 +673,13 @@ section {
       rgba(0, 0, 0, .62) 55%,
       rgba(0, 0, 0, 0) 100%
     );
-
   text-align: center;
-
   font-size: 14px;
   font-weight: 300;
 }
 
 
-/* ==================================================
-   TABLET
-================================================== */
+/* TABLET */
 
 @media (max-width: 991px) and (min-width: 480px) {
 
@@ -1186,9 +694,7 @@ section {
 }
 
 
-/* ==================================================
-   DESKTOP
-================================================== */
+/* DESKTOP */
 
 @media (min-width: 800px) {
 
@@ -1214,10 +720,7 @@ section {
   }
 
   .upcoming-events-frame {
-    padding:
-      28px
-      28px
-      36px;
+    padding: 28px 28px 36px;
   }
 
   .merch-image {
@@ -1226,19 +729,15 @@ section {
 
   .contact-form-area {
     max-width: 760px;
-
     margin-left: auto;
     margin-right: 6%;
-
     padding-top: 90px;
   }
 
 }
 
 
-/* ==================================================
-   LARGE DESKTOP
-================================================== */
+/* LARGE DESKTOP */
 
 @media (min-width: 1100px) {
 
@@ -1263,9 +762,7 @@ section {
 }
 
 
-/* ==================================================
-   MOBILE
-================================================== */
+/* MOBILE */
 
 @media (max-width: 479px) {
 
@@ -1274,20 +771,13 @@ section {
     --mobile-section-space: 60px;
   }
 
-
   section {
     scroll-margin-top: 96px;
   }
 
-
-  /* HEADER */
-
   .site-header {
     height: 96px;
-
-    padding:
-      0
-      20px;
+    padding: 0 20px;
   }
 
   .nav-logo {
@@ -1296,79 +786,44 @@ section {
 
   .nav-panel {
     top: 96px;
-
-    padding:
-      16px
-      20px
-      28px;
+    padding: 16px 20px 28px;
   }
 
-
-  /* INTRO */
-
   .home-intro {
-    padding:
-      55px
-      10px
-      0;
+    padding: 55px 10px 0;
   }
 
   .home-quote {
     width: 100%;
-
     margin-bottom: 48px;
-
-    padding:
-      0
-      5px;
-
+    padding: 0 5px;
     font-size: 32px;
-
     line-height: 1;
   }
 
   .home-quote footer {
     margin-top: 20px;
-
     font-size: 18px;
   }
 
   .home-band-photo {
     width: 100%;
-
     margin-bottom: 0;
-
     border-radius: 16px;
   }
-
-
-  /* ==================================================
-     MOBILE SECTION RHYTHM
-  ================================================== */
 
   .upcoming-events,
   .merch,
   .mailing-list-section,
   .listen {
-    padding-left:
-      var(--section-side);
-
-    padding-right:
-      var(--section-side);
-
-    padding-top:
-      var(--mobile-section-space);
-
-    padding-bottom:
-      0;
+    padding-left: var(--section-side);
+    padding-right: var(--section-side);
+    padding-top: var(--mobile-section-space);
+    padding-bottom: 0;
   }
-
-
-  /* SECTION HEADINGS */
 
   .slice-heading {
     font-size: 60px;
-
     line-height: 64px;
   }
 
@@ -1385,7 +840,6 @@ section {
 
   .mailing-list-title {
     font-size: 50px;
-
     line-height: 54px;
   }
 
@@ -1393,27 +847,14 @@ section {
     min-height: 54px;
   }
 
-
-  /* EVENTS */
-
   .upcoming-events-frame {
-    padding:
-      14px
-      10px
-      24px;
-
+    padding: 14px 10px 24px;
     border-width: 3px;
   }
-
-
-  /* MERCH */
 
   .merch-image {
     min-height: 60svh;
   }
-
-
-  /* MAILING LIST */
 
   .mailing-list-copy {
     margin-bottom: 34px;
@@ -1421,84 +862,25 @@ section {
 
   .mailing-list-form {
     width: 100%;
-
-    padding:
-      30px
-      28px;
+    padding: 30px 28px;
   }
 
   .mailing-list-input {
     height: 56px;
-
-    padding:
-      0
-      16px;
+    padding: 0 16px;
   }
 
   .mailing-list-button {
     margin-top: 28px;
   }
 
-
-  /* LISTEN */
-
   .spotify-wrap iframe {
     height: 725px;
   }
 
-
-  /* MUSIC PLATFORM LINKS */
-
-  .music-platforms {
-    width: 100%;
-    max-width: 100%;
-
-    margin-top: 48px;
-
-    padding:
-      0
-      4px;
-
-    gap: 0;
-
-    justify-content: space-between;
-
-    overflow: hidden;
-  }
-
-  .music-platforms a {
-    flex:
-      0
-      0
-      18%;
-
-    min-width: 0;
-  }
-
-  .music-platform-icon {
-    width: 50px;
-    height: 50px;
-
-    max-width: 100%;
-
-    object-fit: contain;
-  }
-
-  .music-platform-youtube {
-    width: 62px;
-  }
-
-
-  /* ==================================================
-     CONTACT
-  ================================================== */
-
   .contact {
     min-height: 100svh;
-
-    margin-top:
-      var(--mobile-section-space);
-
+    margin-top: var(--mobile-section-space);
     background-position: 20% center;
   }
 
@@ -1507,32 +889,22 @@ section {
   }
 
   .contact-form-area {
-    padding:
-      24px
-      34px
-      30px;
+    padding: 24px 34px 30px;
   }
 
   .contact-title {
-    width:
-      calc(100% + 68px);
-
+    width: calc(100% + 68px);
     max-width: none;
-
     margin-left: -34px;
     margin-right: -34px;
     margin-bottom: 24px;
-
     text-align: center;
-
     font-size: 60px;
-
     line-height: 64px;
   }
 
   .contact-title span {
-    min-height: 64px
-
+    min-height: 64px;
   }
 
   .contact-title span + span {
@@ -1550,29 +922,18 @@ section {
   .contact-form input,
   .contact-form textarea {
     height: 62px;
-
     min-height: 62px;
-
     border-radius: 31px;
-
     font-size: 16px;
   }
 
   .send-button {
     margin-top: 2px;
-
     font-size: 20px;
   }
 
-
-  /* FOOTER */
-
   .site-footer {
-    padding:
-      55px
-      20px
-      22px;
-
+    padding: 55px 20px 22px;
     font-size: 13px;
   }
 
