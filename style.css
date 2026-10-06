@@ -126,9 +126,6 @@ section {
   top: 30px;
 }
 
-
-/* HAMBURGER → X */
-
 .menu-button.open::before {
   top: 22px;
   transform: translateX(-50%) rotate(45deg);
@@ -177,9 +174,6 @@ section {
 .nav-links a:hover {
   color: var(--pink);
 }
-
-
-/* MENU SOCIAL ICONS */
 
 .nav-socials {
   display: flex;
@@ -268,7 +262,7 @@ section {
 }
 
 
-/* HEADINGS */
+/* SECTION HEADINGS */
 
 .slice-heading {
   position: relative;
@@ -454,25 +448,85 @@ section {
 }
 
 
-/* BUTTONS */
+/* HYM BUTTON SYSTEM */
 
-.outline-button {
+.hym-button {
+  min-width: 150px;
+  height: 54px;
+  padding: 0 20px;
   display: inline-flex;
-  justify-content: center;
   align-items: center;
-  margin-top: 28px;
-  padding: 11px 20px;
+  justify-content: center;
+  gap: 10px;
   color: var(--white);
   background: transparent;
   border: 3px solid var(--pink);
   border-radius: 0;
-  font-family: "Archivo Black", "Arial Black", Arial, sans-serif;
-  font-size: 1rem;
-  line-height: 1;
-  text-transform: uppercase;
+  appearance: none;
+  -webkit-appearance: none;
+  cursor: pointer;
+  overflow: hidden;
 }
 
-.outline-button:hover {
+.merch-copy .hym-button {
+  margin-top: 28px;
+}
+
+.hym-button-text {
+  position: relative;
+  display: block;
+  min-width: max-content;
+  height: 30px;
+  color: transparent;
+  font-family: "Archivo Black", "Arial Black", Arial, sans-serif;
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 30px;
+  letter-spacing: -.06em;
+  text-transform: uppercase;
+  transform: skewX(-9deg);
+}
+
+.hym-button-text::before,
+.hym-button-text::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: max-content;
+  color: var(--white);
+  font: inherit;
+  line-height: inherit;
+  letter-spacing: inherit;
+  white-space: nowrap;
+  -webkit-text-stroke: .2px var(--white);
+  transition: color .2s ease;
+}
+
+.hym-button-text::before {
+  clip-path: polygon(0 0,100% 0,100% 48%,0 57%);
+  transform: translateX(calc(-50% - 1px));
+}
+
+.hym-button-text::after {
+  clip-path: polygon(0 57%,100% 48%,100% 100%,0 100%);
+  transform: translateX(calc(-50% + 1px));
+}
+
+.hym-button:hover .hym-button-text::before,
+.hym-button:hover .hym-button-text::after {
+  color: var(--pink);
+}
+
+.hym-button-icon {
+  flex: 0 0 auto;
+  width: 23px;
+  height: 19px;
+  color: var(--white);
+  transition: color .2s ease;
+}
+
+.hym-button:hover .hym-button-icon {
   color: var(--pink);
 }
 
@@ -555,6 +609,7 @@ section {
 
 .mailing-list-button {
   margin-top: 28px;
+  min-width: 205px;
 }
 
 .mailing-list-input:disabled,
@@ -565,10 +620,6 @@ section {
 
 .mailing-list-input:disabled {
   -webkit-text-fill-color: var(--white);
-}
-
-.mailing-list-button:disabled:hover {
-  color: var(--white);
 }
 
 
@@ -604,9 +655,6 @@ section {
   border: 0;
   border-radius: 12px;
 }
-
-
-/* MUSIC ICONS */
 
 .music-platforms {
   width: 100%;
@@ -721,21 +769,6 @@ section {
 .send-button {
   justify-self: start;
   margin-top: 4px;
-  padding: 9px 20px;
-  color: var(--white);
-  background: rgba(0,0,0,.12);
-  border: 3px solid var(--pink);
-  border-radius: 0;
-  font-family: "Archivo Black", "Arial Black", Arial, sans-serif;
-  font-size: 22px;
-  line-height: 1;
-  text-transform: uppercase;
-  transform: skewX(-7deg);
-  cursor: pointer;
-}
-
-.send-button:hover {
-  color: var(--pink);
 }
 
 
@@ -761,6 +794,7 @@ section {
 /* TABLET */
 
 @media (max-width: 991px) and (min-width: 480px) {
+
   .home-quote {
     font-size: 50px;
   }
@@ -768,12 +802,14 @@ section {
   .home-quote footer {
     font-size: 20px;
   }
+
 }
 
 
 /* DESKTOP */
 
 @media (min-width: 800px) {
+
   :root {
     --section-side: 60px;
     --section-gap: 95px;
@@ -802,12 +838,14 @@ section {
     margin-right: 6%;
     padding-top: 90px;
   }
+
 }
 
 
 /* LARGE DESKTOP */
 
 @media (min-width: 1100px) {
+
   .site-header {
     padding-left: 80px;
     padding-right: 80px;
@@ -825,12 +863,14 @@ section {
     padding-left: 100px;
     padding-right: 100px;
   }
+
 }
 
 
 /* MOBILE */
 
 @media (max-width: 479px) {
+
   :root {
     --section-side: 20px;
     --mobile-section-space: 60px;
@@ -927,6 +967,18 @@ section {
     min-height: 60svh;
   }
 
+  .hym-button {
+    min-width: 145px;
+    height: 52px;
+    padding: 0 18px;
+  }
+
+  .hym-button-text {
+    height: 28px;
+    font-size: 23px;
+    line-height: 28px;
+  }
+
   .mailing-list-copy {
     margin-bottom: 34px;
   }
@@ -942,6 +994,7 @@ section {
   }
 
   .mailing-list-button {
+    min-width: 200px;
     margin-top: 28px;
   }
 
@@ -1018,11 +1071,11 @@ section {
 
   .send-button {
     margin-top: 2px;
-    font-size: 20px;
   }
 
   .site-footer {
     padding: 55px 20px 22px;
     font-size: 13px;
   }
+
 }
