@@ -904,6 +904,55 @@ section {
 
 
 /* ==================================================
+   MUSIC PLATFORM LINKS
+================================================== */
+
+.music-platforms {
+  width: 100%;
+  max-width: 760px;
+
+  margin:
+    55px
+    auto
+    0;
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(5, 1fr);
+
+  align-items: center;
+
+  gap: 30px;
+}
+
+.music-platforms a {
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
+}
+
+.music-platforms img {
+  width: 100%;
+  max-width: 90px;
+  height: 90px;
+
+  object-fit: contain;
+
+  transition:
+    transform .2s ease;
+}
+
+.music-platforms a:hover img {
+  transform:
+    scale(1.06);
+}
+
+
+/* ==================================================
    CONTACT & BOOKINGS
 ================================================== */
 
@@ -1395,14 +1444,23 @@ section {
   }
 
 
+  /* MUSIC PLATFORM LINKS */
+
+  .music-platforms {
+    margin-top: 45px;
+
+    gap: 14px;
+  }
+
+  .music-platforms img {
+    width: 100%;
+    max-width: 62px;
+    height: 62px;
+  }
+
+
   /* ==================================================
      CONTACT
-
-     The form keeps its existing 34px side spacing.
-
-     The heading deliberately expands back out across
-     that padding so it is centred against the whole
-     contact section rather than the narrower form.
   ================================================== */
 
   .contact {
