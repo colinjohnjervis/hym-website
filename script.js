@@ -1,27 +1,25 @@
-const menuButton =
-  document.getElementById("menuButton");
+const menuButton = document.getElementById("menuButton");
+const navPanel = document.getElementById("navPanel");
+const navLinks = document.querySelectorAll(".nav-links a");
 
-const navPanel =
-  document.getElementById("navPanel");
+function closeMenu() {
+  navPanel.classList.remove("open");
+  menuButton.classList.remove("open");
+  menuButton.setAttribute("aria-expanded", "false");
+  menuButton.setAttribute("aria-label", "Open menu");
+}
 
+menuButton.addEventListener("click", () => {
+  const isOpen = navPanel.classList.toggle("open");
 
-menuButton.addEventListener(
-  "click",
-  () => {
-    navPanel.classList.toggle("open");
-  }
-);
+  menuButton.classList.toggle("open", isOpen);
+  menuButton.setAttribute("aria-expanded", String(isOpen));
+  menuButton.setAttribute(
+    "aria-label",
+    isOpen ? "Close menu" : "Open menu"
+  );
+});
 
-
-document
-  .querySelectorAll(".nav-panel a")
-  .forEach(link => {
-
-    link.addEventListener(
-      "click",
-      () => {
-        navPanel.classList.remove("open");
-      }
-    );
-
-  });
+navLinks.forEach(link => {
+  link.addEventListener("click", closeMenu);
+});
