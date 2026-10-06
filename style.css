@@ -26,9 +26,11 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 body {
+  width: 100%;
   margin: 0;
   background: var(--charcoal);
   color: var(--white);
@@ -556,6 +558,35 @@ section {
 }
 
 
+/* MUSIC PLATFORM ICONS */
+
+.music-platforms {
+  width: 100%;
+  max-width: 620px;
+  margin: 58px auto 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.music-platforms a {
+  flex: 0 1 92px;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.music-platforms img {
+  display: block;
+  width: 100%;
+  max-width: 92px;
+  height: auto;
+  object-fit: contain;
+}
+
+
 /* CONTACT */
 
 .contact {
@@ -877,6 +908,30 @@ section {
   .spotify-wrap iframe {
     height: 725px;
   }
+
+
+  /* MUSIC ICONS */
+
+  .music-platforms {
+    width: 100%;
+    max-width: 100%;
+    margin-top: 48px;
+    gap: 14px;
+  }
+
+  .music-platforms a {
+    flex: 1 1 0;
+    min-width: 0;
+  }
+
+  .music-platforms img {
+    width: 100%;
+    max-width: 72px;
+    height: auto;
+  }
+
+
+  /* CONTACT */
 
   .contact {
     min-height: 100svh;
