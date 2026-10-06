@@ -1,8 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@100;300;400;600;700;800;900&display=swap');
 
-
-/* VARIABLES */
-
 :root {
   --black: #000;
   --near-black: #050505;
@@ -14,9 +11,6 @@
   --section-side: 34px;
   --section-gap: 80px;
 }
-
-
-/* GENERAL */
 
 * {
   box-sizing: border-box;
@@ -88,7 +82,7 @@ section {
 }
 
 
-/* MENU */
+/* MENU BUTTON */
 
 .menu-button {
   position: relative;
@@ -126,7 +120,7 @@ section {
   top: 110px;
   left: 0;
   right: 0;
-  padding: 20px var(--section-side) 30px;
+  padding: 20px var(--section-side) 26px;
   background: var(--black);
   border-bottom: 1px solid var(--line);
   transform: translateY(-150%);
@@ -137,7 +131,7 @@ section {
   transform: translateY(0);
 }
 
-.nav-panel a {
+.nav-links a {
   display: block;
   padding: 15px 0;
   color: var(--white);
@@ -148,8 +142,38 @@ section {
   text-transform: uppercase;
 }
 
-.nav-panel a:hover {
+.nav-links a:hover {
   color: var(--pink);
+}
+
+
+/* MENU SOCIAL ICONS */
+
+.nav-socials {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 28px;
+  padding-top: 24px;
+}
+
+.nav-socials a {
+  width: 46px;
+  height: 46px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform .2s ease;
+}
+
+.nav-socials a:hover {
+  transform: scale(1.08);
+}
+
+.nav-socials img {
+  width: 46px;
+  height: 46px;
+  object-fit: contain;
 }
 
 
@@ -212,7 +236,7 @@ section {
 }
 
 
-/* SLICED HEADINGS */
+/* HEADINGS */
 
 .slice-heading {
   position: relative;
@@ -550,7 +574,7 @@ section {
 }
 
 
-/* MUSIC PLATFORM ICONS */
+/* MUSIC ICONS */
 
 .music-platforms {
   width: 100%;
@@ -575,57 +599,6 @@ section {
   width: 100%;
   max-width: 92px;
   height: auto;
-  object-fit: contain;
-}
-
-
-/* FOLLOW US */
-
-.follow-us {
-  width: 100%;
-  padding: var(--section-gap) var(--section-side);
-  background: var(--charcoal);
-}
-
-.follow-us-inner {
-  width: 100%;
-  max-width: 1000px;
-  margin: 0 auto;
-  text-align: center;
-}
-
-.follow-us-title {
-  max-width: 850px;
-  margin-bottom: 60px;
-}
-
-.social-platforms {
-  width: 100%;
-  max-width: 390px;
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 50px;
-}
-
-.social-platforms a {
-  flex: 1 1 0;
-  min-width: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: transform .2s ease;
-}
-
-.social-platforms a:hover {
-  transform: scale(1.08);
-}
-
-.social-platforms img {
-  display: block;
-  width: 86px;
-  height: 86px;
   object-fit: contain;
 }
 
@@ -823,8 +796,7 @@ section {
   .upcoming-events,
   .merch,
   .mailing-list-section,
-  .listen,
-  .follow-us {
+  .listen {
     padding-left: 100px;
     padding-right: 100px;
   }
@@ -854,7 +826,18 @@ section {
 
   .nav-panel {
     top: 96px;
-    padding: 16px 20px 28px;
+    padding: 16px 20px 24px;
+  }
+
+  .nav-socials {
+    gap: 26px;
+    padding-top: 22px;
+  }
+
+  .nav-socials a,
+  .nav-socials img {
+    width: 42px;
+    height: 42px;
   }
 
   .home-intro {
@@ -883,8 +866,7 @@ section {
   .upcoming-events,
   .merch,
   .mailing-list-section,
-  .listen,
-  .follow-us {
+  .listen {
     padding-left: var(--section-side);
     padding-right: var(--section-side);
     padding-top: var(--mobile-section-space);
@@ -903,8 +885,7 @@ section {
   .upcoming-events-title,
   .merch-title,
   .mailing-list-title,
-  .listen-title,
-  .follow-us-title {
+  .listen-title {
     margin-bottom: 60px;
   }
 
@@ -964,17 +945,6 @@ section {
     width: 100%;
     max-width: 72px;
     height: auto;
-  }
-
-  .social-platforms {
-    width: 100%;
-    max-width: 300px;
-    gap: 34px;
-  }
-
-  .social-platforms img {
-    width: 72px;
-    height: 72px;
   }
 
   .contact {
