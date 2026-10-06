@@ -10,6 +10,7 @@
   --line: rgba(255,255,255,.14);
   --section-side: 34px;
   --section-gap: 80px;
+  --header-height: 110px;
 }
 
 * {
@@ -26,6 +27,7 @@ html {
 body {
   width: 100%;
   margin: 0;
+  padding-top: var(--header-height);
   background: var(--charcoal);
   color: var(--white);
   font-family: "Inter", Arial, Helvetica, sans-serif;
@@ -50,18 +52,20 @@ textarea {
 }
 
 section {
-  scroll-margin-top: 115px;
+  scroll-margin-top: var(--header-height);
 }
 
 
 /* HEADER */
 
 .site-header {
-  position: sticky;
+  position: fixed;
   top: 0;
+  left: 0;
+  right: 0;
   z-index: 1000;
   width: 100%;
-  height: 110px;
+  height: var(--header-height);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -104,12 +108,40 @@ section {
   background: var(--white);
   border-radius: 3px;
   transform: translateX(-50%);
-  transition: transform .25s ease, opacity .25s ease, top .25s ease;
+  transition:
+    top .25s ease,
+    transform .25s ease,
+    opacity .2s ease;
 }
 
-.menu-button::before { top: 14px; }
-.menu-button span { top: 22px; }
-.menu-button::after { top: 30px; }
+.menu-button::before {
+  top: 14px;
+}
+
+.menu-button span {
+  top: 22px;
+}
+
+.menu-button::after {
+  top: 30px;
+}
+
+
+/* HAMBURGER → X */
+
+.menu-button.open::before {
+  top: 22px;
+  transform: translateX(-50%) rotate(45deg);
+}
+
+.menu-button.open span {
+  opacity: 0;
+}
+
+.menu-button.open::after {
+  top: 22px;
+  transform: translateX(-50%) rotate(-45deg);
+}
 
 
 /* NAVIGATION */
@@ -117,7 +149,7 @@ section {
 .nav-panel {
   position: fixed;
   z-index: 999;
-  top: 110px;
+  top: var(--header-height);
   left: 0;
   right: 0;
   padding: 20px var(--section-side) 26px;
@@ -745,18 +777,11 @@ section {
   :root {
     --section-side: 60px;
     --section-gap: 95px;
-  }
-
-  .site-header {
-    height: 126px;
+    --header-height: 126px;
   }
 
   .nav-logo {
     width: 145px;
-  }
-
-  .nav-panel {
-    top: 126px;
   }
 
   .home-intro {
@@ -809,14 +834,10 @@ section {
   :root {
     --section-side: 20px;
     --mobile-section-space: 60px;
-  }
-
-  section {
-    scroll-margin-top: 96px;
+    --header-height: 96px;
   }
 
   .site-header {
-    height: 96px;
     padding: 0 20px;
   }
 
@@ -825,7 +846,6 @@ section {
   }
 
   .nav-panel {
-    top: 96px;
     padding: 16px 20px 24px;
   }
 
