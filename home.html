@@ -12,6 +12,7 @@
 <body>
 
   <header class="site-header">
+
     <a href="index.html" aria-label="Holy Youth Movement entrance page">
       <img
         class="nav-logo"
@@ -29,6 +30,7 @@
     >
       <span></span>
     </button>
+
   </header>
 
 
@@ -237,13 +239,20 @@
           Official Holy Youth Movement merchandise.
         </p>
 
+
         <a
-          class="outline-button"
+          class="hym-button"
           href="https://holy-youth-movement.sumupstore.com/"
           target="_blank"
           rel="noopener"
+          aria-label="Buy Holy Youth Movement merchandise"
         >
-          Buy now
+          <span
+            class="hym-button-text"
+            data-text="BUY NOW"
+          >
+            BUY NOW
+          </span>
         </a>
 
       </div>
@@ -300,20 +309,18 @@
 
 
           <button
-            class="outline-button mailing-list-button"
+            class="hym-button mailing-list-button"
             type="button"
             disabled
             aria-disabled="true"
           >
 
             <svg
-              width="25"
-              height="20"
+              class="hym-button-icon"
               viewBox="0 0 24 20"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
               aria-hidden="true"
-              style="margin-right: 11px;"
             >
 
               <rect
@@ -336,7 +343,13 @@
 
             </svg>
 
-            Subscribe
+
+            <span
+              class="hym-button-text"
+              data-text="SUBSCRIBE"
+            >
+              SUBSCRIBE
+            </span>
 
           </button>
 
@@ -506,10 +519,15 @@
 
 
             <button
-              class="send-button"
+              class="hym-button send-button"
               type="button"
             >
-              Submit
+              <span
+                class="hym-button-text"
+                data-text="SUBMIT"
+              >
+                SUBMIT
+              </span>
             </button>
 
           </form>
