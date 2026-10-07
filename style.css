@@ -873,6 +873,9 @@ section {
     --header-height: 96px;
   }
 
+
+  /* HEADER */
+
   .site-header {
     padding: 0 20px;
   }
@@ -895,6 +898,9 @@ section {
     width: 42px;
     height: 42px;
   }
+
+
+  /* INTRO */
 
   .home-intro {
     padding: 55px 10px 0;
@@ -920,27 +926,7 @@ section {
   }
 
 
-  /* MOBILE SECTION SPACING */
-
-  .upcoming-events,
-  .mailing-list-section,
-  .listen {
-    padding-left: var(--section-side);
-    padding-right: var(--section-side);
-    padding-top: var(--mobile-section-space);
-    padding-bottom: 0;
-  }
-
-
-  /* MERCH MOBILE LAYOUT
-     60px above heading + 60px below heading */
-
-  .merch {
-    padding:
-      60px
-      var(--section-side)
-      0;
-  }
+  /* SECTION HEADINGS */
 
   .slice-heading {
     font-size: 60px;
@@ -951,34 +937,16 @@ section {
     min-height: 64px;
   }
 
-  .upcoming-events-title,
-  .mailing-list-title,
-  .listen-title {
-    margin-bottom: 60px;
-  }
-
-  .merch-heading-wrap {
-    margin: 0 0 60px;
-  }
-
-  .merch-title {
-    margin: 0;
-  }
-
-
-  /* MAILING LIST HEADING */
-
-  .mailing-list-title {
-    font-size: 50px;
-    line-height: 54px;
-  }
-
-  .mailing-list-title span {
-    min-height: 54px;
-  }
-
 
   /* EVENTS */
+
+  .upcoming-events {
+    padding: 60px var(--section-side) 0;
+  }
+
+  .upcoming-events-title {
+    margin-bottom: 60px;
+  }
 
   .upcoming-events-frame {
     padding: 14px 10px 24px;
@@ -986,13 +954,32 @@ section {
   }
 
 
-  /* MERCH IMAGE
-     Fixed aspect ratio instead of viewport height */
+  /* MERCH */
+
+  .merch {
+    padding: 60px var(--section-side) 0;
+  }
+
+  .merch-heading-wrap {
+    width: 100%;
+    margin: 0 0 60px;
+    padding: 0;
+  }
+
+  .merch-title {
+    margin: 0;
+    padding: 0;
+  }
 
   .merch-image {
     width: 100%;
     min-height: 0;
     aspect-ratio: 4 / 5;
+    margin: 0 auto;
+  }
+
+  .merch-copy {
+    padding-top: 30px;
   }
 
 
@@ -1012,6 +999,20 @@ section {
 
 
   /* MAILING LIST */
+
+  .mailing-list-section {
+    padding: 60px var(--section-side) 0;
+  }
+
+  .mailing-list-title {
+    margin-bottom: 60px;
+    font-size: 50px;
+    line-height: 54px;
+  }
+
+  .mailing-list-title span {
+    min-height: 54px;
+  }
 
   .mailing-list-copy {
     margin-bottom: 34px;
@@ -1033,7 +1034,15 @@ section {
   }
 
 
-  /* SPOTIFY */
+  /* LISTEN */
+
+  .listen {
+    padding: 60px var(--section-side) 0;
+  }
+
+  .listen-title {
+    margin-bottom: 60px;
+  }
 
   .spotify-wrap iframe {
     height: 725px;
@@ -1065,7 +1074,7 @@ section {
 
   .contact {
     min-height: 100svh;
-    margin-top: var(--mobile-section-space);
+    margin-top: 60px;
     background-position: 20% center;
   }
 
