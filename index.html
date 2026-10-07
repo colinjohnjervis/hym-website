@@ -176,6 +176,8 @@
       min-height: .86em;
 
       color: transparent;
+
+      white-space: nowrap;
     }
 
     .slice-heading span::before,
@@ -350,6 +352,7 @@
       margin-top: 8px;
     }
 
+
     /* =========================
        ENTRANCE CONTROLS
     ========================= */
@@ -396,6 +399,7 @@
       }
 
     }
+
 
     /* =========================
        BUTTONS
@@ -457,6 +461,7 @@
       outline: 2px solid #ffffff;
       outline-offset: 4px;
     }
+
 
     /* =========================
        DESKTOP
@@ -581,170 +586,30 @@
   </main>
 
 
-  <!-- ==================================================
-       TEMPORARY MUSICAL SOUND
-  =================================================== -->
+  <!-- HYM AUDIO -->
+
+  <audio
+    id="landingAudio"
+    preload="metadata"
+    loop
+  >
+    <source
+      src="holy-youth-movement-you-thought-i-was-dead-but-baby-i-m-just-getting-started_j7rAhp01.mp3"
+      type="audio/mpeg"
+    >
+  </audio>
+
 
   <script>
 
     const soundButton =
       document.getElementById("soundButton");
 
+    const landingAudio =
+      document.getElementById("landingAudio");
 
-    let audioContext = null;
 
     let soundIsOn = false;
-
-    let sequenceTimer = null;
-
-    let masterGain = null;
-
-    let notePosition = 0;
-
-
-    /*
-      Temporary atmospheric note sequence.
-    */
-
-    const notes = [
-      110.00,
-      130.81,
-      146.83,
-      164.81,
-      146.83,
-      130.81
-    ];
-
-
-    /*
-      CREATE A NOTE
-    */
-
-    function playNote(frequency) {
-
-      if (
-        !audioContext ||
-        !soundIsOn
-      ) {
-        return;
-      }
-
-
-      /*
-        Main oscillator.
-      */
-
-      const oscillator =
-        audioContext.createOscillator();
-
-
-      /*
-        Second oscillator adds body to the sound.
-      */
-
-      const oscillatorTwo =
-        audioContext.createOscillator();
-
-
-      const noteGain =
-        audioContext.createGain();
-
-
-      oscillator.type =
-        "sine";
-
-
-      oscillatorTwo.type =
-        "triangle";
-
-
-      oscillator.frequency.setValueAtTime(
-        frequency,
-        audioContext.currentTime
-      );
-
-
-      oscillatorTwo.frequency.setValueAtTime(
-        frequency / 2,
-        audioContext.currentTime
-      );
-
-
-      /*
-        Fade the note in and out.
-      */
-
-      noteGain.gain.setValueAtTime(
-        0.001,
-        audioContext.currentTime
-      );
-
-
-      noteGain.gain.linearRampToValueAtTime(
-        0.35,
-        audioContext.currentTime + 0.08
-      );
-
-
-      noteGain.gain.exponentialRampToValueAtTime(
-        0.001,
-        audioContext.currentTime + 1.4
-      );
-
-
-      oscillator.connect(
-        noteGain
-      );
-
-
-      oscillatorTwo.connect(
-        noteGain
-      );
-
-
-      noteGain.connect(
-        masterGain
-      );
-
-
-      oscillator.start();
-
-      oscillatorTwo.start();
-
-
-      oscillator.stop(
-        audioContext.currentTime + 1.5
-      );
-
-
-      oscillatorTwo.stop(
-        audioContext.currentTime + 1.5
-      );
-
-    }
-
-
-    /*
-      NEXT NOTE
-    */
-
-    function playNextNote() {
-
-      if (!soundIsOn) {
-        return;
-      }
-
-
-      playNote(
-        notes[notePosition]
-      );
-
-
-      notePosition =
-        (notePosition + 1)
-        % notes.length;
-
-    }
 
 
     /*
@@ -753,88 +618,40 @@
 
     async function turnSoundOn() {
 
+      try {
 
-      if (!audioContext) {
+        await landingAudio.play();
 
+        soundIsOn = true;
 
-        audioContext =
-          new (
-            window.AudioContext ||
-            window.webkitAudioContext
-          )();
+        soundButton.textContent =
+          "SOUND OFF";
 
+        soundButton.setAttribute(
+          "aria-pressed",
+          "true"
+        );
 
-        masterGain =
-          audioContext.createGain();
+      }
 
+      catch (error) {
 
         /*
-          FULL MASTER OUTPUT
+          If the browser prevents playback for any reason,
+          leave the button in its SOUND ON state.
         */
 
-        masterGain.gain.value = 1;
+        soundIsOn = false;
 
+        soundButton.textContent =
+          "SOUND ON";
 
-        masterGain.connect(
-          audioContext.destination
+        soundButton.setAttribute(
+          "aria-pressed",
+          "false"
         );
 
       }
-
-
-      if (
-        audioContext.state === "suspended"
-      ) {
-
-        await audioContext.resume();
-
-      }
-
-
-      /*
-        Restore full volume.
-      */
-
-      masterGain.gain.cancelScheduledValues(
-        audioContext.currentTime
-      );
-
-
-      masterGain.gain.setValueAtTime(
-        1,
-        audioContext.currentTime
-      );
-
-
-      soundIsOn = true;
-
-
-      soundButton.textContent =
-        "SOUND OFF";
-
-
-      soundButton.setAttribute(
-        "aria-pressed",
-        "true"
-      );
-
-
-      /*
-        Play immediately.
-      */
-
-      playNextNote();
-
-
-      /*
-        Continue sequence.
-      */
-
-      sequenceTimer =
-        setInterval(
-          playNextNote,
-          900
-        );
 
     }
 
@@ -845,51 +662,17 @@
 
     function turnSoundOff() {
 
+      landingAudio.pause();
 
       soundIsOn = false;
 
-
       soundButton.textContent =
         "SOUND ON";
-
 
       soundButton.setAttribute(
         "aria-pressed",
         "false"
       );
-
-
-      if (sequenceTimer) {
-
-        clearInterval(
-          sequenceTimer
-        );
-
-        sequenceTimer = null;
-
-      }
-
-
-      /*
-        Silence current sound immediately.
-      */
-
-      if (
-        masterGain &&
-        audioContext
-      ) {
-
-        masterGain.gain.cancelScheduledValues(
-          audioContext.currentTime
-        );
-
-
-        masterGain.gain.setValueAtTime(
-          0,
-          audioContext.currentTime
-        );
-
-      }
 
     }
 
@@ -902,20 +685,17 @@
       "click",
       async function () {
 
-
         if (soundIsOn) {
 
           turnSoundOff();
 
         }
 
-
         else {
 
           await turnSoundOn();
 
         }
-
 
       }
     );
