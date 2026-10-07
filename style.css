@@ -286,12 +286,6 @@ section {
   display: block;
   min-height: 84px;
   color: transparent;
-
-  /*
-    IMPORTANT:
-    The real text is transparent but still participates in layout.
-    Prevent it wrapping onto an invisible second line on narrow phones.
-  */
   white-space: nowrap;
 }
 
@@ -415,11 +409,6 @@ section {
   padding: var(--section-gap) var(--section-side);
   background: var(--charcoal);
 }
-
-/*
-  Heading and photograph live in one simple grid.
-  row-gap is the only spacing between their layout boxes.
-*/
 
 .merch-main {
   width: 100%;
@@ -1067,8 +1056,12 @@ section {
     margin-bottom: 60px;
   }
 
+  /*
+    Slightly taller on phones so Spotify's tenth track
+    has breathing room above the rounded bottom edge.
+  */
   .spotify-wrap iframe {
-    height: 725px;
+    height: 745px;
   }
 
 
@@ -1153,4 +1146,4 @@ section {
     font-size: 13px;
   }
 
-}
+  }
