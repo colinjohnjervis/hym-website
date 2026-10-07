@@ -408,10 +408,11 @@
     .entrance-button {
       min-width: 235px;
 
+      height: 54px;
+
       padding:
-        7px
-        20px
-        9px;
+        0
+        20px;
 
       border:
         5px solid
@@ -421,28 +422,15 @@
 
       color: #ffffff;
 
-      font-family:
-        "Archivo Black",
-        "Arial Black",
-        Arial,
-        sans-serif;
-
-      font-size: 25px;
-      font-weight: 400;
-
-      line-height: 30px;
-
-      letter-spacing: -.04em;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
 
       text-align: center;
-
-      text-transform: uppercase;
 
       text-decoration: none;
 
       cursor: pointer;
-
-      white-space: nowrap;
 
       appearance: none;
       -webkit-appearance: none;
@@ -460,6 +448,95 @@
     .entrance-button:focus-visible {
       outline: 2px solid #ffffff;
       outline-offset: 4px;
+    }
+
+
+    /* =========================
+       BUTTON TEXT
+       MATCHES MAIN SITE
+    ========================= */
+
+    .entrance-button-text {
+      position: relative;
+
+      display: block;
+
+      min-width: max-content;
+      height: 30px;
+
+      color: transparent;
+
+      font-family:
+        "Archivo Black",
+        "Arial Black",
+        Arial,
+        sans-serif;
+
+      font-size: 24px;
+      font-weight: 400;
+
+      line-height: 30px;
+
+      letter-spacing: -.06em;
+
+      text-transform: uppercase;
+
+      transform: skewX(-9deg);
+
+      white-space: nowrap;
+    }
+
+    .entrance-button-text::before,
+    .entrance-button-text::after {
+      content: attr(data-text);
+
+      position: absolute;
+
+      top: 0;
+      left: 50%;
+
+      width: max-content;
+
+      color: #ffffff;
+
+      font: inherit;
+
+      line-height: inherit;
+      letter-spacing: inherit;
+
+      white-space: nowrap;
+
+      -webkit-text-stroke: .2px #ffffff;
+    }
+
+    .entrance-button-text::before {
+      clip-path:
+        polygon(
+          0 0,
+          100% 0,
+          100% 48%,
+          0 57%
+        );
+
+      transform:
+        translateX(
+          calc(-50% - 1px)
+        );
+    }
+
+    .entrance-button-text::after {
+      clip-path:
+        polygon(
+          0 57%,
+          100% 48%,
+          100% 100%,
+          0 100%
+        );
+
+      transform:
+        translateX(
+          calc(-50% + 1px)
+        );
     }
 
 
@@ -568,7 +645,13 @@
         type="button"
         aria-pressed="false"
       >
-        SOUND ON
+        <span
+          class="entrance-button-text"
+          id="soundButtonText"
+          data-text="SOUND ON"
+        >
+          SOUND ON
+        </span>
       </button>
 
 
@@ -576,7 +659,12 @@
         class="entrance-button"
         href="home.html"
       >
-        ENTER SITE
+        <span
+          class="entrance-button-text"
+          data-text="ENTER SITE"
+        >
+          ENTER SITE
+        </span>
       </a>
 
 
@@ -605,11 +693,30 @@
     const soundButton =
       document.getElementById("soundButton");
 
+    const soundButtonText =
+      document.getElementById("soundButtonText");
+
     const landingAudio =
       document.getElementById("landingAudio");
 
 
     let soundIsOn = false;
+
+
+    /*
+      UPDATE SOUND BUTTON TEXT
+    */
+
+    function updateSoundButtonText(text) {
+
+      soundButtonText.textContent = text;
+
+      soundButtonText.setAttribute(
+        "data-text",
+        text
+      );
+
+    }
 
 
     /*
@@ -624,8 +731,9 @@
 
         soundIsOn = true;
 
-        soundButton.textContent =
-          "SOUND OFF";
+        updateSoundButtonText(
+          "SOUND OFF"
+        );
 
         soundButton.setAttribute(
           "aria-pressed",
@@ -638,8 +746,9 @@
 
         soundIsOn = false;
 
-        soundButton.textContent =
-          "SOUND ON";
+        updateSoundButtonText(
+          "SOUND ON"
+        );
 
         soundButton.setAttribute(
           "aria-pressed",
@@ -661,8 +770,9 @@
 
       soundIsOn = false;
 
-      soundButton.textContent =
-        "SOUND ON";
+      updateSoundButtonText(
+        "SOUND ON"
+      );
 
       soundButton.setAttribute(
         "aria-pressed",
