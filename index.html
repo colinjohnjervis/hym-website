@@ -2,564 +2,701 @@
 <html lang="en">
 
 <head>
+
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#050505">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <meta
+    name="theme-color"
+    content="#000000"
+  >
+
   <title>Holy Youth Movement</title>
-  <link rel="stylesheet" href="style.css">
+
+  <link
+    rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap"
+  >
+
+  <style>
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      overflow: hidden;
+      background: #000;
+    }
+
+    .hero {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      overflow: hidden;
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+
+      padding-top: 140px;
+    }
+
+    .hero-video {
+      position: absolute;
+      inset: 0;
+
+      width: 100%;
+      height: 100%;
+
+      object-fit: cover;
+
+      z-index: 0;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+
+      width: 100%;
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .hym-logo {
+      display: block;
+
+      width: min(100vw, 468px);
+      height: auto;
+
+      transform: scale(0);
+
+      animation:
+        logo-in
+        .65s
+        ease-out
+        3.5s
+        forwards;
+    }
+
+    @keyframes logo-in {
+
+      0% {
+        transform: scale(0);
+      }
+
+      75% {
+        transform: scale(1.08);
+      }
+
+      100% {
+        transform: scale(1);
+      }
+
+    }
+
+    .title-wrapper {
+      position: relative;
+      z-index: 3;
+
+      width: 100%;
+
+      padding-left: 10px;
+      padding-right: 10px;
+
+      display: flex;
+      justify-content: center;
+
+      transform: scale(0);
+
+      animation:
+        title-in
+        .55s
+        ease-out
+        4.45s
+        forwards;
+    }
+
+    @keyframes title-in {
+
+      from {
+        transform: scale(0);
+      }
+
+      to {
+        transform: scale(1);
+      }
+
+    }
+
+    .slice-heading {
+      position: relative;
+
+      margin-left: auto;
+      margin-right: auto;
+
+      color: transparent;
+
+      text-align: center;
+
+      font-family:
+        "Archivo Black",
+        "Arial Black",
+        Arial,
+        sans-serif;
+
+      font-weight: 400;
+
+      line-height: .78;
+
+      letter-spacing: -.085em;
+
+      text-transform: uppercase;
+
+      transform: skewX(-7deg);
+
+      transform-origin: center;
+    }
+
+    .slice-heading span {
+      position: relative;
+      display: block;
+
+      min-height: .86em;
+
+      color: transparent;
+
+      white-space: nowrap;
+    }
+
+    .slice-heading span::before,
+    .slice-heading span::after {
+      content: attr(data-text);
+
+      position: absolute;
+
+      top: 0;
+      left: 50%;
+
+      width: max-content;
+      min-width: 100%;
+
+      color: #ffffff;
+
+      font-family: inherit;
+      font-size: inherit;
+      font-weight: inherit;
+      line-height: inherit;
+      letter-spacing: inherit;
+
+      -webkit-text-stroke: 1.5px #ffffff;
+
+      paint-order: stroke fill;
+
+      text-align: center;
+
+      white-space: nowrap;
+    }
+
+    .slice-heading span::before {
+      clip-path:
+        polygon(
+          0 0,
+          100% 0,
+          100% 48%,
+          0 57%
+        );
+
+      transform:
+        translateX(
+          calc(-50% - 2px)
+        );
+    }
+
+    .slice-heading span::after {
+      clip-path:
+        polygon(
+          0 57%,
+          100% 48%,
+          100% 100%,
+          0 100%
+        );
+
+      transform:
+        translateX(
+          calc(-50% + 2px)
+        );
+    }
+
+    .hero-title span::before {
+      animation:
+        title-glitch-top
+        1s
+        linear
+        infinite;
+    }
+
+    .hero-title span::after {
+      animation:
+        title-glitch-bottom
+        1s
+        linear
+        infinite;
+    }
+
+    @keyframes title-glitch-top {
+
+      0%,
+      1%,
+      5%,
+      59%,
+      61%,
+      63%,
+      65%,
+      100% {
+        transform:
+          translateX(
+            calc(-50% - 2px)
+          );
+      }
+
+      2%,
+      64% {
+        transform:
+          translate(
+            calc(-50% + 0px),
+            -2px
+          );
+      }
+
+      4%,
+      60% {
+        transform:
+          translate(
+            calc(-50% - 4px),
+            2px
+          );
+      }
+
+      62% {
+        transform:
+          translate(
+            calc(-50% + 11px),
+            -1px
+          )
+          skewX(-13deg);
+      }
+
+    }
+
+    @keyframes title-glitch-bottom {
+
+      0%,
+      1%,
+      5%,
+      59%,
+      61%,
+      63%,
+      65%,
+      100% {
+        transform:
+          translateX(
+            calc(-50% + 2px)
+          );
+      }
+
+      2%,
+      64% {
+        transform:
+          translateX(
+            calc(-50% + 0px)
+          );
+      }
+
+      4%,
+      60% {
+        transform:
+          translateX(
+            calc(-50% + 4px)
+          );
+      }
+
+      62% {
+        transform:
+          translate(
+            calc(-50% - 20px),
+            5px
+          )
+          skewX(21deg);
+      }
+
+    }
+
+    .hero-title {
+      width: 100%;
+      font-size: 50px;
+    }
+
+    .hero-title span + span {
+      margin-top: 8px;
+    }
+
+
+    /* =========================
+       ENTRANCE CONTROLS
+    ========================= */
+
+    .entrance-controls {
+      position: absolute;
+
+      z-index: 4;
+
+      left: 50%;
+      bottom: 25%;
+
+      display: flex;
+      flex-direction: column;
+
+      align-items: center;
+
+      gap: 12px;
+
+      transform:
+        translateX(-50%)
+        scale(0);
+
+      animation:
+        controls-in
+        .5s
+        ease-out
+        5s
+        forwards;
+    }
+
+    @keyframes controls-in {
+
+      from {
+        transform:
+          translateX(-50%)
+          scale(0);
+      }
+
+      to {
+        transform:
+          translateX(-50%)
+          scale(1);
+      }
+
+    }
+
+
+    /* =========================
+       BUTTONS
+    ========================= */
+
+    .entrance-button {
+      min-width: 235px;
+
+      padding:
+        7px
+        20px
+        9px;
+
+      border:
+        5px solid
+        #fb38fc;
+
+      background: transparent;
+
+      color: #ffffff;
+
+      font-family:
+        "Archivo Black",
+        "Arial Black",
+        Arial,
+        sans-serif;
+
+      font-size: 25px;
+      font-weight: 400;
+
+      line-height: 30px;
+
+      letter-spacing: -.04em;
+
+      text-align: center;
+
+      text-transform: uppercase;
+
+      text-decoration: none;
+
+      cursor: pointer;
+
+      white-space: nowrap;
+
+      appearance: none;
+      -webkit-appearance: none;
+
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .entrance-button:hover,
+    .entrance-button:active,
+    .entrance-button:focus,
+    .entrance-button:visited {
+      color: #ffffff;
+    }
+
+    .entrance-button:focus-visible {
+      outline: 2px solid #ffffff;
+      outline-offset: 4px;
+    }
+
+
+    /* =========================
+       DESKTOP
+    ========================= */
+
+    @media screen and (min-width: 480px) {
+
+      .hero {
+        justify-content: center;
+        padding-top: 0;
+      }
+
+      .hero-title {
+        font-size: 4rem;
+      }
+
+      .entrance-controls {
+        bottom: 40px;
+
+        flex-direction: row;
+
+        gap: 16px;
+      }
+
+    }
+
+  </style>
+
 </head>
+
 
 <body>
 
-  <header class="site-header">
 
-    <a href="index.html" aria-label="Holy Youth Movement entrance page">
+  <main class="hero">
+
+
+    <!-- BACKGROUND VIDEO -->
+
+    <video
+      class="hero-video"
+      autoplay
+      loop
+      muted
+      playsinline
+    >
+
+      <source
+        src="6456cc03b18521dd74a8f3ca_Short%20HYM-transcode.mp4"
+        type="video/mp4"
+      >
+
+    </video>
+
+
+    <!-- LOGO + TITLE -->
+
+    <div class="hero-content">
+
+
       <img
-        class="nav-logo"
-        src="https://holyyouthmovement.co.uk/assets/images/hymlogo.png"
+        class="hym-logo"
+        src="hymlogo.png"
         alt="Holy Youth Movement"
       >
-    </a>
-
-    <button
-      class="menu-button"
-      id="menuButton"
-      aria-label="Open menu"
-      aria-controls="navPanel"
-      aria-expanded="false"
-    >
-      <span></span>
-    </button>
-
-  </header>
 
 
-  <nav class="nav-panel" id="navPanel">
+      <div class="title-wrapper">
 
-    <div class="nav-links">
-      <a href="#events">Live</a>
-      <a href="#merch">Merch</a>
-      <a href="#mailing-list">Mailing List</a>
-      <a href="#listen">Listen</a>
-      <a href="#contact">Contact</a>
+
+        <div
+          class="slice-heading hero-title"
+          aria-label="Holy Youth Movement"
+        >
+
+
+          <span data-text="HOLY YOUTH">
+            HOLY YOUTH
+          </span>
+
+
+          <span data-text="MOVEMENT">
+            MOVEMENT
+          </span>
+
+
+        </div>
+
+
+      </div>
+
+
     </div>
 
 
-    <div class="nav-socials">
+    <!-- CONTROLS -->
+
+    <div class="entrance-controls">
+
+
+      <button
+        class="entrance-button"
+        id="soundButton"
+        type="button"
+        aria-pressed="false"
+      >
+        SOUND ON
+      </button>
+
 
       <a
-        href="https://www.facebook.com/holyyouthmovement/"
-        target="_blank"
-        rel="noopener"
-        aria-label="Holy Youth Movement on Facebook"
+        class="entrance-button"
+        href="home.html"
       >
-        <img
-          src="social-icons/Facebook_Logo_Primary.png"
-          alt="Facebook"
-        >
+        ENTER SITE
       </a>
 
-      <a
-        href="https://www.instagram.com/holyyouthmovement/?hl=en"
-        target="_blank"
-        rel="noopener"
-        aria-label="Holy Youth Movement on Instagram"
-      >
-        <img
-          src="social-icons/Instagram_Glyph_Gradient.png"
-          alt="Instagram"
-        >
-      </a>
-
-      <a
-        href="https://www.tiktok.com/@holyyouthmovementband?_r=1&_t=ZN-9AKklmNv9Ec"
-        target="_blank"
-        rel="noopener"
-        aria-label="Holy Youth Movement on TikTok"
-      >
-        <img
-          src="social-icons/TikTok_Icon_Black_Circle.png"
-          alt="TikTok"
-        >
-      </a>
 
     </div>
 
-  </nav>
-
-
-  <main>
-
-    <!-- INTRO -->
-
-    <section class="home-intro" id="top">
-
-      <div class="home-intro-inner">
-
-        <blockquote class="home-quote">
-
-          <span>
-            “From the ashes rise
-          </span>
-
-          <span class="quote-highlight">
-            Holy Youth Movement
-          </span>
-
-          <span>
-            and they’re more ambitious,
-            anthemic and electrifying
-            than ever.”
-          </span>
-
-          <footer>
-            – GigSlutz.co.uk
-          </footer>
-
-        </blockquote>
-
-
-        <div class="home-band-photo">
-
-          <img
-            src="https://holyyouthmovement.co.uk/assets/images/hym-new-press-shot-.jpg"
-            alt="Holy Youth Movement band"
-          >
-
-        </div>
-
-      </div>
-
-    </section>
-
-
-    <!-- UPCOMING EVENTS -->
-
-    <section class="upcoming-events" id="events">
-
-      <div class="upcoming-events-inner">
-
-        <h2 class="slice-heading upcoming-events-title">
-
-          <span data-text="UPCOMING">
-            UPCOMING
-          </span>
-
-          <span data-text="EVENTS">
-            EVENTS
-          </span>
-
-        </h2>
-
-
-        <div class="upcoming-events-frame">
-
-          <div
-            class="bit-widget-shell"
-            id="bandsintownWidget"
-          >
-
-            <script
-              charset="utf-8"
-              src="https://widgetv3.bandsintown.com/main.min.js"
-            ></script>
-
-            <a
-              class="bit-widget-initializer"
-              data-artist-name="id_15542629"
-              data-app-id="3c9d183150cd2ab67c8e3459c2243e53"
-              data-text-color="#ffffff"
-              data-link-color="#ff29ec"
-              data-link-text-color="#050505"
-              data-background-color="#24282b"
-              data-popup-background-color="#24282b"
-              data-separator-color="#444444"
-              data-font="Arial"
-              data-widget-width="100%"
-              data-display-logo="true"
-              data-display-track-button="false"
-              data-display-play-my-city="false"
-              data-display-local-dates="false"
-              data-display-past-dates="false"
-              data-display-start-time="false"
-              data-display-lineup="false"
-              data-display-details="false"
-              data-language="en"
-            ></a>
-
-          </div>
-
-
-          <div
-            class="bandsintown-credit"
-            id="bandsintownCredit"
-          >
-
-            <div class="bandsintown-credit-text">
-              Live events powered by
-            </div>
-
-            <div
-              class="bandsintown-logo-copy"
-              id="bandsintownLogoCopy"
-            ></div>
-
-          </div>
-
-        </div>
-
-      </div>
-
-    </section>
-
-
-    <!-- MERCH -->
-
-    <section class="merch" id="merch">
-
-      <div class="merch-main">
-
-        <h2 class="slice-heading merch-title">
-
-          <span data-text="BUY MERCH">
-            BUY MERCH
-          </span>
-
-        </h2>
-
-
-        <a
-          href="https://holy-youth-movement.sumupstore.com/products"
-          target="_blank"
-          rel="noopener"
-          aria-label="Shop Holy Youth Movement merchandise"
-        >
-          <div class="merch-image"></div>
-        </a>
-
-      </div>
-
-
-      <div class="merch-copy">
-
-        <p>
-          Official Holy Youth Movement merchandise.
-        </p>
-
-
-        <a
-          class="hym-button"
-          href="https://holy-youth-movement.sumupstore.com/products"
-          target="_blank"
-          rel="noopener"
-          aria-label="Buy Holy Youth Movement merchandise"
-        >
-          <span
-            class="hym-button-text"
-            data-text="BUY NOW"
-          >
-            BUY NOW
-          </span>
-        </a>
-
-      </div>
-
-    </section>
-
-
-    <!-- MAILING LIST -->
-
-    <section
-      class="mailing-list-section"
-      id="mailing-list"
-    >
-
-      <div class="mailing-list-content">
-
-        <h2 class="slice-heading mailing-list-title">
-
-          <span data-text="MAILING LIST">
-            MAILING LIST
-          </span>
-
-        </h2>
-
-
-        <form
-          class="mailing-list-form"
-          onsubmit="return false;"
-        >
-
-          <p class="mailing-list-copy">
-            Sign up to get the latest Holy Youth Movement
-            news, music and live updates.
-          </p>
-
-
-          <label
-            class="mailing-list-label"
-            for="mailingEmail"
-          >
-            Email address
-          </label>
-
-
-          <input
-            class="mailing-list-input"
-            id="mailingEmail"
-            name="email"
-            type="email"
-            autocomplete="email"
-            placeholder="Email address"
-            disabled
-          >
-
-
-          <button
-            class="hym-button mailing-list-button"
-            type="button"
-            disabled
-            aria-disabled="true"
-          >
-
-            <svg
-              class="hym-button-icon"
-              viewBox="0 0 24 20"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-              aria-hidden="true"
-            >
-
-              <rect
-                x="1"
-                y="1"
-                width="22"
-                height="18"
-                rx="2"
-                stroke="currentColor"
-                stroke-width="2"
-              />
-
-              <path
-                d="M2 3L12 11L22 3"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-
-            </svg>
-
-
-            <span
-              class="hym-button-text"
-              data-text="SUBSCRIBE"
-            >
-              SUBSCRIBE
-            </span>
-
-          </button>
-
-        </form>
-
-      </div>
-
-    </section>
-
-
-    <!-- LISTEN -->
-
-    <section class="listen" id="listen">
-
-      <div class="listen-inner">
-
-        <h2 class="slice-heading listen-title">
-
-          <span data-text="LISTEN">
-            LISTEN
-          </span>
-
-        </h2>
-
-
-        <div class="spotify-wrap">
-
-          <iframe
-            src="https://open.spotify.com/embed/artist/4psk2TMuqKYFzMVMS7KCXd?utm_source=generator"
-            loading="lazy"
-            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-            title="Holy Youth Movement on Spotify"
-          ></iframe>
-
-        </div>
-
-
-        <div class="music-platforms">
-
-          <a
-            href="https://youtube.com/@holyyouthmovement?si=i7S2mHmcw-gDZ732"
-            target="_blank"
-            rel="noopener"
-            aria-label="Holy Youth Movement on YouTube"
-          >
-            <img
-              src="social-icons/youtube_logo.png"
-              alt="YouTube"
-            >
-          </a>
-
-
-          <a
-            href="https://holyyouthmovement.bandcamp.com/"
-            target="_blank"
-            rel="noopener"
-            aria-label="Holy Youth Movement on Bandcamp"
-          >
-            <img
-              src="social-icons/bandcamp-emblem-1.png"
-              alt="Bandcamp"
-            >
-          </a>
-
-
-          <a
-            href="https://open.spotify.com/artist/4psk2TMuqKYFzMVMS7KCXd?si=1lRzlrn9QW2-RcGs_K3hpA"
-            target="_blank"
-            rel="noopener"
-            aria-label="Holy Youth Movement on Spotify"
-          >
-            <img
-              src="social-icons/spotify_logo_without_text.svg.webp"
-              alt="Spotify"
-            >
-          </a>
-
-
-          <a
-            href="https://soundcloud.com/user-212453294"
-            target="_blank"
-            rel="noopener"
-            aria-label="Holy Youth Movement on SoundCloud"
-          >
-            <img
-              src="social-icons/145809.png"
-              alt="SoundCloud"
-            >
-          </a>
-
-
-          <a
-            href="https://music.apple.com/gb/artist/holy-youth-movement/1543977466"
-            target="_blank"
-            rel="noopener"
-            aria-label="Holy Youth Movement on Apple Music"
-          >
-            <img
-              src="social-icons/png-clipart-computer-icons-apple-music-apple-text-rectangle-thumbnail-2.png"
-              alt="Apple Music"
-            >
-          </a>
-
-        </div>
-
-      </div>
-
-    </section>
-
-
-    <!-- CONTACT & BOOKINGS -->
-
-    <section class="contact" id="contact">
-
-      <div class="contact-inner">
-
-        <div class="contact-form-area">
-
-          <h2 class="slice-heading contact-title">
-
-            <span data-text="CONTACT &">
-              CONTACT &
-            </span>
-
-            <span data-text="BOOKINGS">
-              BOOKINGS
-            </span>
-
-          </h2>
-
-
-          <form
-            class="contact-form"
-            onsubmit="return false;"
-          >
-
-            <label>
-              Name
-
-              <input
-                type="text"
-                name="name"
-                autocomplete="name"
-              >
-            </label>
-
-
-            <label>
-              Email Address
-
-              <input
-                type="email"
-                name="email"
-                autocomplete="email"
-              >
-            </label>
-
-
-            <label>
-              Message
-
-              <textarea
-                name="message"
-                rows="2"
-              ></textarea>
-            </label>
-
-
-            <button
-              class="hym-button send-button"
-              type="button"
-            >
-              <span
-                class="hym-button-text"
-                data-text="SUBMIT"
-              >
-                SUBMIT
-              </span>
-            </button>
-
-          </form>
-
-        </div>
-
-
-        <footer class="site-footer">
-
-          <span>
-            © 2026 Holy Youth Movement.
-            All rights reserved
-          </span>
-
-        </footer>
-
-      </div>
-
-    </section>
 
   </main>
 
 
-  <script src="script.js"></script>
-  <script src="bandsintown.js"></script>
+  <!-- HYM AUDIO -->
+
+  <audio
+    id="landingAudio"
+    preload="metadata"
+    loop
+  >
+    <source
+      src="holy-youth-movement-you-thought-i-was-dead-but-baby-i-m-just-getting-started_j7rAhp01.mp3"
+      type="audio/mpeg"
+    >
+  </audio>
+
+
+  <script>
+
+    const soundButton =
+      document.getElementById("soundButton");
+
+    const landingAudio =
+      document.getElementById("landingAudio");
+
+
+    let soundIsOn = false;
+
+
+    /*
+      SOUND ON
+    */
+
+    async function turnSoundOn() {
+
+      try {
+
+        await landingAudio.play();
+
+        soundIsOn = true;
+
+        soundButton.textContent =
+          "SOUND OFF";
+
+        soundButton.setAttribute(
+          "aria-pressed",
+          "true"
+        );
+
+      }
+
+      catch (error) {
+
+        soundIsOn = false;
+
+        soundButton.textContent =
+          "SOUND ON";
+
+        soundButton.setAttribute(
+          "aria-pressed",
+          "false"
+        );
+
+      }
+
+    }
+
+
+    /*
+      SOUND OFF
+    */
+
+    function turnSoundOff() {
+
+      landingAudio.pause();
+
+      soundIsOn = false;
+
+      soundButton.textContent =
+        "SOUND ON";
+
+      soundButton.setAttribute(
+        "aria-pressed",
+        "false"
+      );
+
+    }
+
+
+    /*
+      BUTTON TOGGLE
+    */
+
+    soundButton.addEventListener(
+      "click",
+      async function () {
+
+        if (soundIsOn) {
+
+          turnSoundOff();
+
+        }
+
+        else {
+
+          await turnSoundOn();
+
+        }
+
+      }
+    );
+
+  </script>
+
 
 </body>
 
