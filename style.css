@@ -411,7 +411,7 @@ section {
 
 .merch-heading-wrap {
   width: 100%;
-  margin-bottom: 45px;
+  margin-bottom: 60px;
 }
 
 .merch-title {
@@ -919,14 +919,27 @@ section {
     border-radius: 16px;
   }
 
+
+  /* MOBILE SECTION SPACING */
+
   .upcoming-events,
-  .merch,
   .mailing-list-section,
   .listen {
     padding-left: var(--section-side);
     padding-right: var(--section-side);
     padding-top: var(--mobile-section-space);
     padding-bottom: 0;
+  }
+
+
+  /* MERCH MOBILE LAYOUT
+     60px above heading + 60px below heading */
+
+  .merch {
+    padding:
+      60px
+      var(--section-side)
+      0;
   }
 
   .slice-heading {
@@ -944,15 +957,16 @@ section {
     margin-bottom: 60px;
   }
 
-  /* Merch has a deliberately smaller,
-     fixed heading-to-image gap */
   .merch-heading-wrap {
-    margin-bottom: 36px;
+    margin: 0 0 60px;
   }
 
   .merch-title {
-    margin-bottom: 0;
+    margin: 0;
   }
+
+
+  /* MAILING LIST HEADING */
 
   .mailing-list-title {
     font-size: 50px;
@@ -963,17 +977,26 @@ section {
     min-height: 54px;
   }
 
+
+  /* EVENTS */
+
   .upcoming-events-frame {
     padding: 14px 10px 24px;
     border-width: 3px;
   }
 
-  /* Predictable on all phone screen heights */
+
+  /* MERCH IMAGE
+     Fixed aspect ratio instead of viewport height */
+
   .merch-image {
     width: 100%;
     min-height: 0;
     aspect-ratio: 4 / 5;
   }
+
+
+  /* BUTTONS */
 
   .hym-button {
     min-width: 145px;
@@ -986,6 +1009,9 @@ section {
     font-size: 23px;
     line-height: 28px;
   }
+
+
+  /* MAILING LIST */
 
   .mailing-list-copy {
     margin-bottom: 34px;
@@ -1006,9 +1032,15 @@ section {
     margin-top: 28px;
   }
 
+
+  /* SPOTIFY */
+
   .spotify-wrap iframe {
     height: 725px;
   }
+
+
+  /* MUSIC PLATFORM ICONS */
 
   .music-platforms {
     width: 100%;
@@ -1027,6 +1059,9 @@ section {
     max-width: 72px;
     height: auto;
   }
+
+
+  /* CONTACT */
 
   .contact {
     min-height: 100svh;
