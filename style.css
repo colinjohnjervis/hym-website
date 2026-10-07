@@ -286,6 +286,13 @@ section {
   display: block;
   min-height: 84px;
   color: transparent;
+
+  /*
+    IMPORTANT:
+    The real text is transparent but still participates in layout.
+    Prevent it wrapping onto an invisible second line on narrow phones.
+  */
+  white-space: nowrap;
 }
 
 .slice-heading span::before,
@@ -410,8 +417,8 @@ section {
 }
 
 /*
-  Heading + photograph are deliberately contained in one grid.
-  The gap is now the ONLY spacing between them.
+  Heading and photograph live in one simple grid.
+  row-gap is the only spacing between their layout boxes.
 */
 
 .merch-main {
@@ -495,6 +502,7 @@ section {
   letter-spacing: -.06em;
   text-transform: uppercase;
   transform: skewX(-9deg);
+  white-space: nowrap;
 }
 
 .hym-button-text::before,
@@ -945,6 +953,7 @@ section {
 
   .slice-heading span {
     min-height: 64px;
+    white-space: nowrap;
   }
 
 
@@ -969,11 +978,6 @@ section {
   .merch {
     padding: 60px var(--section-side) 0;
   }
-
-  /*
-    One layout. One gap.
-    No wrapper margins and no negative positioning.
-  */
 
   .merch-main {
     width: 100%;
@@ -1013,6 +1017,7 @@ section {
     height: 28px;
     font-size: 23px;
     line-height: 28px;
+    white-space: nowrap;
   }
 
 
