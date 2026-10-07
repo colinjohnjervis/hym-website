@@ -793,7 +793,7 @@ section {
 
 /* TABLET */
 
-@media (max-width: 991px) and (min-width: 480px) {
+@media (max-width: 991px) and (min-width: 601px) {
 
   .home-quote {
     font-size: 50px;
@@ -863,9 +863,9 @@ section {
 }
 
 
-/* MOBILE */
+/* PHONE */
 
-@media (max-width: 479px) {
+@media (max-width: 600px) {
 
   :root {
     --section-side: 20px;
@@ -962,7 +962,7 @@ section {
 
   .merch-heading-wrap {
     width: 100%;
-    margin: 0;
+    margin: 0 0 60px;
     padding: 0;
   }
 
@@ -971,20 +971,11 @@ section {
     padding: 0;
   }
 
-  /*
-    The heading itself occupies a larger visual/layout area
-    than the visible lettering suggests on iOS.
-
-    We therefore pull the image upward specifically in the
-    mobile merch section so the visible BUY MERCH title sits
-    approximately midway between the events box and image.
-  */
-
   .merch-image {
     width: 100%;
     min-height: 0;
     aspect-ratio: 4 / 5;
-    margin: -40px auto 0;
+    margin: 0 auto;
   }
 
   .merch-copy {
