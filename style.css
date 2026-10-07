@@ -409,20 +409,30 @@ section {
   background: var(--charcoal);
 }
 
-.merch-heading-wrap {
+/*
+  Heading + photograph are deliberately contained in one grid.
+  The gap is now the ONLY spacing between them.
+*/
+
+.merch-main {
   width: 100%;
-  margin-bottom: 60px;
+  max-width: 1000px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  row-gap: 60px;
 }
 
 .merch-title {
+  width: 100%;
   max-width: 900px;
+  margin: 0 auto;
 }
 
 .merch-image {
   width: 100%;
-  max-width: 1000px;
   aspect-ratio: 4 / 5;
-  margin: 0 auto;
+  margin: 0;
   overflow: hidden;
   border-radius: 20px;
   background:
@@ -960,13 +970,21 @@ section {
     padding: 60px var(--section-side) 0;
   }
 
-  .merch-heading-wrap {
+  /*
+    One layout. One gap.
+    No wrapper margins and no negative positioning.
+  */
+
+  .merch-main {
     width: 100%;
-    margin: 0 0 60px;
-    padding: 0;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    row-gap: 60px;
   }
 
   .merch-title {
+    width: 100%;
     margin: 0;
     padding: 0;
   }
@@ -975,7 +993,7 @@ section {
     width: 100%;
     min-height: 0;
     aspect-ratio: 4 / 5;
-    margin: 0 auto;
+    margin: 0;
   }
 
   .merch-copy {
