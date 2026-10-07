@@ -411,7 +411,7 @@ section {
 
 .merch-heading-wrap {
   width: 100%;
-  margin-bottom: 70px;
+  margin-bottom: 45px;
 }
 
 .merch-title {
@@ -421,7 +421,7 @@ section {
 .merch-image {
   width: 100%;
   max-width: 1000px;
-  min-height: 70svh;
+  aspect-ratio: 4 / 5;
   margin: 0 auto;
   overflow: hidden;
   border-radius: 20px;
@@ -828,10 +828,6 @@ section {
     padding: 28px 28px 36px;
   }
 
-  .merch-image {
-    min-height: 76svh;
-  }
-
   .contact-form-area {
     max-width: 760px;
     margin-left: auto;
@@ -943,10 +939,19 @@ section {
   }
 
   .upcoming-events-title,
-  .merch-title,
   .mailing-list-title,
   .listen-title {
     margin-bottom: 60px;
+  }
+
+  /* Merch has a deliberately smaller,
+     fixed heading-to-image gap */
+  .merch-heading-wrap {
+    margin-bottom: 36px;
+  }
+
+  .merch-title {
+    margin-bottom: 0;
   }
 
   .mailing-list-title {
@@ -963,8 +968,11 @@ section {
     border-width: 3px;
   }
 
+  /* Predictable on all phone screen heights */
   .merch-image {
-    min-height: 60svh;
+    width: 100%;
+    min-height: 0;
+    aspect-ratio: 4 / 5;
   }
 
   .hym-button {
@@ -1078,4 +1086,4 @@ section {
     font-size: 13px;
   }
 
-  }
+}
