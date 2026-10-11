@@ -614,6 +614,20 @@ section {
   border-color: var(--pink);
 }
 
+.mailing-list-location {
+  margin-top: 18px;
+}
+
+.mailing-list-location-copy {
+  width: 100%;
+  margin: 12px 0 0;
+  color: rgba(255,255,255,.72);
+  text-align: left;
+  font-size: .88rem;
+  font-weight: 300;
+  line-height: 1.5;
+}
+
 .mailing-list-button {
   margin-top: 28px;
   min-width: 205px;
@@ -1040,6 +1054,15 @@ section {
     padding: 0 16px;
   }
 
+  .mailing-list-location {
+    margin-top: 16px;
+  }
+
+  .mailing-list-location-copy {
+    margin-top: 10px;
+    font-size: .82rem;
+  }
+
   .mailing-list-button {
     min-width: 200px;
     margin-top: 28px;
@@ -1146,4 +1169,4 @@ section {
     font-size: 13px;
   }
 
-  }
+}
