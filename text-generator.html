@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>HYM Poster Text Generator</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap"
+    rel="stylesheet"
+  >
+
+  <style>
+    :root {
+      --black: #000000;
+      --charcoal: #25282b;
+      --white: #ffffff;
+      --pink: #fb38fc;
+      --soft-white: rgba(255, 255, 255, 0.72);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html,
+    body {
+      min-height: 100%;
+    }
+
+    body {
+      min-height: 100vh;
+      padding: 30px 20px 50px;
+      color: var(--white);
+      background: var(--charcoal);
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .app {
+      width: 100%;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .app-title {
+      margin-bottom: 8px;
+      font-family: "Archivo Black", "Arial Black", Arial, sans-serif;
+      font-size: 28px;
+      line-height: 1.1;
+      letter-spacing: -0.04em;
+      text-transform: uppercase;
+    }
+
+    .app-intro {
+      margin-bottom: 30px;
+      color: var(--soft-white);
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .controls {
+      width: 100%;
+      margin-bottom: 24px;
+      padding: 22px;
+      border: 2px solid var(--pink);
+    }
+
+    .control-group {
+      margin-bottom: 22px;
+    }
+
+    .control-group:last-child {
+      margin-bottom: 0;
+    }
+
+    .control-label {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--white);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    textarea,
+    select {
+      width: 100%;
+      color: var(--white);
+      background: #111;
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      border-radius: 0;
+      outline: none;
+      font: inherit;
+    }
+
+    textarea {
+      min-height: 110px;
+      padding: 14px;
+      resize: vertical;
+      font-size: 16px;
+      line-height: 1.4;
+    }
+
+    select {
+      height: 48px;
+      padding: 0 12px;
+      font-size: 16px;
+    }
+
+    textarea:focus,
+    select:focus {
+      border-color: var(--pink);
+    }
+
+    .size-row {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .size-slider {
+      flex: 1;
+      accent-color: var(--pink);
+    }
+
+    .size-value {
+      min-width: 65px;
+      color: var(--white);
+      font-size: 14px;
+      text-align: right;
+    }
+
+    .colour-buttons {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+
+    .colour-button,
+    .align-button {
+      min-height: 48px;
+      padding: 10px 12px;
+      color: var(--white);
+      background: transparent;
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      cursor: pointer;
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .colour-button.active,
+    .align-button.active {
+      border-color: var(--pink);
+    }
+
+    .colour-button[data-colour="#ffffff"]::before,
+    .colour-button[data-colour="#fb38fc"]::before,
+    .colour-button[data-colour="#000000"]::before {
+      content: "";
+      display: inline-block;
+      width: 13px;
+      height: 13px;
+      margin-right: 7px;
+      border: 1px solid rgba(255, 255, 255, 0.45);
+      vertical-align: -2px;
+    }
+
+    .colour-button[data-colour="#ffffff"]::before {
+      background: #ffffff;
+    }
+
+    .colour-button[data-colour="#fb38fc"]::before {
+      background: #fb38fc;
+    }
+
+    .colour-button[data-colour="#000000"]::before {
+      background: #000000;
+    }
+
+    .alignment-buttons {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+
+    .preview-label {
+      margin-bottom: 8px;
+      color: var(--soft-white);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .preview-shell {
+      position: relative;
+      width: 100%;
+      min-height: 320px;
+      margin-bottom: 24px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      background:
+        linear-gradient(45deg, #333 25%, transparent 25%),
+        linear-gradient(-45deg, #333 25%, transparent 25%),
+        linear-gradient(45deg, transparent 75%, #333 75%),
+        linear-gradient(-45deg, transparent 75%, #333 75%);
+      background-color: #222;
+      background-position:
+        0 0,
+        0 10px,
+        10px -10px,
+        -10px 0;
+      background-size: 20px 20px;
+    }
+
+    #previewCanvas {
+      display: block;
+      width: 100%;
+      height: auto;
+      min-height: 320px;
+    }
+
+    .download-button {
+      width: 100%;
+      min-height: 58px;
+      padding: 12px 20px;
+      color: var(--white);
+      background: transparent;
+      border: 3px solid var(--pink);
+      cursor: pointer;
+      font-family: "Archivo Black", "Arial Black", Arial, sans-serif;
+      font-size: 19px;
+      line-height: 1;
+      letter-spacing: -0.04em;
+      text-transform: uppercase;
+    }
+
+    .download-button:hover {
+      color: var(--pink);
+    }
+
+    .download-note {
+      margin-top: 12px;
+      color: var(--soft-white);
+      font-size: 12px;
+      line-height: 1.5;
+      text-align: center;
+    }
+
+    @media (min-width: 700px) {
+      body {
+        padding: 50px 40px 70px;
+      }
+
+      .app-title {
+        font-size: 36px;
+      }
+
+      .controls {
+        padding: 30px;
+      }
+
+      .preview-shell {
+        min-height: 420px;
+      }
+
+      #previewCanvas {
+        min-height: 420px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <main class="app">
+
+    <h1 class="app-title">HYM Poster Text Generator</h1>
+
+    <p class="app-intro">
+      Create HYM-style sliced headings for posters and artwork.
+      Exported images have a transparent background.
+    </p>
+
+
+    <section class="controls">
+
+      <div class="control-group">
+
+        <label
+          class="control-label"
+          for="textInput"
+        >
+          Text
+        </label>
+
+        <textarea
+          id="textInput"
+          spellcheck="false"
+        >HOLY YOUTH
+MOVEMENT</textarea>
+
+      </div>
+
+
+      <div class="control-group">
+
+        <label
+          class="control-label"
+          for="sizeSlider"
+        >
+          Text size
+        </label>
+
+        <div class="size-row">
+
+          <input
+            class="size-slider"
+            id="sizeSlider"
+            type="range"
+            min="50"
+            max="220"
+            value="120"
+          >
+
+          <span
+            class="size-value"
+            id="sizeValue"
+          >
+            120
+          </span>
+
+        </div>
+
+      </div>
+
+
+      <div class="control-group">
+
+        <span class="control-label">
+          Colour
+        </span>
+
+        <div class="colour-buttons">
+
+          <button
+            class="colour-button active"
+            type="button"
+            data-colour="#ffffff"
+          >
+            White
+          </button>
+
+          <button
+            class="colour-button"
+            type="button"
+            data-colour="#fb38fc"
+          >
+            Pink
+          </button>
+
+          <button
+            class="colour-button"
+            type="button"
+            data-colour="#000000"
+          >
+            Black
+          </button>
+
+        </div>
+
+      </div>
+
+
+      <div class="control-group">
+
+        <span class="control-label">
+          Alignment
+        </span>
+
+        <div class="alignment-buttons">
+
+          <button
+            class="align-button"
+            type="button"
+            data-align="left"
+          >
+            Left
+          </button>
+
+          <button
+            class="align-button active"
+            type="button"
+            data-align="center"
+          >
+            Centre
+          </button>
+
+          <button
+            class="align-button"
+            type="button"
+            data-align="right"
+          >
+            Right
+          </button>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <p class="preview-label">
+      Preview
+    </p>
+
+    <div class="preview-shell">
+
+      <canvas
+        id="previewCanvas"
+        width="1600"
+        height="900"
+      ></canvas>
+
+    </div>
+
+
+    <button
+      class="download-button"
+      id="downloadButton"
+      type="button"
+    >
+      Export Transparent PNG
+    </button>
+
+    <p class="download-note">
+      The PNG is exported at high resolution with a transparent background,
+      ready to place over poster artwork.
+    </p>
+
+  </main>
+
+
+  <script>
+    const textInput = document.getElementById("textInput");
+    const sizeSlider = document.getElementById("sizeSlider");
+    const sizeValue = document.getElementById("sizeValue");
+
+    const colourButtons =
+      document.querySelectorAll(".colour-button");
+
+    const alignButtons =
+      document.querySelectorAll(".align-button");
+
+    const previewCanvas =
+      document.getElementById("previewCanvas");
+
+    const previewContext =
+      previewCanvas.getContext("2d");
+
+    const downloadButton =
+      document.getElementById("downloadButton");
+
+
+    let currentColour = "#ffffff";
+    let currentAlignment = "center";
+
+
+    /*
+      These values reproduce the fixed HYM treatment.
+
+      The visual effect is deliberately NOT exposed as
+      a user control. The HYM styling remains consistent.
+    */
+
+    const HYM_SKEW = -9;
+    const HYM_TOP_OFFSET = -4;
+    const HYM_BOTTOM_OFFSET = 4;
+    const HYM_SLICE_ANGLE = 0.09;
+
+
+    function degreesToRadians(degrees) {
+      return degrees * Math.PI / 180;
+    }
+
+
+    function getLines() {
+      const value = textInput.value.toUpperCase();
+
+      const lines = value
+        .split("\n")
+        .map(line => line.trim());
+
+      return lines.length ? lines : [""];
+    }
+
+
+    function setFont(context, fontSize) {
+      context.font =
+        `400 ${fontSize}px "Archivo Black", "Arial Black", Arial, sans-serif`;
+
+      context.textBaseline = "middle";
+    }
+
+
+    function getTextX(
+      context,
+      text,
+      canvasWidth,
+      alignment
+    ) {
+      const metrics = context.measureText(text);
+      const width = metrics.width;
+
+      const sidePadding = 100;
+
+      if (alignment === "left") {
+        return sidePadding;
+      }
+
+      if (alignment === "right") {
+        return canvasWidth - sidePadding - width;
+      }
+
+      return (canvasWidth - width) / 2;
+    }
+
+
+    function drawTextLayer(
+      context,
+      text,
+      x,
+      y,
+      fontSize,
+      colour,
+      topHalf
+    ) {
+      context.save();
+
+      setFont(context, fontSize);
+
+      const metrics = context.measureText(text);
+
+      const textWidth = metrics.width;
+
+      const textHeight = fontSize * 1.2;
+
+      const left = x - 40;
+      const right = x + textWidth + 40;
+
+      const top = y - textHeight / 2;
+      const bottom = y + textHeight / 2;
+
+      const sliceMovement =
+        textWidth * HYM_SLICE_ANGLE;
+
+      context.beginPath();
+
+      if (topHalf) {
+
+        context.moveTo(left, top);
+        context.lineTo(right, top);
+
+        context.lineTo(
+          right,
+          y - sliceMovement / 2
+        );
+
+        context.lineTo(
+          left,
+          y + sliceMovement / 2
+        );
+
+      } else {
+
+        context.moveTo(
+          left,
+          y + sliceMovement / 2
+        );
+
+        context.lineTo(
+          right,
+          y - sliceMovement / 2
+        );
+
+        context.lineTo(right, bottom);
+        context.lineTo(left, bottom);
+
+      }
+
+      context.closePath();
+      context.clip();
+
+
+      /*
+        Skew the lettering by the same -9 degrees
+        used on the website.
+      */
+
+      const skew =
+        Math.tan(degreesToRadians(HYM_SKEW));
+
+      context.transform(
+        1,
+        0,
+        skew,
+        1,
+        0,
+        0
+      );
+
+
+      context.fillStyle = colour;
+
+      const offset =
+        topHalf
+          ? HYM_TOP_OFFSET
+          : HYM_BOTTOM_OFFSET;
+
+      context.fillText(
+        text,
+        x + offset - (skew * y),
+        y
+      );
+
+      context.restore();
+    }
+
+
+    function drawHYMLine(
+      context,
+      text,
+      y,
+      fontSize,
+      colour,
+      alignment,
+      canvasWidth
+    ) {
+      setFont(context, fontSize);
+
+      const x = getTextX(
+        context,
+        text,
+        canvasWidth,
+        alignment
+      );
+
+      drawTextLayer(
+        context,
+        text,
+        x,
+        y,
+        fontSize,
+        colour,
+        true
+      );
+
+      drawTextLayer(
+        context,
+        text,
+        x,
+        y,
+        fontSize,
+        colour,
+        false
+      );
+    }
+
+
+    function renderCanvas(
+      canvas,
+      context,
+      forExport = false
+    ) {
+      const lines = getLines();
+
+      const fontSize =
+        Number(sizeSlider.value);
+
+      const lineHeight =
+        fontSize * 1.05;
+
+      const canvasWidth = 1600;
+
+      const verticalPadding = 130;
+
+      const requiredHeight =
+        Math.max(
+          500,
+          verticalPadding * 2 +
+          lineHeight * lines.length
+        );
+
+
+      canvas.width = canvasWidth;
+      canvas.height = requiredHeight;
+
+
+      context.clearRect(
+        0,
+        0,
+        canvas.width,
+        canvas.height
+      );
+
+
+      /*
+        The canvas itself stays transparent.
+
+        The checkerboard visible on the webpage belongs
+        to the element behind the canvas, not the image.
+      */
+
+
+      const totalTextHeight =
+        lineHeight * lines.length;
+
+      let y =
+        (canvas.height - totalTextHeight) / 2
+        + lineHeight / 2;
+
+
+      lines.forEach(line => {
+
+        if (line) {
+          drawHYMLine(
+            context,
+            line,
+            y,
+            fontSize,
+            currentColour,
+            currentAlignment,
+            canvas.width
+          );
+        }
+
+        y += lineHeight;
+
+      });
+    }
+
+
+    function renderPreview() {
+      sizeValue.textContent =
+        sizeSlider.value;
+
+      renderCanvas(
+        previewCanvas,
+        previewContext
+      );
+    }
+
+
+    textInput.addEventListener(
+      "input",
+      renderPreview
+    );
+
+
+    sizeSlider.addEventListener(
+      "input",
+      renderPreview
+    );
+
+
+    colourButtons.forEach(button => {
+
+      button.addEventListener("click", () => {
+
+        colourButtons.forEach(item =>
+          item.classList.remove("active")
+        );
+
+        button.classList.add("active");
+
+        currentColour =
+          button.dataset.colour;
+
+        renderPreview();
+
+      });
+
+    });
+
+
+    alignButtons.forEach(button => {
+
+      button.addEventListener("click", () => {
+
+        alignButtons.forEach(item =>
+          item.classList.remove("active")
+        );
+
+        button.classList.add("active");
+
+        currentAlignment =
+          button.dataset.align;
+
+        renderPreview();
+
+      });
+
+    });
+
+
+    downloadButton.addEventListener(
+      "click",
+      () => {
+
+        /*
+          Render to a separate high-resolution canvas
+          so the downloaded artwork isn't dependent on
+          the size of the phone/browser preview.
+        */
+
+        const exportCanvas =
+          document.createElement("canvas");
+
+        const exportContext =
+          exportCanvas.getContext("2d");
+
+        renderCanvas(
+          exportCanvas,
+          exportContext,
+          true
+        );
+
+
+        const link =
+          document.createElement("a");
+
+        link.download =
+          "hym-poster-text.png";
+
+        link.href =
+          exportCanvas.toDataURL("image/png");
+
+        link.click();
+
+      }
+    );
+
+
+    /*
+      Wait until Archivo Black has actually loaded
+      before doing the first render.
+    */
+
+    document.fonts.ready.then(() => {
+      renderPreview();
+    });
+
+  </script>
+
+</body>
+</html>
