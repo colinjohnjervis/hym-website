@@ -1041,6 +1041,9 @@ section {
   }
 
   .mailing-list-copy {
+    width: calc(100% + 20px);
+    margin-left: -10px;
+    margin-right: -10px;
     margin-bottom: 34px;
   }
 
@@ -1169,4 +1172,4 @@ section {
     font-size: 13px;
   }
 
-}
+  }
