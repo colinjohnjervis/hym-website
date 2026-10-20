@@ -35,17 +35,33 @@ function showHymSuccess(form) {
   form.dataset.hymSuccess = "true";
 
   /*
-    Hide everything currently inside the pink box.
-    Remember each element's original display value so
-    it can be restored when the confirmation is closed.
+    Use the exact height recorded when SUBSCRIBE
+    was pressed, before EmailOctopus changed anything.
   */
 
-  const originalChildren = Array.from(form.children);
+  const formHeight =
+    parseFloat(form.dataset.hymSubmitHeight) ||
+    form.getBoundingClientRect().height;
 
-  originalChildren.forEach(element => {
-    element.dataset.hymOriginalDisplay =
-      element.style.display || "";
+  form.style.setProperty(
+    "height",
+    `${formHeight}px`,
+    "important"
+  );
 
+  form.style.setProperty(
+    "min-height",
+    `${formHeight}px`,
+    "important"
+  );
+
+
+  /*
+    Hide everything inside the pink box while
+    leaving the box itself exactly where it is.
+  */
+
+  Array.from(form.children).forEach(element => {
     element.style.setProperty(
       "display",
       "none",
@@ -61,10 +77,9 @@ function showHymSuccess(form) {
   success.className = "hym-success-panel";
 
   success.style.cssText = `
-    position:relative;
     width:100%;
-    min-height:330px;
-    padding:40px 20px;
+    height:100%;
+    padding:20px;
     display:flex;
     flex-direction:column;
     align-items:center;
@@ -74,47 +89,9 @@ function showHymSuccess(form) {
   `;
 
 
-  /* CLOSE BUTTON */
-
-  const closeButton =
-    document.createElement("button");
-
-  closeButton.type = "button";
-  closeButton.setAttribute(
-    "aria-label",
-    "Close confirmation"
-  );
-
-  closeButton.innerHTML = "&times;";
-
-  closeButton.style.cssText = `
-    position:absolute;
-    top:0;
-    right:0;
-    z-index:10;
-    width:44px;
-    height:44px;
-    padding:0;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    color:#fff;
-    background:transparent;
-    border:0;
-    font-family:Arial,Helvetica,sans-serif;
-    font-size:38px;
-    font-weight:300;
-    line-height:1;
-    cursor:pointer;
-    appearance:none;
-    -webkit-appearance:none;
-  `;
-
-
   /* SUCCESS HEADING */
 
-  const title =
-    document.createElement("div");
+  const title = document.createElement("div");
 
   title.className =
     "slice-heading hym-success-title";
@@ -138,8 +115,7 @@ function showHymSuccess(form) {
 
   /* SUCCESS COPY */
 
-  const message =
-    document.createElement("p");
+  const message = document.createElement("p");
 
   message.textContent =
     "Thanks for subscribing to Holy Youth Movement.";
@@ -155,8 +131,7 @@ function showHymSuccess(form) {
     text-align:center;
   `;
 
-  const inboxMessage =
-    document.createElement("p");
+  const inboxMessage = document.createElement("p");
 
   inboxMessage.textContent =
     "Check your inbox for a welcome email.";
@@ -175,37 +150,11 @@ function showHymSuccess(form) {
 
   /* BUILD SUCCESS SCREEN */
 
-  success.appendChild(closeButton);
   success.appendChild(title);
   success.appendChild(message);
   success.appendChild(inboxMessage);
 
   form.appendChild(success);
-
-
-  /* CLOSE AND RESTORE FORM */
-
-  closeButton.addEventListener("click", event => {
-    event.preventDefault();
-    event.stopPropagation();
-
-    success.remove();
-
-    originalChildren.forEach(element => {
-      const originalDisplay =
-        element.dataset.hymOriginalDisplay || "";
-
-      element.style.removeProperty("display");
-
-      if (originalDisplay) {
-        element.style.display = originalDisplay;
-      }
-
-      delete element.dataset.hymOriginalDisplay;
-    });
-
-    form.dataset.hymSuccess = "false";
-  });
 }
 
 
@@ -345,8 +294,7 @@ function enhanceEmailOctopusForm() {
 
   /* ADD TOWN / CITY HELPER */
 
-  const helper =
-    document.createElement("p");
+  const helper = document.createElement("p");
 
   helper.className =
     "mailing-list-location-copy hym-eo-helper";
@@ -389,8 +337,7 @@ function enhanceEmailOctopusForm() {
 
   /* CREATE CENTRED BUTTON WRAPPER */
 
-  const buttonWrap =
-    document.createElement("div");
+  const buttonWrap = document.createElement("div");
 
   buttonWrap.className =
     "hym-eo-button-wrap";
@@ -428,8 +375,7 @@ function enhanceEmailOctopusForm() {
 
   /* CREATE HYM SUBSCRIBE BUTTON */
 
-  const hymButton =
-    document.createElement("button");
+  const hymButton = document.createElement("button");
 
   hymButton.type = "button";
 
@@ -508,6 +454,14 @@ function enhanceEmailOctopusForm() {
       ) {
         return;
       }
+
+      /*
+        Record the pink box height BEFORE
+        EmailOctopus processes the submission.
+      */
+
+      form.dataset.hymSubmitHeight =
+        form.getBoundingClientRect().height;
 
       realSubmit.click();
     }
