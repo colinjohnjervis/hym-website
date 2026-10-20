@@ -28,120 +28,183 @@ navLinks.forEach(link => {
 /* EMAILOCTOPUS MAILING LIST */
 
 function showHymSuccess(form) {
-  if (
-    !form ||
-    form.querySelector(".hym-success-panel")
-  ) {
+  if (!form || form.dataset.hymSuccess === "true") {
     return;
   }
 
-  form.style.setProperty(
-    "position",
-    "relative",
-    "important"
-  );
+  form.dataset.hymSuccess = "true";
 
-  const panel = document.createElement("div");
+  /*
+    Hide everything currently inside the pink box.
+    Remember each element's original display value so
+    it can be restored when the confirmation is closed.
+  */
 
-  panel.className = "hym-success-panel";
+  const originalChildren = Array.from(form.children);
 
-  panel.style.cssText = `
-    position:absolute;
-    inset:0;
-    z-index:50;
-    min-height:100%;
-    padding:45px 30px;
+  originalChildren.forEach(element => {
+    element.dataset.hymOriginalDisplay =
+      element.style.display || "";
+
+    element.style.setProperty(
+      "display",
+      "none",
+      "important"
+    );
+  });
+
+
+  /* CREATE SUCCESS SCREEN */
+
+  const success = document.createElement("div");
+
+  success.className = "hym-success-panel";
+
+  success.style.cssText = `
+    position:relative;
+    width:100%;
+    min-height:330px;
+    padding:40px 20px;
     display:flex;
     flex-direction:column;
     align-items:center;
     justify-content:center;
+    text-align:center;
     background:#25282b;
+  `;
+
+
+  /* CLOSE BUTTON */
+
+  const closeButton =
+    document.createElement("button");
+
+  closeButton.type = "button";
+  closeButton.setAttribute(
+    "aria-label",
+    "Close confirmation"
+  );
+
+  closeButton.innerHTML = "&times;";
+
+  closeButton.style.cssText = `
+    position:absolute;
+    top:0;
+    right:0;
+    z-index:10;
+    width:44px;
+    height:44px;
+    padding:0;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:#fff;
+    background:transparent;
     border:0;
+    font-family:Arial,Helvetica,sans-serif;
+    font-size:38px;
+    font-weight:300;
+    line-height:1;
+    cursor:pointer;
+    appearance:none;
+    -webkit-appearance:none;
+  `;
+
+
+  /* SUCCESS HEADING */
+
+  const title =
+    document.createElement("div");
+
+  title.className =
+    "slice-heading hym-success-title";
+
+  title.style.cssText = `
+    width:100%;
+    margin:0 auto 28px;
+    font-size:48px;
+    line-height:52px;
+  `;
+
+  title.innerHTML = `
+    <span
+      data-text="YOU'RE IN!"
+      style="min-height:52px;"
+    >
+      YOU'RE IN!
+    </span>
+  `;
+
+
+  /* SUCCESS COPY */
+
+  const message =
+    document.createElement("p");
+
+  message.textContent =
+    "Thanks for subscribing to Holy Youth Movement.";
+
+  message.style.cssText = `
+    max-width:520px;
+    margin:0 auto 12px;
+    color:#fff;
+    font-family:'Inter',Arial,Helvetica,sans-serif;
+    font-size:1rem;
+    font-weight:400;
+    line-height:1.6;
     text-align:center;
   `;
 
-  panel.innerHTML = `
-    <button
-      type="button"
-      class="hym-success-close"
-      aria-label="Close confirmation"
-      style="
-        position:absolute;
-        top:14px;
-        right:16px;
-        width:42px;
-        height:42px;
-        padding:0;
-        display:flex;
-        align-items:center;
-        justify-content:center;
-        color:#fff;
-        background:transparent;
-        border:0;
-        font-size:36px;
-        font-weight:300;
-        line-height:1;
-        cursor:pointer;
-      "
-    >
-      &times;
-    </button>
+  const inboxMessage =
+    document.createElement("p");
 
-    <div
-      class="slice-heading hym-success-title"
-      style="
-        width:100%;
-        margin:0 auto 24px;
-        font-size:48px;
-        line-height:52px;
-      "
-    >
-      <span
-        data-text="YOU'RE IN!"
-        style="min-height:52px;"
-      >
-        YOU'RE IN!
-      </span>
-    </div>
+  inboxMessage.textContent =
+    "Check your inbox for a welcome email.";
 
-    <p
-      style="
-        max-width:520px;
-        margin:0 auto 12px;
-        color:#fff;
-        font-family:'Inter',Arial,Helvetica,sans-serif;
-        font-size:1rem;
-        font-weight:400;
-        line-height:1.6;
-        text-align:center;
-      "
-    >
-      Thanks for subscribing to Holy Youth Movement.
-    </p>
-
-    <p
-      style="
-        max-width:520px;
-        margin:0 auto;
-        color:rgba(255,255,255,.72);
-        font-family:'Inter',Arial,Helvetica,sans-serif;
-        font-size:.9rem;
-        font-weight:400;
-        line-height:1.6;
-        text-align:center;
-      "
-    >
-      Check your inbox for a welcome email.
-    </p>
+  inboxMessage.style.cssText = `
+    max-width:520px;
+    margin:0 auto;
+    color:rgba(255,255,255,.72);
+    font-family:'Inter',Arial,Helvetica,sans-serif;
+    font-size:.9rem;
+    font-weight:400;
+    line-height:1.6;
+    text-align:center;
   `;
 
-  form.appendChild(panel);
 
-  const closeButton =
-    panel.querySelector(".hym-success-close");
+  /* BUILD SUCCESS SCREEN */
 
-  closeButton.addEventListener("click", () => {
-    panel.remove();
+  success.appendChild(closeButton);
+  success.appendChild(title);
+  success.appendChild(message);
+  success.appendChild(inboxMessage);
+
+  form.appendChild(success);
+
+
+  /* CLOSE AND RESTORE FORM */
+
+  closeButton.addEventListener("click", event => {
+    event.preventDefault();
+    event.stopPropagation();
+
+    success.remove();
+
+    originalChildren.forEach(element => {
+      const originalDisplay =
+        element.dataset.hymOriginalDisplay || "";
+
+      element.style.removeProperty("display");
+
+      if (originalDisplay) {
+        element.style.display = originalDisplay;
+      }
+
+      delete element.dataset.hymOriginalDisplay;
+    });
+
+    form.dataset.hymSuccess = "false";
   });
 }
 
@@ -156,29 +219,32 @@ function watchForEmailOctopusSuccess(wrapper, form) {
 
   wrapper.dataset.hymSuccessWatch = "true";
 
+  const checkForSuccess = () => {
+    const text = wrapper.textContent
+      .replace(/\s+/g, " ")
+      .trim()
+      .toLowerCase();
+
+    if (text.includes("thanks for subscribing")) {
+      showHymSuccess(form);
+      return true;
+    }
+
+    return false;
+  };
+
   const successObserver =
     new MutationObserver(() => {
-      const text =
-        wrapper.textContent
-          .replace(/\s+/g, " ")
-          .trim()
-          .toLowerCase();
-
-      if (
-        text.includes("thanks for subscribing")
-      ) {
-        showHymSuccess(form);
-      }
+      checkForSuccess();
     });
 
-  successObserver.observe(
-    wrapper,
-    {
-      childList:true,
-      subtree:true,
-      characterData:true
-    }
-  );
+  successObserver.observe(wrapper, {
+    childList:true,
+    subtree:true,
+    characterData:true
+  });
+
+  checkForSuccess();
 }
 
 
@@ -423,7 +489,7 @@ function enhanceEmailOctopusForm() {
   );
 
 
-  /* WATCH FOR A REAL SUCCESS RESPONSE */
+  /* WATCH FOR GENUINE EMAILOCTOPUS SUCCESS */
 
   watchForEmailOctopusSuccess(
     wrapper,
