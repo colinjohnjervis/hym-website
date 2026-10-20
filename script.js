@@ -35,7 +35,6 @@ function freezeHymForm(form) {
   const height = form.getBoundingClientRect().height;
 
   form.dataset.hymFrozen = "true";
-  form.dataset.hymSubmitHeight = height;
 
   form.style.setProperty(
     "height",
@@ -63,6 +62,78 @@ function freezeHymForm(form) {
 }
 
 
+function findEmailOctopusSuccess(wrapper, form) {
+  const elements = Array.from(
+    wrapper.querySelectorAll("*")
+  );
+
+  return elements.find(element => {
+    if (
+      element === form ||
+      form.contains(element) ||
+      element.classList.contains("hym-success-panel")
+    ) {
+      return false;
+    }
+
+    const ownText = Array.from(element.childNodes)
+      .filter(node => node.nodeType === Node.TEXT_NODE)
+      .map(node => node.textContent)
+      .join(" ")
+      .replace(/\s+/g, " ")
+      .trim()
+      .toLowerCase();
+
+    return ownText.includes(
+      "thanks for subscribing"
+    );
+  });
+}
+
+
+function hideEmailOctopusSuccess(element) {
+  if (!element) {
+    return;
+  }
+
+  element.style.setProperty(
+    "display",
+    "none",
+    "important"
+  );
+
+  element.style.setProperty(
+    "height",
+    "0",
+    "important"
+  );
+
+  element.style.setProperty(
+    "min-height",
+    "0",
+    "important"
+  );
+
+  element.style.setProperty(
+    "margin",
+    "0",
+    "important"
+  );
+
+  element.style.setProperty(
+    "padding",
+    "0",
+    "important"
+  );
+
+  element.style.setProperty(
+    "overflow",
+    "hidden",
+    "important"
+  );
+}
+
+
 function showHymSuccess(form) {
   if (!form || form.dataset.hymSuccess === "true") {
     return;
@@ -71,7 +142,7 @@ function showHymSuccess(form) {
   form.dataset.hymSuccess = "true";
 
 
-  /* HIDE EXISTING FORM CONTENT */
+  /* HIDE ORIGINAL FORM CONTENT */
 
   Array.from(form.children).forEach(element => {
     element.style.setProperty(
@@ -82,7 +153,7 @@ function showHymSuccess(form) {
   });
 
 
-  /* CREATE SUCCESS SCREEN */
+  /* CREATE HYM SUCCESS SCREEN */
 
   const success = document.createElement("div");
 
@@ -197,7 +268,6 @@ function showHymSuccess(form) {
     text-align:center;
   `;
 
-
   const inboxMessage = document.createElement("p");
 
   inboxMessage.textContent =
@@ -237,21 +307,31 @@ function watchForEmailOctopusSuccess(wrapper, form) {
 
   const checkForSuccess = () => {
     if (form.dataset.hymSubmitted !== "true") {
-      return false;
+      return;
     }
 
-    const text = wrapper.textContent
-      .replace(/\s+/g, " ")
-      .trim()
-      .toLowerCase();
+    const nativeSuccess =
+      findEmailOctopusSuccess(wrapper, form);
 
-    if (text.includes("thanks for subscribing")) {
-      showHymSuccess(form);
-      return true;
+    if (!nativeSuccess) {
+      return;
     }
 
-    return false;
+    /*
+      Remove EmailOctopus's own visible success
+      message from the layout.
+    */
+
+    hideEmailOctopusSuccess(nativeSuccess);
+
+
+    /*
+      Show our HYM confirmation instead.
+    */
+
+    showHymSuccess(form);
   };
+
 
   const observer = new MutationObserver(() => {
     checkForSuccess();
@@ -382,7 +462,7 @@ function enhanceEmailOctopusForm() {
   );
 
 
-  /* HIDE EMAILOCTOPUS'S ORIGINAL BUTTON */
+  /* HIDE EMAILOCTOPUS ORIGINAL BUTTON */
 
   realSubmit.style.setProperty(
     "display",
@@ -530,8 +610,8 @@ function enhanceEmailOctopusForm() {
     }
 
     /*
-      Freeze the visible component BEFORE
-      EmailOctopus is allowed to do anything.
+      Freeze the pink box before EmailOctopus
+      processes the submission.
     */
 
     freezeHymForm(form);
