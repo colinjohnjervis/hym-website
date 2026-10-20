@@ -1,1352 +1,1165 @@
 @import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@100;300;400;600;700;800;900&display=swap');
 
 :root {
-  --black: #000;
-  --near-black: #050505;
-  --charcoal: #25282b;
-  --white: #fff;
-  --pink: #fb38fc;
-  --soft-white: rgba(255,255,255,.9);
-  --line: rgba(255,255,255,.14);
-  --section-side: 34px;
-  --section-gap: 80px;
-  --header-height: 110px;
+  --black:#000;
+  --near-black:#050505;
+  --charcoal:#25282b;
+  --white:#fff;
+  --pink:#fb38fc;
+  --soft-white:rgba(255,255,255,.9);
+  --line:rgba(255,255,255,.14);
+  --section-side:34px;
+  --section-gap:80px;
+  --header-height:110px;
 }
 
 * {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
 }
 
 html {
-  scroll-behavior: smooth;
-  overflow-x: hidden;
+  scroll-behavior:smooth;
+  overflow-x:hidden;
 }
 
 body {
-  width: 100%;
-  margin: 0;
-  padding-top: var(--header-height);
-  background: var(--charcoal);
-  color: var(--white);
-  font-family: "Inter", Arial, Helvetica, sans-serif;
-  line-height: 1.4;
-  overflow-x: hidden;
+  width:100%;
+  margin:0;
+  padding-top:var(--header-height);
+  background:var(--charcoal);
+  color:var(--white);
+  font-family:"Inter",Arial,Helvetica,sans-serif;
+  line-height:1.4;
+  overflow-x:hidden;
 }
 
 a {
-  color: inherit;
-  text-decoration: none;
+  color:inherit;
+  text-decoration:none;
 }
 
 img {
-  display: block;
-  max-width: 100%;
+  display:block;
+  max-width:100%;
 }
 
 button,
 input,
 textarea {
-  font: inherit;
+  font:inherit;
 }
 
 section {
-  scroll-margin-top: var(--header-height);
+  scroll-margin-top:var(--header-height);
 }
-
 
 /* HEADER */
 
 .site-header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 1000;
-  width: 100%;
-  height: var(--header-height);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 var(--section-side);
-  background: var(--black);
-  border-bottom: 1px solid rgba(255,255,255,.05);
+  position:fixed;
+  top:0;
+  left:0;
+  right:0;
+  z-index:1000;
+  width:100%;
+  height:var(--header-height);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 var(--section-side);
+  background:var(--black);
+  border-bottom:1px solid rgba(255,255,255,.05);
 }
 
 .site-header > a {
-  display: flex;
-  align-items: center;
+  display:flex;
+  align-items:center;
 }
 
 .nav-logo {
-  width: 120px;
-  height: auto;
-  filter: grayscale(1) brightness(0) invert(1);
+  width:120px;
+  height:auto;
+  filter:grayscale(1) brightness(0) invert(1);
 }
 
-
-/* MENU BUTTON */
+/* MENU */
 
 .menu-button {
-  position: relative;
-  width: 48px;
-  height: 48px;
-  border: 0;
-  background: transparent;
-  cursor: pointer;
+  position:relative;
+  width:48px;
+  height:48px;
+  border:0;
+  background:transparent;
+  cursor:pointer;
 }
 
 .menu-button span,
 .menu-button::before,
 .menu-button::after {
-  content: "";
-  position: absolute;
-  left: 50%;
-  width: 27px;
-  height: 3px;
-  background: var(--white);
-  border-radius: 3px;
-  transform: translateX(-50%);
-  transition:
-    top .25s ease,
-    transform .25s ease,
-    opacity .2s ease;
+  content:"";
+  position:absolute;
+  left:50%;
+  width:27px;
+  height:3px;
+  background:var(--white);
+  border-radius:3px;
+  transform:translateX(-50%);
+  transition:top .25s ease,transform .25s ease,opacity .2s ease;
 }
 
-.menu-button::before {
-  top: 14px;
-}
-
-.menu-button span {
-  top: 22px;
-}
-
-.menu-button::after {
-  top: 30px;
-}
+.menu-button::before { top:14px; }
+.menu-button span { top:22px; }
+.menu-button::after { top:30px; }
 
 .menu-button.open::before {
-  top: 22px;
-  transform: translateX(-50%) rotate(45deg);
+  top:22px;
+  transform:translateX(-50%) rotate(45deg);
 }
 
 .menu-button.open span {
-  opacity: 0;
+  opacity:0;
 }
 
 .menu-button.open::after {
-  top: 22px;
-  transform: translateX(-50%) rotate(-45deg);
+  top:22px;
+  transform:translateX(-50%) rotate(-45deg);
 }
-
 
 /* NAVIGATION */
 
 .nav-panel {
-  position: fixed;
-  z-index: 999;
-  top: var(--header-height);
-  left: 0;
-  right: 0;
-  padding: 20px var(--section-side) 26px;
-  background: var(--black);
-  border-bottom: 1px solid var(--line);
-  transform: translateY(-150%);
-  transition: transform .35s ease;
+  position:fixed;
+  z-index:999;
+  top:var(--header-height);
+  left:0;
+  right:0;
+  padding:20px var(--section-side) 26px;
+  background:var(--black);
+  border-bottom:1px solid var(--line);
+  transform:translateY(-150%);
+  transition:transform .35s ease;
 }
 
 .nav-panel.open {
-  transform: translateY(0);
+  transform:translateY(0);
 }
 
 .nav-links a {
-  display: block;
-  padding: 15px 0;
-  color: var(--white);
-  border-bottom: 1px solid rgba(255,255,255,.12);
-  font-size: .9rem;
-  font-weight: 700;
-  letter-spacing: .08em;
-  text-transform: uppercase;
+  display:block;
+  padding:15px 0;
+  color:var(--white);
+  border-bottom:1px solid rgba(255,255,255,.12);
+  font-size:.9rem;
+  font-weight:700;
+  letter-spacing:.08em;
+  text-transform:uppercase;
 }
 
 .nav-links a:hover {
-  color: var(--pink);
+  color:var(--pink);
 }
 
 .nav-socials {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 28px;
-  padding-top: 24px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:28px;
+  padding-top:24px;
 }
 
 .nav-socials a {
-  width: 46px;
-  height: 46px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: transform .2s ease;
+  width:46px;
+  height:46px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  transition:transform .2s ease;
 }
 
 .nav-socials a:hover {
-  transform: scale(1.08);
+  transform:scale(1.08);
 }
 
 .nav-socials img {
-  width: 46px;
-  height: 46px;
-  object-fit: contain;
+  width:46px;
+  height:46px;
+  object-fit:contain;
 }
-
 
 /* INTRO */
 
 .home-intro {
-  width: 100%;
-  padding: 70px var(--section-side) 40px;
-  background: var(--charcoal);
+  width:100%;
+  padding:70px var(--section-side) 40px;
+  background:var(--charcoal);
 }
 
 .home-intro-inner {
-  width: 100%;
-  max-width: 1440px;
-  margin: 0 auto;
+  width:100%;
+  max-width:1440px;
+  margin:0 auto;
 }
 
 .home-quote {
-  width: 100%;
-  max-width: 990px;
-  margin: 0 auto 48px;
-  color: var(--white);
-  text-align: center;
-  font-size: 65px;
-  font-weight: 700;
-  line-height: 1;
-  letter-spacing: -.035em;
+  width:100%;
+  max-width:990px;
+  margin:0 auto 48px;
+  color:var(--white);
+  text-align:center;
+  font-size:65px;
+  font-weight:700;
+  line-height:1;
+  letter-spacing:-.035em;
 }
 
 .home-quote span {
-  display: inline;
+  display:inline;
 }
 
 .home-quote .quote-highlight {
-  color: var(--pink);
+  color:var(--pink);
 }
 
 .home-quote footer {
-  margin-top: 28px;
-  color: var(--soft-white);
-  font-size: 22px;
-  font-weight: 100;
-  line-height: 1.55;
-  letter-spacing: 0;
+  margin-top:28px;
+  color:var(--soft-white);
+  font-size:22px;
+  font-weight:100;
+  line-height:1.55;
+  letter-spacing:0;
 }
 
 .home-band-photo {
-  width: 80%;
-  max-width: 1080px;
-  margin: 0 auto 40px;
-  overflow: hidden;
-  border-radius: 16px;
+  width:80%;
+  max-width:1080px;
+  margin:0 auto 40px;
+  overflow:hidden;
+  border-radius:16px;
 }
 
 .home-band-photo img {
-  width: 100%;
-  height: auto;
-  object-fit: cover;
-  border-radius: inherit;
+  width:100%;
+  height:auto;
+  object-fit:cover;
+  border-radius:inherit;
 }
-
 
 /* SECTION HEADINGS */
 
 .slice-heading {
-  position: relative;
-  width: 100%;
-  margin-left: auto;
-  margin-right: auto;
-  color: transparent;
-  text-align: center;
-  font-family: "Archivo Black", "Arial Black", Arial, sans-serif;
-  font-size: 82px;
-  font-weight: 400;
-  line-height: 84px;
-  letter-spacing: -.075em;
-  text-transform: uppercase;
-  transform: skewX(-9deg);
-  transform-origin: center;
+  position:relative;
+  width:100%;
+  margin-left:auto;
+  margin-right:auto;
+  color:transparent;
+  text-align:center;
+  font-family:"Archivo Black","Arial Black",Arial,sans-serif;
+  font-size:82px;
+  font-weight:400;
+  line-height:84px;
+  letter-spacing:-.075em;
+  text-transform:uppercase;
+  transform:skewX(-9deg);
+  transform-origin:center;
 }
 
 .slice-heading span {
-  position: relative;
-  display: block;
-  min-height: 84px;
-  color: transparent;
-  white-space: nowrap;
+  position:relative;
+  display:block;
+  min-height:84px;
+  color:transparent;
+  white-space:nowrap;
 }
 
 .slice-heading span::before,
 .slice-heading span::after {
-  content: attr(data-text);
-  position: absolute;
-  top: 0;
-  left: 50%;
-  width: max-content;
-  min-width: 100%;
-  color: var(--white);
-  font: inherit;
-  line-height: inherit;
-  letter-spacing: inherit;
-  text-align: center;
-  white-space: nowrap;
-  -webkit-text-stroke: .3px var(--white);
+  content:attr(data-text);
+  position:absolute;
+  top:0;
+  left:50%;
+  width:max-content;
+  min-width:100%;
+  color:var(--white);
+  font:inherit;
+  line-height:inherit;
+  letter-spacing:inherit;
+  text-align:center;
+  white-space:nowrap;
+  -webkit-text-stroke:.3px var(--white);
 }
 
 .slice-heading span::before {
-  clip-path: polygon(0 0,100% 0,100% 48%,0 57%);
-  transform: translateX(calc(-50% - 2px));
+  clip-path:polygon(0 0,100% 0,100% 48%,0 57%);
+  transform:translateX(calc(-50% - 2px));
 }
 
 .slice-heading span::after {
-  clip-path: polygon(0 57%,100% 48%,100% 100%,0 100%);
-  transform: translateX(calc(-50% + 2px));
+  clip-path:polygon(0 57%,100% 48%,100% 100%,0 100%);
+  transform:translateX(calc(-50% + 2px));
 }
-
 
 /* EVENTS */
 
 .upcoming-events {
-  width: 100%;
-  padding: var(--section-gap) var(--section-side);
-  background: var(--charcoal);
+  width:100%;
+  padding:var(--section-gap) var(--section-side);
+  background:var(--charcoal);
 }
 
 .upcoming-events-inner {
-  width: 100%;
-  max-width: 1100px;
-  margin: 0 auto;
+  width:100%;
+  max-width:1100px;
+  margin:0 auto;
 }
 
 .upcoming-events-title {
-  max-width: 820px;
-  margin-bottom: 70px;
+  max-width:820px;
+  margin-bottom:70px;
 }
 
 .upcoming-events-title span + span {
-  margin-top: 4px;
+  margin-top:4px;
 }
 
 .upcoming-events-frame {
-  width: 100%;
-  padding: 18px 14px 28px;
-  border: 3px solid var(--pink);
-  background: transparent;
+  width:100%;
+  padding:18px 14px 28px;
+  border:3px solid var(--pink);
+  background:transparent;
 }
 
 .bit-widget-shell {
-  width: 100%;
-  margin: 0;
-  padding: 0;
-  background: transparent;
-  border: 0;
+  width:100%;
+  margin:0;
+  padding:0;
+  background:transparent;
+  border:0;
 }
 
 .bit-widget-initializer {
-  display: block;
-  width: 100%;
-  min-height: 80px;
+  display:block;
+  width:100%;
+  min-height:80px;
 }
 
 .bit-play-my-city-wrapper,
 .bit-play-my-city,
 [class*="play-my-city"],
 [class*="playMyCity"] {
-  display: none !important;
+  display:none !important;
 }
 
 .bandsintown-credit {
-  display: none;
-  width: 100%;
-  margin-top: 8px;
-  text-align: center;
+  display:none;
+  width:100%;
+  margin-top:8px;
+  text-align:center;
 }
 
 .bandsintown-credit.ready {
-  display: block;
+  display:block;
 }
 
 .bandsintown-credit-text {
-  margin-bottom: 10px;
-  color: #929292;
-  font-size: .7rem;
-  font-weight: 800;
-  line-height: 1.3;
-  letter-spacing: .17em;
-  text-transform: uppercase;
+  margin-bottom:10px;
+  color:#929292;
+  font-size:.7rem;
+  font-weight:800;
+  line-height:1.3;
+  letter-spacing:.17em;
+  text-transform:uppercase;
 }
 
 .bandsintown-logo-copy {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  width:100%;
+  display:flex;
+  justify-content:center;
+  align-items:center;
 }
 
 .bandsintown-logo-copy > * {
-  margin-left: auto !important;
-  margin-right: auto !important;
+  margin-left:auto !important;
+  margin-right:auto !important;
 }
-
 
 /* MERCH */
 
 .merch {
-  width: 100%;
-  padding: var(--section-gap) var(--section-side);
-  background: var(--charcoal);
+  width:100%;
+  padding:var(--section-gap) var(--section-side);
+  background:var(--charcoal);
 }
 
 .merch-main {
-  width: 100%;
-  max-width: 1000px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: minmax(0, 1fr);
-  row-gap: 60px;
+  width:100%;
+  max-width:1000px;
+  margin:0 auto;
+  display:grid;
+  grid-template-columns:minmax(0,1fr);
+  row-gap:60px;
 }
 
 .merch-title {
-  width: 100%;
-  max-width: 900px;
-  margin: 0 auto;
+  width:100%;
+  max-width:900px;
+  margin:0 auto;
 }
 
 .merch-image {
-  width: 100%;
-  aspect-ratio: 4 / 5;
-  margin: 0;
-  overflow: hidden;
-  border-radius: 20px;
-  background:
-    url("https://holyyouthmovement.co.uk/assets/images/bca96f15-21ef-4f97-a44c-125286d1ba9a.jpg")
-    center / cover no-repeat;
+  width:100%;
+  aspect-ratio:4 / 5;
+  margin:0;
+  overflow:hidden;
+  border-radius:20px;
+  background:url("https://holyyouthmovement.co.uk/assets/images/bca96f15-21ef-4f97-a44c-125286d1ba9a.jpg") center/cover no-repeat;
 }
 
 .merch-copy {
-  width: 100%;
-  max-width: 1000px;
-  margin: 0 auto;
-  padding-top: 30px;
-  text-align: center;
+  width:100%;
+  max-width:1000px;
+  margin:0 auto;
+  padding-top:30px;
+  text-align:center;
 }
 
 .merch-copy p {
-  max-width: 600px;
-  margin: 0 auto;
-  color: var(--soft-white);
-  font-size: 1rem;
-  font-weight: 300;
-  line-height: 1.6;
+  max-width:600px;
+  margin:0 auto;
+  color:var(--soft-white);
+  font-size:1rem;
+  font-weight:300;
+  line-height:1.6;
 }
 
-
-/* HYM BUTTON SYSTEM */
+/* HYM BUTTONS */
 
 .hym-button {
-  min-width: 150px;
-  height: 54px;
-  padding: 0 20px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  color: var(--white);
-  background: transparent;
-  border: 3px solid var(--pink);
-  border-radius: 0;
-  appearance: none;
-  -webkit-appearance: none;
-  cursor: pointer;
-  overflow: hidden;
+  min-width:150px;
+  height:54px;
+  padding:0 20px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  color:var(--white);
+  background:transparent;
+  border:3px solid var(--pink);
+  border-radius:0;
+  appearance:none;
+  -webkit-appearance:none;
+  cursor:pointer;
+  overflow:hidden;
+  transform:none;
 }
 
 .merch-copy .hym-button {
-  margin-top: 28px;
+  margin-top:28px;
 }
 
 .hym-button-text {
-  position: relative;
-  display: block;
-  min-width: max-content;
-  height: 30px;
-  color: transparent;
-  font-family: "Archivo Black", "Arial Black", Arial, sans-serif;
-  font-size: 24px;
-  font-weight: 400;
-  line-height: 30px;
-  letter-spacing: -.06em;
-  text-transform: uppercase;
-  transform: skewX(-9deg);
-  white-space: nowrap;
+  position:relative;
+  display:block;
+  min-width:max-content;
+  height:30px;
+  color:transparent;
+  font-family:"Archivo Black","Arial Black",Arial,sans-serif;
+  font-size:24px;
+  font-weight:400;
+  line-height:30px;
+  letter-spacing:-.06em;
+  text-transform:uppercase;
+  transform:skewX(-9deg);
+  white-space:nowrap;
 }
 
 .hym-button-text::before,
 .hym-button-text::after {
-  content: attr(data-text);
-  position: absolute;
-  top: 0;
-  left: 50%;
-  width: max-content;
-  color: var(--white);
-  font: inherit;
-  line-height: inherit;
-  letter-spacing: inherit;
-  white-space: nowrap;
-  -webkit-text-stroke: .2px var(--white);
-  transition: color .2s ease;
+  content:attr(data-text);
+  position:absolute;
+  top:0;
+  left:50%;
+  width:max-content;
+  color:var(--white);
+  font:inherit;
+  line-height:inherit;
+  letter-spacing:inherit;
+  white-space:nowrap;
+  -webkit-text-stroke:.2px var(--white);
+  transition:color .2s ease;
 }
 
 .hym-button-text::before {
-  clip-path: polygon(0 0,100% 0,100% 48%,0 57%);
-  transform: translateX(calc(-50% - 1px));
+  clip-path:polygon(0 0,100% 0,100% 48%,0 57%);
+  transform:translateX(calc(-50% - 1px));
 }
 
 .hym-button-text::after {
-  clip-path: polygon(0 57%,100% 48%,100% 100%,0 100%);
-  transform: translateX(calc(-50% + 1px));
+  clip-path:polygon(0 57%,100% 48%,100% 100%,0 100%);
+  transform:translateX(calc(-50% + 1px));
 }
 
 .hym-button:hover .hym-button-text::before,
 .hym-button:hover .hym-button-text::after {
-  color: var(--pink);
+  color:var(--pink);
 }
 
 .hym-button-icon {
-  flex: 0 0 auto;
-  width: 23px;
-  height: 19px;
-  color: var(--white);
-  transition: color .2s ease;
+  flex:0 0 auto;
+  width:23px;
+  height:19px;
+  color:var(--white);
+  transition:color .2s ease;
 }
 
 .hym-button:hover .hym-button-icon {
-  color: var(--pink);
+  color:var(--pink);
 }
-
 
 /* MAILING LIST */
 
 .mailing-list-section {
-  width: 100%;
-  padding: var(--section-gap) var(--section-side);
-  background: var(--charcoal);
+  width:100%;
+  padding:var(--section-gap) var(--section-side);
+  background:var(--charcoal);
 }
 
 .mailing-list-content {
-  width: 100%;
-  max-width: 1000px;
-  margin: 0 auto;
-  text-align: center;
+  width:100%;
+  max-width:1000px;
+  margin:0 auto;
+  text-align:center;
 }
 
 .mailing-list-title {
-  max-width: 900px;
-  margin-bottom: 60px;
+  max-width:900px;
+  margin-bottom:60px;
 }
 
 .mailing-list-copy {
-  max-width: 700px;
-  margin: 0 auto 38px;
-  color: var(--soft-white);
-  text-align: center;
-  font-size: 1rem;
-  font-weight: 400;
-  line-height: 1.6;
+  max-width:700px;
+  margin:0 auto 38px;
+  color:var(--soft-white);
+  text-align:center;
+  font-size:1rem;
+  font-weight:400;
+  line-height:1.6;
 }
 
-
-/* EMAILOCTOPUS FORM — HYM DESIGN */
+/* EMAILOCTOPUS */
 
 .emailoctopus-form {
-  position: relative;
-  width: 100%;
-  max-width: 760px;
-  margin: 0 auto;
-  padding: 38px 46px 40px;
-  color: var(--white);
-  background: transparent;
-  border: 3px solid var(--pink);
-  font-family: "Inter", Arial, Helvetica, sans-serif;
-  text-align: left;
+  width:100%;
+  max-width:760px;
+  margin:0 auto;
+  color:var(--white);
+  font-family:"Inter",Arial,Helvetica,sans-serif;
+  text-align:left;
 }
 
-.emailoctopus-form form,
-.emailoctopus-form form > div {
-  width: 100% !important;
-  max-width: none !important;
-  margin-left: 0 !important;
-  margin-right: 0 !important;
-  background: transparent !important;
-  border: 0 !important;
-  border-radius: 0 !important;
-  box-shadow: none !important;
+.emailoctopus-form .hym-emailoctopus-form {
+  width:100% !important;
+  max-width:760px !important;
+  margin:0 auto !important;
+  padding:38px 46px !important;
+  display:flex !important;
+  flex-direction:column !important;
+  align-items:center !important;
+  background:transparent !important;
+  border:3px solid var(--pink) !important;
+  border-radius:0 !important;
+  box-shadow:none !important;
 }
 
-.emailoctopus-form form {
-  padding: 0 !important;
+.emailoctopus-form .hym-emailoctopus-form > div {
+  width:100% !important;
+  max-width:none !important;
+  background:transparent !important;
+  border:0 !important;
+  box-shadow:none !important;
 }
 
-.emailoctopus-form input:not([type="submit"]):not([type="checkbox"]):not([type="radio"]),
-.emailoctopus-form input[type="email"],
-.emailoctopus-form input[type="text"] {
-  display: block !important;
-  width: 100% !important;
-  max-width: none !important;
-  height: 58px !important;
-  margin: 0 0 18px !important;
-  padding: 0 20px !important;
-  color: var(--white) !important;
-  -webkit-text-fill-color: var(--white) !important;
-  background: transparent !important;
-  border: 2px solid rgba(255,255,255,.65) !important;
-  border-radius: 0 !important;
-  outline: none !important;
-  box-shadow: none !important;
-  font-family: "Inter", Arial, Helvetica, sans-serif !important;
-  font-size: 1rem !important;
-  font-weight: 400 !important;
-  line-height: 1.4 !important;
-  text-align: left !important;
+.emailoctopus-form .hym-emailoctopus-form label {
+  position:absolute !important;
+  width:1px !important;
+  height:1px !important;
+  padding:0 !important;
+  margin:-1px !important;
+  overflow:hidden !important;
+  clip:rect(0,0,0,0) !important;
+  white-space:nowrap !important;
+  border:0 !important;
 }
 
-.emailoctopus-form input:not([type="submit"])::placeholder {
-  color: rgba(255,255,255,.7) !important;
-  -webkit-text-fill-color: rgba(255,255,255,.7) !important;
-  opacity: 1 !important;
+.emailoctopus-form .mailing-list-input {
+  display:block !important;
+  width:100% !important;
+  max-width:none !important;
+  height:58px !important;
+  margin:0 !important;
+  padding:0 20px !important;
+  color:var(--white) !important;
+  -webkit-text-fill-color:var(--white) !important;
+  background:transparent !important;
+  border:2px solid rgba(255,255,255,.65) !important;
+  border-radius:0 !important;
+  outline:none !important;
+  box-shadow:none !important;
+  font-family:"Inter",Arial,Helvetica,sans-serif !important;
+  font-size:1rem !important;
+  font-weight:400 !important;
+  line-height:1.4 !important;
+  text-align:left !important;
 }
 
-.emailoctopus-form input:not([type="submit"]):focus {
-  border-color: rgba(255,255,255,.65) !important;
-  outline: none !important;
-  box-shadow: none !important;
+.emailoctopus-form .mailing-list-input::placeholder {
+  color:rgba(255,255,255,.7) !important;
+  -webkit-text-fill-color:rgba(255,255,255,.7) !important;
+  opacity:1 !important;
 }
 
-.emailoctopus-form label {
-  color: var(--white) !important;
-  font-family: "Inter", Arial, Helvetica, sans-serif !important;
+.emailoctopus-form .mailing-list-input:focus {
+  border-color:var(--pink) !important;
+  outline:none !important;
+  box-shadow:none !important;
 }
 
-/*
-  Helper copy beneath the second field.
-  This restores the wording from the original HYM design.
-*/
-
-.emailoctopus-form form::after {
-  content: "Tell us where you are and help us plan where to play next.";
-  display: block;
-  width: 100%;
-  margin: -6px 0 28px;
-  color: rgba(255,255,255,.72);
-  font-family: "Inter", Arial, Helvetica, sans-serif;
-  font-size: .88rem;
-  font-weight: 400;
-  line-height: 1.5;
-  text-align: left;
+.emailoctopus-form .mailing-list-location {
+  margin-top:18px !important;
 }
 
-
-/* EMAILOCTOPUS SUBSCRIBE BUTTON */
-
-.emailoctopus-form button,
-.emailoctopus-form button[type="submit"],
-.emailoctopus-form input[type="submit"] {
-  position: relative !important;
-  width: auto !important;
-  min-width: 205px !important;
-  max-width: 205px !important;
-  height: 54px !important;
-  margin: 0 auto !important;
-  padding: 0 20px !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  color: var(--white) !important;
-  -webkit-text-fill-color: var(--white) !important;
-  background: transparent !important;
-  border: 3px solid var(--pink) !important;
-  border-radius: 0 !important;
-  outline: none !important;
-  box-shadow: none !important;
-  appearance: none !important;
-  -webkit-appearance: none !important;
-  cursor: pointer !important;
-  font-family: "Archivo Black", "Arial Black", Arial, sans-serif !important;
-  font-size: 23px !important;
-  font-weight: 400 !important;
-  line-height: 1 !important;
-  letter-spacing: -.06em !important;
-  text-align: center !important;
-  text-transform: uppercase !important;
-  transform: skewX(-9deg);
+.emailoctopus-form .hym-eo-helper {
+  width:100% !important;
+  margin:12px 0 0 !important;
+  color:rgba(255,255,255,.72) !important;
+  font-family:"Inter",Arial,Helvetica,sans-serif !important;
+  font-size:.88rem !important;
+  font-weight:400 !important;
+  line-height:1.5 !important;
+  text-align:left !important;
 }
 
-.emailoctopus-form button:hover,
-.emailoctopus-form button[type="submit"]:hover,
-.emailoctopus-form input[type="submit"]:hover {
-  color: var(--pink) !important;
-  -webkit-text-fill-color: var(--pink) !important;
+/* Hide EmailOctopus's original button */
+
+.emailoctopus-form .hym-eo-real-submit {
+  display:none !important;
 }
 
+/* HYM subscribe button */
 
-/* EMAILOCTOPUS SUPPORT / STATUS TEXT */
+.emailoctopus-form .hym-eo-submit {
+  min-width:205px !important;
+  height:54px !important;
+  margin-top:28px !important;
+  padding:0 20px !important;
+  display:inline-flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  gap:10px !important;
+  color:var(--white) !important;
+  background:transparent !important;
+  border:3px solid var(--pink) !important;
+  border-radius:0 !important;
+  box-shadow:none !important;
+  transform:none !important;
+  appearance:none !important;
+  -webkit-appearance:none !important;
+}
 
-.emailoctopus-form p,
+/* Kill the old duplicate helper pseudo-element */
+
+.emailoctopus-form form::after,
+.emailoctopus-form .hym-emailoctopus-form::after {
+  content:none !important;
+  display:none !important;
+}
+
+.emailoctopus-form p:not(.hym-eo-helper),
 .emailoctopus-form small {
-  color: rgba(255,255,255,.72) !important;
-  font-family: "Inter", Arial, Helvetica, sans-serif !important;
+  color:rgba(255,255,255,.8);
+  font-family:"Inter",Arial,Helvetica,sans-serif;
 }
 
 .emailoctopus-form a {
-  color: inherit;
+  color:var(--pink);
 }
-
-
-/* Original HYM mailing form classes retained */
-
-.mailing-list-form {
-  width: 100%;
-  max-width: 760px;
-  margin: 0 auto;
-  padding: 38px 46px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  border: 3px solid var(--pink);
-  background: transparent;
-}
-
-.mailing-list-label {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0,0,0,0);
-  white-space: nowrap;
-  border: 0;
-}
-
-.mailing-list-input {
-  width: 100%;
-  height: 58px;
-  padding: 0 20px;
-  color: var(--white);
-  background: transparent;
-  border: 2px solid rgba(255,255,255,.65);
-  border-radius: 0;
-  outline: none;
-  font-size: 1rem;
-  font-weight: 400;
-  text-align: left;
-}
-
-.mailing-list-input::placeholder {
-  color: rgba(255,255,255,.7);
-}
-
-.mailing-list-input:focus {
-  border-color: var(--pink);
-}
-
-.mailing-list-location {
-  margin-top: 18px;
-}
-
-.mailing-list-location-copy {
-  width: 100%;
-  margin: 12px 0 0;
-  color: rgba(255,255,255,.72);
-  text-align: left;
-  font-size: .88rem;
-  font-weight: 400;
-  line-height: 1.5;
-}
-
-.mailing-list-button {
-  margin-top: 28px;
-  min-width: 205px;
-}
-
-.mailing-list-input:disabled,
-.mailing-list-button:disabled {
-  opacity: 1;
-  cursor: default;
-}
-
-.mailing-list-input:disabled {
-  -webkit-text-fill-color: var(--white);
-}
-
 
 /* LISTEN */
 
 .listen {
-  width: 100%;
-  padding: var(--section-gap) var(--section-side);
-  background: var(--charcoal);
+  width:100%;
+  padding:var(--section-gap) var(--section-side);
+  background:var(--charcoal);
 }
 
 .listen-inner {
-  width: 100%;
-  max-width: 1100px;
-  margin: 0 auto;
+  width:100%;
+  max-width:1100px;
+  margin:0 auto;
 }
 
 .listen-title {
-  max-width: 700px;
-  margin-bottom: 70px;
+  max-width:700px;
+  margin-bottom:70px;
 }
 
 .spotify-wrap {
-  width: 100%;
-  max-width: 1000px;
-  margin: 0 auto;
+  width:100%;
+  max-width:1000px;
+  margin:0 auto;
 }
 
 .spotify-wrap iframe {
-  display: block;
-  width: 100%;
-  height: 725px;
-  border: 0;
-  border-radius: 12px;
+  display:block;
+  width:100%;
+  height:725px;
+  border:0;
+  border-radius:12px;
 }
 
 .music-platforms {
-  width: 100%;
-  max-width: 620px;
-  margin: 58px auto 0;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 24px;
+  width:100%;
+  max-width:620px;
+  margin:58px auto 0;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:24px;
 }
 
 .music-platforms a {
-  flex: 0 1 92px;
-  min-width: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  flex:0 1 92px;
+  min-width:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
 }
 
 .music-platforms img {
-  display: block;
-  width: 100%;
-  max-width: 92px;
-  height: auto;
-  object-fit: contain;
+  display:block;
+  width:100%;
+  max-width:92px;
+  height:auto;
+  object-fit:contain;
 }
-
 
 /* CONTACT */
 
 .contact {
-  position: relative;
-  width: 100%;
-  min-height: 100svh;
+  position:relative;
+  width:100%;
+  min-height:100svh;
   background-image:
-    linear-gradient(
-      to bottom,
-      rgba(0,0,0,.12) 0%,
-      rgba(0,0,0,.08) 65%,
-      rgba(0,0,0,.72) 100%
-    ),
+    linear-gradient(to bottom,rgba(0,0,0,.12) 0%,rgba(0,0,0,.08) 65%,rgba(0,0,0,.72) 100%),
     url("hym-band-shot-original-min.jpeg");
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-  color: var(--white);
+  background-position:center;
+  background-size:cover;
+  background-repeat:no-repeat;
+  color:var(--white);
 }
 
 .contact-inner {
-  min-height: 100svh;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  min-height:100svh;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
 }
 
 .contact-form-area {
-  width: 100%;
-  max-width: 850px;
-  margin: 0 auto;
-  padding: 65px var(--section-side) 40px;
+  width:100%;
+  max-width:850px;
+  margin:0 auto;
+  padding:65px var(--section-side) 40px;
 }
 
 .contact-title {
-  width: 100%;
-  margin: 0 auto 32px;
-  text-align: center;
+  width:100%;
+  margin:0 auto 32px;
+  text-align:center;
 }
 
 .contact-title span + span {
-  margin-top: 3px;
+  margin-top:3px;
 }
 
 .contact-form {
-  width: 100%;
-  display: grid;
-  gap: 24px;
+  width:100%;
+  display:grid;
+  gap:24px;
 }
 
 .contact-form label {
-  display: grid;
-  gap: 8px;
-  color: var(--white);
-  font-size: 18px;
-  font-weight: 300;
-  line-height: 1.3;
+  display:grid;
+  gap:8px;
+  color:var(--white);
+  font-size:18px;
+  font-weight:300;
+  line-height:1.3;
 }
 
 .contact-form input,
 .contact-form textarea {
-  width: 100%;
-  height: 64px;
-  padding: 12px 18px;
-  color: var(--near-black);
-  background: var(--white);
-  border: 0;
-  border-radius: 32px;
-  outline: none;
-  box-shadow: 0 2px 10px rgba(0,0,0,.45);
+  width:100%;
+  height:64px;
+  padding:12px 18px;
+  color:var(--near-black);
+  background:var(--white);
+  border:0;
+  border-radius:32px;
+  outline:none;
+  box-shadow:0 2px 10px rgba(0,0,0,.45);
 }
 
 .contact-form textarea {
-  min-height: 64px;
-  max-height: 120px;
-  resize: vertical;
+  min-height:64px;
+  max-height:120px;
+  resize:vertical;
 }
 
 .contact-form input:focus,
 .contact-form textarea:focus {
-  outline: 3px solid rgba(251,56,252,.5);
+  outline:3px solid rgba(251,56,252,.5);
 }
 
 .send-button {
-  justify-self: start;
-  margin-top: 4px;
+  justify-self:start;
+  margin-top:4px;
 }
-
 
 /* FOOTER */
 
 .site-footer {
-  width: 100%;
-  padding: 55px 20px 24px;
-  color: var(--white);
-  background:
-    linear-gradient(
-      to top,
-      rgba(0,0,0,.95) 15%,
-      rgba(0,0,0,.62) 55%,
-      rgba(0,0,0,0) 100%
-    );
-  text-align: center;
-  font-size: 14px;
-  font-weight: 300;
+  width:100%;
+  padding:55px 20px 24px;
+  color:var(--white);
+  background:linear-gradient(to top,rgba(0,0,0,.95) 15%,rgba(0,0,0,.62) 55%,rgba(0,0,0,0) 100%);
+  text-align:center;
+  font-size:14px;
+  font-weight:300;
 }
-
 
 /* TABLET */
 
-@media (max-width: 991px) and (min-width: 601px) {
-
+@media (max-width:991px) and (min-width:601px) {
   .home-quote {
-    font-size: 50px;
+    font-size:50px;
   }
 
   .home-quote footer {
-    font-size: 20px;
+    font-size:20px;
   }
-
 }
-
 
 /* DESKTOP */
 
-@media (min-width: 800px) {
-
+@media (min-width:800px) {
   :root {
-    --section-side: 60px;
-    --section-gap: 95px;
-    --header-height: 126px;
+    --section-side:60px;
+    --section-gap:95px;
+    --header-height:126px;
   }
 
   .nav-logo {
-    width: 145px;
+    width:145px;
   }
 
   .home-intro {
-    padding-top: 100px;
+    padding-top:100px;
   }
 
   .upcoming-events-frame {
-    padding: 28px 28px 36px;
+    padding:28px 28px 36px;
   }
 
   .contact-form-area {
-    max-width: 760px;
-    margin-left: auto;
-    margin-right: 6%;
-    padding-top: 90px;
+    max-width:760px;
+    margin-left:auto;
+    margin-right:6%;
+    padding-top:90px;
   }
-
 }
-
 
 /* LARGE DESKTOP */
 
-@media (min-width: 1100px) {
-
+@media (min-width:1100px) {
   .site-header {
-    padding-left: 80px;
-    padding-right: 80px;
+    padding-left:80px;
+    padding-right:80px;
   }
 
   .home-intro {
-    padding-left: 80px;
-    padding-right: 80px;
+    padding-left:80px;
+    padding-right:80px;
   }
 
   .upcoming-events,
   .merch,
   .mailing-list-section,
   .listen {
-    padding-left: 100px;
-    padding-right: 100px;
+    padding-left:100px;
+    padding-right:100px;
   }
-
 }
-
 
 /* PHONE */
 
-@media (max-width: 600px) {
-
+@media (max-width:600px) {
   :root {
-    --section-side: 20px;
-    --mobile-section-space: 60px;
-    --header-height: 96px;
+    --section-side:20px;
+    --mobile-section-space:60px;
+    --header-height:96px;
   }
 
-
-  /* HEADER */
-
   .site-header {
-    padding: 0 20px;
+    padding:0 20px;
   }
 
   .nav-logo {
-    width: 135px;
+    width:135px;
   }
 
   .nav-panel {
-    padding: 16px 20px 24px;
+    padding:16px 20px 24px;
   }
 
   .nav-socials {
-    gap: 26px;
-    padding-top: 22px;
+    gap:26px;
+    padding-top:22px;
   }
 
   .nav-socials a,
   .nav-socials img {
-    width: 42px;
-    height: 42px;
+    width:42px;
+    height:42px;
   }
 
-
-  /* INTRO */
-
   .home-intro {
-    padding: 55px 10px 0;
+    padding:55px 10px 0;
   }
 
   .home-quote {
-    width: 100%;
-    margin-bottom: 48px;
-    padding: 0 5px;
-    font-size: 32px;
-    line-height: 1;
+    width:100%;
+    margin-bottom:48px;
+    padding:0 5px;
+    font-size:32px;
+    line-height:1;
   }
 
   .home-quote footer {
-    margin-top: 20px;
-    font-size: 18px;
+    margin-top:20px;
+    font-size:18px;
   }
 
   .home-band-photo {
-    width: 100%;
-    margin-bottom: 0;
-    border-radius: 16px;
+    width:100%;
+    margin-bottom:0;
+    border-radius:16px;
   }
 
-
-  /* SECTION HEADINGS */
-
   .slice-heading {
-    font-size: 60px;
-    line-height: 64px;
+    font-size:60px;
+    line-height:64px;
   }
 
   .slice-heading span {
-    min-height: 64px;
-    white-space: nowrap;
+    min-height:64px;
+    white-space:nowrap;
   }
 
-
-  /* EVENTS */
-
   .upcoming-events {
-    padding: 60px var(--section-side) 0;
+    padding:60px var(--section-side) 0;
   }
 
   .upcoming-events-title {
-    margin-bottom: 60px;
+    margin-bottom:60px;
   }
 
   .upcoming-events-frame {
-    padding: 14px 10px 24px;
-    border-width: 3px;
+    padding:14px 10px 24px;
+    border-width:3px;
   }
 
-
-  /* MERCH */
-
   .merch {
-    padding: 60px var(--section-side) 0;
+    padding:60px var(--section-side) 0;
   }
 
   .merch-main {
-    width: 100%;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: minmax(0, 1fr);
-    row-gap: 60px;
+    width:100%;
+    margin:0 auto;
+    display:grid;
+    grid-template-columns:minmax(0,1fr);
+    row-gap:60px;
   }
 
   .merch-title {
-    width: 100%;
-    margin: 0;
-    padding: 0;
+    width:100%;
+    margin:0;
+    padding:0;
   }
 
   .merch-image {
-    width: 100%;
-    min-height: 0;
-    aspect-ratio: 4 / 5;
-    margin: 0;
+    width:100%;
+    min-height:0;
+    aspect-ratio:4 / 5;
+    margin:0;
   }
 
   .merch-copy {
-    padding-top: 30px;
+    padding-top:30px;
   }
 
-
-  /* BUTTONS */
-
   .hym-button {
-    min-width: 145px;
-    height: 52px;
-    padding: 0 18px;
+    min-width:145px;
+    height:52px;
+    padding:0 18px;
   }
 
   .hym-button-text {
-    height: 28px;
-    font-size: 23px;
-    line-height: 28px;
-    white-space: nowrap;
+    height:28px;
+    font-size:23px;
+    line-height:28px;
+    white-space:nowrap;
   }
 
-
-  /* MAILING LIST */
-
   .mailing-list-section {
-    padding: 60px var(--section-side) 0;
+    padding:60px var(--section-side) 0;
   }
 
   .mailing-list-title {
-    margin-bottom: 60px;
-    font-size: 50px;
-    line-height: 54px;
+    margin-bottom:60px;
+    font-size:50px;
+    line-height:54px;
   }
 
   .mailing-list-title span {
-    min-height: 54px;
+    min-height:54px;
   }
 
   .mailing-list-copy {
-    width: calc(100% + 20px);
-    margin-left: -10px;
-    margin-right: -10px;
-    margin-bottom: 34px;
+    width:calc(100% + 20px);
+    margin-left:-10px;
+    margin-right:-10px;
+    margin-bottom:34px;
   }
-
-  .mailing-list-form {
-    width: 100%;
-    padding: 30px 28px;
-  }
-
-  .mailing-list-input {
-    height: 56px;
-    padding: 0 16px;
-  }
-
-  .mailing-list-location {
-    margin-top: 16px;
-  }
-
-  .mailing-list-location-copy {
-    margin-top: 10px;
-    font-size: .82rem;
-  }
-
-  .mailing-list-button {
-    min-width: 200px;
-    margin-top: 28px;
-  }
-
-
-  /* EMAILOCTOPUS MOBILE */
 
   .emailoctopus-form {
-    width: 100%;
-    max-width: 100%;
-    padding: 30px 28px 32px;
+    width:100%;
+    max-width:100%;
   }
 
-  .emailoctopus-form input:not([type="submit"]):not([type="checkbox"]):not([type="radio"]),
-  .emailoctopus-form input[type="email"],
-  .emailoctopus-form input[type="text"] {
-    height: 56px !important;
-    padding: 0 16px !important;
-    margin-bottom: 16px !important;
+  .emailoctopus-form .hym-emailoctopus-form {
+    width:100% !important;
+    padding:30px 28px !important;
   }
 
-  .emailoctopus-form form::after {
-    margin-top: -6px;
-    margin-bottom: 28px;
-    font-size: .82rem;
+  .emailoctopus-form .mailing-list-input {
+    height:56px !important;
+    padding:0 16px !important;
   }
 
-  .emailoctopus-form button,
-  .emailoctopus-form button[type="submit"],
-  .emailoctopus-form input[type="submit"] {
-    min-width: 200px !important;
-    max-width: 200px !important;
-    height: 52px !important;
-    font-size: 23px !important;
+  .emailoctopus-form .mailing-list-location {
+    margin-top:16px !important;
   }
 
+  .emailoctopus-form .hym-eo-helper {
+    margin-top:10px !important;
+    font-size:.82rem !important;
+  }
 
-  /* LISTEN */
+  .emailoctopus-form .hym-eo-submit {
+    min-width:200px !important;
+    height:52px !important;
+    margin-top:28px !important;
+    padding:0 18px !important;
+    transform:none !important;
+  }
 
   .listen {
-    padding: 60px var(--section-side) 0;
+    padding:60px var(--section-side) 0;
   }
 
   .listen-title {
-    margin-bottom: 60px;
+    margin-bottom:60px;
   }
 
   .spotify-wrap iframe {
-    height: 745px;
+    height:745px;
   }
 
-
-  /* MUSIC PLATFORM ICONS */
-
   .music-platforms {
-    width: 100%;
-    max-width: 100%;
-    margin-top: 48px;
-    gap: 14px;
+    width:100%;
+    max-width:100%;
+    margin-top:48px;
+    gap:14px;
   }
 
   .music-platforms a {
-    flex: 1 1 0;
-    min-width: 0;
+    flex:1 1 0;
+    min-width:0;
   }
 
   .music-platforms img {
-    width: 100%;
-    max-width: 72px;
-    height: auto;
+    width:100%;
+    max-width:72px;
+    height:auto;
   }
 
-
-  /* CONTACT */
-
   .contact {
-    min-height: 100svh;
-    margin-top: 60px;
-    background-position: 20% center;
+    min-height:100svh;
+    margin-top:60px;
+    background-position:20% center;
   }
 
   .contact-inner {
-    min-height: 100svh;
+    min-height:100svh;
   }
 
   .contact-form-area {
-    padding: 24px 34px 30px;
+    padding:24px 34px 30px;
   }
 
   .contact-title {
-    width: calc(100% + 68px);
-    max-width: none;
-    margin-left: -34px;
-    margin-right: -34px;
-    margin-bottom: 24px;
-    text-align: center;
-    font-size: 60px;
-    line-height: 64px;
+    width:calc(100% + 68px);
+    max-width:none;
+    margin-left:-34px;
+    margin-right:-34px;
+    margin-bottom:24px;
+    text-align:center;
+    font-size:60px;
+    line-height:64px;
   }
 
   .contact-title span {
-    min-height: 64px;
+    min-height:64px;
   }
 
   .contact-title span + span {
-    margin-top: 3px;
+    margin-top:3px;
   }
 
   .contact-form {
-    gap: 21px;
+    gap:21px;
   }
 
   .contact-form label {
-    font-size: 17px;
+    font-size:17px;
   }
 
   .contact-form input,
   .contact-form textarea {
-    height: 62px;
-    min-height: 62px;
-    border-radius: 31px;
-    font-size: 16px;
+    height:62px;
+    min-height:62px;
+    border-radius:31px;
+    font-size:16px;
   }
 
   .send-button {
-    margin-top: 2px;
+    margin-top:2px;
   }
 
   .site-footer {
-    padding: 55px 20px 22px;
-    font-size: 13px;
+    padding:55px 20px 22px;
+    font-size:13px;
   }
-
-}
+    }
