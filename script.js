@@ -40,6 +40,8 @@ function enhanceEmailOctopusForm() {
     return false;
   }
 
+  const introCopy = document.querySelector(".mailing-list-copy");
+
   const emailInput = form.querySelector('input[type="email"]');
 
   const textInputs = Array.from(
@@ -51,8 +53,7 @@ function enhanceEmailOctopusForm() {
       (input.placeholder || "")
         .toLowerCase()
         .includes("town")
-    ) ||
-    textInputs[0];
+    ) || textInputs[0];
 
   const submitControls = Array.from(
     form.querySelectorAll(
@@ -76,18 +77,20 @@ function enhanceEmailOctopusForm() {
     return false;
   }
 
-
-  /*
-    Mark the genuine EmailOctopus form.
-  */
-
   form.classList.add("hym-emailoctopus-form");
 
 
-  /*
-    Style the genuine EmailOctopus fields using
-    our existing HYM field classes.
-  */
+  /* MOVE INTRO COPY INSIDE THE PINK BOX */
+
+  if (introCopy) {
+    form.insertBefore(
+      introCopy,
+      form.firstElementChild
+    );
+  }
+
+
+  /* STYLE EMAILOCTOPUS FIELDS */
 
   emailInput.classList.add("mailing-list-input");
 
@@ -97,20 +100,14 @@ function enhanceEmailOctopusForm() {
   );
 
 
-  /*
-    Remove any helper element previously inserted
-    by an earlier version of this script.
-  */
+  /* REMOVE ANY PREVIOUS HELPER */
 
   form
     .querySelectorAll(".hym-eo-helper")
     .forEach(element => element.remove());
 
 
-  /*
-    Create the genuine HYM helper copy and place it
-    immediately after the Town / City field.
-  */
+  /* ADD HYM TOWN/CITY HELPER */
 
   const helper = document.createElement("p");
 
@@ -126,13 +123,7 @@ function enhanceEmailOctopusForm() {
   );
 
 
-  /*
-    Completely remove the genuine EmailOctopus
-    submit control from the visual layout.
-
-    We keep a reference to it so its normal click
-    behaviour can still be triggered.
-  */
+  /* HIDE EMAILOCTOPUS'S ORIGINAL BUTTON */
 
   realSubmit.style.setProperty(
     "display",
@@ -152,22 +143,16 @@ function enhanceEmailOctopusForm() {
   );
 
 
-  /*
-    Remove any HYM button left behind by an
-    earlier execution before creating the new one.
-  */
+  /* REMOVE ANY PREVIOUS HYM BUTTON */
 
   form
     .querySelectorAll(".hym-eo-submit")
     .forEach(element => element.remove());
 
 
-  /*
-    Build the exact HYM visual SUBSCRIBE button.
-  */
+  /* CREATE HYM SUBSCRIBE BUTTON */
 
-  const hymButton =
-    document.createElement("button");
+  const hymButton = document.createElement("button");
 
   hymButton.type = "button";
 
@@ -214,9 +199,13 @@ function enhanceEmailOctopusForm() {
   `;
 
 
-  /*
-    Put our button after the helper copy.
-  */
+  /* CENTRE BUTTON BELOW HELPER TEXT */
+
+  hymButton.style.setProperty(
+    "align-self",
+    "center",
+    "important"
+  );
 
   helper.insertAdjacentElement(
     "afterend",
@@ -224,26 +213,18 @@ function enhanceEmailOctopusForm() {
   );
 
 
-  /*
-    Our visual button triggers EmailOctopus's
-    genuine submit mechanism.
-  */
+  /* USE EMAILOCTOPUS'S REAL SUBMIT MECHANISM */
 
-  hymButton.addEventListener(
-    "click",
-    () => {
-
-      if (
-        typeof form.reportValidity === "function" &&
-        !form.reportValidity()
-      ) {
-        return;
-      }
-
-      realSubmit.click();
-
+  hymButton.addEventListener("click", () => {
+    if (
+      typeof form.reportValidity === "function" &&
+      !form.reportValidity()
+    ) {
+      return;
     }
-  );
+
+    realSubmit.click();
+  });
 
 
   wrapper.dataset.hymEnhanced = "true";
@@ -252,22 +233,14 @@ function enhanceEmailOctopusForm() {
 }
 
 
-/*
-  EmailOctopus loads asynchronously.
-
-  Try immediately, then watch the page until
-  EmailOctopus has inserted its form.
-*/
+/* WAIT FOR EMAILOCTOPUS TO LOAD */
 
 if (!enhanceEmailOctopusForm()) {
-
   const emailOctopusObserver =
     new MutationObserver(() => {
-
       if (enhanceEmailOctopusForm()) {
         emailOctopusObserver.disconnect();
       }
-
     });
 
   emailOctopusObserver.observe(
@@ -277,5 +250,4 @@ if (!enhanceEmailOctopusForm()) {
       subtree: true
     }
   );
-
 }
