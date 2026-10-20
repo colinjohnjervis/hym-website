@@ -449,21 +449,10 @@ section { scroll-margin-top:var(--header-height); }
 }
 
 
-/* EMAILOCTOPUS BRANDING */
+/* HIDE EMAILOCTOPUS WEBSITE BRANDING */
 
-.emailoctopus-form a {
-  color:var(--white) !important;
-  font-family:"Inter",Arial,Helvetica,sans-serif !important;
-  font-weight:400 !important;
-  opacity:1 !important;
-}
-
-.emailoctopus-form a * {
-  color:var(--white) !important;
-  fill:var(--white) !important;
-  stroke:var(--white) !important;
-  font-family:"Inter",Arial,Helvetica,sans-serif !important;
-  opacity:1 !important;
+.emailoctopus-form > *:not(form) {
+  display:none !important;
 }
 
 
@@ -816,4 +805,4 @@ section { scroll-margin-top:var(--header-height); }
   .site-footer {
     padding:55px 20px 22px; font-size:13px;
   }
-  }
+    }
