@@ -27,10 +27,169 @@ navLinks.forEach(link => {
 
 /* EMAILOCTOPUS MAILING LIST */
 
-function enhanceEmailOctopusForm() {
-  const wrapper = document.querySelector(".emailoctopus-form");
+function showHymSuccess(form) {
+  if (
+    !form ||
+    form.querySelector(".hym-success-panel")
+  ) {
+    return;
+  }
 
-  if (!wrapper || wrapper.dataset.hymEnhanced === "true") {
+  form.style.setProperty(
+    "position",
+    "relative",
+    "important"
+  );
+
+  const panel = document.createElement("div");
+
+  panel.className = "hym-success-panel";
+
+  panel.style.cssText = `
+    position:absolute;
+    inset:0;
+    z-index:50;
+    min-height:100%;
+    padding:45px 30px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    background:#25282b;
+    border:0;
+    text-align:center;
+  `;
+
+  panel.innerHTML = `
+    <button
+      type="button"
+      class="hym-success-close"
+      aria-label="Close confirmation"
+      style="
+        position:absolute;
+        top:14px;
+        right:16px;
+        width:42px;
+        height:42px;
+        padding:0;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        color:#fff;
+        background:transparent;
+        border:0;
+        font-size:36px;
+        font-weight:300;
+        line-height:1;
+        cursor:pointer;
+      "
+    >
+      &times;
+    </button>
+
+    <div
+      class="slice-heading hym-success-title"
+      style="
+        width:100%;
+        margin:0 auto 24px;
+        font-size:48px;
+        line-height:52px;
+      "
+    >
+      <span
+        data-text="YOU'RE IN!"
+        style="min-height:52px;"
+      >
+        YOU'RE IN!
+      </span>
+    </div>
+
+    <p
+      style="
+        max-width:520px;
+        margin:0 auto 12px;
+        color:#fff;
+        font-family:'Inter',Arial,Helvetica,sans-serif;
+        font-size:1rem;
+        font-weight:400;
+        line-height:1.6;
+        text-align:center;
+      "
+    >
+      Thanks for subscribing to Holy Youth Movement.
+    </p>
+
+    <p
+      style="
+        max-width:520px;
+        margin:0 auto;
+        color:rgba(255,255,255,.72);
+        font-family:'Inter',Arial,Helvetica,sans-serif;
+        font-size:.9rem;
+        font-weight:400;
+        line-height:1.6;
+        text-align:center;
+      "
+    >
+      Check your inbox for a welcome email.
+    </p>
+  `;
+
+  form.appendChild(panel);
+
+  const closeButton =
+    panel.querySelector(".hym-success-close");
+
+  closeButton.addEventListener("click", () => {
+    panel.remove();
+  });
+}
+
+
+function watchForEmailOctopusSuccess(wrapper, form) {
+  if (
+    !wrapper ||
+    wrapper.dataset.hymSuccessWatch === "true"
+  ) {
+    return;
+  }
+
+  wrapper.dataset.hymSuccessWatch = "true";
+
+  const successObserver =
+    new MutationObserver(() => {
+      const text =
+        wrapper.textContent
+          .replace(/\s+/g, " ")
+          .trim()
+          .toLowerCase();
+
+      if (
+        text.includes("thanks for subscribing")
+      ) {
+        showHymSuccess(form);
+      }
+    });
+
+  successObserver.observe(
+    wrapper,
+    {
+      childList:true,
+      subtree:true,
+      characterData:true
+    }
+  );
+}
+
+
+function enhanceEmailOctopusForm() {
+  const wrapper =
+    document.querySelector(".emailoctopus-form");
+
+  if (
+    !wrapper ||
+    wrapper.dataset.hymEnhanced === "true"
+  ) {
     return false;
   }
 
@@ -40,8 +199,11 @@ function enhanceEmailOctopusForm() {
     return false;
   }
 
-  const introCopy = document.querySelector(".mailing-list-copy");
-  const emailInput = form.querySelector('input[type="email"]');
+  const introCopy =
+    document.querySelector(".mailing-list-copy");
+
+  const emailInput =
+    form.querySelector('input[type="email"]');
 
   const textInputs = Array.from(
     form.querySelectorAll('input[type="text"]')
@@ -73,11 +235,17 @@ function enhanceEmailOctopusForm() {
         .includes("subscribe");
     }) || submitControls[0];
 
-  if (!emailInput || !locationInput || !realSubmit) {
+  if (
+    !emailInput ||
+    !locationInput ||
+    !realSubmit
+  ) {
     return false;
   }
 
-  form.classList.add("hym-emailoctopus-form");
+  form.classList.add(
+    "hym-emailoctopus-form"
+  );
 
 
   /* MOVE INTRO TEXT INSIDE FORM */
@@ -111,7 +279,8 @@ function enhanceEmailOctopusForm() {
 
   /* ADD TOWN / CITY HELPER */
 
-  const helper = document.createElement("p");
+  const helper =
+    document.createElement("p");
 
   helper.className =
     "mailing-list-location-copy hym-eo-helper";
@@ -254,6 +423,14 @@ function enhanceEmailOctopusForm() {
   );
 
 
+  /* WATCH FOR A REAL SUCCESS RESPONSE */
+
+  watchForEmailOctopusSuccess(
+    wrapper,
+    form
+  );
+
+
   /* USE EMAILOCTOPUS SUBMISSION */
 
   hymButton.addEventListener(
@@ -290,8 +467,8 @@ if (!enhanceEmailOctopusForm()) {
   emailOctopusObserver.observe(
     document.body,
     {
-      childList: true,
-      subtree: true
+      childList:true,
+      subtree:true
     }
   );
 }
