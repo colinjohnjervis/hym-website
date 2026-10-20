@@ -569,32 +569,43 @@ section {
 }
 
 
-/* EMAILOCTOPUS EMBED */
+/* EMAILOCTOPUS FORM — HYM DESIGN */
 
 .emailoctopus-form {
+  position: relative;
   width: 100%;
   max-width: 760px;
   margin: 0 auto;
+  padding: 38px 46px 40px;
   color: var(--white);
+  background: transparent;
+  border: 3px solid var(--pink);
   font-family: "Inter", Arial, Helvetica, sans-serif;
   text-align: left;
 }
 
-.emailoctopus-form form {
+.emailoctopus-form form,
+.emailoctopus-form form > div {
   width: 100% !important;
-  max-width: 760px !important;
-  margin: 0 auto !important;
-  padding: 38px 46px !important;
+  max-width: none !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
   background: transparent !important;
-  border: 3px solid var(--pink) !important;
+  border: 0 !important;
   border-radius: 0 !important;
   box-shadow: none !important;
 }
 
-.emailoctopus-form input,
+.emailoctopus-form form {
+  padding: 0 !important;
+}
+
+.emailoctopus-form input:not([type="submit"]):not([type="checkbox"]):not([type="radio"]),
 .emailoctopus-form input[type="email"],
 .emailoctopus-form input[type="text"] {
+  display: block !important;
   width: 100% !important;
+  max-width: none !important;
   height: 58px !important;
   margin: 0 0 18px !important;
   padding: 0 20px !important;
@@ -612,15 +623,16 @@ section {
   text-align: left !important;
 }
 
-.emailoctopus-form input::placeholder {
+.emailoctopus-form input:not([type="submit"])::placeholder {
   color: rgba(255,255,255,.7) !important;
   -webkit-text-fill-color: rgba(255,255,255,.7) !important;
   opacity: 1 !important;
 }
 
-.emailoctopus-form input:focus {
-  border-color: var(--pink) !important;
+.emailoctopus-form input:not([type="submit"]):focus {
+  border-color: rgba(255,255,255,.65) !important;
   outline: none !important;
+  box-shadow: none !important;
 }
 
 .emailoctopus-form label {
@@ -628,13 +640,36 @@ section {
   font-family: "Inter", Arial, Helvetica, sans-serif !important;
 }
 
+/*
+  Helper copy beneath the second field.
+  This restores the wording from the original HYM design.
+*/
+
+.emailoctopus-form form::after {
+  content: "Tell us where you are and help us plan where to play next.";
+  display: block;
+  width: 100%;
+  margin: -6px 0 28px;
+  color: rgba(255,255,255,.72);
+  font-family: "Inter", Arial, Helvetica, sans-serif;
+  font-size: .88rem;
+  font-weight: 400;
+  line-height: 1.5;
+  text-align: left;
+}
+
+
+/* EMAILOCTOPUS SUBSCRIBE BUTTON */
+
 .emailoctopus-form button,
 .emailoctopus-form button[type="submit"],
 .emailoctopus-form input[type="submit"] {
-  min-width: 205px !important;
+  position: relative !important;
   width: auto !important;
+  min-width: 205px !important;
+  max-width: 205px !important;
   height: 54px !important;
-  margin: 10px auto 0 !important;
+  margin: 0 auto !important;
   padding: 0 20px !important;
   display: flex !important;
   align-items: center !important;
@@ -644,6 +679,7 @@ section {
   background: transparent !important;
   border: 3px solid var(--pink) !important;
   border-radius: 0 !important;
+  outline: none !important;
   box-shadow: none !important;
   appearance: none !important;
   -webkit-appearance: none !important;
@@ -665,6 +701,9 @@ section {
   -webkit-text-fill-color: var(--pink) !important;
 }
 
+
+/* EMAILOCTOPUS SUPPORT / STATUS TEXT */
+
 .emailoctopus-form p,
 .emailoctopus-form small {
   color: rgba(255,255,255,.72) !important;
@@ -672,7 +711,7 @@ section {
 }
 
 .emailoctopus-form a {
-  color: var(--pink);
+  color: inherit;
 }
 
 
@@ -1185,4 +1224,129 @@ section {
   /* EMAILOCTOPUS MOBILE */
 
   .emailoctopus-form {
-    width: 1
+    width: 100%;
+    max-width: 100%;
+    padding: 30px 28px 32px;
+  }
+
+  .emailoctopus-form input:not([type="submit"]):not([type="checkbox"]):not([type="radio"]),
+  .emailoctopus-form input[type="email"],
+  .emailoctopus-form input[type="text"] {
+    height: 56px !important;
+    padding: 0 16px !important;
+    margin-bottom: 16px !important;
+  }
+
+  .emailoctopus-form form::after {
+    margin-top: -6px;
+    margin-bottom: 28px;
+    font-size: .82rem;
+  }
+
+  .emailoctopus-form button,
+  .emailoctopus-form button[type="submit"],
+  .emailoctopus-form input[type="submit"] {
+    min-width: 200px !important;
+    max-width: 200px !important;
+    height: 52px !important;
+    font-size: 23px !important;
+  }
+
+
+  /* LISTEN */
+
+  .listen {
+    padding: 60px var(--section-side) 0;
+  }
+
+  .listen-title {
+    margin-bottom: 60px;
+  }
+
+  .spotify-wrap iframe {
+    height: 745px;
+  }
+
+
+  /* MUSIC PLATFORM ICONS */
+
+  .music-platforms {
+    width: 100%;
+    max-width: 100%;
+    margin-top: 48px;
+    gap: 14px;
+  }
+
+  .music-platforms a {
+    flex: 1 1 0;
+    min-width: 0;
+  }
+
+  .music-platforms img {
+    width: 100%;
+    max-width: 72px;
+    height: auto;
+  }
+
+
+  /* CONTACT */
+
+  .contact {
+    min-height: 100svh;
+    margin-top: 60px;
+    background-position: 20% center;
+  }
+
+  .contact-inner {
+    min-height: 100svh;
+  }
+
+  .contact-form-area {
+    padding: 24px 34px 30px;
+  }
+
+  .contact-title {
+    width: calc(100% + 68px);
+    max-width: none;
+    margin-left: -34px;
+    margin-right: -34px;
+    margin-bottom: 24px;
+    text-align: center;
+    font-size: 60px;
+    line-height: 64px;
+  }
+
+  .contact-title span {
+    min-height: 64px;
+  }
+
+  .contact-title span + span {
+    margin-top: 3px;
+  }
+
+  .contact-form {
+    gap: 21px;
+  }
+
+  .contact-form label {
+    font-size: 17px;
+  }
+
+  .contact-form input,
+  .contact-form textarea {
+    height: 62px;
+    min-height: 62px;
+    border-radius: 31px;
+    font-size: 16px;
+  }
+
+  .send-button {
+    margin-top: 2px;
+  }
+
+  .site-footer {
+    padding: 55px 20px 22px;
+    font-size: 13px;
+  }
+
+}
