@@ -27,6 +27,42 @@ navLinks.forEach(link => {
 
 /* EMAILOCTOPUS MAILING LIST */
 
+function freezeHymForm(form) {
+  if (!form || form.dataset.hymFrozen === "true") {
+    return;
+  }
+
+  const height = form.getBoundingClientRect().height;
+
+  form.dataset.hymFrozen = "true";
+  form.dataset.hymSubmitHeight = height;
+
+  form.style.setProperty(
+    "height",
+    `${height}px`,
+    "important"
+  );
+
+  form.style.setProperty(
+    "min-height",
+    `${height}px`,
+    "important"
+  );
+
+  form.style.setProperty(
+    "max-height",
+    `${height}px`,
+    "important"
+  );
+
+  form.style.setProperty(
+    "overflow",
+    "hidden",
+    "important"
+  );
+}
+
+
 function showHymSuccess(form) {
   if (!form || form.dataset.hymSuccess === "true") {
     return;
@@ -34,32 +70,8 @@ function showHymSuccess(form) {
 
   form.dataset.hymSuccess = "true";
 
-  /*
-    Use the exact height recorded when SUBSCRIBE
-    was pressed, before EmailOctopus changed anything.
-  */
 
-  const formHeight =
-    parseFloat(form.dataset.hymSubmitHeight) ||
-    form.getBoundingClientRect().height;
-
-  form.style.setProperty(
-    "height",
-    `${formHeight}px`,
-    "important"
-  );
-
-  form.style.setProperty(
-    "min-height",
-    `${formHeight}px`,
-    "important"
-  );
-
-
-  /*
-    Hide everything inside the pink box while
-    leaving the box itself exactly where it is.
-  */
+  /* HIDE EXISTING FORM CONTENT */
 
   Array.from(form.children).forEach(element => {
     element.style.setProperty(
@@ -76,17 +88,71 @@ function showHymSuccess(form) {
 
   success.className = "hym-success-panel";
 
-  success.style.cssText = `
-    width:100%;
-    height:100%;
-    padding:20px;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    justify-content:center;
-    text-align:center;
-    background:#25282b;
-  `;
+  success.style.setProperty(
+    "position",
+    "absolute",
+    "important"
+  );
+
+  success.style.setProperty(
+    "inset",
+    "0",
+    "important"
+  );
+
+  success.style.setProperty(
+    "width",
+    "100%",
+    "important"
+  );
+
+  success.style.setProperty(
+    "height",
+    "100%",
+    "important"
+  );
+
+  success.style.setProperty(
+    "padding",
+    "30px",
+    "important"
+  );
+
+  success.style.setProperty(
+    "display",
+    "flex",
+    "important"
+  );
+
+  success.style.setProperty(
+    "flex-direction",
+    "column",
+    "important"
+  );
+
+  success.style.setProperty(
+    "align-items",
+    "center",
+    "important"
+  );
+
+  success.style.setProperty(
+    "justify-content",
+    "center",
+    "important"
+  );
+
+  success.style.setProperty(
+    "text-align",
+    "center",
+    "important"
+  );
+
+  success.style.setProperty(
+    "background",
+    "#25282b",
+    "important"
+  );
 
 
   /* SUCCESS HEADING */
@@ -131,6 +197,7 @@ function showHymSuccess(form) {
     text-align:center;
   `;
 
+
   const inboxMessage = document.createElement("p");
 
   inboxMessage.textContent =
@@ -169,6 +236,10 @@ function watchForEmailOctopusSuccess(wrapper, form) {
   wrapper.dataset.hymSuccessWatch = "true";
 
   const checkForSuccess = () => {
+    if (form.dataset.hymSubmitted !== "true") {
+      return false;
+    }
+
     const text = wrapper.textContent
       .replace(/\s+/g, " ")
       .trim()
@@ -182,18 +253,15 @@ function watchForEmailOctopusSuccess(wrapper, form) {
     return false;
   };
 
-  const successObserver =
-    new MutationObserver(() => {
-      checkForSuccess();
-    });
-
-  successObserver.observe(wrapper, {
-    childList:true,
-    subtree:true,
-    characterData:true
+  const observer = new MutationObserver(() => {
+    checkForSuccess();
   });
 
-  checkForSuccess();
+  observer.observe(wrapper, {
+    childList: true,
+    subtree: true,
+    characterData: true
+  });
 }
 
 
@@ -262,6 +330,12 @@ function enhanceEmailOctopusForm() {
     "hym-emailoctopus-form"
   );
 
+  form.style.setProperty(
+    "position",
+    "relative",
+    "important"
+  );
+
 
   /* MOVE INTRO TEXT INSIDE FORM */
 
@@ -308,7 +382,7 @@ function enhanceEmailOctopusForm() {
   );
 
 
-  /* HIDE EMAILOCTOPUS BUTTON */
+  /* HIDE EMAILOCTOPUS'S ORIGINAL BUTTON */
 
   realSubmit.style.setProperty(
     "display",
@@ -337,7 +411,8 @@ function enhanceEmailOctopusForm() {
 
   /* CREATE CENTRED BUTTON WRAPPER */
 
-  const buttonWrap = document.createElement("div");
+  const buttonWrap =
+    document.createElement("div");
 
   buttonWrap.className =
     "hym-eo-button-wrap";
@@ -375,7 +450,8 @@ function enhanceEmailOctopusForm() {
 
   /* CREATE HYM SUBSCRIBE BUTTON */
 
-  const hymButton = document.createElement("button");
+  const hymButton =
+    document.createElement("button");
 
   hymButton.type = "button";
 
@@ -435,7 +511,7 @@ function enhanceEmailOctopusForm() {
   );
 
 
-  /* WATCH FOR GENUINE EMAILOCTOPUS SUCCESS */
+  /* WATCH EMAILOCTOPUS */
 
   watchForEmailOctopusSuccess(
     wrapper,
@@ -443,29 +519,27 @@ function enhanceEmailOctopusForm() {
   );
 
 
-  /* USE EMAILOCTOPUS SUBMISSION */
+  /* SUBMIT */
 
-  hymButton.addEventListener(
-    "click",
-    () => {
-      if (
-        typeof form.reportValidity === "function" &&
-        !form.reportValidity()
-      ) {
-        return;
-      }
-
-      /*
-        Record the pink box height BEFORE
-        EmailOctopus processes the submission.
-      */
-
-      form.dataset.hymSubmitHeight =
-        form.getBoundingClientRect().height;
-
-      realSubmit.click();
+  hymButton.addEventListener("click", () => {
+    if (
+      typeof form.reportValidity === "function" &&
+      !form.reportValidity()
+    ) {
+      return;
     }
-  );
+
+    /*
+      Freeze the visible component BEFORE
+      EmailOctopus is allowed to do anything.
+    */
+
+    freezeHymForm(form);
+
+    form.dataset.hymSubmitted = "true";
+
+    realSubmit.click();
+  });
 
 
   wrapper.dataset.hymEnhanced = "true";
@@ -487,8 +561,8 @@ if (!enhanceEmailOctopusForm()) {
   emailOctopusObserver.observe(
     document.body,
     {
-      childList:true,
-      subtree:true
+      childList: true,
+      subtree: true
     }
   );
 }
