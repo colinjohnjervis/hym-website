@@ -568,6 +568,116 @@ section {
   line-height: 1.6;
 }
 
+
+/* EMAILOCTOPUS EMBED */
+
+.emailoctopus-form {
+  width: 100%;
+  max-width: 760px;
+  margin: 0 auto;
+  color: var(--white);
+  font-family: "Inter", Arial, Helvetica, sans-serif;
+  text-align: left;
+}
+
+.emailoctopus-form form {
+  width: 100% !important;
+  max-width: 760px !important;
+  margin: 0 auto !important;
+  padding: 38px 46px !important;
+  background: transparent !important;
+  border: 3px solid var(--pink) !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+.emailoctopus-form input,
+.emailoctopus-form input[type="email"],
+.emailoctopus-form input[type="text"] {
+  width: 100% !important;
+  height: 58px !important;
+  margin: 0 0 18px !important;
+  padding: 0 20px !important;
+  color: var(--white) !important;
+  -webkit-text-fill-color: var(--white) !important;
+  background: transparent !important;
+  border: 2px solid rgba(255,255,255,.65) !important;
+  border-radius: 0 !important;
+  outline: none !important;
+  box-shadow: none !important;
+  font-family: "Inter", Arial, Helvetica, sans-serif !important;
+  font-size: 1rem !important;
+  font-weight: 400 !important;
+  line-height: 1.4 !important;
+  text-align: left !important;
+}
+
+.emailoctopus-form input::placeholder {
+  color: rgba(255,255,255,.7) !important;
+  -webkit-text-fill-color: rgba(255,255,255,.7) !important;
+  opacity: 1 !important;
+}
+
+.emailoctopus-form input:focus {
+  border-color: var(--pink) !important;
+  outline: none !important;
+}
+
+.emailoctopus-form label {
+  color: var(--white) !important;
+  font-family: "Inter", Arial, Helvetica, sans-serif !important;
+}
+
+.emailoctopus-form button,
+.emailoctopus-form button[type="submit"],
+.emailoctopus-form input[type="submit"] {
+  min-width: 205px !important;
+  width: auto !important;
+  height: 54px !important;
+  margin: 10px auto 0 !important;
+  padding: 0 20px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  color: var(--white) !important;
+  -webkit-text-fill-color: var(--white) !important;
+  background: transparent !important;
+  border: 3px solid var(--pink) !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  appearance: none !important;
+  -webkit-appearance: none !important;
+  cursor: pointer !important;
+  font-family: "Archivo Black", "Arial Black", Arial, sans-serif !important;
+  font-size: 23px !important;
+  font-weight: 400 !important;
+  line-height: 1 !important;
+  letter-spacing: -.06em !important;
+  text-align: center !important;
+  text-transform: uppercase !important;
+  transform: skewX(-9deg);
+}
+
+.emailoctopus-form button:hover,
+.emailoctopus-form button[type="submit"]:hover,
+.emailoctopus-form input[type="submit"]:hover {
+  color: var(--pink) !important;
+  -webkit-text-fill-color: var(--pink) !important;
+}
+
+.emailoctopus-form p,
+.emailoctopus-form small {
+  color: rgba(255,255,255,.72) !important;
+  font-family: "Inter", Arial, Helvetica, sans-serif !important;
+}
+
+.emailoctopus-form a {
+  color: var(--pink);
+}
+
+
+/* Original HYM mailing form classes retained */
+
 .mailing-list-form {
   width: 100%;
   max-width: 760px;
@@ -1072,104 +1182,7 @@ section {
   }
 
 
-  /* LISTEN */
+  /* EMAILOCTOPUS MOBILE */
 
-  .listen {
-    padding: 60px var(--section-side) 0;
-  }
-
-  .listen-title {
-    margin-bottom: 60px;
-  }
-
-  /*
-    Slightly taller on phones so Spotify's tenth track
-    has breathing room above the rounded bottom edge.
-  */
-  .spotify-wrap iframe {
-    height: 745px;
-  }
-
-
-  /* MUSIC PLATFORM ICONS */
-
-  .music-platforms {
-    width: 100%;
-    max-width: 100%;
-    margin-top: 48px;
-    gap: 14px;
-  }
-
-  .music-platforms a {
-    flex: 1 1 0;
-    min-width: 0;
-  }
-
-  .music-platforms img {
-    width: 100%;
-    max-width: 72px;
-    height: auto;
-  }
-
-
-  /* CONTACT */
-
-  .contact {
-    min-height: 100svh;
-    margin-top: 60px;
-    background-position: 20% center;
-  }
-
-  .contact-inner {
-    min-height: 100svh;
-  }
-
-  .contact-form-area {
-    padding: 24px 34px 30px;
-  }
-
-  .contact-title {
-    width: calc(100% + 68px);
-    max-width: none;
-    margin-left: -34px;
-    margin-right: -34px;
-    margin-bottom: 24px;
-    text-align: center;
-    font-size: 60px;
-    line-height: 64px;
-  }
-
-  .contact-title span {
-    min-height: 64px;
-  }
-
-  .contact-title span + span {
-    margin-top: 3px;
-  }
-
-  .contact-form {
-    gap: 21px;
-  }
-
-  .contact-form label {
-    font-size: 17px;
-  }
-
-  .contact-form input,
-  .contact-form textarea {
-    height: 62px;
-    min-height: 62px;
-    border-radius: 31px;
-    font-size: 16px;
-  }
-
-  .send-button {
-    margin-top: 2px;
-  }
-
-  .site-footer {
-    padding: 55px 20px 22px;
-    font-size: 13px;
-  }
-
-  }
+  .emailoctopus-form {
+    width: 1
