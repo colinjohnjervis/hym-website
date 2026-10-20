@@ -41,7 +41,6 @@ function enhanceEmailOctopusForm() {
   }
 
   const introCopy = document.querySelector(".mailing-list-copy");
-
   const emailInput = form.querySelector('input[type="email"]');
 
   const textInputs = Array.from(
@@ -61,17 +60,18 @@ function enhanceEmailOctopusForm() {
     )
   );
 
-  const realSubmit = submitControls.find(control => {
-    const text =
-      control.textContent ||
-      control.value ||
-      "";
+  const realSubmit =
+    submitControls.find(control => {
+      const text =
+        control.textContent ||
+        control.value ||
+        "";
 
-    return text
-      .trim()
-      .toLowerCase()
-      .includes("subscribe");
-  }) || submitControls[0];
+      return text
+        .trim()
+        .toLowerCase()
+        .includes("subscribe");
+    }) || submitControls[0];
 
   if (!emailInput || !locationInput || !realSubmit) {
     return false;
@@ -80,7 +80,7 @@ function enhanceEmailOctopusForm() {
   form.classList.add("hym-emailoctopus-form");
 
 
-  /* MOVE INTRO COPY INSIDE THE PINK BOX */
+  /* MOVE INTRO TEXT INSIDE FORM */
 
   if (introCopy) {
     form.insertBefore(
@@ -90,9 +90,11 @@ function enhanceEmailOctopusForm() {
   }
 
 
-  /* STYLE EMAILOCTOPUS FIELDS */
+  /* STYLE INPUTS */
 
-  emailInput.classList.add("mailing-list-input");
+  emailInput.classList.add(
+    "mailing-list-input"
+  );
 
   locationInput.classList.add(
     "mailing-list-input",
@@ -100,14 +102,14 @@ function enhanceEmailOctopusForm() {
   );
 
 
-  /* REMOVE ANY PREVIOUS HELPER */
+  /* REMOVE PREVIOUS HELPER */
 
   form
     .querySelectorAll(".hym-eo-helper")
     .forEach(element => element.remove());
 
 
-  /* ADD HYM TOWN/CITY HELPER */
+  /* ADD TOWN / CITY HELPER */
 
   const helper = document.createElement("p");
 
@@ -123,7 +125,7 @@ function enhanceEmailOctopusForm() {
   );
 
 
-  /* HIDE EMAILOCTOPUS'S ORIGINAL BUTTON */
+  /* HIDE EMAILOCTOPUS BUTTON */
 
   realSubmit.style.setProperty(
     "display",
@@ -143,16 +145,56 @@ function enhanceEmailOctopusForm() {
   );
 
 
-  /* REMOVE ANY PREVIOUS HYM BUTTON */
+  /* REMOVE PREVIOUS HYM BUTTON */
 
   form
-    .querySelectorAll(".hym-eo-submit")
+    .querySelectorAll(".hym-eo-button-wrap")
     .forEach(element => element.remove());
+
+
+  /* CREATE CENTRED BUTTON WRAPPER */
+
+  const buttonWrap =
+    document.createElement("div");
+
+  buttonWrap.className =
+    "hym-eo-button-wrap";
+
+  buttonWrap.style.setProperty(
+    "width",
+    "100%",
+    "important"
+  );
+
+  buttonWrap.style.setProperty(
+    "display",
+    "flex",
+    "important"
+  );
+
+  buttonWrap.style.setProperty(
+    "justify-content",
+    "center",
+    "important"
+  );
+
+  buttonWrap.style.setProperty(
+    "align-items",
+    "center",
+    "important"
+  );
+
+  buttonWrap.style.setProperty(
+    "margin-top",
+    "28px",
+    "important"
+  );
 
 
   /* CREATE HYM SUBSCRIBE BUTTON */
 
-  const hymButton = document.createElement("button");
+  const hymButton =
+    document.createElement("button");
 
   hymButton.type = "button";
 
@@ -162,6 +204,12 @@ function enhanceEmailOctopusForm() {
   hymButton.setAttribute(
     "aria-label",
     "Subscribe to the Holy Youth Movement mailing list"
+  );
+
+  hymButton.style.setProperty(
+    "margin",
+    "0",
+    "important"
   );
 
   hymButton.innerHTML = `
@@ -198,33 +246,29 @@ function enhanceEmailOctopusForm() {
     </span>
   `;
 
-
-  /* CENTRE BUTTON BELOW HELPER TEXT */
-
-  hymButton.style.setProperty(
-    "align-self",
-    "center",
-    "important"
-  );
+  buttonWrap.appendChild(hymButton);
 
   helper.insertAdjacentElement(
     "afterend",
-    hymButton
+    buttonWrap
   );
 
 
-  /* USE EMAILOCTOPUS'S REAL SUBMIT MECHANISM */
+  /* USE EMAILOCTOPUS SUBMISSION */
 
-  hymButton.addEventListener("click", () => {
-    if (
-      typeof form.reportValidity === "function" &&
-      !form.reportValidity()
-    ) {
-      return;
+  hymButton.addEventListener(
+    "click",
+    () => {
+      if (
+        typeof form.reportValidity === "function" &&
+        !form.reportValidity()
+      ) {
+        return;
+      }
+
+      realSubmit.click();
     }
-
-    realSubmit.click();
-  });
+  );
 
 
   wrapper.dataset.hymEnhanced = "true";
