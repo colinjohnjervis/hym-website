@@ -449,13 +449,6 @@ section { scroll-margin-top:var(--header-height); }
 }
 
 
-/* HIDE EMAILOCTOPUS WEBSITE BRANDING */
-
-.emailoctopus-form > *:not(form) {
-  display:none !important;
-}
-
-
 /* LISTEN */
 
 .listen {
