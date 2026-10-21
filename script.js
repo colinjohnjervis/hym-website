@@ -39,12 +39,6 @@ function hideEmailOctopusBranding() {
       ? formWrapper.querySelector("form")
       : null;
 
-  /*
-    Find links anywhere on the page that identify
-    themselves as EmailOctopus either through
-    their text or their destination.
-  */
-
   const links = Array.from(
     document.querySelectorAll("a")
   );
@@ -68,16 +62,6 @@ function hideEmailOctopusBranding() {
     return false;
   }
 
-  /*
-    Start with the link itself and move upwards.
-
-    We only accept a parent if its text still
-    looks like the small EmailOctopus attribution.
-
-    This prevents us from accidentally selecting
-    a large page wrapper.
-  */
-
   let branding = emailOctopusLink;
   let current = emailOctopusLink;
 
@@ -87,11 +71,6 @@ function hideEmailOctopusBranding() {
     if (!parent) {
       break;
     }
-
-    /*
-      Absolutely never hide the signup form,
-      its wrapper, or anything containing it.
-    */
 
     if (
       parent === form ||
@@ -117,10 +96,6 @@ function hideEmailOctopusBranding() {
     branding = parent;
     current = parent;
   }
-
-  /*
-    Hide only the identified attribution.
-  */
 
   branding.style.setProperty(
     "display",
@@ -453,11 +428,6 @@ function watchForEmailOctopusSuccess(wrapper, form) {
   wrapper.dataset.hymSuccessWatch = "true";
 
   const checkForSuccess = () => {
-    /*
-      If EmailOctopus recreates its attribution,
-      hide it again.
-    */
-
     hideEmailOctopusBranding();
 
     if (form.dataset.hymSubmitted !== "true") {
@@ -471,17 +441,7 @@ function watchForEmailOctopusSuccess(wrapper, form) {
       return;
     }
 
-    /*
-      Remove EmailOctopus's own visible success
-      message from the layout.
-    */
-
     hideEmailOctopusSuccess(nativeSuccess);
-
-
-    /*
-      Show our HYM confirmation instead.
-    */
 
     showHymSuccess(form);
   };
@@ -581,15 +541,58 @@ function enhanceEmailOctopusForm() {
   }
 
 
-  /* STYLE INPUTS */
+  /* EMAIL FIELD */
 
   emailInput.classList.add(
     "mailing-list-input"
   );
 
+  emailInput.setAttribute(
+    "autocomplete",
+    "email"
+  );
+
+  emailInput.setAttribute(
+    "inputmode",
+    "email"
+  );
+
+  emailInput.setAttribute(
+    "autocapitalize",
+    "none"
+  );
+
+  emailInput.setAttribute(
+    "autocorrect",
+    "off"
+  );
+
+  emailInput.setAttribute(
+    "spellcheck",
+    "false"
+  );
+
+
+  /* TOWN / CITY FIELD */
+
   locationInput.classList.add(
     "mailing-list-input",
     "mailing-list-location"
+  );
+
+  locationInput.setAttribute(
+    "autocomplete",
+    "address-level2"
+  );
+
+  locationInput.setAttribute(
+    "autocorrect",
+    "off"
+  );
+
+  locationInput.setAttribute(
+    "spellcheck",
+    "false"
   );
 
 
@@ -768,11 +771,6 @@ function enhanceEmailOctopusForm() {
       return;
     }
 
-    /*
-      Freeze the pink box before EmailOctopus
-      processes the submission.
-    */
-
     freezeHymForm(form);
 
     form.dataset.hymSubmitted = "true";
@@ -807,13 +805,7 @@ if (!enhanceEmailOctopusForm()) {
 }
 
 
-/*
-  EmailOctopus may add the attribution slightly
-  after the form itself has loaded.
-
-  Watch the page briefly and remove it whenever
-  it appears.
-*/
+/* CATCH LATE EMAILOCTOPUS ATTRIBUTION */
 
 let brandingChecks = 0;
 
