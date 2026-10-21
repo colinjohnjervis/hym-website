@@ -30,64 +30,107 @@ navLinks.forEach(link => {
 
 /* HIDE EMAILOCTOPUS WEBSITE ATTRIBUTION */
 
-function hideEmailOctopusBranding(wrapper, form) {
-  if (!wrapper || !form) {
-    return;
-  }
+function hideEmailOctopusBranding() {
+  const formWrapper =
+    document.querySelector(".emailoctopus-form");
 
-  const elements = Array.from(
-    wrapper.querySelectorAll("*")
-  );
+  const form =
+    formWrapper
+      ? formWrapper.querySelector("form")
+      : null;
 
   /*
-    Find the smallest generated element whose
-    visible text identifies the EmailOctopus
-    attribution.
-
-    Never hide the form, anything inside the
-    form, or anything containing the form.
+    Find links anywhere on the page that identify
+    themselves as EmailOctopus either through
+    their text or their destination.
   */
 
-  const candidates = elements.filter(element => {
-    if (
-      element === form ||
-      form.contains(element) ||
-      element.contains(form)
-    ) {
-      return false;
-    }
+  const links = Array.from(
+    document.querySelectorAll("a")
+  );
 
-    const text = (element.textContent || "")
+  const emailOctopusLink = links.find(link => {
+    const text = (link.textContent || "")
       .replace(/\s+/g, " ")
       .trim()
       .toLowerCase();
 
+    const href = (link.getAttribute("href") || "")
+      .toLowerCase();
+
     return (
       text.includes("emailoctopus") ||
-      text.includes("powered by")
+      href.includes("emailoctopus")
     );
   });
 
-  if (!candidates.length) {
-    return;
+  if (!emailOctopusLink) {
+    return false;
   }
 
   /*
-    Prefer the deepest/smallest matching element.
-    This avoids hiding a larger EmailOctopus
-    wrapper unnecessarily.
+    Start with the link itself and move upwards.
+
+    We only accept a parent if its text still
+    looks like the small EmailOctopus attribution.
+
+    This prevents us from accidentally selecting
+    a large page wrapper.
   */
 
-  const branding = candidates.find(element => {
-    return !candidates.some(other =>
-      other !== element &&
-      element.contains(other)
-    );
-  }) || candidates[candidates.length - 1];
+  let branding = emailOctopusLink;
+  let current = emailOctopusLink;
+
+  for (let i = 0; i < 6; i++) {
+    const parent = current.parentElement;
+
+    if (!parent) {
+      break;
+    }
+
+    /*
+      Absolutely never hide the signup form,
+      its wrapper, or anything containing it.
+    */
+
+    if (
+      parent === form ||
+      parent === formWrapper ||
+      (form && parent.contains(form))
+    ) {
+      break;
+    }
+
+    const text = (parent.textContent || "")
+      .replace(/\s+/g, " ")
+      .trim()
+      .toLowerCase();
+
+    const looksLikeBranding =
+      text.includes("emailoctopus") &&
+      text.length < 100;
+
+    if (!looksLikeBranding) {
+      break;
+    }
+
+    branding = parent;
+    current = parent;
+  }
+
+  /*
+    Hide only the identified attribution.
+  */
 
   branding.style.setProperty(
     "display",
     "none",
+    "important"
+  );
+
+  branding.style.setProperty(
+    "visibility",
+    "hidden",
     "important"
   );
 
@@ -99,6 +142,12 @@ function hideEmailOctopusBranding(wrapper, form) {
 
   branding.style.setProperty(
     "min-height",
+    "0",
+    "important"
+  );
+
+  branding.style.setProperty(
+    "max-height",
     "0",
     "important"
   );
@@ -120,6 +169,8 @@ function hideEmailOctopusBranding(wrapper, form) {
     "hidden",
     "important"
   );
+
+  return true;
 }
 
 
@@ -403,14 +454,11 @@ function watchForEmailOctopusSuccess(wrapper, form) {
 
   const checkForSuccess = () => {
     /*
-      Keep the EmailOctopus website attribution
-      hidden if their script recreates it.
+      If EmailOctopus recreates its attribution,
+      hide it again.
     */
 
-    hideEmailOctopusBranding(
-      wrapper,
-      form
-    );
+    hideEmailOctopusBranding();
 
     if (form.dataset.hymSubmitted !== "true") {
       return;
@@ -444,9 +492,9 @@ function watchForEmailOctopusSuccess(wrapper, form) {
   });
 
   observer.observe(wrapper, {
-    childList: true,
-    subtree: true,
-    characterData: true
+    childList:true,
+    subtree:true,
+    characterData:true
   });
 }
 
@@ -697,15 +745,9 @@ function enhanceEmailOctopusForm() {
   );
 
 
-  /*
-    NOW THAT THE FORM HAS BEEN IDENTIFIED,
-    REMOVE ONLY THE GENERATED ATTRIBUTION.
-  */
+  /* HIDE WEBSITE ATTRIBUTION */
 
-  hideEmailOctopusBranding(
-    wrapper,
-    form
-  );
+  hideEmailOctopusBranding();
 
 
   /* WATCH EMAILOCTOPUS */
@@ -758,8 +800,29 @@ if (!enhanceEmailOctopusForm()) {
   emailOctopusObserver.observe(
     document.body,
     {
-      childList: true,
-      subtree: true
+      childList:true,
+      subtree:true
     }
   );
 }
+
+
+/*
+  EmailOctopus may add the attribution slightly
+  after the form itself has loaded.
+
+  Watch the page briefly and remove it whenever
+  it appears.
+*/
+
+let brandingChecks = 0;
+
+const brandingTimer = setInterval(() => {
+  hideEmailOctopusBranding();
+
+  brandingChecks += 1;
+
+  if (brandingChecks >= 20) {
+    clearInterval(brandingTimer);
+  }
+}, 250);
