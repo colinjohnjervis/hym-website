@@ -27,6 +27,102 @@ navLinks.forEach(link => {
 
 /* EMAILOCTOPUS MAILING LIST */
 
+
+/* HIDE EMAILOCTOPUS WEBSITE ATTRIBUTION */
+
+function hideEmailOctopusBranding(wrapper, form) {
+  if (!wrapper || !form) {
+    return;
+  }
+
+  const elements = Array.from(
+    wrapper.querySelectorAll("*")
+  );
+
+  /*
+    Find the smallest generated element whose
+    visible text identifies the EmailOctopus
+    attribution.
+
+    Never hide the form, anything inside the
+    form, or anything containing the form.
+  */
+
+  const candidates = elements.filter(element => {
+    if (
+      element === form ||
+      form.contains(element) ||
+      element.contains(form)
+    ) {
+      return false;
+    }
+
+    const text = (element.textContent || "")
+      .replace(/\s+/g, " ")
+      .trim()
+      .toLowerCase();
+
+    return (
+      text.includes("emailoctopus") ||
+      text.includes("powered by")
+    );
+  });
+
+  if (!candidates.length) {
+    return;
+  }
+
+  /*
+    Prefer the deepest/smallest matching element.
+    This avoids hiding a larger EmailOctopus
+    wrapper unnecessarily.
+  */
+
+  const branding = candidates.find(element => {
+    return !candidates.some(other =>
+      other !== element &&
+      element.contains(other)
+    );
+  }) || candidates[candidates.length - 1];
+
+  branding.style.setProperty(
+    "display",
+    "none",
+    "important"
+  );
+
+  branding.style.setProperty(
+    "height",
+    "0",
+    "important"
+  );
+
+  branding.style.setProperty(
+    "min-height",
+    "0",
+    "important"
+  );
+
+  branding.style.setProperty(
+    "margin",
+    "0",
+    "important"
+  );
+
+  branding.style.setProperty(
+    "padding",
+    "0",
+    "important"
+  );
+
+  branding.style.setProperty(
+    "overflow",
+    "hidden",
+    "important"
+  );
+}
+
+
 function freezeHymForm(form) {
   if (!form || form.dataset.hymFrozen === "true") {
     return;
@@ -306,6 +402,16 @@ function watchForEmailOctopusSuccess(wrapper, form) {
   wrapper.dataset.hymSuccessWatch = "true";
 
   const checkForSuccess = () => {
+    /*
+      Keep the EmailOctopus website attribution
+      hidden if their script recreates it.
+    */
+
+    hideEmailOctopusBranding(
+      wrapper,
+      form
+    );
+
     if (form.dataset.hymSubmitted !== "true") {
       return;
     }
@@ -588,6 +694,17 @@ function enhanceEmailOctopusForm() {
   helper.insertAdjacentElement(
     "afterend",
     buttonWrap
+  );
+
+
+  /*
+    NOW THAT THE FORM HAS BEEN IDENTIFIED,
+    REMOVE ONLY THE GENERATED ATTRIBUTION.
+  */
+
+  hideEmailOctopusBranding(
+    wrapper,
+    form
   );
 
 
