@@ -671,10 +671,13 @@
 
     <video
       class="hero-video"
+      id="heroVideo"
       autoplay
       loop
       muted
       playsinline
+      webkit-playsinline
+      preload="auto"
     >
 
       <source
@@ -723,9 +726,7 @@
 
 
     </div>
-
-
-    <!-- CONTROLS -->
+        <!-- CONTROLS -->
 
     <div class="entrance-controls">
 
@@ -781,6 +782,9 @@
 
   <script>
 
+    const heroVideo =
+      document.getElementById("heroVideo");
+
     const soundButton =
       document.getElementById("soundButton");
 
@@ -792,6 +796,130 @@
 
 
     let soundIsOn = false;
+
+
+    /*
+      BACKGROUND VIDEO
+      Keep video muted and explicitly request playback.
+      This strengthens autoplay behaviour on iPhone / Safari.
+    */
+
+    function startHeroVideo() {
+
+      if (!heroVideo) {
+        return;
+      }
+
+      heroVideo.muted = true;
+
+      heroVideo.defaultMuted = true;
+
+      heroVideo.setAttribute(
+        "muted",
+        ""
+      );
+
+      heroVideo.setAttribute(
+        "playsinline",
+        ""
+      );
+
+      const playAttempt =
+        heroVideo.play();
+
+      if (
+        playAttempt !== undefined
+        &&
+        typeof playAttempt.catch === "function"
+      ) {
+
+        playAttempt.catch(
+          function () {
+            /*
+              Safari may temporarily refuse playback.
+              A later lifecycle event will try again.
+            */
+          }
+        );
+
+      }
+
+    }
+
+
+    /*
+      INITIAL VIDEO START
+    */
+
+    if (document.readyState === "loading") {
+
+      document.addEventListener(
+        "DOMContentLoaded",
+        startHeroVideo
+      );
+
+    }
+
+    else {
+
+      startHeroVideo();
+
+    }
+
+
+    /*
+      TRY AGAIN ONCE THE VIDEO CAN PLAY
+    */
+
+    heroVideo.addEventListener(
+      "canplay",
+      startHeroVideo,
+      { once: true }
+    );
+
+
+    /*
+      SAFARI CAN SUSPEND VIDEO WHEN THE PAGE
+      GOES INTO THE BACKGROUND.
+
+      RESTART IT WHEN THE PAGE BECOMES
+      VISIBLE AGAIN.
+    */
+
+    document.addEventListener(
+      "visibilitychange",
+      function () {
+
+        if (
+          document.visibilityState === "visible"
+          &&
+          heroVideo.paused
+        ) {
+
+          startHeroVideo();
+
+        }
+
+      }
+    );
+
+
+    /*
+      ALSO HANDLE SAFARI PAGE RESTORATION
+    */
+
+    window.addEventListener(
+      "pageshow",
+      function () {
+
+        if (heroVideo.paused) {
+
+          startHeroVideo();
+
+        }
+
+      }
+    );
 
 
     /*
@@ -874,7 +1002,7 @@
 
 
     /*
-      BUTTON TOGGLE
+      SOUND BUTTON TOGGLE
     */
 
     soundButton.addEventListener(
