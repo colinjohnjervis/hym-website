@@ -408,6 +408,29 @@ section { scroll-margin-top:var(--header-height); }
   outline:none !important; box-shadow:none !important;
 }
 
+
+/* CHROME / ANDROID AUTOFILL */
+
+.emailoctopus-form .mailing-list-input:-webkit-autofill,
+.emailoctopus-form .mailing-list-input:-webkit-autofill:hover,
+.emailoctopus-form .mailing-list-input:-webkit-autofill:focus,
+.emailoctopus-form .mailing-list-input:-webkit-autofill:active {
+  -webkit-text-fill-color:var(--white) !important;
+  caret-color:var(--white) !important;
+  -webkit-box-shadow:
+    0 0 0 1000px var(--charcoal) inset !important;
+  box-shadow:
+    0 0 0 1000px var(--charcoal) inset !important;
+  background-color:var(--charcoal) !important;
+  border-radius:0 !important;
+  transition:background-color 9999s ease-out 0s;
+}
+
+.emailoctopus-form .mailing-list-input:-webkit-autofill:focus {
+  border-color:var(--pink) !important;
+}
+
+
 .emailoctopus-form .mailing-list-location {
   margin-top:18px !important;
 }
@@ -798,4 +821,4 @@ section { scroll-margin-top:var(--header-height); }
   .site-footer {
     padding:55px 20px 22px; font-size:13px;
   }
-    }
+}
