@@ -390,6 +390,9 @@ function showHymSuccess(form) {
     text-align:center;
   `;
 
+
+  /* INBOX MESSAGE */
+
   const inboxMessage = document.createElement("p");
 
   inboxMessage.textContent =
@@ -397,10 +400,29 @@ function showHymSuccess(form) {
 
   inboxMessage.style.cssText = `
     max-width:520px;
-    margin:0 auto;
-    color:rgba(255,255,255,.72);
+    margin:0 auto 12px;
+    color:#fff;
     font-family:'Inter',Arial,Helvetica,sans-serif;
-    font-size:.9rem;
+    font-size:1rem;
+    font-weight:400;
+    line-height:1.6;
+    text-align:center;
+  `;
+
+
+  /* JUNK / SPAM MESSAGE */
+
+  const spamMessage = document.createElement("p");
+
+  spamMessage.textContent =
+    "Can't find it? Check your junk or spam folder and add hello@holyyouthmovement.co.uk to your contacts to help ensure you don't miss future updates.";
+
+  spamMessage.style.cssText = `
+    max-width:520px;
+    margin:0 auto;
+    color:#fff;
+    font-family:'Inter',Arial,Helvetica,sans-serif;
+    font-size:1rem;
     font-weight:400;
     line-height:1.6;
     text-align:center;
@@ -412,6 +434,7 @@ function showHymSuccess(form) {
   success.appendChild(title);
   success.appendChild(message);
   success.appendChild(inboxMessage);
+  success.appendChild(spamMessage);
 
   form.appendChild(success);
 }
