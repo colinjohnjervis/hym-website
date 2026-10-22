@@ -414,8 +414,8 @@ function showHymSuccess(form) {
 
   const spamMessage = document.createElement("p");
 
-  spamMessage.textContent =
-    "Can't find it? Check your junk or spam folder and add hello@holyyouthmovement.co.uk to your contacts to help ensure you don't miss future updates.";
+  spamMessage.innerHTML =
+    "Can't find it? Check your junk or spam folder and add hello@holyyouthmovement.co.uk<br>to your contacts to help ensure you<br>don't miss future updates.";
 
   spamMessage.style.cssText = `
     max-width:520px;
