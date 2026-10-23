@@ -123,10 +123,8 @@ function removeTopBandsintownDivider() {
 
 
   /*
-    Bandsintown may create the divider
-    as a border on a larger container
-    rather than as a separate thin
-    element.
+    Bandsintown creates the divider
+    as a border on a larger container.
 
     Look at rendered elements near the
     top of the widget and find visible
@@ -178,9 +176,6 @@ function removeTopBandsintownDivider() {
       /*
         Only inspect elements in the
         upper part of the widget.
-
-        This keeps us away from the
-        divider between later events.
       */
 
       if (
@@ -192,8 +187,8 @@ function removeTopBandsintownDivider() {
 
 
       /*
-        The visible divider spans most
-        of the widget width.
+        The divider spans most of
+        the widget width.
       */
 
       if (
@@ -244,15 +239,6 @@ function removeTopBandsintownDivider() {
       }
 
 
-      /*
-        Store the actual vertical
-        position of each border.
-
-        A bottom border sits at the
-        bottom of its element rather
-        than at rect.top.
-      */
-
       if (hasTopBorder) {
 
         candidates.push({
@@ -286,13 +272,6 @@ function removeTopBandsintownDivider() {
   }
 
 
-  /*
-    Ignore borders right against the
-    outer edge of the widget and sort
-    remaining borders from highest
-    to lowest.
-  */
-
   const usableCandidates =
     candidates
       .filter(candidate =>
@@ -312,9 +291,9 @@ function removeTopBandsintownDivider() {
 
 
   /*
-    The highest qualifying horizontal
-    border is the unwanted divider
-    above the first event.
+    The highest qualifying border is
+    the unwanted divider above the
+    first event.
   */
 
   const divider =
@@ -350,6 +329,40 @@ function removeTopBandsintownDivider() {
     divider.element.style.setProperty(
       "border-bottom-width",
       "0",
+      "important"
+    );
+
+  }
+
+
+  /*
+    REDUCE EMPTY SPACE ABOVE FIRST EVENT
+
+    The divider element/container is
+    also responsible for some of the
+    space above the first event.
+
+    Pull the content following that
+    divider upwards by 55px.
+
+    We do this on the divider's
+    container rather than changing
+    spacing between individual events.
+  */
+
+  const dividerContainer =
+    divider.element;
+
+
+  const nextElement =
+    dividerContainer.nextElementSibling;
+
+
+  if (nextElement) {
+
+    nextElement.style.setProperty(
+      "margin-top",
+      "-55px",
       "important"
     );
 
