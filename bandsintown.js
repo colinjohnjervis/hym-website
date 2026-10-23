@@ -100,11 +100,10 @@ function hideUnwantedBandsintownContent() {
 
 
 /* =========================
-   REMOVE TOP DIVIDER
-   + REDUCE TOP SPACE
+   REDUCE TOP WIDGET SPACE
 ========================= */
 
-function tidyTopOfBandsintown() {
+function tightenTopWidgetSpace() {
 
   if (!widget) {
     return;
@@ -112,20 +111,18 @@ function tidyTopOfBandsintown() {
 
 
   /*
-    IMPORTANT:
+    Only make this spacing adjustment
+    once.
 
-    Once we have successfully removed
-    the original top divider, NEVER run
-    this operation again.
-
-    Without this lock, the next divider
-    between events would become the
-    highest remaining border on a later
-    check and would also be removed.
+    Bandsintown continues changing its
+    DOM while loading, so repeated
+    adjustments could gradually alter
+    the layout.
   */
 
   if (
-    widget.dataset.hymTopTidied === "true"
+    widget.dataset.hymTopSpacing ===
+    "true"
   ) {
     return;
   }
@@ -142,6 +139,19 @@ function tidyTopOfBandsintown() {
     return;
   }
 
+
+  /*
+    Find the first wide horizontal
+    border near the top of the widget.
+
+    IMPORTANT:
+    We are NOT removing this border.
+
+    It is simply being used as a
+    reference point so we can identify
+    the container responsible for the
+    excessive space above it.
+  */
 
   const candidates = [];
 
@@ -180,23 +190,10 @@ function tidyTopOfBandsintown() {
       }
 
 
-      const distanceFromTop =
-        rect.top -
-        widgetRect.top;
-
-
       /*
-        Only inspect wide elements
-        towards the top of the widget.
+        Ignore narrow elements such as
+        buttons, text and icons.
       */
-
-      if (
-        distanceFromTop < 10 ||
-        distanceFromTop > 220
-      ) {
-        return;
-      }
-
 
       if (
         rect.width <
@@ -232,197 +229,134 @@ function tidyTopOfBandsintown() {
 
       if (hasTopBorder) {
 
-        candidates.push({
-          element,
-          side: "top",
-          position:
-            rect.top -
-            widgetRect.top
-        });
+        const position =
+          rect.top -
+          widgetRect.top;
+
+
+        if (
+          position >= 15 &&
+          position <= 220
+        ) {
+
+          candidates.push({
+            element,
+            side: "top",
+            position
+          });
+
+        }
 
       }
 
 
       if (hasBottomBorder) {
 
-        candidates.push({
-          element,
-          side: "bottom",
-          position:
-            rect.bottom -
-            widgetRect.top
-        });
+        const position =
+          rect.bottom -
+          widgetRect.top;
+
+
+        if (
+          position >= 15 &&
+          position <= 220
+        ) {
+
+          candidates.push({
+            element,
+            side: "bottom",
+            position
+          });
+
+        }
 
       }
 
     });
 
 
-  const usableCandidates =
-    candidates
-      .filter(candidate =>
-        candidate.position >= 15 &&
-        candidate.position <= 220
-      )
-      .sort(
-        (a, b) =>
-          a.position -
-          b.position
-      );
-
-
-  if (!usableCandidates.length) {
+  if (!candidates.length) {
     return;
   }
 
 
   /*
-    The highest qualifying border is
-    the unwanted divider above event 1.
-  */
-
-  const divider =
-    usableCandidates[0];
-
-
-  /*
-    REMOVE ONLY THAT DIVIDER
-  */
-
-  if (
-    divider.side === "top"
-  ) {
-
-    divider.element.style.setProperty(
-      "border-top",
-      "0",
-      "important"
-    );
-
-    divider.element.style.setProperty(
-      "border-top-width",
-      "0",
-      "important"
-    );
-
-  }
-
-  else {
-
-    divider.element.style.setProperty(
-      "border-bottom",
-      "0",
-      "important"
-    );
-
-    divider.element.style.setProperty(
-      "border-bottom-width",
-      "0",
-      "important"
-    );
-
-  }
-
-
-  /*
-    REDUCE SPACE ABOVE EVENT ONE
-
-    Only alter spacing on the SAME
-    element that owned the original
+    The highest border is our original
     top divider.
-
-    Do not touch siblings or later
-    event containers.
   */
 
-  const dividerElement =
-    divider.element;
+  candidates.sort(
+    (a, b) =>
+      a.position -
+      b.position
+  );
 
 
-  const dividerStyle =
-    window.getComputedStyle(
-      dividerElement
-    );
-
-
-  const currentPaddingTop =
-    parseFloat(
-      dividerStyle.paddingTop
-    ) || 0;
-
-
-  const currentMarginTop =
-    parseFloat(
-      dividerStyle.marginTop
-    ) || 0;
+  const firstDivider =
+    candidates[0];
 
 
   /*
-    Reduce up to 55px of top padding.
+    We want the first divider to sit
+    roughly 45px below the top of the
+    Bandsintown widget.
+
+    Rather than changing the divider
+    or any event, move the WHOLE widget
+    upwards by the excess amount.
+
+    Because all events move together,
+    their internal spacing and divider
+    positions remain unchanged.
   */
 
-  const paddingReduction =
+  const desiredTopSpace = 45;
+
+
+  const excessSpace =
+    Math.max(
+      0,
+      firstDivider.position -
+      desiredTopSpace
+    );
+
+
+  if (excessSpace <= 0) {
+
+    widget.dataset.hymTopSpacing =
+      "true";
+
+    return;
+  }
+
+
+  /*
+    Cap the adjustment so an unexpected
+    Bandsintown layout can never cause
+    a huge movement.
+  */
+
+  const adjustment =
     Math.min(
-      currentPaddingTop,
-      55
+      excessSpace,
+      70
     );
 
 
-  if (paddingReduction > 0) {
-
-    dividerElement.style.setProperty(
-      "padding-top",
-      Math.max(
-        0,
-        currentPaddingTop -
-        paddingReduction
-      ) + "px",
-      "important"
-    );
-
-  }
+  widget.style.setProperty(
+    "margin-top",
+    `-${adjustment}px`,
+    "important"
+  );
 
 
   /*
-    If necessary, use positive top
-    margin on this SAME element for
-    the remainder of the reduction.
+    Mark complete so later widget
+    mutations do not apply the
+    adjustment repeatedly.
   */
 
-  const remainingReduction =
-    55 - paddingReduction;
-
-
-  if (
-    remainingReduction > 0 &&
-    currentMarginTop > 0
-  ) {
-
-    dividerElement.style.setProperty(
-      "margin-top",
-      Math.max(
-        0,
-        currentMarginTop -
-        remainingReduction
-      ) + "px",
-      "important"
-    );
-
-  }
-
-
-  /*
-    LOCK THIS OPERATION.
-
-    Bandsintown continues mutating its
-    widget after initial rendering.
-
-    This prevents a later run from
-    mistaking the event-to-event
-    divider for the top divider.
-  */
-
-  widget.dataset.hymTopTidied =
+  widget.dataset.hymTopSpacing =
     "true";
 
 }
@@ -514,7 +448,7 @@ function findBandsintownLogo() {
     candidates.push({
       element: link,
       top: rect.top,
-      hasArtwork: hasArtwork
+      hasArtwork
     });
 
   });
@@ -791,6 +725,8 @@ function buildExternalCredit() {
 
   /*
     Hide ONLY the original logo.
+
+    Do not hide its parent.
   */
 
   realLogo.style.setProperty(
@@ -819,7 +755,7 @@ function tidyBandsintown() {
 
   hideUnwantedBandsintownContent();
 
-  tidyTopOfBandsintown();
+  tightenTopWidgetSpace();
 
   buildExternalCredit();
 
