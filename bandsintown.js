@@ -101,9 +101,10 @@ function hideUnwantedBandsintownContent() {
 
 /* =========================
    REMOVE TOP DIVIDER
+   + REDUCE TOP SPACE
 ========================= */
 
-function removeTopBandsintownDivider() {
+function tidyTopOfBandsintown() {
 
   if (!widget) {
     return;
@@ -121,15 +122,6 @@ function removeTopBandsintownDivider() {
     return;
   }
 
-
-  /*
-    Bandsintown creates the divider
-    as a border on a larger container.
-
-    Look at rendered elements near the
-    top of the widget and find visible
-    horizontal borders.
-  */
 
   const candidates = [];
 
@@ -174,8 +166,8 @@ function removeTopBandsintownDivider() {
 
 
       /*
-        Only inspect elements in the
-        upper part of the widget.
+        Only inspect wide elements
+        towards the top of the widget.
       */
 
       if (
@@ -185,11 +177,6 @@ function removeTopBandsintownDivider() {
         return;
       }
 
-
-      /*
-        The divider spans most of
-        the widget width.
-      */
 
       if (
         rect.width <
@@ -211,32 +198,16 @@ function removeTopBandsintownDivider() {
         ) || 0;
 
 
-      const topStyle =
-        style.borderTopStyle;
-
-
-      const bottomStyle =
-        style.borderBottomStyle;
-
-
       const hasTopBorder =
         topWidth > 0 &&
-        topStyle !== "none" &&
-        topStyle !== "hidden";
+        style.borderTopStyle !== "none" &&
+        style.borderTopStyle !== "hidden";
 
 
       const hasBottomBorder =
         bottomWidth > 0 &&
-        bottomStyle !== "none" &&
-        bottomStyle !== "hidden";
-
-
-      if (
-        !hasTopBorder &&
-        !hasBottomBorder
-      ) {
-        return;
-      }
+        style.borderBottomStyle !== "none" &&
+        style.borderBottomStyle !== "hidden";
 
 
       if (hasTopBorder) {
@@ -267,11 +238,6 @@ function removeTopBandsintownDivider() {
     });
 
 
-  if (!candidates.length) {
-    return;
-  }
-
-
   const usableCandidates =
     candidates
       .filter(candidate =>
@@ -291,14 +257,17 @@ function removeTopBandsintownDivider() {
 
 
   /*
-    The highest qualifying border is
-    the unwanted divider above the
-    first event.
+    This is the top divider we have
+    already successfully identified.
   */
 
   const divider =
     usableCandidates[0];
 
+
+  /*
+    REMOVE THE DIVIDER
+  */
 
   if (
     divider.side === "top"
@@ -336,33 +305,92 @@ function removeTopBandsintownDivider() {
 
 
   /*
-    REDUCE EMPTY SPACE ABOVE FIRST EVENT
+    REDUCE THE SPACE ABOVE EVENT ONE
 
-    The divider element/container is
-    also responsible for some of the
-    space above the first event.
+    Important:
+    We alter the SAME element that owned
+    the unwanted top divider.
 
-    Pull the content following that
-    divider upwards by 55px.
-
-    We do this on the divider's
-    container rather than changing
-    spacing between individual events.
+    We do NOT touch its next sibling,
+    so later events retain their normal
+    Bandsintown spacing.
   */
 
-  const dividerContainer =
+  const dividerElement =
     divider.element;
 
 
-  const nextElement =
-    dividerContainer.nextElementSibling;
+  const dividerStyle =
+    window.getComputedStyle(
+      dividerElement
+    );
 
 
-  if (nextElement) {
+  const currentPaddingTop =
+    parseFloat(
+      dividerStyle.paddingTop
+    ) || 0;
 
-    nextElement.style.setProperty(
+
+  const currentMarginTop =
+    parseFloat(
+      dividerStyle.marginTop
+    ) || 0;
+
+
+  /*
+    First remove available top padding.
+
+    We cap the reduction at 55px.
+  */
+
+  const paddingReduction =
+    Math.min(
+      currentPaddingTop,
+      55
+    );
+
+
+  if (paddingReduction > 0) {
+
+    dividerElement.style.setProperty(
+      "padding-top",
+      Math.max(
+        0,
+        currentPaddingTop -
+        paddingReduction
+      ) + "px",
+      "important"
+    );
+
+  }
+
+
+  /*
+    If padding alone didn't account for
+    the full 55px, reduce positive top
+    margin on the same element as well.
+
+    Again, nothing belonging to the
+    second event is moved independently.
+  */
+
+  const remainingReduction =
+    55 - paddingReduction;
+
+
+  if (
+    remainingReduction > 0 &&
+    currentMarginTop > 0
+  ) {
+
+    dividerElement.style.setProperty(
       "margin-top",
-      "-55px",
+      Math.max(
+        0,
+        currentMarginTop -
+        remainingReduction
+      ) + "px",
       "important"
     );
 
@@ -734,8 +762,6 @@ function buildExternalCredit() {
 
   /*
     Hide ONLY the original logo.
-
-    Do not hide its parent.
   */
 
   realLogo.style.setProperty(
@@ -764,7 +790,7 @@ function tidyBandsintown() {
 
   hideUnwantedBandsintownContent();
 
-  removeTopBandsintownDivider();
+  tidyTopOfBandsintown();
 
   buildExternalCredit();
 
