@@ -100,7 +100,7 @@ function hideUnwantedBandsintownContent() {
 
 
 /* =========================
-   TIGHTEN TOP OF WIDGET
+   REMOVE TOP DIVIDER
 ========================= */
 
 function tightenTopWidgetSpace() {
@@ -126,11 +126,11 @@ function tightenTopWidgetSpace() {
     Look through rendered Bandsintown
     elements near the top.
 
-    We are looking for the first
-    wide, very shallow visible element.
+    We are looking for wide, very
+    shallow visible elements.
 
-    This corresponds to the horizontal
-    separator without relying on a
+    These correspond to horizontal
+    separators without relying on a
     particular Bandsintown class name.
   */
 
@@ -158,7 +158,9 @@ function tightenTopWidgetSpace() {
         const visible =
           style.display !== "none" &&
           style.visibility !== "hidden" &&
-          parseFloat(style.opacity || "1") > 0;
+          parseFloat(
+            style.opacity || "1"
+          ) > 0;
 
 
         const wideEnough =
@@ -203,7 +205,11 @@ function tightenTopWidgetSpace() {
 
 
   /*
-    Use the highest matching separator.
+    Sort from highest to lowest.
+
+    The highest matching separator is
+    the unnecessary divider above the
+    first event.
   */
 
   candidates.sort(
@@ -218,77 +224,17 @@ function tightenTopWidgetSpace() {
 
 
   /*
-    First try to reduce spacing on the
-    separator itself.
+    Hide ONLY the first/top divider.
+
+    Dividers between events remain
+    untouched.
   */
 
   separator.style.setProperty(
-    "margin-top",
-    "-24px",
+    "display",
+    "none",
     "important"
   );
-
-
-  /*
-    Bandsintown may place the spacing on
-    the immediate parent instead.
-
-    If that parent is a relatively small
-    layout wrapper, reduce its top padding.
-
-    We deliberately DON'T climb further
-    through the DOM because that could
-    affect the entire event listing.
-  */
-
-  const parent =
-    separator.parentElement;
-
-
-  if (
-    parent &&
-    parent !== widget
-  ) {
-
-    const parentRect =
-      parent.getBoundingClientRect();
-
-
-    const parentStyle =
-      window.getComputedStyle(
-        parent
-      );
-
-
-    const currentPaddingTop =
-      parseFloat(
-        parentStyle.paddingTop
-      ) || 0;
-
-
-    /*
-      Only alter a parent that occupies
-      the top portion of the widget,
-      rather than the entire event list.
-    */
-
-    if (
-      parentRect.height < 180 &&
-      currentPaddingTop > 0
-    ) {
-
-      parent.style.setProperty(
-        "padding-top",
-        Math.max(
-          0,
-          currentPaddingTop - 24
-        ) + "px",
-        "important"
-      );
-
-    }
-
-  }
 
 }
 
