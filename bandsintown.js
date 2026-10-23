@@ -103,7 +103,7 @@ function hideUnwantedBandsintownContent() {
    REMOVE TOP DIVIDER
 ========================= */
 
-function tightenTopWidgetSpace() {
+function removeTopBandsintownDivider() {
 
   if (!widget) {
     return;
@@ -123,80 +123,162 @@ function tightenTopWidgetSpace() {
 
 
   /*
-    Look through rendered Bandsintown
-    elements near the top.
+    Bandsintown may create the divider
+    as a border on a larger container
+    rather than as a separate thin
+    element.
 
-    We are looking for wide, very
-    shallow visible elements.
-
-    These correspond to horizontal
-    separators without relying on a
-    particular Bandsintown class name.
+    Look at rendered elements near the
+    top of the widget and find visible
+    horizontal borders.
   */
 
-  const candidates =
-    Array.from(
-      widget.querySelectorAll("*")
-    )
-      .map(element => {
-
-        const rect =
-          element.getBoundingClientRect();
+  const candidates = [];
 
 
-        const style =
-          window.getComputedStyle(
-            element
-          );
+  Array.from(
+    widget.querySelectorAll("*")
+  )
+    .forEach(element => {
+
+      const rect =
+        element.getBoundingClientRect();
 
 
-        const distanceFromTop =
-          rect.top -
-          widgetRect.top;
+      if (
+        rect.width <= 0 ||
+        rect.height <= 0
+      ) {
+        return;
+      }
 
 
-        const visible =
-          style.display !== "none" &&
-          style.visibility !== "hidden" &&
-          parseFloat(
-            style.opacity || "1"
-          ) > 0;
+      const style =
+        window.getComputedStyle(
+          element
+        );
 
 
-        const wideEnough =
-          rect.width >=
-          widgetRect.width * 0.70;
+      if (
+        style.display === "none" ||
+        style.visibility === "hidden" ||
+        parseFloat(
+          style.opacity || "1"
+        ) <= 0
+      ) {
+        return;
+      }
 
 
-        const shallowEnough =
-          rect.height > 0 &&
-          rect.height <= 8;
+      const distanceFromTop =
+        rect.top -
+        widgetRect.top;
 
 
-        const nearTop =
-          distanceFromTop >= 15 &&
-          distanceFromTop <= 180;
+      /*
+        Only inspect elements in the
+        upper part of the widget.
+
+        This keeps us away from the
+        divider between later events.
+      */
+
+      if (
+        distanceFromTop < 10 ||
+        distanceFromTop > 220
+      ) {
+        return;
+      }
 
 
-        return {
+      /*
+        The visible divider spans most
+        of the widget width.
+      */
+
+      if (
+        rect.width <
+        widgetRect.width * 0.65
+      ) {
+        return;
+      }
+
+
+      const topWidth =
+        parseFloat(
+          style.borderTopWidth
+        ) || 0;
+
+
+      const bottomWidth =
+        parseFloat(
+          style.borderBottomWidth
+        ) || 0;
+
+
+      const topStyle =
+        style.borderTopStyle;
+
+
+      const bottomStyle =
+        style.borderBottomStyle;
+
+
+      const hasTopBorder =
+        topWidth > 0 &&
+        topStyle !== "none" &&
+        topStyle !== "hidden";
+
+
+      const hasBottomBorder =
+        bottomWidth > 0 &&
+        bottomStyle !== "none" &&
+        bottomStyle !== "hidden";
+
+
+      if (
+        !hasTopBorder &&
+        !hasBottomBorder
+      ) {
+        return;
+      }
+
+
+      /*
+        Store the actual vertical
+        position of each border.
+
+        A bottom border sits at the
+        bottom of its element rather
+        than at rect.top.
+      */
+
+      if (hasTopBorder) {
+
+        candidates.push({
           element,
-          rect,
-          distanceFromTop,
-          visible,
-          wideEnough,
-          shallowEnough,
-          nearTop
-        };
+          side: "top",
+          position:
+            rect.top -
+            widgetRect.top
+        });
 
-      })
-      .filter(candidate =>
+      }
 
-        candidate.visible &&
-        candidate.wideEnough &&
-        candidate.shallowEnough &&
-        candidate.nearTop
 
-      );
+      if (hasBottomBorder) {
+
+        candidates.push({
+          element,
+          side: "bottom",
+          position:
+            rect.bottom -
+            widgetRect.top
+        });
+
+      }
+
+    });
 
 
   if (!candidates.length) {
@@ -205,36 +287,73 @@ function tightenTopWidgetSpace() {
 
 
   /*
-    Sort from highest to lowest.
-
-    The highest matching separator is
-    the unnecessary divider above the
-    first event.
+    Ignore borders right against the
+    outer edge of the widget and sort
+    remaining borders from highest
+    to lowest.
   */
 
-  candidates.sort(
-    (a, b) =>
-      a.distanceFromTop -
-      b.distanceFromTop
-  );
+  const usableCandidates =
+    candidates
+      .filter(candidate =>
+        candidate.position >= 15 &&
+        candidate.position <= 220
+      )
+      .sort(
+        (a, b) =>
+          a.position -
+          b.position
+      );
 
 
-  const separator =
-    candidates[0].element;
+  if (!usableCandidates.length) {
+    return;
+  }
 
 
   /*
-    Hide ONLY the first/top divider.
-
-    Dividers between events remain
-    untouched.
+    The highest qualifying horizontal
+    border is the unwanted divider
+    above the first event.
   */
 
-  separator.style.setProperty(
-    "display",
-    "none",
-    "important"
-  );
+  const divider =
+    usableCandidates[0];
+
+
+  if (
+    divider.side === "top"
+  ) {
+
+    divider.element.style.setProperty(
+      "border-top",
+      "0",
+      "important"
+    );
+
+    divider.element.style.setProperty(
+      "border-top-width",
+      "0",
+      "important"
+    );
+
+  }
+
+  else {
+
+    divider.element.style.setProperty(
+      "border-bottom",
+      "0",
+      "important"
+    );
+
+    divider.element.style.setProperty(
+      "border-bottom-width",
+      "0",
+      "important"
+    );
+
+  }
 
 }
 
@@ -632,7 +751,7 @@ function tidyBandsintown() {
 
   hideUnwantedBandsintownContent();
 
-  tightenTopWidgetSpace();
+  removeTopBandsintownDivider();
 
   buildExternalCredit();
 
