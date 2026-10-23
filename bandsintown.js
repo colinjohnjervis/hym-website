@@ -111,6 +111,26 @@ function tidyTopOfBandsintown() {
   }
 
 
+  /*
+    IMPORTANT:
+
+    Once we have successfully removed
+    the original top divider, NEVER run
+    this operation again.
+
+    Without this lock, the next divider
+    between events would become the
+    highest remaining border on a later
+    check and would also be removed.
+  */
+
+  if (
+    widget.dataset.hymTopTidied === "true"
+  ) {
+    return;
+  }
+
+
   const widgetRect =
     widget.getBoundingClientRect();
 
@@ -257,8 +277,8 @@ function tidyTopOfBandsintown() {
 
 
   /*
-    This is the top divider we have
-    already successfully identified.
+    The highest qualifying border is
+    the unwanted divider above event 1.
   */
 
   const divider =
@@ -266,7 +286,7 @@ function tidyTopOfBandsintown() {
 
 
   /*
-    REMOVE THE DIVIDER
+    REMOVE ONLY THAT DIVIDER
   */
 
   if (
@@ -305,15 +325,14 @@ function tidyTopOfBandsintown() {
 
 
   /*
-    REDUCE THE SPACE ABOVE EVENT ONE
+    REDUCE SPACE ABOVE EVENT ONE
 
-    Important:
-    We alter the SAME element that owned
-    the unwanted top divider.
+    Only alter spacing on the SAME
+    element that owned the original
+    top divider.
 
-    We do NOT touch its next sibling,
-    so later events retain their normal
-    Bandsintown spacing.
+    Do not touch siblings or later
+    event containers.
   */
 
   const dividerElement =
@@ -339,9 +358,7 @@ function tidyTopOfBandsintown() {
 
 
   /*
-    First remove available top padding.
-
-    We cap the reduction at 55px.
+    Reduce up to 55px of top padding.
   */
 
   const paddingReduction =
@@ -367,12 +384,9 @@ function tidyTopOfBandsintown() {
 
 
   /*
-    If padding alone didn't account for
-    the full 55px, reduce positive top
-    margin on the same element as well.
-
-    Again, nothing belonging to the
-    second event is moved independently.
+    If necessary, use positive top
+    margin on this SAME element for
+    the remainder of the reduction.
   */
 
   const remainingReduction =
@@ -395,6 +409,21 @@ function tidyTopOfBandsintown() {
     );
 
   }
+
+
+  /*
+    LOCK THIS OPERATION.
+
+    Bandsintown continues mutating its
+    widget after initial rendering.
+
+    This prevents a later run from
+    mistaking the event-to-event
+    divider for the top divider.
+  */
+
+  widget.dataset.hymTopTidied =
+    "true";
 
 }
 
