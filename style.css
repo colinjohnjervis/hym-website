@@ -1,3 +1,4 @@
+
 @import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@100;300;400;600;700;800;900&display=swap');
 
 :root {
@@ -250,7 +251,7 @@ section { scroll-margin-top:var(--header-height); }
 .merch-image {
   width:100%; aspect-ratio:4 / 5; margin:0;
   overflow:hidden; border-radius:20px;
-  background:url("https://holyyouthmovement.co.uk/assets/images/bca96f15-21ef-4f97-a44c-125286d1ba9a.jpg") center/cover no-repeat;
+  background:url("bca96f15-21ef-4f97-a44c-125286d1ba9a.jpg") center/cover no-repeat;
 }
 
 .merch-copy {
@@ -414,7 +415,7 @@ section { scroll-margin-top:var(--header-height); }
   width:100% !important; margin:12px 0 0 !important;
   color:rgba(255,255,255,.72) !important;
   font-family:"Inter",Arial,Helvetica,sans-serif !important;
-  font-size:.88rem !important; font-weight:400 !important;
+  font-size:.88rem; font-weight:400 !important;
   line-height:1.5 !important; text-align:left !important;
 }
 
@@ -467,7 +468,8 @@ section { scroll-margin-top:var(--header-height); }
 .emailoctopus-form small {
   color:rgba(255,255,255,.8);
   font-family:"Inter",Arial,Helvetica,sans-serif;
-  }
+}
+
 /* LISTEN */
 
 .listen {
@@ -814,4 +816,4 @@ section { scroll-margin-top:var(--header-height); }
   .site-footer {
     padding:55px 20px 22px; font-size:13px;
   }
-}
+    }
