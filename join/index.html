@@ -1,0 +1,59 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Join the Mailing List | Holy Youth Movement</title>
+
+  <meta name="robots" content="noindex">
+
+  <script>
+    const destination = new URL(
+      "https://holyyouthmovement.co.uk/home.html"
+    );
+
+    // Preserve campaign tracking supplied in the link.
+    const incoming = new URLSearchParams(
+      window.location.search
+    );
+
+    const tracking = [
+      "utm_source",
+      "utm_medium",
+      "utm_campaign",
+      "utm_content"
+    ];
+
+    tracking.forEach(function (parameter) {
+      if (incoming.has(parameter)) {
+        destination.searchParams.set(
+          parameter,
+          incoming.get(parameter)
+        );
+      }
+    });
+
+    destination.hash = "mailing-list";
+
+    window.location.replace(destination.href);
+  </script>
+
+</head>
+
+<body style="background:#050505;color:#fff;font-family:Arial,sans-serif;text-align:center;padding:40px;">
+
+  <p>Taking you to the Holy Youth Movement mailing list...</p>
+
+  <p>
+    <a
+      href="https://holyyouthmovement.co.uk/home.html#mailing-list"
+      style="color:#fb38fc;"
+    >
+      Click here if you're not redirected.
+    </a>
+  </p>
+
+</body>
+</html>
