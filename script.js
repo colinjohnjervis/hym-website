@@ -1,3 +1,4 @@
+
 const menuButton = document.getElementById("menuButton");
 const navPanel = document.getElementById("navPanel");
 const navLinks = document.querySelectorAll(".nav-links a");
@@ -841,3 +842,88 @@ const brandingTimer = setInterval(() => {
     clearInterval(brandingTimer);
   }
 }, 250);
+
+
+/* MAILING LIST DEEP-LINK ALIGNMENT */
+
+(function () {
+  if (window.location.hash !== "#mailing-list") {
+    return;
+  }
+
+  const section =
+    document.getElementById("mailing-list");
+
+  if (!section) {
+    return;
+  }
+
+  let userInteracted = false;
+
+  function stopAutomaticAlignment() {
+    userInteracted = true;
+  }
+
+  window.addEventListener(
+    "wheel",
+    stopAutomaticAlignment,
+    { once:true, passive:true }
+  );
+
+  window.addEventListener(
+    "touchstart",
+    stopAutomaticAlignment,
+    { once:true, passive:true }
+  );
+
+  window.addEventListener(
+    "keydown",
+    stopAutomaticAlignment,
+    { once:true }
+  );
+
+  function alignMailingList() {
+    if (
+      userInteracted ||
+      window.location.hash !== "#mailing-list"
+    ) {
+      return;
+    }
+
+    const header =
+      document.querySelector(".site-header");
+
+    const headerHeight = header
+      ? header.getBoundingClientRect().height
+      : 0;
+
+    const sectionTop =
+      section.getBoundingClientRect().top +
+      window.scrollY;
+
+    const targetPosition =
+      Math.max(0, sectionTop - headerHeight);
+
+    const originalScrollBehavior =
+      document.documentElement.style.scrollBehavior;
+
+    document.documentElement.style.scrollBehavior =
+      "auto";
+
+    window.scrollTo(0, targetPosition);
+
+    document.documentElement.style.scrollBehavior =
+      originalScrollBehavior;
+  }
+
+  requestAnimationFrame(alignMailingList);
+
+  window.addEventListener(
+    "load",
+    alignMailingList,
+    { once:true }
+  );
+
+  setTimeout(alignMailingList, 500);
+  setTimeout(alignMailingList, 1500);
+})();
