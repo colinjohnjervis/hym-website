@@ -817,3 +817,126 @@ section { scroll-margin-top:var(--header-height); }
     padding:55px 20px 22px; font-size:13px;
   }
     }
+
+/* =========================
+   HYM COOKIE CONSENT
+========================= */
+
+.hym-cookie-banner[hidden] {
+  display: none !important;
+}
+
+.hym-cookie-banner {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  z-index: 2000;
+
+  width: calc(100% - 40px);
+  max-width: 420px;
+  padding: 24px;
+
+  background: #141414;
+  color: #ffffff;
+
+  border: 1px solid #444444;
+  border-radius: 14px;
+
+  box-shadow: 0 12px 40px rgba(0, 0, 0, .55);
+
+  font-family: "Inter", Arial, Helvetica, sans-serif;
+}
+
+.hym-cookie-heading {
+  margin-bottom: 12px;
+
+  color: var(--pink);
+
+  font-family: "Archivo Black", Arial, sans-serif;
+  font-size: 17px;
+  font-weight: 400;
+  letter-spacing: .04em;
+}
+
+.hym-cookie-banner > p {
+  margin: 0 0 18px;
+
+  color: #dedede;
+
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.6;
+}
+
+.hym-cookie-actions {
+  display: flex;
+  gap: 12px;
+}
+
+.hym-cookie-actions button {
+  flex: 1;
+  min-height: 44px;
+
+  padding: 10px 16px;
+
+  border-radius: 7px;
+  cursor: pointer;
+
+  font-family: "Inter", Arial, sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+
+  transition: background .2s ease, color .2s ease;
+}
+
+#hymCookieAccept {
+  background: var(--pink);
+  color: #050505;
+  border: 1px solid var(--pink);
+}
+
+#hymCookieReject {
+  background: transparent;
+  color: #ffffff;
+  border: 1px solid #bdbdbd;
+}
+
+#hymCookieAccept:hover {
+  background: #ffffff;
+  border-color: #ffffff;
+}
+
+#hymCookieReject:hover {
+  background: #333333;
+}
+
+.hym-cookie-banner .hym-cookie-info {
+  margin: 16px 0 0;
+
+  color: #aaaaaa;
+
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+/* PHONE */
+
+@media (max-width: 600px) {
+  .hym-cookie-banner {
+    bottom: 12px;
+    left: 12px;
+
+    width: calc(100% - 24px);
+    max-width: none;
+
+    padding: 20px;
+  }
+
+  .hym-cookie-heading {
+    font-size: 16px;
+  }
+
+  .hym-cookie-banner > p {
+    font-size: 12px;
+  }
+}
